@@ -1,33 +1,29 @@
-// This is for rendering the header. 
+// This is for rendering the header.
 
 import React from 'react';
+import { Ionicons } from '@expo/vector-icons';
 import {View, Text, StyleSheet, Image, Button, TouchableOpacity} from 'react-native';
-import App from '../../App';
-import * as Icons from "react-native-heroicons";
-import { ArrowLeftIcon } from '@heroicons/react/solid';
-import { BellIcon } from '@heroicons/react/solid';
-import { SvgCssUri} from 'react-native-svg';
-import ArrowLeft from '../../img/svg/common/ArrowLeft';
-
 
 const Header = () => {
     return (
-    <View style ={styles.header}>
-      <View style = {styles.headerContent}>
-      <Image source = {require('../../img/svg/common/arrow.png')} style = {styles.leftArrow}></Image>
-      <Text style ={styles.text}>Notifikationer</Text>
-      <TouchableOpacity style = {styles.notButton} >
-          <Text style = {{color : "white", fontFamily : "Arial", fontWeight : "bold", textAlign : "center", paddingTop : 4}}>10 nya</Text>
-      </TouchableOpacity>
-      </View>
-    </View>   
+     <View style ={styles.header}>
+    <View style = {styles.headerContent}>
+    <Ionicons name="arrow-back" size={24} color="black" />
+    <Text style ={styles.text}>Notifikationer</Text>
+    <TouchableOpacity
+        style = {styles.notButton}
+    >
+        <Text style = {{color : "white", fontFamily : "Noto Sans", fontWeight : "bold", textAlign : "center", paddingTop : 4}}>10 nya</Text>
+    </TouchableOpacity>
+    </View>
+     </View>
     );
 };
 
 
 
 const styles = StyleSheet.create({
- 
+
     header : {
     alignSelf: "stretch", // 100% width
     height: 50,
@@ -35,7 +31,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#E0E0E0',
     borderBottomWidth: 1
   },
-  
+
   // Notifications text
   text : {
     alignSelf : 'flex-end',
@@ -63,7 +59,7 @@ const styles = StyleSheet.create({
 
   // Notifications button
   notButton : {
-    backgroundColor : "#71002E", 
+    backgroundColor : "#71002E",
     borderWidth : 1,
     borderRadius : 12,
     textAlign : "center",
