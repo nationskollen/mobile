@@ -2,27 +2,25 @@
 
 import React from 'react';
 import {View, Text, StyleSheet, Image, Button, TouchableOpacity} from 'react-native';
-import App from '../App';
+import App from '../../App';
 import * as Icons from "react-native-heroicons";
 import { ArrowLeftIcon } from '@heroicons/react/solid';
 import { BellIcon } from '@heroicons/react/solid';
 import { SvgCssUri} from 'react-native-svg';
-import ArrowLeft from '../img/svg/common/ArrowLeft';
+import ArrowLeft from '../../img/svg/common/ArrowLeft';
 
 
 const Header = () => {
     return (
-     <View style ={styles.header}>
-    <View style = {styles.headerContent}>
-    <Image source = {require('../img/svg/common/arrow.png')} style = {styles.leftArrow}></Image>
-    <Text style ={styles.text}>Notifikationer</Text>
-    <TouchableOpacity
-        style = {styles.notButton} 
-    >
-        <Text style = {{color : "white", fontFamily : "Noto Sans", fontWeight : "bold", textAlign : "center", paddingTop : 4}}>10 nya</Text>
-    </TouchableOpacity>
-    </View>
-     </View>   
+    <View style ={styles.header}>
+      <View style = {styles.headerContent}>
+      <Image source = {require('../../img/svg/common/arrow.png')} style = {styles.leftArrow}></Image>
+      <Text style ={styles.text}>Notifikationer</Text>
+      <TouchableOpacity style = {styles.notButton} >
+          <Text style = {{color : "white", fontFamily : "Arial", fontWeight : "bold", textAlign : "center", paddingTop : 4}}>10 nya</Text>
+      </TouchableOpacity>
+      </View>
+    </View>   
     );
 };
 
@@ -45,7 +43,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "right",
     fontSize : 25,
-    fontFamily:  "Noto Sans",
+    fontFamily:  "Arial",
     marginLeft : 10
   },
 
