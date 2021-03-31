@@ -3,12 +3,6 @@
 
 import React from 'react';
 import {View, Text, StyleSheet, Image, Button, TouchableOpacity} from 'react-native';
-import App from '../App';
-import * as Icons from "react-native-heroicons";
-import { ArrowLeftIcon } from '@heroicons/react/solid';
-import { BellIcon } from '@heroicons/react/solid';
-import { SvgCssUri} from 'react-native-svg';
-import ArrowLeft from '../img/svg/common/ArrowLeft';
 
 
 const NotificationContent = () => {
@@ -27,7 +21,7 @@ const NotificationContent = () => {
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Vestibulum vehicula sit amet sapien sagittis tempus. Quisque sagittis elementum nisi eu gravida.
                 Aliquam quis pulvinar turpis. Quisque neque felis, ultricies at quam ac,
-                fermentum ullamcorper ligula. 
+                fermentum ullamcorper ligula.
             </Text>
         </View>
      </View>
@@ -48,8 +42,8 @@ const styles = StyleSheet.create({
     },
 
     nationLogoImg : {
-        marginLeft : "auto", 
-        marginRight : "auto", 
+        marginLeft : "auto",
+        marginRight : "auto",
         height : 30,
         width : 45,
     },
