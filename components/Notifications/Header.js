@@ -13,7 +13,7 @@ const Header = () => {
     <TouchableOpacity
         style = {styles.notButton}
     >
-        <Text style = {{color : "white", fontFamily : "Noto Sans", fontWeight : "bold", textAlign : "center", paddingTop : 4}}>10 nya</Text>
+        <Text style = {{color : "white", fontWeight : "bold", textAlign : "center", paddingTop : 4}}>10 nya</Text>
     </TouchableOpacity>
     </View>
      </View>
@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "right",
     fontSize : 25,
-    fontFamily:  "Arial",
     marginLeft : 10
   },
 

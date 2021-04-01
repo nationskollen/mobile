@@ -2,7 +2,7 @@
 // This component is used for rendering each notification.
 
 import React from 'react';
-import {View, Text, StyleSheet, Image, Button, TouchableOpacity, SafeAreaView} from 'react-native';
+import {View, Text, StyleSheet, Image, Button, TouchableOpacity, SafeAreaView, ScrollView} from 'react-native';
 import Header from './Header';
 
 
@@ -42,9 +42,13 @@ function NotificationsContent({notificationList}) {
     return (
         <View>
             <Header/>
+            <ScrollView style={{
+                marginBottom:60
+            }}>
             {notificationList.map((notificationX, index) => (
                 <CreateNotification key={index} notification={notificationX}/>
             ))}
+            </ScrollView>
         </View>
 
     );
