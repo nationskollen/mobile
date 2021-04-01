@@ -4,6 +4,7 @@ import { StyleSheet, Button, View, SafeAreaView, Text, Alert, Platform } from 'r
 import NationsContent from './components/Nations/NationsContent';
 import NotificationsContent from './components/Notifications/NotificationContent';
 import Bottom from './components/Bottom';
+import SettingsScreen from './screens/SettingsScreen'
 
 class Notification { constructor(nation, title, text, publishTime, eventTime) {
   this.nation = nation;
@@ -30,20 +31,17 @@ export default function App() {
 
   return (
     <SafeAreaView style = {styles.container}>
-      <NotificationsContent notificationList={sortedNotifications}/>
-      {/*<NationsContent/>*/}
-      <Bottom/>
+      <SettingsScreen/>
     </SafeAreaView>
+    
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white' ,
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    paddingTop: Platform.OS === 'ios' ? StatusBar.currentHeight : 20,
+    backgroundColor: 'white',
+    paddingTop: Platform.OS === "ios" ? StatusBar.currentHeight: 37,
   },
   menuChoices: {      
     width: 200,

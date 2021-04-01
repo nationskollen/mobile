@@ -60,7 +60,9 @@ const styles = StyleSheet.create({
   notButton : {
     backgroundColor : "#71002E",
     borderWidth : 1,
-    borderRadius : 12,
+    borderRadius : 12,      {/* <NotificationsContent notificationList={sortedNotifications}/>
+    <NationsContent/>
+    <Bottom/> */}
     textAlign : "center",
     alignSelf : "flex-end",
     height : 32,
