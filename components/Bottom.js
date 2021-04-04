@@ -12,6 +12,7 @@ const Bottom = () => {
             height: 60,
             width: '100%',
             position: 'absolute',
+            bottom: 0,
         }}>
             <View/>
             <View/>
@@ -26,7 +27,7 @@ const styles = StyleSheet.create({
     position: {
         backgroundColor: '#71002E',
         height: 75,
-        alignSelf: 'flex-end',
+        //alignSelf: 'flex-end',
     },
     home: {
         

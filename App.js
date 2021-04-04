@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Button, View, SafeAreaView, Text, Alert, Platform } from 'react-native';
-import NationsContent from './components/Nations/NationsContent';
+import ChooseNationContent from './components/Nations/ChooseNationContent';
 import NotificationsContent from './components/Notifications/NotificationContent';
 import Bottom from './components/Bottom';
 
@@ -13,6 +13,25 @@ class Notification { constructor(nation, title, text, publishTime, eventTime) {
   this.eventTime = eventTime;
   //add this.logo ?
 }}
+
+var nationListEx = {
+  "norrlands": {
+    name: 'Norrlands Nation',
+    logo: '../../img/png/norrlands/norrlandslogo.png',
+  },
+  "vdala":{
+    name: 'Västmanlands-Dala Nation',
+    logo: '../../img/png/vdala/vdalalogga.png',
+  },
+  "gotlands":{
+    name: 'Gotlands Nation',
+    logo: '../../img/png/vdala/vdalalogga.png',
+  },
+  "snerikes":{
+    name: 'Södermanlands-Nerikes Nation',
+    logo: '../../img/png/vdala/vdalalogga.png',
+  },
+};
 
 export default function App() {
   console.log("app reloaded")
@@ -30,8 +49,11 @@ export default function App() {
 
   return (
     <SafeAreaView style = {styles.container}>
-      <NotificationsContent notificationList={sortedNotifications}/>
-      {/*<NationsContent/>*/}
+      {/*Page with notifications
+      <NotificationsContent notificationList={sortedNotifications}/>*/}
+
+      {/*//Page for choosing nation from list of all nations*/}
+      <ChooseNationContent nationList={nationListEx}/>
       <Bottom/>
     </SafeAreaView>
   );
@@ -41,9 +63,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white' ,
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    paddingTop: Platform.OS === 'ios' ? StatusBar.currentHeight : 20,
+    alignContent: 'center',
+
+    paddingTop: Platform.OS === 'ios' ? StatusBar.currentHeight : 40,
   },
   menuChoices: {      
     width: 200,
