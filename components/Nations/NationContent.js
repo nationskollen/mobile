@@ -7,7 +7,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { Octicons } from '@expo/vector-icons';
 import React from 'react';
 import {ScrollView, View, Text, StyleSheet, Image, TouchableOpacity, Alert, SafeAreaView} from 'react-native';
-
+import App from '../../App.js';
 
 export default function NationContent({nation}) {
 

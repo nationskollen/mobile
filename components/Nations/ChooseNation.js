@@ -2,9 +2,9 @@
 import { Entypo } from '@expo/vector-icons';
 import React from 'react';
 import {ScrollView, View, Text, StyleSheet, Image, TouchableOpacity, Alert} from 'react-native';
-
-
+import {App, nationListEx} from '../../App.js';
 export default function ChooseNation({nationList}) {
+	console.log(this);
     return (
         <View>
             <RenderHeader/>
@@ -41,17 +41,19 @@ function RenderNationList({nationList}) {
     );
 }
 
+
 //TODO: renderNation function (in NationsContent.js) is unable to find images variable with file path
 //Returns component for given nation
 function renderNation(nation) {
-    //console.log(nation.logo)
 
+ const name = nation.name.toString();
+var source = nationListEx['norrlands'];
     return (
         <View style={styles.nationWrapper}>
-            {/*Logo of nation*/}
+		{/*Logo of nation*/}
             <View style = {styles.nationLogo}>
                 <View style = {styles.nationLogoImgWrapper}>
-                    <Image source = {require('../../img/png/vdala/vdalalogga.png')} style = {styles.nationLogoImg}/>
+			<Image source = {nationListEx[nation.id].logo}  style = {styles.nationLogoImg}/>
                 </View>
             </View>
 
@@ -124,8 +126,8 @@ const styles = StyleSheet.create({
     nationLogoImg : {
         marginLeft : "auto", 
         marginRight : "auto", 
-        width: '100%',
-        height: '60%',
+        width: '80%',
+        height: '80%',
 
     },
 
