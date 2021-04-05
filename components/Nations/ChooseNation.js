@@ -46,12 +46,8 @@ function RenderNationList({nationList}) {
 //Returns component for given nation
 function renderNation(nation) {
 
-	console.log(nation);
  const name = nation.name.toString();
-	console.log(name);
 var source = nationListEx['norrlands'];
-	console.log(source);
-	console.log(nationListEx);
     return (
         <View style={styles.nationWrapper}>
 		{/*Logo of nation*/}
