@@ -19,7 +19,7 @@ var nationListEx = {
   "norrlands": {
     name: 'Norrlands Nation',
     nickname: 'Norrlands Nation',
-    logo: '../../img/png/norrlands/norrlandslogo.png',
+    logo: '../../img/png/norrlands/norrlandslogga.png',
   },
   "vdala":{
     name: 'Västmanlands-Dala Nation',
@@ -29,12 +29,12 @@ var nationListEx = {
   "gotlands":{
     name: 'Gotlands Nation',
     nickname: 'Gotlands Nation',
-    logo: '../../img/png/vdala/vdalalogga.png',
+    logo: '../../img/png/gotlands/gotlandslogga.png',
   },
   "snerikes":{
     name: 'Södermanlands-Nerikes Nation',
     nickname: 'Snerikes Nation',
-    logo: '../../img/png/vdala/vdalalogga.png',
+    logo: '../../img/png/snerikes/snerikeslogga.png',
   },
 };
 
@@ -57,8 +57,10 @@ export default function App() {
       {/*Page with notifications
       <NotificationsContent notificationList={sortedNotifications}/>*/}
 
-      {/*//Page for choosing nation from list of all nations
+      {/*Page for choosing nation from list of all nations
       <ChooseNation nationList={nationListEx}/>*/}
+      
+      {/*Page with information about a nation*/}
       <NationContent nation={nationListEx.vdala}></NationContent>
 
       {/*<Bottom/>*/}

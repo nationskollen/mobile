@@ -1,8 +1,9 @@
 // This is for rendering the nation content. 
 import { AntDesign } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
+import { Foundation } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 import { Octicons } from '@expo/vector-icons';
 import React from 'react';
 import {ScrollView, View, Text, StyleSheet, Image, TouchableOpacity, Alert, SafeAreaView} from 'react-native';
@@ -15,68 +16,88 @@ export default function NationContent({nation}) {
         <SafeAreaView>
             <RenderHeader logo={nation.logo}></RenderHeader>
             <RenderNationInfo nation={nation}></RenderNationInfo>
+            <RenderFood nation={nation}></RenderFood>
+            <RenderEvents nation={nation}></RenderEvents>
+            <RenderInfo nation={nation}></RenderInfo>
+            {/*<RenderEvents></RenderEvents>*/}
         </SafeAreaView>
     )
 }
 
+//renders top header to page
 function RenderHeader(logo){
     //temporary hardcoded test logo
     //will be replace with input from logo prop
     let testLogo = '../../img/png/vdala/vdalalogga.png'
 
     return (
-        <SafeAreaView style={styles.header}>
+        <SafeAreaView style={headerStyles.header}>
             {/*left arrow for going back*/}
-            <View style={styles.arrowBack}>
+            <View style={headerStyles.arrowBack}>
                 <Ionicons name="arrow-back" size={24} color="black" onPress={()=>Alert.alert("(back arrow) was pressed")}/>
             </View>
 
             {/*nation logo as header*/}
-            <View style={styles.logoWrapper}>
-               <Image source={require(testLogo)} style={styles.logo}/>
+            <View style={headerStyles.logoWrapper}>
+               <Image source={require(testLogo)} style={headerStyles.logo}/>
             </View>
         </SafeAreaView>
     )
 }
 
+//renders information and title of nation. Can be used in maps too!
 function RenderNationInfo({nation}) {
     //TODO: add openinghours and address to nation object
+    //TODO: add color theme to nation, so that icons can match
 
     return (
         <SafeAreaView>
-            <View style={styles.nationInfoWrapper}>
-                <View style={styles.nationNameWrapper}>
-                    <Text style={styles.nationName}>{nation.nickname}</Text>
+            <View style={nationStyles.nationInfoWrapper}>
+                <View style={nationStyles.nationNameWrapper}>
+                    <Text style={nationStyles.nationName}>{nation.nickname}</Text>
                 </View>
 
-                <View style={styles.clockSymbolWrapper}>
+                <View style={nationStyles.clockSymbolWrapper}>
                     <AntDesign name="clockcircle" size={20} color="black" />
-                    <Text style={styles.openinghoursTitle}>Öppettider</Text>
+                    <Text style={nationStyles.openinghoursTitle}>Öppettider</Text>
                 </View>
 
-                <View style={styles.openinghoursWrapper}>
-                    <View style={styles.lineSymbol}></View>
-                    <View style={styles.openinghoursTextWrapper}>
-                        <Text style={styles.openinghoursText}>Mån-Fre: 10:00-20:00</Text>
-                        <Text style={styles.openinghoursText}>Lör-Sön: Stängt</Text>
+                <View style={nationStyles.openinghoursWrapper}>
+                    <View style={nationStyles.lineSymbol}></View>
+                    <View style={nationStyles.openinghoursTextWrapper}>
+                        <Text style={nationStyles.openinghoursText}>Mån-Fre: 10:00-20:00</Text>
+                        <Text style={nationStyles.openinghoursText}>Lör-Sön: Stängt</Text>
                     </View>
                 </View>
 
-                <View style={styles.mapWrapper}>
-                    <View style={styles.mapSymbolWrapper}>
-                        <Octicons name="location" size={20} color="black" />
+                <View style={nationStyles.mapWrapper}>
+                    <View style={nationStyles.mapSymbolWrapper}>
+                        <MaterialIcons name="location-on" size={16} color="white" />
                     </View>
-                    <Text style={styles.mapAddress}>S:t Larsgatan 13, Uppsala, 75311</Text>
+                    <View style={nationStyles.mapSymbolCircle}></View>
+                    <Text style={nationStyles.mapAddress} onPress={()=>Alert.alert(
+                        "Öppna i kartor?",
+                        "Tryck OK för att öppna addressen i kartor",
+                        [
+                            {
+                            text: "Avbryt",
+                            onPress: () => console.log("Avbryt Pressed"),
+                            style: "Avbryt"
+                            },
+                            { text: "OK", onPress: () => console.log("OK Pressed") }
+                        ],
+                        { cancelable: false }
+                    )}>S:t Larsgatan 13, Uppsala, 75311</Text>
                 </View>
             </View> 
 
             <RenderActivityBar activityComponent={RenderActivityComponent(getActivityLevel(nation))}></RenderActivityBar>
-
         </SafeAreaView>
     )
 }
 
 //dummy for retrieving activity level of given nation
+//TODO: replace with function that communicates with SDK
 function getActivityLevel({nation}) {
     return 'low'
 }
@@ -85,61 +106,131 @@ function getActivityLevel({nation}) {
 function RenderActivityBar({activityComponent}) {
     
     return (
-        <View style={styles.activitybar}>
-            <View style={styles.activitybarLogo}>
+        <View style={activityStyles.activitybar}>
+            <View style={activityStyles.activitybarLogo}>
                 <Ionicons name="md-people-outline" size={24} color="white"/>
             </View>
             
-            <Text style={styles.activitybarText}>Aktivitet</Text>
+            <Text style={activityStyles.activitybarText}>Aktivitet</Text>
 
             {activityComponent}
         </View>
     )
 }
 
-
-
 //function that returns a component with a colored circle and text - determined by the activity level
 function RenderActivityComponent(activityLevel) {
     switch(activityLevel) {
         case 'low':
             return (
-                <View style={styles.activityLevelWrapper}>
+                <View style={activityStyles.activityLevelWrapper}>
 
-                    <View style={styles.activityCircle} backgroundColor='green'></View>
-                    <Text style={styles.activityLevelText}>Låg</Text>
+                    <View style={activityStyles.activityCircle} backgroundColor='green'></View>
+                    <Text style={activityStyles.activityLevelText}>Låg</Text>
                 </View>)
 
         case 'medium':
             return (
-                <View style={styles.activityLevelWrapper}>
-                    <View style={styles.activityCircle} backgroundColor='yellow'></View>
-                    <Text style={styles.activityLevelText}>Medel</Text>
+                <View style={activityStyles.activityLevelWrapper}>
+                    <View style={activityStyles.activityCircle} backgroundColor='yellow'></View>
+                    <Text style={activityStyles.activityLevelText}>Medel</Text>
                 </View>)
 
         case 'high':
             return (
-                <View style={styles.activityLevelWrapper}>
-                    <View style={styles.activityCircle} backgroundColor='red'></View>
-                    <Text style={styles.activityLevelText}>Hög</Text>
+                <View style={activityStyles.activityLevelWrapper}>
+                    <View style={activityStyles.activityCircle} backgroundColor='red'></View>
+                    <Text style={activityStyles.activityLevelText}>Hög</Text>
                 </View>)
 
         default: 
-            return (<View style={styles.activityLevelWrapper}>
-                <View style={styles.activityCircle} backgroundColor='white'></View>
-                <Text style={styles.activityLevelText}>Ej tillgänglig</Text>
+            return (<View style={activityStyles.activityLevelWrapper}>
+                <View style={activityStyles.activityCircle} backgroundColor='white'></View>
+                <Text style={activityStyles.activityLevelText}>Ej tillgänglig</Text>
             </View>)
     }
         
 }
 
+//renders entire dropdown menu with food content
+function RenderFood({nation}) {
+    //temporary variable and dummy function for food menu
+    //var foodmenu = getFoodMenu(nation)
+    return (
+        <RenderDropDownHeader type={'food'}/>
+        /*<RenderSubHeaders/>*/
+    )
+}
 
+//renders entire dropdown menu with events content
+function RenderEvents({nation}) {
+    //temporary variable and dummy function for events menu
+    //var eventsmenu = getEventsMenu(nation)
+    return (
+        <RenderDropDownHeader type={'events'}/>
+        /*<RenderSubHeaders/>*/
+    )
+}
 
+//renders entire dropdown menu with info (about nation) content
+function RenderInfo({nation}) {
+    //temporary variable and dummy function for events menu
+    //var eventsmenu = getEventsMenu(nation)
+    return (
+        <RenderDropDownHeader type={'info'}/>
+        /*render subheaders when plus icon is pressed*/
+    )
+}
 
-//TODO: sort styles by component!!!
+//renders header for arbitrary "types" of headers
+function RenderDropDownHeader({type}){
+    var icon    //variable holding icon, determined by type
+    var title   //variable holding title, determined by type
 
-const styles = StyleSheet.create({
+    switch(type){
+        case 'food':
+            icon  = <Ionicons name= "md-fast-food-outline" size={28} color="black" />
+            title = "Meny"
+            break
+        case 'events':
+            icon  = <MaterialIcons name="event" size={24} color="black" />
+            title = "Evenemang"
+            break
+        case 'info':
+            icon  = <Foundation name="info" size={24} color="black" />
+            title = "Landskap"
+            break
+        default:
+            icon = <View></View>
+            title = ""
+            console.log("error: type of dropdown header not found")
+    }
 
+    return (
+        <View style={dropdownStyles.header}>
+            <View style={dropdownStyles.iconWrapper}>{icon}</View>
+            
+            <Text style={dropdownStyles.headerTitle}>{title}</Text>
+
+            <View style={dropdownStyles.headerPlusWrapper}>
+                <AntDesign name="pluscircle" size={32} color="#AEAEAE" 
+                    onPress={()=>
+                        Alert.alert(title+" menu should expand now")
+                    }/>
+                
+                {/*// minus circle should replace plus circle when plus is pressed.
+                <AntDesign name="minuscircle" size={32} color="#AEAEAE" 
+                    onPress={()=>
+                        Alert.alert(title+" menu should close now")
+                    }
+                />*/}
+            </View>
+        </View>
+    )
+}
+
+//styles for header
+const headerStyles = StyleSheet.create({
     header : {
         alignSelf: "stretch", // 100% width
         height: 50,
@@ -147,7 +238,6 @@ const styles = StyleSheet.create({
         borderBottomColor: '#E0E0E0',
         borderBottomWidth: 1
     },
-
 
     arrowBack: {
         marginLeft : 10,
@@ -165,7 +255,10 @@ const styles = StyleSheet.create({
         width: 65,
         height: 45,
     },
-    
+})
+
+//styles for nation info
+const nationStyles = StyleSheet.create({
     nationInfoWrapper: {
         backgroundColor: '#F3F3F3',
         height: 220, //TODO: change to not fixed size
@@ -189,7 +282,6 @@ const styles = StyleSheet.create({
         marginTop: 6,
     },
 
-    
     clockSymbolWrapper: {
         flexDirection: 'row',
         marginTop: 15,
@@ -223,20 +315,41 @@ const styles = StyleSheet.create({
     mapWrapper: {
         flexDirection: 'row',
         alignItems: 'center',
+        marginTop: 15,
     },
 
     mapSymbolWrapper: {
-        marginTop: 6,
+        position: 'absolute',
         marginLeft: '7.5%',
+
+        zIndex: 2,
+        elevation: Platform.OS === 'android' ? 2: 0,
+    },
+
+    mapSymbolCircle: {
+        width: 20,
+        height: 20,
+        borderRadius: 50,
+        backgroundColor: 'black',
+        position: 'absolute',
+        left: '7%',
+
+        zIndex: 1,
+        elevation: Platform.OS === 'android' ? 1: 0,
     },
 
     mapAddress: {
-        marginTop: 5,
-        marginLeft: 10,
+        marginLeft: '14%',
         fontSize: 14,
         fontWeight: 'bold',
+        zIndex: 3,
     },
 
+
+})
+
+//styles for activitybar
+const activityStyles = StyleSheet.create({
     activitybar: {
         flexDirection: 'row',
         height: 45,
@@ -279,3 +392,35 @@ const styles = StyleSheet.create({
 
 
 })
+
+//styles for dropDown menus
+const dropdownStyles = StyleSheet.create({
+    header: {
+        flexDirection: 'row',
+        height: 60,
+        borderBottomWidth: 1,
+        alignItems: 'center',
+    },
+
+    iconWrapper: {
+        marginLeft:20,
+    },
+
+    headerTitle: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        position: 'absolute',
+        marginLeft:60,
+    },
+
+    headerPlusWrapper: {
+        position: 'absolute',
+        right: 30,
+    },
+
+
+})
+
+//styles for event menu
+
+//styles for food menu
