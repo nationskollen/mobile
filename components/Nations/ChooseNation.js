@@ -1,22 +1,22 @@
-// This is for rendering the header. 
+// This is for rendering the choose-nation view. 
 import { Entypo } from '@expo/vector-icons';
 import React from 'react';
 import {ScrollView, View, Text, StyleSheet, Image, TouchableOpacity, Alert} from 'react-native';
 
 
-export default function ChooseNationContent({nationList}) {
+export default function ChooseNation({nationList}) {
     return (
         <View>
-            <CreateHeader/>
+            <RenderHeader/>
             {/*TODO: Scroll does not seem to be working on android? (only ios)*/}
             <ScrollView>
-                <CreateNationList nationList={nationList}/>
+                <RenderNationList nationList={nationList}/>
             </ScrollView>
         </View>
     );
 };
 
-const CreateHeader = () => {
+const RenderHeader = () => {
     return (
         <View style={styles.header}>
             {/*Header title*/}
@@ -30,7 +30,7 @@ const CreateHeader = () => {
 }
 
 //Returns list of components for every nation
-function CreateNationList({nationList}) {
+function RenderNationList({nationList}) {
     let renderedNationList = [];
     for (let nation in nationList) {
         renderedNationList.push(renderNation(nationList[nation]))

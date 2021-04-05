@@ -1,8 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Button, View, SafeAreaView, Text, Alert, Platform } from 'react-native';
-import ChooseNationContent from './components/Nations/ChooseNationContent';
+import ChooseNation from './components/Nations/ChooseNation';
 import NotificationsContent from './components/Notifications/NotificationContent';
+import NationContent from './components/Nations/NationContent';
 import Bottom from './components/Bottom';
 
 class Notification { constructor(nation, title, text, publishTime, eventTime) {
@@ -17,18 +18,22 @@ class Notification { constructor(nation, title, text, publishTime, eventTime) {
 var nationListEx = {
   "norrlands": {
     name: 'Norrlands Nation',
+    nickname: 'Norrlands Nation',
     logo: '../../img/png/norrlands/norrlandslogo.png',
   },
   "vdala":{
     name: 'Västmanlands-Dala Nation',
+    nickname: 'V-Dala Nation',
     logo: '../../img/png/vdala/vdalalogga.png',
   },
   "gotlands":{
     name: 'Gotlands Nation',
+    nickname: 'Gotlands Nation',
     logo: '../../img/png/vdala/vdalalogga.png',
   },
   "snerikes":{
     name: 'Södermanlands-Nerikes Nation',
+    nickname: 'Snerikes Nation',
     logo: '../../img/png/vdala/vdalalogga.png',
   },
 };
@@ -52,9 +57,11 @@ export default function App() {
       {/*Page with notifications
       <NotificationsContent notificationList={sortedNotifications}/>*/}
 
-      {/*//Page for choosing nation from list of all nations*/}
-      <ChooseNationContent nationList={nationListEx}/>
-      <Bottom/>
+      {/*//Page for choosing nation from list of all nations
+      <ChooseNation nationList={nationListEx}/>*/}
+      <NationContent nation={nationListEx.vdala}></NationContent>
+
+      {/*<Bottom/>*/}
     </SafeAreaView>
   );
 }
