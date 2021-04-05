@@ -5,7 +5,6 @@ import ChooseNation from './components/Nations/ChooseNation';
 import NotificationsContent from './components/Notifications/NotificationContent';
 import NationContent from './components/Nations/NationContent';
 import Bottom from './components/Bottom';
-
 class Notification { constructor(nation, title, text, publishTime, eventTime) {
   this.nation = nation;
   this.title = title;
@@ -15,32 +14,100 @@ class Notification { constructor(nation, title, text, publishTime, eventTime) {
   //add this.logo ?
 }}
 
-var nationListEx = {
+// Maybe this whole DB should be moved to a separate file?
+export var  nationListEx = {
   "norrlands": {
+    id: "norrlands",
     name: 'Norrlands Nation',
     nickname: 'Norrlands Nation',
-    logo: '../../img/png/norrlands/norrlandslogo.png',
+    logo: require('./img/png/norrlands/norrlandslogo.png'),
   },
-  "vdala":{
+  "vdala": {
+    id: "vdala",
     name: 'Västmanlands-Dala Nation',
     nickname: 'V-Dala Nation',
-    logo: '../../img/png/vdala/vdalalogga.png',
+    logo: require('./img/png/vdala/vdalalogga.png'),
   },
   "gotlands":{
+    id: "gotlands", 
     name: 'Gotlands Nation',
     nickname: 'Gotlands Nation',
-    logo: '../../img/png/vdala/vdalalogga.png',
+    logo: require('./img/png/gotlands/gotlandslogga.png'),
   },
   "snerikes":{
+    id: "snerikes", 
     name: 'Södermanlands-Nerikes Nation',
     nickname: 'Snerikes Nation',
-    logo: '../../img/png/vdala/vdalalogga.png',
+    logo: require('./img/png/snerikes/snerikeslogga.png'),
   },
-};
+
+  "kalmars" : {
+    id: "kalmars", 
+    name : 'Kalmars Nation',
+    nickname: 'Snerikes Nation',
+    logo: require('./img/png/kalmars/kalmarslogga.png'),
+  },
+
+  "ostgotas" : {
+    id: "ostgotas",
+    name : 'Östgöta Nation',
+    nickname: 'ÖG-Nations',
+    logo: require('./img/png/ostgotas/ostgotalogga.png'),
+  },
+
+  "smalands" : {
+    id: "smalands",
+    name: 'Smålands Nation',
+    nickname: 'Smålands Nation',
+    logo: require('./img/png/smalands/smalandslogga.png')
+  },
+
+  "stockholms" : {
+    id: "stockholms",
+    name: 'Stockholms Nation',
+    nickname: 'Stocken',
+    logo: require('./img/png/stockholms/stockholmslogga.png')
+  },
+
+  "uplands" : {
+    id: "uplands",
+    name: 'Uplands Nation',
+    nickname: 'Uplands Nation',
+    logo: require('./img/png/uplands/uplandslogga.png'),
+  },
+  
+  "varmlands" : {
+    id: "varmlands",
+    name: 'Värmlands Nation',
+    nickname : 'Värmlands Nation',
+    logo: require('./img/png/varmlands/varmlandslogga.png'),
+  },
+  
+  "vastgotas" : {
+    id: "vastgotas",
+    name: 'Västgötas Nation',
+    nickname: 'Västgötas Nation',
+    logo: require('./img/png/vastgotas/vastgotalogga.png'),
+  },
+
+  "goteborgs" : {
+    id: "goteborgs",
+    name: 'Göteborgs Nation',
+    nickname: 'Göteborgs Nation',
+    logo: require('./img/png/goteborgs/goteborglogga.png'),
+  },
+
+  "ghs" : {
+    id: "ghs",
+    name: 'Gästrike-Hälsinglands Nation',
+    nickname: 'GH',
+    logo: require('./img/png/ghs/ghlogga.png'),
+    },
+  };
 
 export default function App() {
   console.log("app reloaded")
-  //example notifications
+  //example notifications)
   const notification1 = new Notification('V-Dala nation', '04-Släpp Lördag!', 'Välkomna till årets första 04-släpp sen pandemins början!', '2021-03-31 13:37', '2021-04-02 22:00-04:00');
   const notification2 = new Notification('Norrlands nation', 'Våffeldagen', 'Käka krispiga våfflor för 10 kr styck', '2021-03-31 04:20', '2021-04-01 10:00-15:00');
   const notification3 = new Notification('Gotlands Nation', 'Gofika!', 'Sike fikat är inte gott alls, kom inte hit', '2021-03-31 15:53', '2021-05-10 09:00-16:00');
@@ -56,11 +123,11 @@ export default function App() {
     <SafeAreaView style = {styles.container}>
       {/*Page with notifications
       <NotificationsContent notificationList={sortedNotifications}/>*/}
-
       {/*//Page for choosing nation from list of all nations
       <ChooseNation nationList={nationListEx}/>*/}
       <NationContent nation={nationListEx.vdala}></NationContent>
-
+	<ChooseNation nationList = {nationListEx}></ChooseNation>
+      <Bottom></Bottom>
       {/*<Bottom/>*/}
     </SafeAreaView>
   );
