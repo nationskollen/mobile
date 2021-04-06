@@ -9,41 +9,35 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const Bottom = () => {
     return (
-        <View style={styles.bottom}>
-            <View style = {styles.position}>
-                <View style = {styles.home}>
-                    <SimpleLineIcons name="bell" size={25} color="white"/>
-                    <Text style={styles.iconName}>Notifikationer</Text>
-                </View>
-                <View style = {styles.home}>
-                    <SimpleLineIcons name="event" size={25} color="white"/>
-                    <Text style={styles.iconName}>Bokningar</Text>
-                </View>
-                <View style = {styles.home}>
-                    <SimpleLineIcons name="home" size={25} color="white"/>                
-                    <Text style={styles.iconName}>Home</Text>
-                </View>
-                <View style = {styles.home}>
-                    <SimpleLineIcons name="map" size={25} color="white"/>
-                    <Text style={styles.iconName}>Karta</Text>
-                </View>
-                <View style = {styles.home}>
-                    <SimpleLineIcons name="settings" size={25} color="white" onPress={() => {
-                        alert('You touched me');
-                    }}/>
-                    <Text style={styles.iconName}>Inställningar</Text>
-                </View>
+        <View style = {styles.position}>
+            <View style = {styles.icon}>
+                <SimpleLineIcons name="bell" size={25} color="white"/>
+                <Text style={styles.iconName}>Notifikationer</Text>
             </View>
-        </View>
+            <View style = {styles.icon}>
+                <SimpleLineIcons name="event" size={25} color="white"/>
+                <Text style={styles.iconName}>Bokningar</Text>
+            </View>
+            <View style = {styles.icon}>
+                <SimpleLineIcons name="home" size={25} color="white"/>                
+                <Text style={styles.iconName}>Home</Text>
+            </View>
+            <View style = {styles.icon}>
+                <SimpleLineIcons name="map" size={25} color="white"/>
+                <Text style={styles.iconName}>Karta</Text>
+            </View>
+            <View style = {styles.icon}>
+                <SimpleLineIcons name="settings" size={25} color="white" onPress={() => {
+                    alert('You touched me');
+                }}/>
+                <Text style={styles.iconName}>Inställningar</Text>
+            </View>
+        </View>      
     );
 };
 
 const styles = StyleSheet.create({
-    bottom: {
-        flex:1,
-        justifyContent: 'flex-end',
-    },
-    home: {
+    icon: {
         height: 50,
         width: 66,
         margin: 'auto',
@@ -60,6 +54,7 @@ const styles = StyleSheet.create({
         height: 60,
         width: '100%',
         position: 'absolute',
+        bottom: 0,
         justifyContent: 'space-around',
         alignItems: 'center',
         flexDirection: 'row',
