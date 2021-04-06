@@ -1,4 +1,4 @@
-// This is for rendering the nation content. 
+// This is for rendering the nation content.
 import { AntDesign } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { Foundation } from '@expo/vector-icons';
@@ -6,8 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Octicons } from '@expo/vector-icons';
 import React from 'react';
-import {ScrollView, View, Text, StyleSheet, Image, TouchableOpacity, Alert, SafeAreaView} from 'react-native';
-import App from '../../App.js';
+import {ScrollView, View, Text, StyleSheet, Image, TouchableOpacity, Alert, SafeAreaView, Platform} from 'react-native';
 
 export default function NationContent({nation}) {
 
@@ -89,7 +88,7 @@ function RenderNationInfo({nation}) {
                         { cancelable: false }
                     )}>S:t Larsgatan 13, Uppsala, 75311</Text>
                 </View>
-            </View> 
+            </View>
 
             <RenderActivityBar activityComponent={RenderActivityComponent(getActivityLevel(nation))}></RenderActivityBar>
         </SafeAreaView>
@@ -104,13 +103,13 @@ function getActivityLevel({nation}) {
 
 //renders activity bar
 function RenderActivityBar({activityComponent}) {
-    
+
     return (
         <View style={activityStyles.activitybar}>
             <View style={activityStyles.activitybarLogo}>
                 <Ionicons name="md-people-outline" size={24} color="white"/>
             </View>
-            
+
             <Text style={activityStyles.activitybarText}>Aktivitet</Text>
 
             {activityComponent}
@@ -143,13 +142,13 @@ function RenderActivityComponent(activityLevel) {
                     <Text style={activityStyles.activityLevelText}>Hög</Text>
                 </View>)
 
-        default: 
+        default:
             return (<View style={activityStyles.activityLevelWrapper}>
                 <View style={activityStyles.activityCircle} backgroundColor='white'></View>
                 <Text style={activityStyles.activityLevelText}>Ej tillgänglig</Text>
             </View>)
     }
-        
+
 }
 
 //renders entire dropdown menu with food content
@@ -209,17 +208,17 @@ function RenderDropDownHeader({type}){
     return (
         <View style={dropdownStyles.header}>
             <View style={dropdownStyles.iconWrapper}>{icon}</View>
-            
+
             <Text style={dropdownStyles.headerTitle}>{title}</Text>
 
             <View style={dropdownStyles.headerPlusWrapper}>
-                <AntDesign name="pluscircle" size={32} color="#AEAEAE" 
+                <AntDesign name="pluscircle" size={32} color="#AEAEAE"
                     onPress={()=>
                         Alert.alert(title+" menu should expand now")
                     }/>
-                
+
                 {/*// minus circle should replace plus circle when plus is pressed.
-                <AntDesign name="minuscircle" size={32} color="#AEAEAE" 
+                <AntDesign name="minuscircle" size={32} color="#AEAEAE"
                     onPress={()=>
                         Alert.alert(title+" menu should close now")
                     }
@@ -288,7 +287,7 @@ const nationStyles = StyleSheet.create({
         marginLeft: '7%',
         alignItems: 'center',
     },
-    
+
     openinghoursTitle: {
         fontWeight: 'bold',
         fontSize: 14,

@@ -1,10 +1,10 @@
-// This is for rendering the choose-nation view. 
+// This is for rendering the choose-nation view.
 import { Entypo } from '@expo/vector-icons';
 import React from 'react';
 import {ScrollView, View, Text, StyleSheet, Image, TouchableOpacity, Alert} from 'react-native';
-import {App, nationListEx} from '../../App.js';
+import { nationListEx} from '../../App.js';
+
 export default function ChooseNation({nationList}) {
-	console.log(this);
     return (
         <View>
             <RenderHeader/>
@@ -24,7 +24,7 @@ const RenderHeader = () => {
 
             {/*Clickable cross to close this page. Current onPress should be replaced.*/}
             <Entypo name="cross" size={24} color="black" style={styles.cross} onPress={()=>Alert.alert("(Cross) was pressed")}/>
-            
+
         </View>
     );
 }
@@ -46,8 +46,8 @@ function RenderNationList({nationList}) {
 //Returns component for given nation
 function renderNation(nation) {
 
- const name = nation.name.toString();
-var source = nationListEx['norrlands'];
+    const name = nation.name.toString();
+    var source = nationListEx['norrlands'];
     return (
         <View style={styles.nationWrapper}>
 		{/*Logo of nation*/}
@@ -114,37 +114,37 @@ const styles = StyleSheet.create({
 
     nationWrapper: {
         flexWrap : "wrap",
-        alignSelf : "stretch",
         backgroundColor : "white",
-        height : 80,
-
         borderBottomWidth : 1,
         borderColor : '#E0E0E0',
-
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingVertical: 10,
+        paddingHorizontal: 15,
+        maxHeight: 90,
     },
 
     nationLogoImg : {
-        marginLeft : "auto", 
-        marginRight : "auto", 
         width: '80%',
         height: '80%',
-
     },
 
     nationLogoImgWrapper : {
-        marginLeft: 15,
-        marginTop: 4,
         justifyContent : "center",
         backgroundColor : "#E8E8E8",
-        width : 70,
-        height : 70,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width : 65,
+        height : 65,
         borderRadius : 50
     },
 
     nationNameWrapper: {
         height: '100%',
-        maxWidth: '55%',
         justifyContent: 'center',
+        flex: 1,
     },
 
     nationName: {
@@ -155,20 +155,16 @@ const styles = StyleSheet.create({
     },
 
     chooseButtonWrapper: {
-        height: 30,
-        width: 80,
         borderWidth: 1,
         borderRadius: 5,
         borderColor: 'black',
         backgroundColor: '#E8E8E8',
-        position: 'absolute',
-        right: '4%',
-        marginVertical: 25,
+        paddingVertical: 5,
+        paddingHorizontal: 15,
     },
 
     chooseButton: {
         textAlign: 'center',
-        paddingVertical: '6%', //TODO: replace with some centering property for accuracy
         color: 'black',
         fontWeight: 'bold',
         fontSize: 15,
