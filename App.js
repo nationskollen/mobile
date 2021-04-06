@@ -4,7 +4,7 @@ import { StyleSheet, Button, View, SafeAreaView, Text, Alert, Platform } from 'r
 import ChooseNation from './components/Nations/ChooseNation';
 import NotificationsContent from './components/Notifications/NotificationContent';
 import NationContent from './components/Nations/NationContent';
-import Bottom from './components/Bottom';
+import Footer from './components/Footer';
 import SettingsScreen from './screens/SettingsScreen'
 
 class Notification { constructor(nation, title, text, publishTime, eventTime) {
@@ -131,8 +131,8 @@ export default function App() {
       {/*Page with information about a nation
       <NationContent nation={nationListEx.vdala}></NationContent>*/}
 
-      <Bottom></Bottom>
-      {/*<Bottom/>*/}
+      <Footer></Footer>
+      {/*<Footer/>*/}
     </SafeAreaView>
     
   );

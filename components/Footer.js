@@ -1,5 +1,5 @@
 
-/// This component is used to get the bottom
+/// This component is used to get the footer
 
 import React from 'react';
 import {View, Text, StyleSheet, Image, Button, TouchableOpacity, FlexStyle, TouchableHighlight} from 'react-native';
@@ -7,7 +7,7 @@ import {AntDesign} from '@expo/vector-icons';
 import { SimpleLineIcons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-const Bottom = () => {
+const Footer = () => {
     return (
         <View style = {styles.position}>
             <View style = {styles.icon}>
@@ -62,4 +62,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default Bottom
+export default Footer

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Text, Button, PickerIOSComponent, } from 'react-native';
-import Bottom from '../components/Bottom';
+import Footer from '../components/Footer';
 import HeaderSettings from '../components/Settings/HeaderSettings.js'
 
 import { FontAwesome } from '@expo/vector-icons';
@@ -27,7 +27,7 @@ function SettingsScreen(props) {
                 <Text style={styles.optionsText}>Anpassa notifikationer</Text>
                 <FontAwesome style={styles.arrow} name="long-arrow-right" size={24} color="black" />
             </View>
-            <Bottom/>
+            <Footer/>
         </View>
     );
 }
