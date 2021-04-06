@@ -6,17 +6,17 @@ import {View, Text, StyleSheet, Image, Button, TouchableOpacity} from 'react-nat
 
 const Header = () => {
     return (
-     <View style ={styles.header}>
-    <View style = {styles.headerContent}>
-    <Ionicons name="arrow-back" size={24} color="black" />
-    <Text style ={styles.text}>Notifikationer</Text>
-    <TouchableOpacity
+    <View style ={styles.header}>
+      <View style = {styles.headerContent}>
+        <Ionicons name="arrow-back" size={24} color="black" />
+        <Text style ={styles.text}>Notifikationer</Text>
+        <TouchableOpacity
         style = {styles.notButton}
-    >
+        >
         <Text style = {{color : "white", fontWeight : "bold", textAlign : "center", paddingTop : 4}}>10 nya</Text>
-    </TouchableOpacity>
+        </TouchableOpacity>
+      </View>
     </View>
-     </View>
     );
 };
 
@@ -50,10 +50,10 @@ const styles = StyleSheet.create({
 
   // Back arrow
   leftArrow : {
-      marginLeft : 10,
-      marginTop : 6,
-      width : 30,
-      height : 25
+    marginLeft : 10,
+    marginTop : 6,
+    width : 30,
+    height : 25
   },
 
   // Notifications button

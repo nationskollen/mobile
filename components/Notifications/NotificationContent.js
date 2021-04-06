@@ -6,7 +6,25 @@ import {View, Text, StyleSheet, Image, Button, TouchableOpacity, SafeAreaView, S
 import Header from './Header';
 
 
-function CreateNotification({notification}) {
+
+
+function NotificationsContent({notificationList}) {
+    return (
+        <View>
+            <Header/>
+            <ScrollView style={{
+                marginBottom:60
+            }}>
+            {notificationList.map((notificationX, index) => (
+                <RenderNotification key={index} notification={notificationX}/>
+            ))}
+            </ScrollView>
+        </View>
+
+    );
+};
+
+function RenderNotification({notification}) {
     let nation = notification.nation
     let title = notification.title
     let text = notification.text
@@ -37,22 +55,6 @@ function CreateNotification({notification}) {
         </View>
        );
 }
-
-function NotificationsContent({notificationList}) {
-    return (
-        <View>
-            <Header/>
-            <ScrollView style={{
-                marginBottom:60
-            }}>
-            {notificationList.map((notificationX, index) => (
-                <CreateNotification key={index} notification={notificationX}/>
-            ))}
-            </ScrollView>
-        </View>
-
-    );
-};
 
 
 const styles = StyleSheet.create({
