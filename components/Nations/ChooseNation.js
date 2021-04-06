@@ -45,15 +45,12 @@ function RenderNationList({nationList}) {
 //TODO: renderNation function (in NationsContent.js) is unable to find images variable with file path
 //Returns component for given nation
 function renderNation(nation) {
-
-    const name = nation.name.toString();
-    var source = nationListEx['norrlands'];
     return (
-        <View style={styles.nationWrapper}>
+        <View key={nation.id} style={styles.nationWrapper}>
 		{/*Logo of nation*/}
             <View style = {styles.nationLogo}>
                 <View style = {styles.nationLogoImgWrapper}>
-			<Image source = {nationListEx[nation.id].logo}  style = {styles.nationLogoImg}/>
+			<Image source = {nation.logo} style = {styles.nationLogoImg}/>
                 </View>
             </View>
 
