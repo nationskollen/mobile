@@ -1,14 +1,19 @@
 import React from 'react';
-import { View, StyleSheet, Text, Button, PickerIOSComponent, } from 'react-native';
+import { SafeAreaView, View, StyleSheet, Text, Button, PickerIOSComponent, } from 'react-native';
+
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
 import Footer from '../components/Footer';
 import HeaderSettings from '../components/Settings/HeaderSettings.js'
 
 import { FontAwesome } from '@expo/vector-icons';
 
-function SettingsScreen(props) {
+function SettingsScreen({ navigation }) {
     console.log("app reloaded, settings")
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <HeaderSettings/>
             <View style={styles.darkMode}>
                 <View style={styles.dmText}>
@@ -27,8 +32,8 @@ function SettingsScreen(props) {
                 <Text style={styles.optionsText}>Anpassa notifikationer</Text>
                 <FontAwesome style={styles.arrow} name="long-arrow-right" size={24} color="black" />
             </View>
-            <Footer/>
-        </View>
+            <Button title="go home" onPress={() => navigation.navigate('Home')}/>
+        </SafeAreaView>
     );
 }
 
