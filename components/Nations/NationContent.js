@@ -8,17 +8,15 @@ import { Octicons } from '@expo/vector-icons';
 import React from 'react';
 import {ScrollView, View, Text, StyleSheet, Image, TouchableOpacity, Alert, SafeAreaView, Platform} from 'react-native';
 
-export default function NationContent({nation}) {
-
-
+export function NationContent({nation}) {
     return (
         <SafeAreaView>
             <RenderHeader logo={nation.logo}></RenderHeader>
             <RenderNationInfo nation={nation}></RenderNationInfo>
-            <RenderFood nation={nation}></RenderFood>
-            <RenderEvents nation={nation}></RenderEvents>
-            <RenderInfo nation={nation}></RenderInfo>
-            {/*<RenderEvents></RenderEvents>*/}
+            <RenderFoodMenu nation={nation}></RenderFoodMenu>
+            <RenderEventsMenu nation={nation}></RenderEventsMenu>
+            <RenderInfoMenu nation={nation}></RenderInfoMenu>
+            {/*<RenderEventsMenu></RenderEventsMenu>*/}
         </SafeAreaView>
     )
 }
@@ -152,7 +150,7 @@ function RenderActivityComponent(activityLevel) {
 }
 
 //renders entire dropdown menu with food content
-function RenderFood({nation}) {
+function RenderFoodMenu({nation}) {
     //temporary variable and dummy function for food menu
     //var foodmenu = getFoodMenu(nation)
     return (
@@ -162,17 +160,16 @@ function RenderFood({nation}) {
 }
 
 //renders entire dropdown menu with events content
-function RenderEvents({nation}) {
-    //temporary variable and dummy function for events menu
-    //var eventsmenu = getEventsMenu(nation)
+function RenderEventsMenu({nation}) {
+    //var eventList = getEventList(nation)
     return (
         <RenderDropDownHeader type={'events'}/>
-        /*<RenderSubHeaders/>*/
+        /*loop and render events from eventList <RenderEvent/>*/
     )
 }
 
 //renders entire dropdown menu with info (about nation) content
-function RenderInfo({nation}) {
+function RenderInfoMenu({nation}) {
     //temporary variable and dummy function for events menu
     //var eventsmenu = getEventsMenu(nation)
     return (
@@ -182,22 +179,23 @@ function RenderInfo({nation}) {
 }
 
 //renders header for arbitrary "types" of headers
-function RenderDropDownHeader({type}){
+//arbitrary types include (for now): 
+//'food', 'event', 'info'
+export function RenderDropDownHeader({title,type}){
     var icon    //variable holding icon, determined by type
-    var title   //variable holding title, determined by type
 
     switch(type){
         case 'food':
             icon  = <Ionicons name= "md-fast-food-outline" size={28} color="black" />
-            title = "Meny"
+            title = title?title:"Meny" //ugly code or nah?
             break
-        case 'events':
+        case 'event':
             icon  = <MaterialIcons name="event" size={24} color="black" />
-            title = "Evenemang"
+            title = title?title:"Evenemang"
             break
         case 'info':
             icon  = <Foundation name="info" size={24} color="black" />
-            title = "Landskap"
+            title = title?title:"Info"
             break
         default:
             icon = <View></View>
@@ -226,6 +224,11 @@ function RenderDropDownHeader({type}){
             </View>
         </View>
     )
+}
+
+//subheaders for events
+export function RenderEvent(){
+
 }
 
 //styles for header
@@ -423,3 +426,6 @@ const dropdownStyles = StyleSheet.create({
 //styles for event menu
 
 //styles for food menu
+
+
+

@@ -2,7 +2,7 @@
 import { Entypo } from '@expo/vector-icons';
 import React from 'react';
 import {ScrollView, View, Text, StyleSheet, Image, TouchableOpacity, Alert} from 'react-native';
-import { nationListEx} from '../../App.js';
+
 
 export default function ChooseNation({nationList}) {
     return (

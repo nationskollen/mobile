@@ -6,6 +6,7 @@ import NotificationsContent from './components/Notifications/NotificationContent
 import NationContent from './components/Nations/NationContent';
 import Footer from './components/Footer';
 import SettingsScreen from './screens/SettingsScreen'
+import HomePage from './components/Home/HomePage.js'
 
 class Notification { constructor(nation, title, text, publishTime, eventTime) {
   this.nation = nation;
@@ -124,15 +125,18 @@ export default function App() {
     <SafeAreaView style = {styles.container}>
       {/*Page with notifications
       <NotificationsContent notificationList={sortedNotifications}/>*/}
-      {/*//Page for choosing nation from list of all nations*/}
-      <ChooseNation nationList={nationListEx}/>
-      {console.log(nationListEx)}
+
+      {/*Page for choosing nation from list of all nations
+      <ChooseNation nationList={nationListEx}/>*/}
       
       {/*Page with information about a nation
       <NationContent nation={nationListEx.vdala}></NationContent>*/}
 
-      <Footer></Footer>
-      {/*<Footer/>*/}
+      {/*Home Page */}
+      <HomePage/>
+      
+      {/*Footer used on all screens*/}
+      <Footer/>
     </SafeAreaView>
     
   );
