@@ -152,21 +152,20 @@ function RenderActivityComponent(activityLevel) {
 //renders entire dropdown menu with food content
 function RenderFoodMenu({nation}) {
     //temporary variable and dummy function for food menu
-    //var foodmenu = getFoodMenu(nation)
+    var foodmenu = getFoodMenu(nation)
 
     let foodCategories = ['Dryck', 'Förrätt', 'Huvudrätt', 'Efterrätt', 'Fika']
     var foodCategoriesComponents = []
 
     for (let category of foodCategories) {
-        console.log(category)
         foodCategoriesComponents.push(
             <View key={category}>
                 <RenderDropDownHeader 
                     title ={category}
                     type  ={'foodcategory'}
                     //expandFunc={}
-                    
                 ></RenderDropDownHeader>
+                
             </View>
         )
     }
@@ -175,8 +174,80 @@ function RenderFoodMenu({nation}) {
         <View>
             <RenderDropDownHeader title={""} type={'food'}/>
             {foodCategoriesComponents}
+            <RenderListFromCategory category={foodmenu.maincourse}></RenderListFromCategory>
         </View>
     )
+}
+
+//TODO: replace with SDK function
+function getFoodMenu({nation}){
+    return (
+        {
+        drinks:
+            {"norrlandsguld":
+                {
+                    name:"Norrlands Guld",
+                    size:"50cl",
+                    price:"40",
+                    type:"Fatöl",
+                    description:"",
+                    id:"norrlandsguld"
+                },
+            "gränges":
+                {
+                    name:"Gränges",
+                    size:"33cl",
+                    price:"30",
+                    type:"burk",
+                    description:"",
+                    id:"gränges"
+                },
+        },
+
+        appetizers:{},
+
+        maincourse:
+                {"pannkakor":
+                    {
+                        name:"Goa Pannkakor",
+                        description:"Oförståeligt befruktande smak. Once you go Goa Pannkakor you never go back.",
+                        ingredients:["ägg","mjölk","mjöl","salt","smör","socker"],
+                        allergies:["ägg","laktos","gluten","socker"],
+                        price:"45",
+                        image:"",
+                    },
+                "quesadillas":
+                    {
+                        name:"Krispiga Quesadillas",
+                        description:"6 stycken krispiga, ostiga, kycklingfyllda och oförglömliga quesadillas",
+                        ingredients:["kyckling","rödlök","ost","tortilla","majs","paprika"],
+                        allergies:["rödlök","laktos","gluten"],
+                        price:"60",
+                        image:"",
+                    }
+                }
+        }
+    )
+        
+}
+
+//render all food or drink items from input category object
+function RenderListFromCategory({category}){
+    var renderedList=[]
+
+
+    /*for (let i in category){
+        console.log("item: "+ category[i])
+        renderedList.push(
+            <View>
+                <Text>{category[i].name}</Text>
+                <Text>{category[i].description}</Text>
+                <Text>{category[i].price+" kr"}</Text>
+            </View>
+        )
+    }*/
+
+    return (<View style={foodStyles.listContainer}>{renderedList}</View>)
 }
 
 //renders entire dropdown menu with events content
@@ -455,9 +526,9 @@ const dropdownStyles = StyleSheet.create({
 
 })
 
-//styles for event menu
+//styles for food/drink list
+const foodStyles = StyleSheet.create({
 
-//styles for food menu
-
+})
 
 
