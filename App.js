@@ -16,7 +16,6 @@ class Notification { constructor(nation, title, text, publishTime, eventTime) {
   this.eventTime = eventTime;
 }}
 
-// Maybe this whole DB should be moved to a separate file?
 export var  nationListEx = {
   "norrlands": {
     id: "norrlands",

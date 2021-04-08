@@ -13,9 +13,12 @@ export default function NationContent({nation}) {
         <SafeAreaView>
             <RenderHeader logo={nation.logo}></RenderHeader>
             <RenderNationInfo nation={nation}></RenderNationInfo>
-            <RenderFoodMenu nation={nation}></RenderFoodMenu>
-            <RenderEventsMenu nation={nation}></RenderEventsMenu>
-            <RenderInfoMenu nation={nation}></RenderInfoMenu>
+            <ScrollView marginBottom={'80%'}>{/*TODO: better solution for raising scrollable menu*/}
+                <RenderFoodMenu nation={nation}></RenderFoodMenu>
+                <RenderEventsMenu nation={nation}></RenderEventsMenu>
+                <RenderInfoMenu nation={nation}></RenderInfoMenu>
+            </ScrollView>
+            
             {/*<RenderEventsMenu></RenderEventsMenu>*/}
         </SafeAreaView>
     )
@@ -174,7 +177,8 @@ function RenderFoodMenu({nation}) {
         <View>
             <RenderDropDownHeader title={""} type={'food'}/>
             {foodCategoriesComponents}
-            <RenderListFromCategory category={foodmenu.maincourse}></RenderListFromCategory>
+            <RenderListFromCategory list={foodmenu.drinks} category={"drinks"}></RenderListFromCategory>
+            <RenderListFromCategory list={foodmenu.maincourse} category={"maincourse"}></RenderListFromCategory>
         </View>
     )
 }
@@ -232,21 +236,41 @@ function getFoodMenu({nation}){
 }
 
 //render all food or drink items from input category object
-function RenderListFromCategory({category}){
+function RenderListFromCategory({list, category}){
     var renderedList=[]
-
-
-    /*for (let i in category){
-        console.log("item: "+ category[i])
-        renderedList.push(
-            <View>
-                <Text>{category[i].name}</Text>
-                <Text>{category[i].description}</Text>
-                <Text>{category[i].price+" kr"}</Text>
-            </View>
-        )
-    }*/
-
+    if (category == 'drinks'){
+        for (let i in list){
+            renderedList.push(
+                <View style={foodStyles.itemBorder}>
+                    <View style={foodStyles.itemWrapper}>
+                        <Text style={foodStyles.nameText}>{list[i].name}</Text>
+                        <Text style={foodStyles.descriptionText}>{list[i].size + ", " + list[i].type}</Text>
+                        <View style={foodStyles.priceWrapper}>
+                            <Text style={foodStyles.priceText}>{list[i].price+" kr"}</Text>
+                        </View>
+                    </View>
+                </View>
+                
+            )
+        }
+    }
+    else {
+        for (let i in list){
+            renderedList.push(
+                <View style={foodStyles.itemBorder}>
+                    <View style={foodStyles.itemWrapper}>
+                        <Text style={foodStyles.nameText}>{list[i].name}</Text>
+                        <Text style={foodStyles.descriptionText}>{list[i].description}</Text>
+                        <View style={foodStyles.priceWrapper}>
+                            <Text style={foodStyles.priceText}>{list[i].price+" kr"}</Text>
+                        </View>
+                    </View>
+                </View>
+                
+            )
+        }
+    }
+    
     return (<View style={foodStyles.listContainer}>{renderedList}</View>)
 }
 
@@ -528,7 +552,50 @@ const dropdownStyles = StyleSheet.create({
 
 //styles for food/drink list
 const foodStyles = StyleSheet.create({
+    itemBorder: {
+        borderBottomWidth: 1,
+        borderColor:'lightgray'
+    },
 
+    itemWrapper: {
+        marginLeft: '7%',
+        marginTop: '2%',
+        
+
+    },
+
+    nameText: {
+        marginVertical: 3,
+        fontWeight:'bold',
+        fontSize:16,
+
+    },
+    descriptionText: {
+        marginTop: 3,
+        marginBottom: 10,
+        maxWidth: '70%',
+
+    },
+
+    priceWrapper: {
+        backgroundColor:'lightgreen',
+        position: 'absolute',
+        right: '5%',
+        top: '35%',
+        width: 45,
+        height: 25,
+        borderWidth: 1,
+        borderColor: 'black',
+        borderRadius:5,
+        alignItems: 'center',
+        justifyContent: 'center',
+        
+    },
+
+    priceText: {
+        color: 'black',
+        fontSize:15,
+    },
 })
 
 
