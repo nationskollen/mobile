@@ -153,9 +153,29 @@ function RenderActivityComponent(activityLevel) {
 function RenderFoodMenu({nation}) {
     //temporary variable and dummy function for food menu
     //var foodmenu = getFoodMenu(nation)
+
+    let foodCategories = ['Dryck', 'Förrätt', 'Huvudrätt', 'Efterrätt', 'Fika']
+    var foodCategoriesComponents = []
+
+    for (let category of foodCategories) {
+        console.log(category)
+        foodCategoriesComponents.push(
+            <View key={category}>
+                <RenderDropDownHeader 
+                    title ={category}
+                    type  ={'foodcategory'}
+                    //expandFunc={}
+                    
+                ></RenderDropDownHeader>
+            </View>
+        )
+    }
+
     return (
-        <RenderDropDownHeader title={""} type={'food'}/>
-        /*<RenderSubHeaders/>*/
+        <View>
+            <RenderDropDownHeader title={""} type={'food'}/>
+            {foodCategoriesComponents}
+        </View>
     )
 }
 
@@ -180,10 +200,11 @@ function RenderInfoMenu({nation}) {
 
 //renders header for arbitrary "types" of headers
 //arbitrary types include (for now): 
-//'food', 'event', 'info'
+//'food', 'event', 'info', 'foodcategory'
 export function RenderDropDownHeader({title,type}){
     var icon    //variable holding icon, determined by type
-    console.log("title= " +title + ", type= " + type)
+
+    //decide which icon and title should be displayed
     switch(type){
         case 'food':
             icon  = <Ionicons name= "md-fast-food-outline" size={28} color="black" />
@@ -196,6 +217,12 @@ export function RenderDropDownHeader({title,type}){
         case 'info':
             icon  = <Foundation name="info" size={24} color="black" />
             title = title?title:"Info"
+            break
+        case 'foodcategory':
+            icon  = <View style={dropdownStyles.foodCategory}>
+                        <Octicons name="primitive-dot" size={22} color="#71002E"/>
+                    </View>
+            title = title?title:"?"
             break
         default:
             icon = <View></View>
@@ -213,6 +240,7 @@ export function RenderDropDownHeader({title,type}){
                 <AntDesign name="pluscircle" size={32} color="#AEAEAE"
                     onPress={()=>
                         Alert.alert(title+" menu should expand now")
+                        //maybe execute input fuction?
                     }/>
 
                 {/*// minus circle should replace plus circle when plus is pressed.
@@ -418,6 +446,10 @@ const dropdownStyles = StyleSheet.create({
     headerPlusWrapper: {
         position: 'absolute',
         right: 30,
+    },
+
+    foodCategory: {
+        marginLeft: '15%',
     },
 
 

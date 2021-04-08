@@ -132,7 +132,7 @@ export default function App() {
       {/*Page with information about a nation*/}
       <NationContent nation={nationListEx['vdala']}></NationContent>
 
-      {/*Home Page 
+      {/*Home Page
       <HomePage/>*/}
       
       {/*Footer used on all screens*/}
