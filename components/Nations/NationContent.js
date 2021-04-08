@@ -8,7 +8,7 @@ import { Octicons } from '@expo/vector-icons';
 import React from 'react';
 import {ScrollView, View, Text, StyleSheet, Image, TouchableOpacity, Alert, SafeAreaView, Platform} from 'react-native';
 
-export function NationContent({nation}) {
+export default function NationContent({nation}) {
     return (
         <SafeAreaView>
             <RenderHeader logo={nation.logo}></RenderHeader>
@@ -154,7 +154,7 @@ function RenderFoodMenu({nation}) {
     //temporary variable and dummy function for food menu
     //var foodmenu = getFoodMenu(nation)
     return (
-        <RenderDropDownHeader type={'food'}/>
+        <RenderDropDownHeader title={""} type={'food'}/>
         /*<RenderSubHeaders/>*/
     )
 }
@@ -163,7 +163,7 @@ function RenderFoodMenu({nation}) {
 function RenderEventsMenu({nation}) {
     //var eventList = getEventList(nation)
     return (
-        <RenderDropDownHeader type={'events'}/>
+        <RenderDropDownHeader title={""} type={'event'}/>
         /*loop and render events from eventList <RenderEvent/>*/
     )
 }
@@ -173,7 +173,7 @@ function RenderInfoMenu({nation}) {
     //temporary variable and dummy function for events menu
     //var eventsmenu = getEventsMenu(nation)
     return (
-        <RenderDropDownHeader type={'info'}/>
+        <RenderDropDownHeader title={""} type={'info'}/>
         /*render subheaders when plus icon is pressed*/
     )
 }
@@ -183,7 +183,7 @@ function RenderInfoMenu({nation}) {
 //'food', 'event', 'info'
 export function RenderDropDownHeader({title,type}){
     var icon    //variable holding icon, determined by type
-
+    console.log("title= " +title + ", type= " + type)
     switch(type){
         case 'food':
             icon  = <Ionicons name= "md-fast-food-outline" size={28} color="black" />

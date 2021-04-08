@@ -213,10 +213,4 @@ const filterStyles = StyleSheet.create({
         color: 'white',
         marginHorizontal: 5,
     }
-
-
-
-
-
-
 })

@@ -129,11 +129,11 @@ export default function App() {
       {/*Page for choosing nation from list of all nations
       <ChooseNation nationList={nationListEx}/>*/}
       
-      {/*Page with information about a nation
-      <NationContent nation={nationListEx.vdala}></NationContent>*/}
+      {/*Page with information about a nation*/}
+      <NationContent nation={nationListEx['vdala']}></NationContent>
 
-      {/*Home Page */}
-      <HomePage/>
+      {/*Home Page 
+      <HomePage/>*/}
       
       {/*Footer used on all screens*/}
       <Footer/>
