@@ -1,8 +1,8 @@
 // This is for rendering the choose-nation view.
 import { Entypo } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import {ScrollView, View, Text, StyleSheet, Image, TouchableOpacity, Alert} from 'react-native';
-import { nationListEx} from '../../App.js';
 
 export default function ChooseNation({nationList}) {
     return (
@@ -17,13 +17,16 @@ export default function ChooseNation({nationList}) {
 };
 
 const RenderHeader = () => {
+
+    const navigation = useNavigation();
+
     return (
         <View style={styles.header}>
             {/*Header title*/}
             <Text style={styles.headerTitle}>Välj Nation</Text>
 
             {/*Clickable cross to close this page. Current onPress should be replaced.*/}
-            <Entypo name="cross" size={24} color="black" style={styles.cross} onPress={()=>Alert.alert("(Cross) was pressed")}/>
+            <Entypo name="cross" size={24} color="black" style={styles.cross} onPress={()=> navigation.navigate('Home')}/>
 
         </View>
     );
@@ -45,6 +48,8 @@ function RenderNationList({nationList}) {
 //TODO: renderNation function (in NationsContent.js) is unable to find images variable with file path
 //Returns component for given nation
 function renderNation(nation) {
+    const navigation = useNavigation();
+
     return (
         <View key={nation.id} style={styles.nationWrapper}>
 		{/*Logo of nation*/}
@@ -60,7 +65,7 @@ function renderNation(nation) {
             </View>
 
             {/*Button for choosing nation*/}
-            <TouchableOpacity onPress={()=>Alert.alert("(Välj) was pressed")} style={styles.chooseButtonWrapper}>
+            <TouchableOpacity onPress={()=> navigation.push('NationContent', {nation})} style={styles.chooseButtonWrapper}>
                 <Text style={styles.chooseButton}>Välj</Text>
             </TouchableOpacity>
         </View>

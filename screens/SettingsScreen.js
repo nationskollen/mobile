@@ -1,19 +1,29 @@
-import React from 'react';
-import { SafeAreaView, View, StyleSheet, Text, Button, PickerIOSComponent, } from 'react-native';
+/// This is used to render Settings page and screens relating to it
 
+import React from 'react';
+import { SafeAreaView, View, StyleSheet, Text, Button, PickerIOSComponent, StatusBar} from 'react-native';
+
+/// Navigation
 import 'react-native-gesture-handler';
-import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import Footer from '../components/Footer';
+
 import HeaderSettings from '../components/Settings/HeaderSettings.js'
 
 import { FontAwesome } from '@expo/vector-icons';
 
+
+/// TODO: create a local navigation stack
+/// TODO: factor out basically everything to a different file and replace it with a local stack navigator
 function SettingsScreen({ navigation }) {
     console.log("app reloaded, settings")
     return (
         <SafeAreaView style={styles.container}>
+            <StatusBar
+                animated={true}
+                backgroundColor='white'
+                barStyle='dark-content'
+            />
             <HeaderSettings/>
             <View style={styles.darkMode}>
                 <View style={styles.dmText}>
@@ -32,7 +42,6 @@ function SettingsScreen({ navigation }) {
                 <Text style={styles.optionsText}>Anpassa notifikationer</Text>
                 <FontAwesome style={styles.arrow} name="long-arrow-right" size={24} color="black" />
             </View>
-            <Button title="go home" onPress={() => navigation.navigate('Home')}/>
         </SafeAreaView>
     );
 }
@@ -51,6 +60,7 @@ const styles = StyleSheet.create({
     },
     container: {
        flex:1,
+       backgroundColor: 'white',
     },
     darkMode: {
         height:150,

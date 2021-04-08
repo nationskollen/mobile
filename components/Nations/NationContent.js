@@ -5,11 +5,13 @@ import { Foundation } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Octicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/core';
 import React from 'react';
 import {ScrollView, View, Text, StyleSheet, Image, TouchableOpacity, Alert, SafeAreaView, Platform} from 'react-native';
 
-export default function NationContent({nation}) {
 
+export default function NationContent(nation) {
+    console.log(nation);
 
     return (
         <SafeAreaView>
@@ -25,6 +27,9 @@ export default function NationContent({nation}) {
 
 //renders top header to page
 function RenderHeader(logo){
+    
+    const navigation = useNavigation();
+
     //temporary hardcoded test logo
     //will be replace with input from logo prop
     let testLogo = '../../img/png/vdala/vdalalogga.png'
@@ -33,7 +38,7 @@ function RenderHeader(logo){
         <SafeAreaView style={headerStyles.header}>
             {/*left arrow for going back*/}
             <View style={headerStyles.arrowBack}>
-                <Ionicons name="arrow-back" size={24} color="black" onPress={()=>Alert.alert("(back arrow) was pressed")}/>
+                <Ionicons name="arrow-back" size={24} color="black" onPress={()=>navigation.goBack()}/>
             </View>
 
             {/*nation logo as header*/}
