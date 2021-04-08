@@ -7,6 +7,10 @@ import NationContent from './components/Nations/NationContent';
 import Footer from './components/Footer';
 import SettingsScreen from './screens/SettingsScreen'
 import HomePage from './components/Home/HomePage.js'
+import {NavigationContainer, DefaultTheme, DarkTheme } from  "@react-navigation/native";
+import { useTheme } from '@react-navigation/native';
+import {lightTheme} from './themes/lightTheme';
+
 
 class Notification { constructor(nation, title, text, publishTime, eventTime) {
   this.nation = nation;
@@ -121,7 +125,9 @@ export default function App() {
   //notifications should be sorted by published (t)
   const sortedNotifications = [notification2, notification1, notification3, notification4, notification5, notification6]
 
+  const {colors} = useTheme();
   return (
+  <NavigationContainer theme = {lightTheme}>
     <SafeAreaView style = {styles.container}>
       {/*Page with notifications
       <NotificationsContent notificationList={sortedNotifications}/>*/}
@@ -138,14 +144,13 @@ export default function App() {
       {/*Footer used on all screens*/}
       <Footer/>
     </SafeAreaView>
-    
+  </NavigationContainer> 
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white' ,
     alignContent: 'center',
 
     paddingTop: Platform.OS === 'ios' ? StatusBar.currentHeight : 40,
