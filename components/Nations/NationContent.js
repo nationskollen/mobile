@@ -19,7 +19,9 @@ import {
     Platform,
 } from "react-native";
 
-export default function NationContent(nation) {
+export default function NationContent( {route} ) {
+    const { nation } = route.params;
+
     return (
         <SafeAreaView>
             <RenderHeader logo={nation.logo}></RenderHeader>
