@@ -19,6 +19,7 @@ const Stack = createStackNavigator();
 /// TODO: Import screens relating to booking
 function BookingsScreen({ navigation, route }) {
     return (
+        /// Placeholder
         <View>huhuhuhuhu</View>
     );
 }

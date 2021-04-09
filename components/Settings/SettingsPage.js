@@ -63,7 +63,6 @@ function SettingsPage({ navigation }) {
                     color="black"
                 />
             </View>
-            <Button title="hoem" onPress={ () => navigation.navigate('Home')}/>
         </SafeAreaView>
     );
 }
