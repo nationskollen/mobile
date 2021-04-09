@@ -1,6 +1,6 @@
-import * as React from "react"
-import { ArrowLeft } from "react-native-heroicons"
-import Svg, { Path } from "react-native-svg"
+import * as React from "react";
+import { ArrowLeft } from "react-native-heroicons";
+import Svg, { Path } from "react-native-svg";
 
 function SvgComponent(props) {
   return (
@@ -19,7 +19,7 @@ function SvgComponent(props) {
         fill="#4A5568"
       />
     </Svg>
-  )
+  );
 }
 
 export default ArrowLeft;
