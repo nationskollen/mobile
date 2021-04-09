@@ -9,6 +9,8 @@ export const HeaderOptions = (colors) => ({
     headerTitleStyle: {
         fontWeight: 'bold',
         color: 'white',
-        fontSize: 25,
+        fontSize: 20,
+        flex: 1,
     },
+    headerTitleAlign: 'left',
 })
