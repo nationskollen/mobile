@@ -6,7 +6,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Octicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/core";
-import React from "react";
+import React, { useState } from "react";
 import {
     ScrollView,
     View,
@@ -26,8 +26,8 @@ export default function NationContent( {route} ) {
         <SafeAreaView>
             <RenderHeader logo={nation.logo}></RenderHeader>
             <RenderNationInfo nation={nation}></RenderNationInfo>
+            {/*TODO: better solution for raising scrollable menu*/}
             <ScrollView marginBottom={"80%"}>
-                {/*TODO: better solution for raising scrollable menu*/}
                 <RenderFoodMenu nation={nation}></RenderFoodMenu>
                 <RenderEventsMenu nation={nation}></RenderEventsMenu>
                 <RenderInfoMenu nation={nation}></RenderInfoMenu>
@@ -221,6 +221,27 @@ function RenderActivityComponent(activityLevel) {
 
 //renders entire dropdown menu with food content
 function RenderFoodMenu({ nation }) {
+
+    
+
+    return (
+        <View>
+            <RenderDropDownHeader title={""} type={"food"} nation={nation}/>
+
+            {/*<RenderListFromCategory
+                list={foodmenu.drinks}
+                category={"drinks"}
+            ></RenderListFromCategory>
+            <RenderListFromCategory
+                list={foodmenu.maincourse}
+                category={"maincourse"}
+            ></RenderListFromCategory>*/}
+        </View>
+    );
+}
+
+//returns rendered food categories
+function RenderFoodCategories({nation}){
     //temporary variable and dummy function for food menu
     var foodmenu = getFoodMenu(nation);
 
@@ -233,26 +254,12 @@ function RenderFoodMenu({ nation }) {
                 <RenderDropDownHeader
                     title={category}
                     type={"foodcategory"}
-                    //expandFunc={}
+                    nation={nation}
                 ></RenderDropDownHeader>
             </View>
         );
     }
-
-    return (
-        <View>
-            <RenderDropDownHeader title={""} type={"food"} />
-            {foodCategoriesComponents}
-            <RenderListFromCategory
-                list={foodmenu.drinks}
-                category={"drinks"}
-            ></RenderListFromCategory>
-            <RenderListFromCategory
-                list={foodmenu.maincourse}
-                category={"maincourse"}
-            ></RenderListFromCategory>
-        </View>
-    );
+    return(foodCategoriesComponents)
 }
 
 //TODO: replace with SDK function
@@ -356,8 +363,8 @@ function RenderListFromCategory({ list, category }) {
 //renders entire dropdown menu with events content
 function RenderEventsMenu({ nation }) {
     //var eventList = getEventList(nation)
-    return (
-        <RenderDropDownHeader title={""} type={"event"} />
+    return (<View></View>
+        //<RenderDropDownHeader title={""} type={"event"} />
         /*loop and render events from eventList <RenderEvent/>*/
     );
 }
@@ -366,8 +373,8 @@ function RenderEventsMenu({ nation }) {
 function RenderInfoMenu({ nation }) {
     //temporary variable and dummy function for events menu
     //var eventsmenu = getEventsMenu(nation)
-    return (
-        <RenderDropDownHeader title={""} type={"info"} />
+    return (<View></View>
+        //<RenderDropDownHeader title={""} type={"info"} />
         /*render subheaders when plus icon is pressed*/
     );
 }
@@ -375,9 +382,17 @@ function RenderInfoMenu({ nation }) {
 //renders header for arbitrary "types" of headers
 //arbitrary types include (for now):
 //'food', 'event', 'info', 'foodcategory'
-export function RenderDropDownHeader({ title, type }) {
+export function RenderDropDownHeader({ title, type, nation}) {
     var icon; //variable holding icon, determined by type
+    var onPressFunc;
 
+    const [expand, setExpand] = useState(()=>false)
+
+    //handles pressing "+" or "-" for expanding or collapsing food header
+    const expandToggle=()=>{
+        setExpand(state=>!state)
+    }
+    
     //decide which icon and title should be displayed
     switch (type) {
         case "food":
@@ -408,33 +423,39 @@ export function RenderDropDownHeader({ title, type }) {
             console.log("error: type of dropdown header not found");
     }
 
+    //determine if plus or minus symbol should be displayed
+    const plusOrMinus = () => {
+        return (expand ? "minuscircle" : "pluscircle")
+    }
+
+    var expandedMenuComponent = <View></View>;
+    if (expand) {
+        expandedMenuComponent = <RenderFoodCategories nation={nation}></RenderFoodCategories>
+    }
+
     return (
-        <View style={dropdownStyles.header}>
-            <View style={dropdownStyles.iconWrapper}>{icon}</View>
+        <View>
+            <View style={dropdownStyles.header}>
+                <View style={dropdownStyles.iconWrapper}>{icon}</View>
 
-            <Text style={dropdownStyles.headerTitle}>{title}</Text>
+                <Text style={dropdownStyles.headerTitle}>{title}</Text>
 
-            <View style={dropdownStyles.headerPlusWrapper}>
-                <AntDesign
-                    name="pluscircle"
-                    size={32}
-                    color="#AEAEAE"
-                    onPress={
-                        () => Alert.alert(title + " menu should expand now")
-                        //maybe execute input fuction?
-                    }
-                />
+                <View style={dropdownStyles.headerPlusWrapper}>
+                    <AntDesign
+                        name={plusOrMinus()}
+                        size={32}
+                        color="#AEAEAE"
+                        onPress={()=>expandToggle()}
+                    />
+                </View>
 
-                {/*// minus circle should replace plus circle when plus is pressed.
-                <AntDesign name="minuscircle" size={32} color="#AEAEAE"
-                    onPress={()=>
-                        Alert.alert(title+" menu should close now")
-                    }
-                />*/}
             </View>
+            {expandedMenuComponent}
         </View>
     );
 }
+
+
 
 //subheaders for events
 export function RenderEvent() {}
