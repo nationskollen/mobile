@@ -5,26 +5,31 @@ import { Foundation } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Octicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/core';
 import React from 'react';
 import {ScrollView, View, Text, StyleSheet, Image, TouchableOpacity, Alert, SafeAreaView, Platform} from 'react-native';
 
 export default function NationContent({nation}) {
-
-
     return (
         <SafeAreaView>
             <RenderHeader logo={nation.logo}></RenderHeader>
             <RenderNationInfo nation={nation}></RenderNationInfo>
-            <RenderFood nation={nation}></RenderFood>
-            <RenderEvents nation={nation}></RenderEvents>
-            <RenderInfo nation={nation}></RenderInfo>
-            {/*<RenderEvents></RenderEvents>*/}
+            <ScrollView marginBottom={'80%'}>{/*TODO: better solution for raising scrollable menu*/}
+                <RenderFoodMenu nation={nation}></RenderFoodMenu>
+                <RenderEventsMenu nation={nation}></RenderEventsMenu>
+                <RenderInfoMenu nation={nation}></RenderInfoMenu>
+            </ScrollView>
+            
+            {/*<RenderEventsMenu></RenderEventsMenu>*/}
         </SafeAreaView>
     )
 }
 
 //renders top header to page
 function RenderHeader(logo){
+    
+    const navigation = useNavigation();
+
     //temporary hardcoded test logo
     //will be replace with input from logo prop
     let testLogo = '../../img/png/vdala/vdalalogga.png'
@@ -33,7 +38,7 @@ function RenderHeader(logo){
         <SafeAreaView style={headerStyles.header}>
             {/*left arrow for going back*/}
             <View style={headerStyles.arrowBack}>
-                <Ionicons name="arrow-back" size={24} color="black" onPress={()=>Alert.alert("(back arrow) was pressed")}/>
+                <Ionicons name="arrow-back" size={24} color="black" onPress={()=>navigation.goBack()}/>
             </View>
 
             {/*nation logo as header*/}
@@ -152,52 +157,171 @@ function RenderActivityComponent(activityLevel) {
 }
 
 //renders entire dropdown menu with food content
-function RenderFood({nation}) {
+function RenderFoodMenu({nation}) {
     //temporary variable and dummy function for food menu
-    //var foodmenu = getFoodMenu(nation)
+    var foodmenu = getFoodMenu(nation)
+
+    let foodCategories = ['Dryck', 'Förrätt', 'Huvudrätt', 'Efterrätt', 'Fika']
+    var foodCategoriesComponents = []
+
+    for (let category of foodCategories) {
+        foodCategoriesComponents.push(
+            <View key={category}>
+                <RenderDropDownHeader 
+                    title ={category}
+                    type  ={'foodcategory'}
+                    //expandFunc={}
+                ></RenderDropDownHeader>
+                
+            </View>
+        )
+    }
+
     return (
-        <RenderDropDownHeader type={'food'}/>
-        /*<RenderSubHeaders/>*/
+        <View>
+            <RenderDropDownHeader title={""} type={'food'}/>
+            {foodCategoriesComponents}
+            <RenderListFromCategory list={foodmenu.drinks} category={"drinks"}></RenderListFromCategory>
+            <RenderListFromCategory list={foodmenu.maincourse} category={"maincourse"}></RenderListFromCategory>
+        </View>
     )
 }
 
-//renders entire dropdown menu with events content
-function RenderEvents({nation}) {
-    //temporary variable and dummy function for events menu
-    //var eventsmenu = getEventsMenu(nation)
+//TODO: replace with SDK function
+function getFoodMenu({nation}){
     return (
-        <RenderDropDownHeader type={'events'}/>
-        /*<RenderSubHeaders/>*/
+        {
+        drinks:
+            {"norrlandsguld":
+                {
+                    name:"Norrlands Guld",
+                    size:"50cl",
+                    price:"40",
+                    type:"Fatöl",
+                    description:"",
+                    id:"norrlandsguld"
+                },
+            "gränges":
+                {
+                    name:"Gränges",
+                    size:"33cl",
+                    price:"30",
+                    type:"burk",
+                    description:"",
+                    id:"gränges"
+                },
+        },
+
+        appetizers:{},
+
+        maincourse:
+                {"pannkakor":
+                    {
+                        name:"Goa Pannkakor",
+                        description:"Oförståeligt befruktande smak. Once you go Goa Pannkakor you never go back.",
+                        ingredients:["ägg","mjölk","mjöl","salt","smör","socker"],
+                        allergies:["ägg","laktos","gluten","socker"],
+                        price:"45",
+                        image:"",
+                    },
+                "quesadillas":
+                    {
+                        name:"Krispiga Quesadillas",
+                        description:"6 stycken krispiga, ostiga, kycklingfyllda och oförglömliga quesadillas",
+                        ingredients:["kyckling","rödlök","ost","tortilla","majs","paprika"],
+                        allergies:["rödlök","laktos","gluten"],
+                        price:"60",
+                        image:"",
+                    }
+                }
+        }
+    )
+        
+}
+
+//render all food or drink items from input category object
+function RenderListFromCategory({list, category}){
+    var renderedList=[]
+    if (category == 'drinks'){
+        for (let i in list){
+            renderedList.push(
+                <View style={foodStyles.itemBorder}>
+                    <View style={foodStyles.itemWrapper}>
+                        <Text style={foodStyles.nameText}>{list[i].name}</Text>
+                        <Text style={foodStyles.descriptionText}>{list[i].size + ", " + list[i].type}</Text>
+                        <View style={foodStyles.priceWrapper}>
+                            <Text style={foodStyles.priceText}>{list[i].price+" kr"}</Text>
+                        </View>
+                    </View>
+                </View>
+                
+            )
+        }
+    }
+    else {
+        for (let i in list){
+            renderedList.push(
+                <View style={foodStyles.itemBorder}>
+                    <View style={foodStyles.itemWrapper}>
+                        <Text style={foodStyles.nameText}>{list[i].name}</Text>
+                        <Text style={foodStyles.descriptionText}>{list[i].description}</Text>
+                        <View style={foodStyles.priceWrapper}>
+                            <Text style={foodStyles.priceText}>{list[i].price+" kr"}</Text>
+                        </View>
+                    </View>
+                </View>
+                
+            )
+        }
+    }
+    
+    return (<View style={foodStyles.listContainer}>{renderedList}</View>)
+}
+
+//renders entire dropdown menu with events content
+function RenderEventsMenu({nation}) {
+    //var eventList = getEventList(nation)
+    return (
+        <RenderDropDownHeader title={""} type={'event'}/>
+        /*loop and render events from eventList <RenderEvent/>*/
     )
 }
 
 //renders entire dropdown menu with info (about nation) content
-function RenderInfo({nation}) {
+function RenderInfoMenu({nation}) {
     //temporary variable and dummy function for events menu
     //var eventsmenu = getEventsMenu(nation)
     return (
-        <RenderDropDownHeader type={'info'}/>
+        <RenderDropDownHeader title={""} type={'info'}/>
         /*render subheaders when plus icon is pressed*/
     )
 }
 
 //renders header for arbitrary "types" of headers
-function RenderDropDownHeader({type}){
+//arbitrary types include (for now): 
+//'food', 'event', 'info', 'foodcategory'
+export function RenderDropDownHeader({title,type}){
     var icon    //variable holding icon, determined by type
-    var title   //variable holding title, determined by type
 
+    //decide which icon and title should be displayed
     switch(type){
         case 'food':
             icon  = <Ionicons name= "md-fast-food-outline" size={28} color="black" />
-            title = "Meny"
+            title = title?title:"Meny" //ugly code or nah?
             break
-        case 'events':
+        case 'event':
             icon  = <MaterialIcons name="event" size={24} color="black" />
-            title = "Evenemang"
+            title = title?title:"Evenemang"
             break
         case 'info':
             icon  = <Foundation name="info" size={24} color="black" />
-            title = "Landskap"
+            title = title?title:"Info"
+            break
+        case 'foodcategory':
+            icon  = <View style={dropdownStyles.foodCategory}>
+                        <Octicons name="primitive-dot" size={22} color="#71002E"/>
+                    </View>
+            title = title?title:"?"
             break
         default:
             icon = <View></View>
@@ -215,6 +339,7 @@ function RenderDropDownHeader({type}){
                 <AntDesign name="pluscircle" size={32} color="#AEAEAE"
                     onPress={()=>
                         Alert.alert(title+" menu should expand now")
+                        //maybe execute input fuction?
                     }/>
 
                 {/*// minus circle should replace plus circle when plus is pressed.
@@ -226,6 +351,11 @@ function RenderDropDownHeader({type}){
             </View>
         </View>
     )
+}
+
+//subheaders for events
+export function RenderEvent(){
+
 }
 
 //styles for header
@@ -417,9 +547,59 @@ const dropdownStyles = StyleSheet.create({
         right: 30,
     },
 
+    foodCategory: {
+        marginLeft: '15%',
+    },
+
 
 })
 
-//styles for event menu
+//styles for food/drink list
+const foodStyles = StyleSheet.create({
+    itemBorder: {
+        borderBottomWidth: 1,
+        borderColor:'lightgray'
+    },
 
-//styles for food menu
+    itemWrapper: {
+        marginLeft: '7%',
+        marginTop: '2%',
+        
+
+    },
+
+    nameText: {
+        marginVertical: 3,
+        fontWeight:'bold',
+        fontSize:16,
+
+    },
+    descriptionText: {
+        marginTop: 3,
+        marginBottom: 10,
+        maxWidth: '70%',
+
+    },
+
+    priceWrapper: {
+        backgroundColor:'lightgreen',
+        position: 'absolute',
+        right: '5%',
+        top: '35%',
+        width: 45,
+        height: 25,
+        borderWidth: 1,
+        borderColor: 'black',
+        borderRadius:5,
+        alignItems: 'center',
+        justifyContent: 'center',
+        
+    },
+
+    priceText: {
+        color: 'black',
+        fontSize:15,
+    },
+})
+
+

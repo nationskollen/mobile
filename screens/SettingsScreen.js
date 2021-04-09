@@ -1,14 +1,29 @@
+/// This is used to render Settings page and screens relating to it
+
 import React from 'react';
-import { View, StyleSheet, Text, Button, PickerIOSComponent, } from 'react-native';
-import Footer from '../components/Footer';
+import { SafeAreaView, View, StyleSheet, Text, Button, PickerIOSComponent, StatusBar} from 'react-native';
+
+/// Navigation
+import 'react-native-gesture-handler';
+import { createStackNavigator } from '@react-navigation/stack';
+
+
 import HeaderSettings from '../components/Settings/HeaderSettings.js'
 
 import { FontAwesome } from '@expo/vector-icons';
 
-function SettingsScreen(props) {
+
+/// TODO: create a local navigation stack
+/// TODO: factor out basically everything to a different file and replace it with a local stack navigator
+function SettingsScreen({ navigation }) {
     console.log("app reloaded, settings")
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
+            <StatusBar
+                animated={true}
+                backgroundColor='white'
+                barStyle='dark-content'
+            />
             <HeaderSettings/>
             <View style={styles.darkMode}>
                 <View style={styles.dmText}>
@@ -27,8 +42,7 @@ function SettingsScreen(props) {
                 <Text style={styles.optionsText}>Anpassa notifikationer</Text>
                 <FontAwesome style={styles.arrow} name="long-arrow-right" size={24} color="black" />
             </View>
-            <Footer/>
-        </View>
+        </SafeAreaView>
     );
 }
 
@@ -46,6 +60,7 @@ const styles = StyleSheet.create({
     },
     container: {
        flex:1,
+       backgroundColor: 'white',
     },
     darkMode: {
         height:150,
