@@ -1,21 +1,13 @@
 // This is for rendering the home page.
 import { AntDesign } from "@expo/vector-icons";
-import { Entypo } from "@expo/vector-icons";
-import { Foundation } from "@expo/vector-icons";
-import { Ionicons } from "@expo/vector-icons";
-import { MaterialIcons } from "@expo/vector-icons";
-import { Octicons } from "@expo/vector-icons";
 import React from "react";
 import {
-    ScrollView,
     View,
     Text,
     StyleSheet,
     Image,
     TouchableOpacity,
-    Alert,
     SafeAreaView,
-    Platform,
 } from "react-native";
 import NK_LOGO from "../../assets/nationskollen_logo-do_not_change.png";
 import { RenderDropDownHeader } from "../Nations/NationContent";
@@ -101,7 +93,7 @@ function handleNationButtonPress() {
 }
 
 //utilizes event component imported from nation content
-function RenderAllEvents({ date }) {
+function RenderAllEvents() {
     //var eventList = getEvents(date)
     //temporary list of events
     var eventList = [
