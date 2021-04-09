@@ -23,11 +23,6 @@ function SettingsPage({ navigation }) {
     console.log("app reloaded, settings");
     return (
         <SafeAreaView style={styles.container}>
-            <StatusBar
-                animated={true}
-                backgroundColor="white"
-                barStyle="dark-content"
-            />
             <HeaderSettings />
             <View style={styles.darkMode}>
                 <View style={styles.dmText}>
