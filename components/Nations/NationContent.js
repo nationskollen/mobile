@@ -22,7 +22,7 @@ export default function NationContent({route}) {
     const { nation } = route.params;
 
     return (
-        <View>
+        <SafeAreaView>
             <RenderHeader logo={nation.logo}></RenderHeader>
             <RenderNationInfo nation={nation}></RenderNationInfo>
             <ScrollView marginBottom={"80%"}>
@@ -33,7 +33,7 @@ export default function NationContent({route}) {
             </ScrollView>
 
             {/*<RenderEventsMenu></RenderEventsMenu>*/}
-        </View>
+        </SafeAreaView>
     );
 }
 
