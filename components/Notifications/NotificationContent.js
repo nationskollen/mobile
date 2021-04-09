@@ -15,7 +15,7 @@ import Header from "./Header";
 
 function NotificationsContent({ notificationList }) {
     return (
-        <View>
+        <SafeAreaView>
             <Header />
             <ScrollView
                 style={{
@@ -29,7 +29,7 @@ function NotificationsContent({ notificationList }) {
                     />
                 ))}
             </ScrollView>
-        </View>
+        </SafeAreaView>
     );
 }
 

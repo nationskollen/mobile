@@ -3,14 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 
 import React from "react";
 import {
-    StyleSheet,
-    Button,
-    View,
-    SafeAreaView,
-    Text,
-    Alert,
-    Platform,
-    TextInput,
+    StatusBar,
 } from "react-native";
 
 import Footer from "./components/Footer";
@@ -19,6 +12,10 @@ import Footer from "./components/Footer";
 function App() {
     return (
         <NavigationContainer>
+            <StatusBar
+                backgroundColor="white"
+                barStyle="dark-content"
+            />
             <Footer />
         </NavigationContainer>
     );
