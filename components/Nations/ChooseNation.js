@@ -10,17 +10,18 @@ import {
     Image,
     TouchableOpacity,
     Alert,
+    SafeAreaView,
 } from "react-native";
 
 export default function ChooseNation({ nationList }) {
     return (
-        <View>
+        <SafeAreaView>
             <RenderHeader />
             {/*TODO: Scroll does not seem to be working on android? (only ios)*/}
             <ScrollView>
                 <RenderNationList nationList={nationList} />
             </ScrollView>
-        </View>
+        </SafeAreaView>
     );
 }
 
