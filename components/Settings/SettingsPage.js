@@ -1,6 +1,6 @@
 /// This is used to render Settings page and screens relating to it
 
-import React from "react";
+import React, { useState } from "react";
 import {
     SafeAreaView,
     View,
@@ -12,10 +12,13 @@ import {
 import "react-native-gesture-handler";
 
 import { FontAwesome } from "@expo/vector-icons";
+import ToggleSwitch from 'toggle-switch-react-native'
 
 /// TODO: create a local navigation stack
 /// TODO: factor out basically everything to a different file and replace it with a local stack navigator
 function SettingsPage({ navigation }) {
+    const [enabled, setEnabled] = useState(false)
+
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.darkMode}>
@@ -25,14 +28,13 @@ function SettingsPage({ navigation }) {
                         Ställ in detta för att förhindra ansträngda ögon
                     </Text>
                 </View>
-                <View style={styles.dmButton}>
-                    <FontAwesome
-                        name="toggle-off"
-                        size={40}
-                        color="black"
-                        onPress={darkModeAction}
-                    />
-                </View>
+                <ToggleSwitch
+                    isOn={ enabled }
+                    onColor="green"
+                    offColor="red"
+                    size="large"
+                    onToggle={ setEnabled }
+                />
             </View>
             <View style={styles.settingsOption}>
                 <Text style={styles.optionsText}>Logga in</Text>
@@ -56,11 +58,6 @@ function SettingsPage({ navigation }) {
     );
 }
 
-function darkModeAction() {
-    console.log("change mode");
-    alert("Switched mode");
-}
-
 const styles = StyleSheet.create({
     arrow: {
         alignSelf: "flex-end",
@@ -74,6 +71,8 @@ const styles = StyleSheet.create({
     },
     darkMode: {
         height: 150,
+        justifyContent: "space-between",
+        paddingHorizontal: 30,
         backgroundColor: "#E0E0E0",
         flexDirection: "row",
     },
@@ -83,9 +82,8 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     dmText: {
-        width: "70%",
-        paddingLeft: 30,
         justifyContent: "center",
+        flex: 1,
     },
     dmTitle: {
         fontSize: 20,
