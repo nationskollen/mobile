@@ -2,14 +2,14 @@
 
 import React from "react";
 import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  Button,
-  TouchableOpacity,
-  FlexStyle,
-  TouchableHighlight,
+    View,
+    Text,
+    StyleSheet,
+    Image,
+    Button,
+    TouchableOpacity,
+    FlexStyle,
+    TouchableHighlight,
 } from "react-native";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -32,67 +32,83 @@ const Tab = createBottomTabNavigator();
 
 /// The footer with each main screen
 function Footer() {
-  return (
-    <Tab.Navigator
-      initialRouteName="Home"
-      tabBarOptions={{
-        activeBackgroundColor: "#71002E",
-        inactiveBackgroundColor: "#71002E",
-        activeTintColor: "white",
-        inactiveTintColor: "white",
-      }}
-    >
-      <Tab.Screen
-        name="Notifications"
-        component={NotificationScreen}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <SimpleLineIcons name="bell" size={size} color={color} />
-          ),
-        }}
-      />
+    return (
+        <Tab.Navigator
+            initialRouteName="Home"
+            tabBarOptions={{
+                activeBackgroundColor: "#71002E",
+                inactiveBackgroundColor: "#71002E",
+                activeTintColor: "white",
+                inactiveTintColor: "white",
+            }}
+        >
+            <Tab.Screen
+                name="Notifications"
+                component={NotificationScreen}
+                options={{
+                    tabBarIcon: ({ color, size }) => (
+                        <SimpleLineIcons
+                            name="bell"
+                            size={size}
+                            color={color}
+                        />
+                    ),
+                }}
+            />
 
-      <Tab.Screen
-        name="Bookings"
-        component={BookingsScreen}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <SimpleLineIcons name="event" size={size} color={color} />
-          ),
-        }}
-      />
+            <Tab.Screen
+                name="Bookings"
+                component={BookingsScreen}
+                options={{
+                    tabBarIcon: ({ color, size }) => (
+                        <SimpleLineIcons
+                            name="event"
+                            size={size}
+                            color={color}
+                        />
+                    ),
+                }}
+            />
 
-      <Tab.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <SimpleLineIcons name="home" size={size} color={color} />
-          ),
-        }}
-      />
+            <Tab.Screen
+                name="Home"
+                component={HomeScreen}
+                options={{
+                    tabBarIcon: ({ color, size }) => (
+                        <SimpleLineIcons
+                            name="home"
+                            size={size}
+                            color={color}
+                        />
+                    ),
+                }}
+            />
 
-      <Tab.Screen
-        name="Nations"
-        component={NationScreen}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <SimpleLineIcons name="map" size={size} color={color} />
-          ),
-        }}
-      />
+            <Tab.Screen
+                name="Nations"
+                component={NationScreen}
+                options={{
+                    tabBarIcon: ({ color, size }) => (
+                        <SimpleLineIcons name="map" size={size} color={color} />
+                    ),
+                }}
+            />
 
-      <Tab.Screen
-        name="Settings"
-        component={SettingsScreen}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <SimpleLineIcons name="settings" size={size} color={color} />
-          ),
-        }}
-      />
-    </Tab.Navigator>
-  );
+            <Tab.Screen
+                name="Settings"
+                component={SettingsScreen}
+                options={{
+                    tabBarIcon: ({ color, size }) => (
+                        <SimpleLineIcons
+                            name="settings"
+                            size={size}
+                            color={color}
+                        />
+                    ),
+                }}
+            />
+        </Tab.Navigator>
+    );
 }
 
 export default Footer;
