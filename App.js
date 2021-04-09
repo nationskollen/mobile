@@ -14,7 +14,7 @@ const MyTheme = {
     primary: '#71002E',
     background: "white",
     card: '#71002E',
-    text: "white",
+    text: '#000000',
     border: '#666666',
     notification: "white",
   },
@@ -25,8 +25,8 @@ function App() {
     return (
         <NavigationContainer theme={MyTheme}>
             <StatusBar
-                backgroundColor="red"
-                barStyle="dark-content"
+                backgroundColor={MyTheme.colors.primary}
+                barStyle='light-content'
             />
             <Footer/>
         </NavigationContainer>

@@ -6,24 +6,18 @@ import {
     View,
     StyleSheet,
     Text,
-    StatusBar,
-    Button,
 } from "react-native";
 
 /// Navigation
 import "react-native-gesture-handler";
-
-import HeaderSettings from "./HeaderSettings.js";
 
 import { FontAwesome } from "@expo/vector-icons";
 
 /// TODO: create a local navigation stack
 /// TODO: factor out basically everything to a different file and replace it with a local stack navigator
 function SettingsPage({ navigation }) {
-    console.log("app reloaded, settings");
     return (
         <SafeAreaView style={styles.container}>
-            <HeaderSettings />
             <View style={styles.darkMode}>
                 <View style={styles.dmText}>
                     <Text style={styles.dmTitle}>Mörkt läge</Text>

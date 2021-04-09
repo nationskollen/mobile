@@ -41,20 +41,15 @@ function Footer() {
                     return <Ionicons name={iconName} size={23} color={color} />;
                 }
             })}
-
-            initialRouteName="Home" 
-
+            initialRouteName="Home"
             tabBarOptions={{
                 activeBackgroundColor: colors.primary,
                 labelStyle: {
-                    marginBottom: 2
+                    marginBottom: 2,
+                    fontWeight: 'bold',
                 },
                 tabStyle: {
-                    // marginTop: 5,
-                    marginVertical: 3
-                },
-                style: {
-                    height: 85,
+                    marginBottom: 3
                 },
                 inactiveBackgroundColor: colors.primary,
                 activeTintColor: "white",

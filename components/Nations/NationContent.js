@@ -13,17 +13,16 @@ import {
     Text,
     StyleSheet,
     Image,
-    TouchableOpacity,
     Alert,
     SafeAreaView,
     Platform,
 } from "react-native";
 
-export default function NationContent( {route} ) {
+export default function NationContent({route}) {
     const { nation } = route.params;
 
     return (
-        <SafeAreaView>
+        <View>
             <RenderHeader logo={nation.logo}></RenderHeader>
             <RenderNationInfo nation={nation}></RenderNationInfo>
             <ScrollView marginBottom={"80%"}>
@@ -34,7 +33,7 @@ export default function NationContent( {route} ) {
             </ScrollView>
 
             {/*<RenderEventsMenu></RenderEventsMenu>*/}
-        </SafeAreaView>
+        </View>
     );
 }
 

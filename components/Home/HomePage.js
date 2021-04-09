@@ -94,7 +94,6 @@ function handleNationButtonPress() {
 
 //utilizes event component imported from nation content
 function RenderAllEvents() {
-    //var eventList = getEvents(date)
     //temporary list of events
     var eventList = [
         {
@@ -110,22 +109,12 @@ function RenderAllEvents() {
             type: "food",
         },
     ];
-    //variable holding list of components for events
-    var renderedEventList = [];
 
-    //render components for events and push to list
-    for (let i in eventList) {
-        renderedEventList.push(
-            <View>
-                <RenderDropDownHeader
-                    title={eventList[i].title}
-                    type={eventList[i].type}
-                ></RenderDropDownHeader>
-            </View>
-        );
-    }
-
-    return renderedEventList;
+    return (
+        <View>
+            {eventList.map(({ title, type }) => <RenderDropDownHeader title={title} type={type} />)}
+        </View>
+    )
 }
 
 const headerStyles = StyleSheet.create({
