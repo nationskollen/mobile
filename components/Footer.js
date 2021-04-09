@@ -26,6 +26,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { SimpleLineIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { color } from "react-native-reanimated";
+import MapScreen from "../screens/MapScreen";
 
 /// Creates a tab where each "main screen" can be accessed
 const Tab = createBottomTabNavigator();
@@ -57,8 +58,8 @@ function Footer() {
             />
 
             <Tab.Screen
-                name="Bookings"
-                component={BookingsScreen}
+                name="Nations"
+                component={NationScreen}
                 options={{
                     tabBarIcon: ({ color, size }) => (
                         <SimpleLineIcons
@@ -85,8 +86,8 @@ function Footer() {
             />
 
             <Tab.Screen
-                name="Nations"
-                component={NationScreen}
+                name="Map"
+                component={MapScreen}
                 options={{
                     tabBarIcon: ({ color, size }) => (
                         <SimpleLineIcons name="map" size={size} color={color} />

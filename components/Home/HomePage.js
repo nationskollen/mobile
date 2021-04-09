@@ -24,12 +24,12 @@ import { RenderDropDownHeader } from "../Nations/NationContent";
 
 export default function HomePage() {
     return (
-        <View>
+        <SafeAreaView>
             <Header></Header>
             <FilterBar></FilterBar>
             {/*date should be fetched and sent to RenderAllEvents*/}
             <RenderAllEvents date={""}></RenderAllEvents>
-        </View>
+        </SafeAreaView>
     );
 }
 

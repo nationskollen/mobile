@@ -16,15 +16,22 @@ import {
 import "react-native-gesture-handler";
 import { createStackNavigator } from "@react-navigation/stack";
 
+import HomePage from '../components/Home/HomePage';
+
+const Stack = createStackNavigator();
 /// TODO: Create a local stack
 /// TODO: Import appropriate components (screens)
 function HomeScreen() {
     return (
-        <SafeAreaView
-            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+        <Stack.Navigator 
+            initialRouteName="ChooseNation"
+            screenOptions={{ headerShown: false }}
         >
-            <Text>Home</Text>
-        </SafeAreaView>
+            <Stack.Screen 
+                name="Home"
+                component={HomePage}
+            />
+        </Stack.Navigator>
     );
 }
 
