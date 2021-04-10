@@ -1,7 +1,7 @@
 // This is for rendering the header of settings
 
-import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import React from "react";
+import { View, StyleSheet, Text } from "react-native";
 
 function HeaderSettings(props) {
     return (
@@ -24,16 +24,16 @@ const styles = StyleSheet.create({
     header: {
         height: 60,
         //backgroundColor: "darkgray",
-        flexDirection: 'row',
+        flexDirection: "row",
         borderBottomWidth: 1,
-        borderBottomColor: '#E0E0E0'
+        borderBottomColor: "#E0E0E0",
     },
     textContainer: {
-        flex:1,
-        backgroundColor: 'purple',
+        flex: 1,
+        backgroundColor: "purple",
     },
     text: {
-        justifyContent: 'center',
+        justifyContent: "center",
         fontSize: 35,
     },
-})
+});
