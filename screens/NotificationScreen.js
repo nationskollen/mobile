@@ -1,16 +1,8 @@
 import React from "react";
-import {
-    StyleSheet,
-    Button,
-    View,
-    SafeAreaView,
-    Text,
-    Alert,
-    Platform,
-    TextInput,
-} from "react-native";
 
 import "react-native-gesture-handler";
+import { HeaderOptions } from './NavigationHeader'
+import { useTheme } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import NotificationsContent from "../components/Notifications/NotificationContent";
@@ -21,9 +13,11 @@ const Stack = createStackNavigator();
 /// The screens included in the local stack
 /// Put screens relating to notifications here
 function NotificationScreen({ navigation }) {
+    const { colors } = useTheme()
+
     return (
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="NotificationContent">
+        <Stack.Navigator screenOptions={HeaderOptions(colors)}>
+            <Stack.Screen name='Notifications' options={{title: 'Notifikationer'}}>
                 {(props) => (
                     <NotificationsContent
                         {...props}
