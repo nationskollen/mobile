@@ -6,30 +6,19 @@ import {
     Text,
     StyleSheet,
     Image,
-    Button,
-    TouchableOpacity,
-    SafeAreaView,
     ScrollView,
 } from "react-native";
-import Header from "./Header";
 
 function NotificationsContent({ notificationList }) {
     return (
-        <View>
-            <Header />
-            <ScrollView
-                style={{
-                    marginBottom: 60,
-                }}
-            >
-                {notificationList.map((notificationX, index) => (
-                    <RenderNotification
-                        key={index}
-                        notification={notificationX}
-                    />
-                ))}
-            </ScrollView>
-        </View>
+        <ScrollView>
+            {notificationList.map((notificationX, index) => (
+                <RenderNotification
+                    key={index}
+                    notification={notificationX}
+                />
+            ))}
+        </ScrollView>
     );
 }
 

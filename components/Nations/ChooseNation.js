@@ -9,77 +9,39 @@ import {
     StyleSheet,
     Image,
     TouchableOpacity,
-    Alert,
 } from "react-native";
 
 export default function ChooseNation({ nationList }) {
+    /*TODO: Scroll does not seem to be working on android? (only ios)*/
     return (
-        <View>
-            <RenderHeader />
-            {/*TODO: Scroll does not seem to be working on android? (only ios)*/}
-            <ScrollView>
-                <RenderNationList nationList={nationList} />
-            </ScrollView>
-        </View>
+        <ScrollView>
+            {nationList.map((nation) => <Nation key={nation.id} data={nation} />)}
+        </ScrollView>
     );
 }
 
-const RenderHeader = () => {
-    const navigation = useNavigation();
-
-    return (
-        <View style={styles.header}>
-            {/*Header title*/}
-            <Text style={styles.headerTitle}>Välj Nation</Text>
-
-            {/*Clickable cross to close this page. Current onPress should be replaced.*/}
-            <Entypo
-                name="cross"
-                size={24}
-                color="black"
-                style={styles.cross}
-                onPress={() => navigation.navigate("Home")}
-            />
-        </View>
-    );
-};
-
-//Returns list of components for every nation
-function RenderNationList({ nationList }) {
-    let renderedNationList = [];
-    for (let nation in nationList) {
-        renderedNationList.push(renderNation(nationList[nation]));
-    }
-
-    return renderedNationList;
-}
-
-//TODO: renderNation function (in NationsContent.js) is unable to find images variable with file path
+//TODO: Nation function (in NationsContent.js) is unable to find images variable with file path
 //Returns component for given nation
-function renderNation(nation) {
+function Nation({ data }) {
     const navigation = useNavigation();
 
     return (
-        <View key={nation.id} style={styles.nationWrapper}>
+        <View key={data.id} style={styles.nationWrapper}>
             {/*Logo of nation*/}
             <View style={styles.nationLogo}>
                 <View style={styles.nationLogoImgWrapper}>
-                    <Image source={nation.logo} style={styles.nationLogoImg} />
+                    <Image source={data.logo} style={styles.nationLogoImg} />
                 </View>
             </View>
 
             {/*Name of nation*/}
             <View style={styles.nationNameWrapper}>
-                <Text style={styles.nationName}>{nation.name}</Text>
+                <Text style={styles.nationName}>{data.name}</Text>
             </View>
 
             {/*Button for choosing nation*/}
             <TouchableOpacity
-                onPress={() =>
-                    navigation.push("NationContent", {
-                        nation,
-                    })
-                }
+                onPress={() =>navigation.push("NationContent", { nation: data})}
                 style={styles.chooseButtonWrapper}
             >
                 <Text style={styles.chooseButton}>Välj</Text>
@@ -87,18 +49,6 @@ function renderNation(nation) {
         </View>
     );
 }
-
-//map functionality
-/*<View>
-            {Object.values(nationList).map((item)=>{
-                console.log(item)
-                return (
-                    <View>
-                        <Text>namn2:{item.name}</Text>
-                    </View>
-                )
-            })}
-        </View>*/
 
 const styles = StyleSheet.create({
     header: {

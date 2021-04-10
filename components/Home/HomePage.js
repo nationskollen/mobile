@@ -1,21 +1,13 @@
 // This is for rendering the home page.
 import { AntDesign } from "@expo/vector-icons";
-import { Entypo } from "@expo/vector-icons";
-import { Foundation } from "@expo/vector-icons";
-import { Ionicons } from "@expo/vector-icons";
-import { MaterialIcons } from "@expo/vector-icons";
-import { Octicons } from "@expo/vector-icons";
 import React from "react";
 import {
-    ScrollView,
     View,
     Text,
     StyleSheet,
     Image,
     TouchableOpacity,
-    Alert,
     SafeAreaView,
-    Platform,
 } from "react-native";
 import NK_LOGO from "../../assets/nationskollen_logo-do_not_change.png";
 import { RenderDropDownHeader } from "../Nations/NationContent";
@@ -24,12 +16,12 @@ import { RenderDropDownHeader } from "../Nations/NationContent";
 
 export default function HomePage() {
     return (
-        <View>
+        <SafeAreaView>
             <Header></Header>
             <FilterBar></FilterBar>
             {/*date should be fetched and sent to RenderAllEvents*/}
             <RenderAllEvents date={""}></RenderAllEvents>
-        </View>
+        </SafeAreaView>
     );
 }
 
@@ -101,8 +93,7 @@ function handleNationButtonPress() {
 }
 
 //utilizes event component imported from nation content
-function RenderAllEvents({ date }) {
-    //var eventList = getEvents(date)
+function RenderAllEvents() {
     //temporary list of events
     var eventList = [
         {
@@ -118,22 +109,12 @@ function RenderAllEvents({ date }) {
             type: "food",
         },
     ];
-    //variable holding list of components for events
-    var renderedEventList = [];
 
-    //render components for events and push to list
-    for (let i in eventList) {
-        renderedEventList.push(
-            <View>
-                <RenderDropDownHeader
-                    title={eventList[i].title}
-                    type={eventList[i].type}
-                ></RenderDropDownHeader>
-            </View>
-        );
-    }
-
-    return renderedEventList;
+    return (
+        <View>
+            {eventList.map(({ title, type }) => <RenderDropDownHeader title={title} type={type} />)}
+        </View>
+    )
 }
 
 const headerStyles = StyleSheet.create({
