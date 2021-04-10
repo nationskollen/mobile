@@ -12,6 +12,9 @@ const LightTheme = {
     text: '#000000',
     border: '#f1f1f1',
     notification: "white",
+    notificationImg : '#E8E8E8',
+    notificationRectangle : '#E8E8E8',
+    notificationBackground : 'white'
   },
 }
 
@@ -20,11 +23,13 @@ const DarkTheme = {
   colors: {
     primary: '#71002E',
     background: '#1e272e',
-    backgroundExtra: '#3C4650',
     card: '#71002E',
-    text: '#FFFFFF',
+    text: '#d4d4d4',
     border: '#3C4650',
     notification: "white",
+    notificationImg : '#303030',
+    notificationRectangle : '#424242', 
+    notificationBackground: '#1e272e',
   },
 }
 

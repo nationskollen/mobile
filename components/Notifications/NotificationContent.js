@@ -8,6 +8,9 @@ import {
     Image,
     ScrollView,
 } from "react-native";
+import { useDarkMode } from '../ThemeContexts';
+import { useTheme } from "@react-navigation/native";
+
 
 function NotificationsContent({ notificationList }) {
     return (
@@ -31,55 +34,59 @@ function RenderNotification({ notification }) {
     let publishTime = notification.publishTime;
     //TODO: replace date in eventTime with "Today" or just "MM/DD"
     let eventTime = notification.eventTime;
+    const { setDarkMode, isDarkMode } = useDarkMode();
+    const { colors } = useTheme();
 
-    return (
-        <View style={styles.notificationWrapper}>
-            <View style={styles.nationLogo}>
-                <View style={styles.nationLogoImgWrapper}>
-                    <Image
-                        source={require("../../img/png/vdala/vdalalogga.png")}
-                        style={styles.nationLogoImg}
-                    ></Image>
-                </View>
-            </View>
-            <View style={styles.rectangle}></View>
-            <View style={styles.notificationContent}>
-                <Text style={styles.publishTime}>{publishTime}</Text>
-                <Text style={styles.nationName}>{nation}</Text>
-                <Text style={styles.notificationHeader}>{title}</Text>
-                <Text style={styles.content}>{text}</Text>
-                <Text style={styles.eventTime}>{eventTime}</Text>
-            </View>
-        </View>
-    );
-}
 
-const styles = StyleSheet.create({
-    notificationWrapper: {
-        flexWrap: "wrap",
-        alignSelf: "stretch",
-        backgroundColor: "white",
-        height: 150,
-        marginTop: 15,
-        borderBottomWidth: 1,
-        borderColor: "#E0E0E0",
-    },
+	    return (
+		    <View style={[styles.notificationWrapper, {backgroundColor : colors.notificationBackground}]}>
+		    <View style={styles.nationLogo}>
+			    <View style={[styles.nationLogoImgWrapper, {backgroundColor: colors.notificationImg}]}>
+			    <Image
+				source={require("../../img/png/vdala/vdalalogga.png")}
+				style={styles.nationLogoImg}
+			    ></Image>
+			</View>
+		    </View>
+		    <View style={[styles.rectangle,{backgroundColor : colors.notificationRectangle}]}></View>
+			    <View style={[styles.notificationContent, {backgroundColor : colors.notificationBackground}]}>
+			<Text style={[styles.publishTime, {color : colors.text}]}>{publishTime}</Text>
+				<Text style={[styles.nationName, {color : colors.text}]}>{nation}</Text>
+			<Text style={[styles.notificationHeader, {color : colors.text}]}>{title}</Text>
+			<Text style={[styles.content, {color : colors.text}]}>{text}</Text>
+			<Text style={[styles.eventTime,{color: colors.text}]}>{eventTime}</Text>
+		    </View>
+		</View>
+	    );
+	}
 
-    nationLogoImg: {
-        marginLeft: "auto",
-        marginRight: "auto",
-        height: 30,
-        width: 45,
-    },
+	const styles = StyleSheet.create({
+	    notificationWrapper: {
+		flexWrap: "wrap",
+		alignSelf: "stretch",
+		backgroundColor: "white",
+		height: 150,
+		marginTop: 15,
+		borderBottomWidth: 1,
+		borderColor: "#E0E0E0",
+	    },
 
-    nationLogoImgWrapper: {
-        marginLeft: 15,
-        justifyContent: "center",
-        backgroundColor: "#E8E8E8",
-        width: 50,
-        height: 50,
-        borderRadius: 50,
-    },
+	    nationLogoImg: {
+		marginLeft: "auto",
+		marginRight: "auto",
+		height: 30,
+		width: 45,
+	    },
+
+	    nationLogoImgWrapper: {
+		marginLeft: 15,
+		justifyContent: "center",
+		width: 50,
+
+		backgroundColor: "#E8E8E8",
+		height: 50,
+		borderRadius: 50,
+	    },
 
     notificationContent: {
         paddingTop: 5,
