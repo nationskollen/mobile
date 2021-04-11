@@ -20,7 +20,7 @@ import {
 
 export default function NationContent({route}) {
     const { nation } = route.params;
-
+    console.log(nation)
     return (
         <SafeAreaView>
             <RenderHeader logo={nation.logo}></RenderHeader>
@@ -38,12 +38,8 @@ export default function NationContent({route}) {
 }
 
 //renders top header to page
-function RenderHeader(logo) {
+function RenderHeader({logo}) {
     const navigation = useNavigation();
-
-    //temporary hardcoded test logo
-    //will be replace with input from logo prop
-    let testLogo = "../../img/png/vdala/vdalalogga.png";
 
     return (
         <SafeAreaView style={headerStyles.header}>
@@ -59,7 +55,7 @@ function RenderHeader(logo) {
 
             {/*nation logo as header*/}
             <View style={headerStyles.logoWrapper}>
-                <Image source={require(testLogo)} style={headerStyles.logo} />
+                <Image source={logo} style={headerStyles.logo} />
             </View>
         </SafeAreaView>
     );
@@ -239,7 +235,7 @@ function RenderFoodMenu({ nation }) {
 //TODO: replace with SDK function
 function getFoodMenu({ nation }) {
     return {
-        drinks: {
+        "Dryck": {
             norrlandsguld: {
                 name: "Norrlands Guld",
                 size: "50cl",
@@ -258,9 +254,9 @@ function getFoodMenu({ nation }) {
             },
         },
 
-        appetizers: {},
+        "Förrätt": {},
 
-        maincourse: {
+        "Huvudrätt": {
             pannkakor: {
                 name: "Goa Pannkakor",
                 description:
@@ -290,49 +286,6 @@ function getFoodMenu({ nation }) {
     };
 }
 
-//render all food or drink items from input category object
-function RenderListFromCategory({ list, category }) {
-    var renderedList = [];
-    if (category == "drinks") {
-        for (let i in list) {
-            renderedList.push(
-                <View style={foodStyles.itemBorder}>
-                    <View style={foodStyles.itemWrapper}>
-                        <Text style={foodStyles.nameText}>{list[i].name}</Text>
-                        <Text style={foodStyles.descriptionText}>
-                            {list[i].size + ", " + list[i].type}
-                        </Text>
-                        <View style={foodStyles.priceWrapper}>
-                            <Text style={foodStyles.priceText}>
-                                {list[i].price + " kr"}
-                            </Text>
-                        </View>
-                    </View>
-                </View>
-            );
-        }
-    } else {
-        for (let i in list) {
-            renderedList.push(
-                <View style={foodStyles.itemBorder}>
-                    <View style={foodStyles.itemWrapper}>
-                        <Text style={foodStyles.nameText}>{list[i].name}</Text>
-                        <Text style={foodStyles.descriptionText}>
-                            {list[i].description}
-                        </Text>
-                        <View style={foodStyles.priceWrapper}>
-                            <Text style={foodStyles.priceText}>
-                                {list[i].price + " kr"}
-                            </Text>
-                        </View>
-                    </View>
-                </View>
-            );
-        }
-    }
-
-    return <View style={foodStyles.listContainer}>{renderedList}</View>;
-}
 
 //renders entire dropdown menu with events content
 function RenderEventsMenu({ nation }) {
@@ -356,7 +309,7 @@ function RenderInfoMenu({ nation }) {
 //renders header for arbitrary "types" of headers
 //arbitrary types include (for now):
 //'food', 'event', 'info', 'foodcategory'
-export function RenderDropDownHeader({ title, type, nation}) {
+export function RenderDropDownHeader({ title, nation, type}) {
     var icon; //variable holding icon, determined by type
     var expandedMenuComponent = <View></View>;
 
@@ -373,10 +326,9 @@ export function RenderDropDownHeader({ title, type, nation}) {
             icon = (
                 <Ionicons name="md-fast-food-outline" size={28} color="black" />
             );
-            title = title ? title : "Meny"; //ugly code or nah?
-            if (expand) {
-                expandedMenuComponent = <RenderFoodCategories nation={nation}></RenderFoodCategories>
-            }
+            title = title ? title : "Meny";
+            //if menu is expanded, show its subcomponents
+            expandedMenuComponent = expand && <RenderFoodCategories nation={nation} expand={expand}></RenderFoodCategories>
             break;
         case "event":
             icon = <MaterialIcons name="event" size={24} color="black" />;
@@ -393,15 +345,13 @@ export function RenderDropDownHeader({ title, type, nation}) {
                 </View>
             );
             title = title ? title : "?";
+            expandedMenuComponent = expand && <RenderListFromCategory list={getFoodMenu(nation)[title]} category={title}/> 
             break;
         default:
             icon = <View></View>;
             title = "";
             console.log("error: type of dropdown header not found");
     }
-
-    
-    
 
     return (
         <View>
@@ -425,13 +375,59 @@ export function RenderDropDownHeader({ title, type, nation}) {
     );
 }
 
-//returns rendered food categories
-function RenderFoodCategories({nation}){
-    //temporary variable and dummy function for food menu
-    var foodmenu = getFoodMenu(nation);
+//render all food or drink items from input category object
+function RenderListFromCategory({ list, category }) {
+    var renderedList = [];
+    if (category == "Dryck") {
+        for (let i in list) {
+            renderedList.push(
+                <ScrollView style={foodStyles.itemBorder}>
+                    <View style={foodStyles.itemWrapper}>
+                        <Text style={foodStyles.nameText}>{list[i].name}</Text>
+                        <Text style={foodStyles.descriptionText}>
+                            {list[i].size + ", " + list[i].type}
+                        </Text>
+                        <View style={foodStyles.priceWrapper}>
+                            <Text style={foodStyles.priceText}>
+                                {list[i].price + " kr"}
+                            </Text>
+                        </View>
+                    </View>
+                </ScrollView>
+            );
+        }
+    } else {
+        for (let i in list) {
+            renderedList.push(
+                <ScrollView style={foodStyles.itemBorder}>
+                    <View style={foodStyles.itemWrapper}>
+                        <Text style={foodStyles.nameText}>{list[i].name}</Text>
+                        <Text style={foodStyles.descriptionText}>
+                            {list[i].description}
+                        </Text>
+                        <View style={foodStyles.priceWrapper}>
+                            <Text style={foodStyles.priceText}>
+                                {list[i].price + " kr"}
+                            </Text>
+                        </View>
+                    </View>
+                </ScrollView>
+            );
+        }
+    }
 
-    let foodCategories = ["Dryck", "Förrätt", "Huvudrätt", "Efterrätt", "Fika"];
+    return <View style={foodStyles.listContainer}>{renderedList}</View>;
+}
+
+//returns rendered food categories
+function RenderFoodCategories({nation, expand}){
+    //temporary variable and dummy function for food menu
+    var allFood = getFoodMenu(nation);
+    var foodListComponents=<View></View>
+    {foodListComponents}
+    let foodCategories= ["Dryck", "Förrätt", "Huvudrätt", "Efterrätt", "Fika"];
     var foodCategoriesComponents = [];
+    
 
     for (let category of foodCategories) {
         foodCategoriesComponents.push(
@@ -441,9 +437,11 @@ function RenderFoodCategories({nation}){
                     type={"foodcategory"}
                     nation={nation}
                 ></RenderDropDownHeader>
+
             </View>
         );
     }
+
     return(foodCategoriesComponents)
 }
 
@@ -470,11 +468,14 @@ const headerStyles = StyleSheet.create({
     logoWrapper: {
         alignSelf: "center",
         position: "absolute",
+        width: 45,
+        height: 45,
     },
 
     logo: {
-        width: 65,
-        height: 45,
+        width:  '100%',
+        height: '100%',
+        
     },
 });
 
