@@ -99,7 +99,7 @@ function RenderNotification({ notification }) {
     rectangle: {
         height: "50%",
         width: 5,
-        marginLeft: "9%",
+        marginLeft : '10.2%',
         marginTop: "1%",
         backgroundColor: "#E8E8E8",
     },
