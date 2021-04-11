@@ -5,10 +5,10 @@ export const HeaderOptions = (colors) => ({
         backgroundColor: colors.primary,
     },
     headerTitleStyle: {
-        fontWeight: 'bold',
-        color: 'white',
+        fontWeight: "bold",
+        color: "white",
         fontSize: 20,
         flex: 1,
     },
-    headerTitleAlign: 'left',
-})
+    headerTitleAlign: "left",
+});

@@ -1,22 +1,13 @@
 // This component is used for rendering each notification.
 
 import React from "react";
-import {
-    View,
-    Text,
-    StyleSheet,
-    Image,
-    ScrollView,
-} from "react-native";
+import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
 
 function NotificationsContent({ notificationList }) {
     return (
         <ScrollView>
             {notificationList.map((notificationX, index) => (
-                <RenderNotification
-                    key={index}
-                    notification={notificationX}
-                />
+                <RenderNotification key={index} notification={notificationX} />
             ))}
         </ScrollView>
     );

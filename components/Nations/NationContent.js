@@ -18,7 +18,7 @@ import {
     Platform,
 } from "react-native";
 
-export default function NationContent({route}) {
+export default function NationContent({ route }) {
     const { nation } = route.params;
 
     return (
