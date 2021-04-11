@@ -221,9 +221,6 @@ function RenderActivityComponent(activityLevel) {
 
 //renders entire dropdown menu with food content
 function RenderFoodMenu({ nation }) {
-
-    
-
     return (
         <View>
             <RenderDropDownHeader title={""} type={"food"} nation={nation}/>
@@ -238,28 +235,6 @@ function RenderFoodMenu({ nation }) {
             ></RenderListFromCategory>*/}
         </View>
     );
-}
-
-//returns rendered food categories
-function RenderFoodCategories({nation}){
-    //temporary variable and dummy function for food menu
-    var foodmenu = getFoodMenu(nation);
-
-    let foodCategories = ["Dryck", "Förrätt", "Huvudrätt", "Efterrätt", "Fika"];
-    var foodCategoriesComponents = [];
-
-    for (let category of foodCategories) {
-        foodCategoriesComponents.push(
-            <View key={category}>
-                <RenderDropDownHeader
-                    title={category}
-                    type={"foodcategory"}
-                    nation={nation}
-                ></RenderDropDownHeader>
-            </View>
-        );
-    }
-    return(foodCategoriesComponents)
 }
 
 //TODO: replace with SDK function
@@ -384,7 +359,7 @@ function RenderInfoMenu({ nation }) {
 //'food', 'event', 'info', 'foodcategory'
 export function RenderDropDownHeader({ title, type, nation}) {
     var icon; //variable holding icon, determined by type
-    var onPressFunc;
+    var expandedMenuComponent = <View></View>;
 
     const [expand, setExpand] = useState(()=>false)
 
@@ -400,6 +375,9 @@ export function RenderDropDownHeader({ title, type, nation}) {
                 <Ionicons name="md-fast-food-outline" size={28} color="black" />
             );
             title = title ? title : "Meny"; //ugly code or nah?
+            if (expand) {
+                expandedMenuComponent = <RenderFoodCategories nation={nation}></RenderFoodCategories>
+            }
             break;
         case "event":
             icon = <MaterialIcons name="event" size={24} color="black" />;
@@ -423,15 +401,8 @@ export function RenderDropDownHeader({ title, type, nation}) {
             console.log("error: type of dropdown header not found");
     }
 
-    //determine if plus or minus symbol should be displayed
-    const plusOrMinus = () => {
-        return (expand ? "minuscircle" : "pluscircle")
-    }
-
-    var expandedMenuComponent = <View></View>;
-    if (expand) {
-        expandedMenuComponent = <RenderFoodCategories nation={nation}></RenderFoodCategories>
-    }
+    
+    
 
     return (
         <View>
@@ -442,7 +413,7 @@ export function RenderDropDownHeader({ title, type, nation}) {
 
                 <View style={dropdownStyles.headerPlusWrapper}>
                     <AntDesign
-                        name={plusOrMinus()}
+                        name={expand ? "minuscircle":"pluscircle"}
                         size={32}
                         color="#AEAEAE"
                         onPress={()=>expandToggle()}
@@ -455,7 +426,27 @@ export function RenderDropDownHeader({ title, type, nation}) {
     );
 }
 
+//returns rendered food categories
+function RenderFoodCategories({nation}){
+    //temporary variable and dummy function for food menu
+    var foodmenu = getFoodMenu(nation);
 
+    let foodCategories = ["Dryck", "Förrätt", "Huvudrätt", "Efterrätt", "Fika"];
+    var foodCategoriesComponents = [];
+
+    for (let category of foodCategories) {
+        foodCategoriesComponents.push(
+            <View key={category}>
+                <RenderDropDownHeader
+                    title={category}
+                    type={"foodcategory"}
+                    nation={nation}
+                ></RenderDropDownHeader>
+            </View>
+        );
+    }
+    return(foodCategoriesComponents)
+}
 
 //subheaders for events
 export function RenderEvent() {}
