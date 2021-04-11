@@ -9,17 +9,22 @@ import HomeScreen from "../screens/HomeScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import NotificationScreen from "../screens/NotificationScreen";
 import NationScreen from "../screens/NationScreen";
+import { useDarkMode } from './ThemeContexts';
+
 
 /// Icons
 import MapScreen from "../screens/MapScreen";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator();
-
+var focusTextColor;
+var unFocusTextColor;
 /// The footer with each main screen
 function Footer() {
+    const { setDarkMode, isDarkMode } = useDarkMode();
     const { colors } = useTheme();
-
+    focusTextColor = colors.focusedText;
+    unFocusTextColor = colors.unFocusedText;
     return (
         <Tab.Navigator
             screenOptions={({ route }) => ({
@@ -37,7 +42,6 @@ function Footer() {
                     } else if (route.name === 'Karta') {
                         iconName = focused ? 'map' : 'map-outline';
                     }
-
                     return <Ionicons name={iconName} size={23} color={color} />;
                 }
             })}
@@ -52,11 +56,11 @@ function Footer() {
                     marginBottom: 3
                 },
                 inactiveBackgroundColor: colors.primary,
-                activeTintColor: "white",
-                inactiveTintColor: "white",
+                activeTintColor: colors.focusedText,
+		inactiveTintColor: colors.unFocusedText 
             }}
         >
-            <Tab.Screen name='Notifikationer' component={NotificationScreen}/>
+            <Tab.Screen name='Notifikationer' component={NotificationScreen} color = {'green'}/>
             <Tab.Screen name="Nationer" component={NationScreen}/>
             <Tab.Screen name="Hem" component={HomeScreen}/>
             <Tab.Screen name="Karta" component={MapScreen}/>

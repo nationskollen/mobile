@@ -39,7 +39,7 @@ function RenderNotification({ notification }) {
 
 
 	    return (
-		    <View style={[styles.notificationWrapper, {backgroundColor : colors.notificationBackground}]}>
+		    <View style={[styles.notificationWrapper, {backgroundColor : colors.notificationBackground, borderColor : colors.notificationBorder}]}>
 		    <View style={styles.nationLogo}>
 			    <View style={[styles.nationLogoImgWrapper, {backgroundColor: colors.notificationImg}]}>
 			    <Image
@@ -54,7 +54,7 @@ function RenderNotification({ notification }) {
 				<Text style={[styles.nationName, {color : colors.text}]}>{nation}</Text>
 			<Text style={[styles.notificationHeader, {color : colors.text}]}>{title}</Text>
 			<Text style={[styles.content, {color : colors.text}]}>{text}</Text>
-			<Text style={[styles.eventTime,{color: colors.text}]}>{eventTime}</Text>
+				<Text style={[styles.eventTime,{color: colors.text, borderColor : colors.notificationBorder}]}><Text style = {styles.eventText}>{eventTime}</Text></Text>
 		    </View>
 		</View>
 	    );
@@ -68,7 +68,6 @@ function RenderNotification({ notification }) {
 		height: 150,
 		marginTop: 15,
 		borderBottomWidth: 1,
-		borderColor: "#E0E0E0",
 	    },
 
 	    nationLogoImg: {
@@ -118,18 +117,18 @@ function RenderNotification({ notification }) {
     },
 
     eventTime: {
-        fontSize: 14,
+        fontSize: 16,
         width: "45%",
         height: "20%",
-
         //backgroundColor: 'lightgrey',
         borderWidth: 2,
         borderRadius: 5,
-        borderColor: "lightgrey",
-
-        marginTop: 10,
+	marginTop : 10,
     },
 
+    eventText : {
+    },
+	
     content: {
         overflow: "hidden",
     },

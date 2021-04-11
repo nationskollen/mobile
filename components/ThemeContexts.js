@@ -14,7 +14,10 @@ const LightTheme = {
     notification: "white",
     notificationImg : '#E8E8E8',
     notificationRectangle : '#E8E8E8',
-    notificationBackground : 'white'
+    notificationBackground : 'white',
+    focusedText : 'white',
+    unFocusedText : 'white',
+    notificationBorder: '#e8e8e8'
   },
 }
 
@@ -27,11 +30,16 @@ const DarkTheme = {
     text: '#d4d4d4',
     border: '#3C4650',
     notification: "white",
-    notificationImg : '#303030',
-    notificationRectangle : '#424242', 
+    notificationImg : '#3c4650',
+    notificationRectangle : '#3c4650', 
     notificationBackground: '#1e272e',
+    focusedText : 'white',
+    unFocusedText : '#a8999b',
+    notificationBorder: '#3c4650'
+ 
   },
 }
+
 
 export const themeContext = createContext(LightTheme);
 
