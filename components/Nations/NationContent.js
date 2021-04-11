@@ -5,7 +5,7 @@ import { Foundation } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Octicons } from "@expo/vector-icons";
-import { useDarkMode } from '../ThemeContexts';
+import { useDarkMode } from "../ThemeContexts";
 import { useTheme } from "@react-navigation/native";
 
 import { useNavigation } from "@react-navigation/core";
@@ -21,7 +21,7 @@ import {
     Platform,
 } from "react-native";
 
-export default function NationContent({route}) {
+export default function NationContent({ route }) {
     const { nation } = route.params;
 
     return (

@@ -112,9 +112,11 @@ function RenderAllEvents() {
 
     return (
         <View>
-            {eventList.map(({ title, type }) => <RenderDropDownHeader title={title} type={type} />)}
+            {eventList.map(({ title, type }) => (
+                <RenderDropDownHeader title={title} type={type} />
+            ))}
         </View>
-    )
+    );
 }
 
 const headerStyles = StyleSheet.create({
