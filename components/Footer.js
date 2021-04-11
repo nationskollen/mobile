@@ -16,18 +16,15 @@ import MapScreen from "../screens/MapScreen";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 const Tab = createBottomTabNavigator();
-var focusTextColor;
-var unFocusTextColor;
+
 /// The footer with each main screen
 function Footer() {
-    const { setDarkMode, isDarkMode } = useDarkMode();
     const { colors } = useTheme();
-    focusTextColor = colors.focusedText;
-    unFocusTextColor = colors.unFocusedText;
+
     return (
         <Tab.Navigator
             screenOptions={({ route }) => ({
-                tabBarIcon: ({ focused, color, size }) => {
+                tabBarIcon: ({ focused, color }) => {
                     let iconName;
 
                     if (route.name === "Hem") {
@@ -50,7 +47,7 @@ function Footer() {
             })}
             initialRouteName="Home"
             tabBarOptions={{
-                activeBackgroundColor: colors.primary,
+                activeBackgroundColor: colors.background,
                 labelStyle: {
                     marginBottom: 2,
                     fontWeight: "bold",
@@ -58,8 +55,8 @@ function Footer() {
                 tabStyle: {
                     marginBottom: 3,
                 },
-                inactiveBackgroundColor: colors.primary,
-                activeTintColor: colors.focusedText,
+                inactiveBackgroundColor: colors.background,
+                activeTintColor: colors.text,
                 inactiveTintColor: colors.unFocusedText,
             }}
         >

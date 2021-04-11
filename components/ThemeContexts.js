@@ -8,16 +8,13 @@ const LightTheme = {
         primary: "#71002E",
         background: "white",
         backgroundExtra: "#f1f1f1",
+        backgroundHighlight: "#e2e2e2",
         card: "#71002E",
-        text: "#000000",
         border: "#f1f1f1",
-        notification: "white",
-        notificationImg: "#E8E8E8",
-        notificationRectangle: "#E8E8E8",
-        notificationBackground: "white",
+        text: "#000000",
+        primaryText: "#71002E",
         focusedText: "white",
-        unFocusedText: "white",
-        notificationBorder: "#e8e8e8",
+        unFocusedText: "#555",
     },
 };
 
@@ -25,17 +22,15 @@ const DarkTheme = {
     dark: true,
     colors: {
         primary: "#71002E",
-        background: "#1e272e",
+        background: "#0a090c",
+        backgroundExtra: "#141319",
+        backgroundHighlight: "#262430",
         card: "#71002E",
+        border: "#17161c",
         text: "#d4d4d4",
-        border: "#3C4650",
-        notification: "white",
-        notificationImg: "#3c4650",
-        notificationRectangle: "#3c4650",
-        notificationBackground: "#1e272e",
+        primaryText: "#ef005f",
         focusedText: "white",
-        unFocusedText: "#a8999b",
-        notificationBorder: "#3c4650",
+        unFocusedText: "#9a95a5",
     },
 };
 
@@ -52,6 +47,9 @@ export const ThemeProvider = ({ children }) => {
         <themeContext.Provider value={{ isDarkMode, setDarkMode }}>
             <NavigationContainer theme={currentTheme}>
                 <StatusBar
+                    hidden={false}
+                    translucent={true}
+                    networkActivityIndicatorVisible={true}
                     backgroundColor={currentTheme.colors.primary}
                     barStyle="light-content"
                 />

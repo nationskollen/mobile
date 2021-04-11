@@ -2,7 +2,6 @@
 
 import React from "react";
 import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
-import { useDarkMode } from "../ThemeContexts";
 import { useTheme } from "@react-navigation/native";
 
 function NotificationsContent({ notificationList }) {
@@ -16,77 +15,54 @@ function NotificationsContent({ notificationList }) {
 }
 
 function RenderNotification({ notification }) {
-    let nation = notification.nation;
-    let title = notification.title;
-    let text = notification.text;
+    const { nation, title, text } = notification
 
     //TODO: replace publishTime with calculated "x minutes/hours/days ago"
     let publishTime = notification.publishTime;
     //TODO: replace date in eventTime with "Today" or just "MM/DD"
     let eventTime = notification.eventTime;
-    const { setDarkMode, isDarkMode } = useDarkMode();
     const { colors } = useTheme();
 
     return (
-        <View
-            style={[
-                styles.notificationWrapper,
-                {
-                    backgroundColor: colors.notificationBackground,
-                    borderColor: colors.notificationBorder,
-                },
-            ]}
-        >
-            <View style={styles.nationLogo}>
-                <View
-                    style={[
-                        styles.nationLogoImgWrapper,
-                        { backgroundColor: colors.notificationImg },
-                    ]}
-                >
+        <View style={[styles.notificationWrapper, { borderColor: colors.border }]}>
+            <View style={styles.header}>
+                <View style={[styles.nationLogoImgWrapper, { backgroundColor: colors.backgroundHighlight }]}>
                     <Image
                         source={require("../../img/png/vdala/vdalalogga.png")}
                         style={styles.nationLogoImg}
-                    ></Image>
+                    />
+                </View>
+                <View style={styles.headerContent}>
+                    <Text style={[styles.nationName, { color: colors.primaryText }]}>
+                        {nation}
+                    </Text>
+                    <Text style={[styles.notificationHeader, { color: colors.text }]}>
+                        {title}
+                    </Text>
                 </View>
             </View>
-            <View
-                style={[
-                    styles.rectangle,
-                    { backgroundColor: colors.notificationRectangle },
-                ]}
-            ></View>
-            <View
-                style={[
-                    styles.notificationContent,
-                    { backgroundColor: colors.notificationBackground },
-                ]}
-            >
-                <Text style={[styles.publishTime, { color: colors.text }]}>
-                    {publishTime}
-                </Text>
-                <Text style={[styles.nationName, { color: colors.text }]}>
-                    {nation}
-                </Text>
-                <Text
-                    style={[styles.notificationHeader, { color: colors.text }]}
-                >
-                    {title}
-                </Text>
+            <View>
+                {/* Do we really need to show when it was published? */}
+                {/* Either way, it should probably be moved somewhere else since it */}
+                {/* is not really that important compared to the nation and type. */}
+                {/* <Text style={styles.publishTime}> */}
+                {/*     {publishTime} */}
+                {/* </Text> */}
                 <Text style={[styles.content, { color: colors.text }]}>
                     {text}
                 </Text>
-                <Text
+                <View
                     style={[
                         styles.eventTime,
                         {
                             color: colors.text,
-                            borderColor: colors.notificationBorder,
+                            borderColor: colors.border,
+                            backgroundColor: colors.backgroundExtra,
                         },
                     ]}
                 >
-                    <Text style={styles.eventText}>{eventTime}</Text>
-                </Text>
+                    <Text style={{ color: colors.text }}>{eventTime}</Text>
+                </View>
             </View>
         </View>
     );
@@ -95,11 +71,19 @@ function RenderNotification({ notification }) {
 const styles = StyleSheet.create({
     notificationWrapper: {
         flexWrap: "wrap",
-        alignSelf: "stretch",
-        backgroundColor: "white",
-        height: 150,
-        marginTop: 15,
+        display: 'flex',
+        flexDirection: 'column',
+        paddingVertical: 15,
+        paddingHorizontal: 15,
         borderBottomWidth: 1,
+    },
+
+    header: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        width: '100%',
+        marginBottom: 10,
     },
 
     nationLogoImg: {
@@ -110,30 +94,11 @@ const styles = StyleSheet.create({
     },
 
     nationLogoImgWrapper: {
-        marginLeft: 15,
+        marginRight: 15,
         justifyContent: "center",
-        width: 50,
-
-        backgroundColor: "#E8E8E8",
-        height: 50,
+        width: 55,
+        height: 55,
         borderRadius: 50,
-    },
-
-    notificationContent: {
-        paddingTop: 5,
-        paddingLeft: 20,
-        backgroundColor: "white",
-        width: 400,
-        height: 140,
-        paddingBottom: 15,
-    },
-
-    rectangle: {
-        height: "50%",
-        width: 5,
-        marginLeft: "10.2%",
-        marginTop: "1%",
-        backgroundColor: "#E8E8E8",
     },
 
     notificationHeader: {
@@ -142,7 +107,6 @@ const styles = StyleSheet.create({
     },
     nationName: {
         fontWeight: "bold",
-        color: "#71002E",
     },
     publishTime: {
         fontSize: 14,
@@ -150,15 +114,11 @@ const styles = StyleSheet.create({
 
     eventTime: {
         fontSize: 16,
-        width: "45%",
-        height: "20%",
-        //backgroundColor: 'lightgrey',
-        borderWidth: 2,
         borderRadius: 5,
         marginTop: 10,
+        paddingVertical: 5,
+        paddingHorizontal: 5,
     },
-
-    eventText: {},
 
     content: {
         overflow: "hidden",
