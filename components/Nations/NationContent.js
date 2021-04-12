@@ -1,12 +1,17 @@
 // This is for rendering the nation content.
 import { AntDesign } from "@expo/vector-icons";
-import { Entypo } from "@expo/vector-icons";
-import { Foundation } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
-import { Octicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/core";
-import React, { useState } from "react";
+import React from "react";
+
+/// Renders food components
+import RenderFoodMenu from './NationContentComponents/FoodComponents'
+/// Renders event components
+import RenderEventsMenu from './NationContentComponents/EventComponents'
+/// Renders activity bar
+import RenderActivityBar from './NationContentComponents/ActivityLevel'
+
 import {
     ScrollView,
     View,
@@ -20,7 +25,7 @@ import {
 
 export default function NationContent({route}) {
     const { nation } = route.params;
-    console.log(nation)
+
     return (
         <SafeAreaView>
             <RenderHeader logo={nation.logo}></RenderHeader>
@@ -29,15 +34,12 @@ export default function NationContent({route}) {
             <ScrollView marginBottom={"80%"}>
                 <RenderFoodMenu nation={nation}></RenderFoodMenu>
                 <RenderEventsMenu nation={nation}></RenderEventsMenu>
-                <RenderInfoMenu nation={nation}></RenderInfoMenu>
             </ScrollView>
-
-            {/*<RenderEventsMenu></RenderEventsMenu>*/}
         </SafeAreaView>
     );
 }
 
-//renders top header to page
+//renders top header to screen
 function RenderHeader({logo}) {
     const navigation = useNavigation();
 
@@ -134,319 +136,11 @@ function RenderNationInfo({ nation }) {
             </View>
 
             <RenderActivityBar
-                activityComponent={RenderActivityComponent(
-                    getActivityLevel(nation)
-                )}
+                nation={nation}
             ></RenderActivityBar>
         </SafeAreaView>
     );
 }
-
-//dummy for retrieving activity level of given nation
-//TODO: replace with function that communicates with SDK
-function getActivityLevel({ nation }) {
-    return "low";
-}
-
-//renders activity bar
-function RenderActivityBar({ activityComponent }) {
-    return (
-        <View style={activityStyles.activitybar}>
-            <View style={activityStyles.activitybarLogo}>
-                <Ionicons name="md-people-outline" size={24} color="white" />
-            </View>
-
-            <Text style={activityStyles.activitybarText}>Aktivitet</Text>
-
-            {activityComponent}
-        </View>
-    );
-}
-
-//function that returns a component with a colored circle and text - determined by the activity level
-function RenderActivityComponent(activityLevel) {
-    switch (activityLevel) {
-        case "low":
-            return (
-                <View style={activityStyles.activityLevelWrapper}>
-                    <View
-                        style={activityStyles.activityCircle}
-                        backgroundColor="green"
-                    ></View>
-                    <Text style={activityStyles.activityLevelText}>Låg</Text>
-                </View>
-            );
-
-        case "medium":
-            return (
-                <View style={activityStyles.activityLevelWrapper}>
-                    <View
-                        style={activityStyles.activityCircle}
-                        backgroundColor="yellow"
-                    ></View>
-                    <Text style={activityStyles.activityLevelText}>Medel</Text>
-                </View>
-            );
-
-        case "high":
-            return (
-                <View style={activityStyles.activityLevelWrapper}>
-                    <View
-                        style={activityStyles.activityCircle}
-                        backgroundColor="red"
-                    ></View>
-                    <Text style={activityStyles.activityLevelText}>Hög</Text>
-                </View>
-            );
-
-        default:
-            return (
-                <View style={activityStyles.activityLevelWrapper}>
-                    <View
-                        style={activityStyles.activityCircle}
-                        backgroundColor="white"
-                    ></View>
-                    <Text style={activityStyles.activityLevelText}>
-                        Ej tillgänglig
-                    </Text>
-                </View>
-            );
-    }
-}
-
-//renders entire dropdown menu with food content
-function RenderFoodMenu({ nation }) {
-    return (
-        <View>
-            <RenderDropDownHeader title={""} type={"food"} nation={nation}/>
-
-            {/*<RenderListFromCategory
-                list={foodmenu.drinks}
-                category={"drinks"}
-            ></RenderListFromCategory>
-            <RenderListFromCategory
-                list={foodmenu.maincourse}
-                category={"maincourse"}
-            ></RenderListFromCategory>*/}
-        </View>
-    );
-}
-
-//TODO: replace with SDK function
-function getFoodMenu({ nation }) {
-    return {
-        "Dryck": {
-            norrlandsguld: {
-                name: "Norrlands Guld",
-                size: "50cl",
-                price: "40",
-                type: "Fatöl",
-                description: "",
-                id: "norrlandsguld",
-            },
-            gränges: {
-                name: "Gränges",
-                size: "33cl",
-                price: "30",
-                type: "burk",
-                description: "",
-                id: "gränges",
-            },
-        },
-
-        "Förrätt": {},
-
-        "Huvudrätt": {
-            pannkakor: {
-                name: "Goa Pannkakor",
-                description:
-                    "Oförståeligt befruktande smak. Once you go Goa Pannkakor you never go back.",
-                ingredients: ["ägg", "mjölk", "mjöl", "salt", "smör", "socker"],
-                allergies: ["ägg", "laktos", "gluten", "socker"],
-                price: "45",
-                image: "",
-            },
-            quesadillas: {
-                name: "Krispiga Quesadillas",
-                description:
-                    "6 stycken krispiga, ostiga, kycklingfyllda och oförglömliga quesadillas",
-                ingredients: [
-                    "kyckling",
-                    "rödlök",
-                    "ost",
-                    "tortilla",
-                    "majs",
-                    "paprika",
-                ],
-                allergies: ["rödlök", "laktos", "gluten"],
-                price: "60",
-                image: "",
-            },
-        },
-    };
-}
-
-
-//renders entire dropdown menu with events content
-function RenderEventsMenu({ nation }) {
-    //var eventList = getEventList(nation)
-    return (<View></View>
-        //<RenderDropDownHeader title={""} type={"event"} />
-        /*loop and render events from eventList <RenderEvent/>*/
-    );
-}
-
-//renders entire dropdown menu with info (about nation) content
-function RenderInfoMenu({ nation }) {
-    //temporary variable and dummy function for events menu
-    //var eventsmenu = getEventsMenu(nation)
-    return (<View></View>
-        //<RenderDropDownHeader title={""} type={"info"} />
-        /*render subheaders when plus icon is pressed*/
-    );
-}
-
-//renders header for arbitrary "types" of headers
-//arbitrary types include (for now):
-//'food', 'event', 'info', 'foodcategory'
-export function RenderDropDownHeader({ title, nation, type}) {
-    var icon; //variable holding icon, determined by type
-    var expandedMenuComponent = <View></View>;
-
-    const [expand, setExpand] = useState(()=>false)
-
-    //handles pressing "+" or "-" for expanding or collapsing food header
-    const expandToggle=()=>{
-        setExpand(state=>!state)
-    }
-    
-    //decide which icon and title should be displayed
-    switch (type) {
-        case "food":
-            icon = (
-                <Ionicons name="md-fast-food-outline" size={28} color="black" />
-            );
-            title = title ? title : "Meny";
-            //if menu is expanded, show its subcomponents
-            expandedMenuComponent = expand && <RenderFoodCategories nation={nation} expand={expand}></RenderFoodCategories>
-            break;
-        case "event":
-            icon = <MaterialIcons name="event" size={24} color="black" />;
-            title = title ? title : "Evenemang";
-            break;
-        case "info":
-            icon = <Foundation name="info" size={24} color="black" />;
-            title = title ? title : "Info";
-            break;
-        case "foodcategory":
-            icon = (
-                <View style={dropdownStyles.foodCategory}>
-                    <Octicons name="primitive-dot" size={22} color="#71002E" />
-                </View>
-            );
-            title = title ? title : "?";
-            expandedMenuComponent = expand && <RenderListFromCategory list={getFoodMenu(nation)[title]} category={title}/> 
-            break;
-        default:
-            icon = <View></View>;
-            title = "";
-            console.log("error: type of dropdown header not found");
-    }
-
-    return (
-        <View>
-            <View style={dropdownStyles.header}>
-                <View style={dropdownStyles.iconWrapper}>{icon}</View>
-
-                <Text style={dropdownStyles.headerTitle}>{title}</Text>
-
-                <View style={dropdownStyles.headerPlusWrapper}>
-                    <AntDesign
-                        name={expand ? "minuscircle":"pluscircle"}
-                        size={32}
-                        color="#AEAEAE"
-                        onPress={()=>expandToggle()}
-                    />
-                </View>
-
-            </View>
-            {expandedMenuComponent}
-        </View>
-    );
-}
-
-//render all food or drink items from input category object
-function RenderListFromCategory({ list, category }) {
-    var renderedList = [];
-    if (category == "Dryck") {
-        for (let i in list) {
-            renderedList.push(
-                <ScrollView style={foodStyles.itemBorder}>
-                    <View style={foodStyles.itemWrapper}>
-                        <Text style={foodStyles.nameText}>{list[i].name}</Text>
-                        <Text style={foodStyles.descriptionText}>
-                            {list[i].size + ", " + list[i].type}
-                        </Text>
-                        <View style={foodStyles.priceWrapper}>
-                            <Text style={foodStyles.priceText}>
-                                {list[i].price + " kr"}
-                            </Text>
-                        </View>
-                    </View>
-                </ScrollView>
-            );
-        }
-    } else {
-        for (let i in list) {
-            renderedList.push(
-                <ScrollView style={foodStyles.itemBorder}>
-                    <View style={foodStyles.itemWrapper}>
-                        <Text style={foodStyles.nameText}>{list[i].name}</Text>
-                        <Text style={foodStyles.descriptionText}>
-                            {list[i].description}
-                        </Text>
-                        <View style={foodStyles.priceWrapper}>
-                            <Text style={foodStyles.priceText}>
-                                {list[i].price + " kr"}
-                            </Text>
-                        </View>
-                    </View>
-                </ScrollView>
-            );
-        }
-    }
-
-    return <View style={foodStyles.listContainer}>{renderedList}</View>;
-}
-
-//returns rendered food categories
-function RenderFoodCategories({nation, expand}){
-    //temporary variable and dummy function for food menu
-    var allFood = getFoodMenu(nation);
-    var foodListComponents=<View></View>
-    {foodListComponents}
-    let foodCategories= ["Dryck", "Förrätt", "Huvudrätt", "Efterrätt", "Fika"];
-    var foodCategoriesComponents = [];
-    
-
-    for (let category of foodCategories) {
-        foodCategoriesComponents.push(
-            <View key={category}>
-                <RenderDropDownHeader
-                    title={category}
-                    type={"foodcategory"}
-                    nation={nation}
-                ></RenderDropDownHeader>
-
-            </View>
-        );
-    }
-
-    return(foodCategoriesComponents)
-}
-
-//subheaders for events
-export function RenderEvent() {}
 
 //styles for header
 const headerStyles = StyleSheet.create({
@@ -567,117 +261,3 @@ const nationStyles = StyleSheet.create({
     },
 });
 
-//styles for activitybar
-const activityStyles = StyleSheet.create({
-    activitybar: {
-        flexDirection: "row",
-        height: 45,
-        width: "100%",
-        backgroundColor: "#2F2F2F",
-        alignSelf: "flex-end",
-        alignItems: "center",
-    },
-
-    activitybarText: {
-        color: "white",
-        fontSize: 14,
-        marginLeft: "3%",
-    },
-
-    activitybarLogo: {
-        marginLeft: "5%",
-        marginBottom: "0.5%",
-    },
-
-    activityLevelWrapper: {
-        flexDirection: "row",
-        position: "absolute",
-        right: "5%",
-    },
-
-    activityCircle: {
-        width: 12,
-        height: 12,
-        borderRadius: 50,
-        alignSelf: "center",
-    },
-
-    activityLevelText: {
-        marginLeft: 10,
-        color: "white",
-        fontSize: 16,
-    },
-});
-
-//styles for dropDown menus
-const dropdownStyles = StyleSheet.create({
-    header: {
-        flexDirection: "row",
-        height: 60,
-        borderBottomWidth: 1,
-        alignItems: "center",
-    },
-
-    iconWrapper: {
-        marginLeft: 20,
-    },
-
-    headerTitle: {
-        fontSize: 18,
-        fontWeight: "bold",
-        position: "absolute",
-        marginLeft: 60,
-    },
-
-    headerPlusWrapper: {
-        position: "absolute",
-        right: 30,
-    },
-
-    foodCategory: {
-        marginLeft: "15%",
-    },
-});
-
-//styles for food/drink list
-const foodStyles = StyleSheet.create({
-    itemBorder: {
-        borderBottomWidth: 1,
-        borderColor: "lightgray",
-    },
-
-    itemWrapper: {
-        marginLeft: "7%",
-        marginTop: "2%",
-    },
-
-    nameText: {
-        marginVertical: 3,
-        fontWeight: "bold",
-        fontSize: 16,
-    },
-    descriptionText: {
-        marginTop: 3,
-        marginBottom: 10,
-        maxWidth: "70%",
-    },
-
-    priceWrapper: {
-        backgroundColor: "lightgreen",
-        position: "absolute",
-        right: "5%",
-        top: "35%",
-        width: 45,
-        height: 25,
-        borderWidth: 1,
-        borderColor: "black",
-        borderRadius: 5,
-        alignItems: "center",
-        justifyContent: "center",
-    },
-
-    priceText: {
-        color: "black",
-        fontSize: 15,
-    },
-});

@@ -1,5 +1,7 @@
 // This is for rendering the home page.
 import { AntDesign } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
+
 import React from "react";
 import {
     View,
@@ -10,7 +12,7 @@ import {
     SafeAreaView,
 } from "react-native";
 import NK_LOGO from "../../assets/nationskollen_logo-do_not_change.png";
-import { RenderDropDownHeader } from "../Nations/NationContent";
+import RenderDropDownHeader from "../Nations/NationContentComponents/Dropdown";
 
 //should "todays date" and "chosen date" be global in this file perhaps?
 
@@ -98,21 +100,24 @@ function RenderAllEvents() {
     var eventList = [
         {
             title: "Pannkakstorsdag",
-            type: "food",
+            icon: <MaterialIcons name="event" size={24} color="black" />,
         },
         {
             title: "Gratis-Covid Rave",
-            type: "event",
+            icon: <MaterialIcons name="event" size={24} color="black" />,
         },
         {
             title: "Lunchbuffé",
-            type: "food",
+            icon: <MaterialIcons name="event" size={24} color="black" />,
         },
     ];
 
     return (
         <View>
-            {eventList.map(({ title, type }) => <RenderDropDownHeader title={title} type={type} />)}
+            {eventList.map(({ title, icon }) => 
+                <RenderDropDownHeader 
+                    title={title} 
+                    icon={icon} />)}
         </View>
     )
 }
