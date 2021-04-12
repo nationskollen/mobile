@@ -27,16 +27,6 @@ function Nation({ data }) {
 
     const [expand, setExpand] = useState(false);
 
-    const expandToggle = () => {
-        setExpand((state) => !state);
-    };
-
-    var expandedOptions;
-    if (expand) {
-        expandedOptions = <NotiOptions />;
-    } else {
-        expandedOptions = <View />;
-    }
     return (
         <View>
             <View
@@ -73,10 +63,10 @@ function Nation({ data }) {
                     name={expand ? "keyboard-arrow-up" : "keyboard-arrow-down"}
                     size={24}
                     color={colors.text}
-                    onPress={() => expandToggle()}
+                    onPress={() => setExpand((state) => !state)}
                 />
             </View>
-            {expandedOptions}
+            {expand && <NotiOptions />}
         </View>
     );
 }
@@ -108,10 +98,6 @@ function NotiToggle({ text }) {
 
     const [toggle, setToggle] = useState(false);
 
-    const switchToggle = () => {
-        setToggle((state) => !state);
-    };
-
     return (
         <View style={optionStyles.switch}>
             <Text style={{ color: colors.text }}>{text}</Text>
@@ -121,7 +107,7 @@ function NotiToggle({ text }) {
                 offColor="grey"
                 size="large"
                 onToggle={() => {
-                    switchToggle();
+                    setToggle((state) => !state);
                 }}
             />
         </View>
