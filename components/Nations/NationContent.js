@@ -71,7 +71,7 @@ function RenderNationInfo({ nation }) {
     const {colors} = useTheme();
     return (
         <SafeAreaView>
-            <View style={[nationStyles.nationInfoWrapper, {backgroundColor: colors.background}]}>
+	    <View style={[nationStyles.nationInfoWrapper, {backgroundColor : colors.backgroundExtra}]}> 
                 <View style={nationStyles.nationNameWrapper}>
                     <Text style={[nationStyles.nationName, {color : colors.text}]}>
                         {nation.nickname}
@@ -81,16 +81,16 @@ function RenderNationInfo({ nation }) {
                     </View>
                 </View>
 
-                <View style={[nationStyles.clockSymbolWrapper, {backgroundColor : colors.background}]}>
+                <View style={[nationStyles.clockSymbolWrapper, {backgroundColor : colors.backgroundExtra}]}>
                     <AntDesign name="clockcircle" size={20} color= {colors.text} />
                     <Text style={[nationStyles.openinghoursTitle, {color : colors.text}]}>
                         Öppettider
                     </Text>
                 </View>
 
-                <View style={[nationStyles.openinghoursWrapper, {backgroundColor : colors.background}]}>
+                <View style={[nationStyles.openinghoursWrapper, {backgroundColor : colors.backgroundExtra}]}>
                     <View style={[nationStyles.lineSymbol, {backgroundColor : colors.text}]}></View>
-                    <View style={nationStyles.openinghoursTextWrapper}>
+                    <View style={[nationStyles.openinghoursTextWrapper, {backgroundColor : colors.backgroundExtra}]}>
                         <Text style={[nationStyles.openinghoursText, {color : colors.text}]}>
                             Mån-Fre: 10:00-20:00
                         </Text>
@@ -119,9 +119,7 @@ function RenderNationInfo({ nation }) {
                                     {
                                         text: "Avbryt",
                                         onPress: () =>
-                                            console.log("Avbryt Pressed"),
-                                        style: "Avbryt",
-                                    },
+                                            console.log("Avbryt Pressed"), style: "Avbryt", },
                                     {
                                         text: "OK",
                                         onPress: () =>

@@ -12,7 +12,7 @@ import React from "react";
 export default function RenderActivityBar({ nation }) {
     const {colors} = useTheme();
     return (
-        <View style={[styles.activitybar, {backgroundColor : colors.backgroundExtra}]}>
+	<View style={styles.activitybar}> 
             <View style={styles.activitybarLogo}>
                 <Ionicons name="md-people-outline" size={24} color="white" />
             </View>
