@@ -10,6 +10,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import { MaterialIcons } from "@expo/vector-icons";
 import ToggleSwitch from "toggle-switch-react-native";
 
+/// Renders all nations in a list
 function NotificationSettings({ nationList }) {
     return (
         <ScrollView>
@@ -20,8 +21,7 @@ function NotificationSettings({ nationList }) {
     );
 }
 
-//TODO: Nation function (in NationsContent.js) is unable to find images variable with file path
-//Returns component for given nation
+/// Returns component for given nation
 function Nation({ data }) {
     const { colors } = useTheme();
 
@@ -81,6 +81,7 @@ function Nation({ data }) {
     );
 }
 
+/// Renders the different notification options
 function NotiOptions() {
     return (
         <View
@@ -91,15 +92,18 @@ function NotiOptions() {
                 borderBottomColor: "#E0E0E0",
             }}
         >
-            <SwitchBitch text={"Prenumerera"} />
-            <SwitchBitch text={"Push notifikationer"} />
-            <SwitchBitch text={"Events"} />
-            <SwitchBitch text={"Nyheter"} />
+            {/*Temporary options*/}
+            <NotiToggle text={"Prenumerera"} />
+            <NotiToggle text={"Push notifikationer"} />
+            <NotiToggle text={"Events"} />
+            <NotiToggle text={"Nyheter"} />
         </View>
     );
 }
 
-function SwitchBitch({ text }) {
+/// Renders toggle switches
+/// `text` is the name/title of the toggle
+function NotiToggle({ text }) {
     const { colors } = useTheme();
 
     const [toggle, setToggle] = useState(false);
@@ -107,8 +111,6 @@ function SwitchBitch({ text }) {
     const switchToggle = () => {
         setToggle((state) => !state);
     };
-
-    console.log(text);
 
     return (
         <View style={optionStyles.switch}>
@@ -126,6 +128,7 @@ function SwitchBitch({ text }) {
     );
 }
 
+/// Styles for option switches
 const optionStyles = StyleSheet.create({
     switch: {
         flexDirection: "row",
