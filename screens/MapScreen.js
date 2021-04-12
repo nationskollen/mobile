@@ -18,13 +18,6 @@ function MapScreen() {
     const { colors } = useTheme();
 
     return (
-<<<<<<< HEAD
-        <View
-            style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
-            <Text>Map</Text>
-        </View>
-=======
         <Stack.Navigator
             initialRouteName="Map"
             screenOptions={HeaderOptions(colors)}
@@ -35,7 +28,6 @@ function MapScreen() {
                 options={{ title: "Karta" }}
             />
         </Stack.Navigator>
->>>>>>> map
     );
 }
 
