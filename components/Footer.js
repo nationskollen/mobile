@@ -63,7 +63,6 @@ function Footer() {
             <Tab.Screen
                 name="Notifikationer"
                 component={NotificationScreen}
-                color={"green"}
             />
             <Tab.Screen name="Nationer" component={NationScreen} />
             <Tab.Screen name="Hem" component={HomeScreen} />

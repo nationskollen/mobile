@@ -18,6 +18,15 @@
             "supportsTablet": true
         },
         "android": {
+<<<<<<< HEAD
+=======
+            "package": "com.Krabby.Nationsguiden",
+            "config": {
+                "googleMaps": {
+                    "apiKey": "AIzaSyCBKL5amMlCxk95ltCuxmwMDw3d2dsQ2ug"
+                }
+            },
+>>>>>>> map
             "adaptiveIcon": {
                 "foregroundImage": "./assets/adaptive-icon.png",
                 "backgroundColor": "#FFFFFF"
@@ -25,11 +34,14 @@
         },
         "web": {
             "favicon": "./assets/favicon.png"
+<<<<<<< HEAD
         },
 
         "androidNavigationBar": {
             "barStyle": "dark-content",
             "backgroundColor": "#71002E"
+=======
+>>>>>>> map
         }
     }
 }
