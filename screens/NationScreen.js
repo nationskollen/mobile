@@ -33,7 +33,7 @@ function NationScreen({ navigation }) {
     return (
         <Stack.Navigator
             initialRouteName="ChooseNation"
-            screenOptions={{ headerShown: false }}
+            screenOptions={{ headerShown: true, ...HeaderOptions(colors) }}
         >
             <Stack.Screen
                 name="ChooseNation"

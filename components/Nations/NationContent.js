@@ -10,11 +10,11 @@ import { useNavigation } from "@react-navigation/core";
 import React from "react";
 
 /// Renders food components
-import RenderFoodMenu from './NationContentComponents/FoodComponents'
+import RenderFoodMenu from "./NationContentComponents/FoodComponents";
 /// Renders event components
-import RenderEventsMenu from './NationContentComponents/EventComponents'
+import RenderEventsMenu from "./NationContentComponents/EventComponents";
 /// Renders activity bar
-import RenderActivityBar from './NationContentComponents/ActivityLevel'
+import RenderActivityBar from "./NationContentComponents/ActivityLevel";
 
 import {
     ScrollView,
@@ -25,17 +25,17 @@ import {
     Alert,
     SafeAreaView,
     Platform,
+    StatusBar,
 } from "react-native";
 
 export default function NationContent({ route }) {
     const { nation } = route.params;
 
     return (
-        <SafeAreaView>
-            <RenderHeader logo={nation.logo}></RenderHeader>
+        <SafeAreaView style={{ flex: 1 }}>
             <RenderNationInfo nation={nation}></RenderNationInfo>
             {/*TODO: better solution for raising scrollable menu*/}
-            <ScrollView marginBottom={"80%"}>
+            <ScrollView style={{ flex: 1 }}>
                 <RenderFoodMenu nation={nation}></RenderFoodMenu>
                 <RenderEventsMenu nation={nation}></RenderEventsMenu>
             </ScrollView>
@@ -44,7 +44,7 @@ export default function NationContent({ route }) {
 }
 
 //renders top header to screen
-function RenderHeader({logo}) {
+function RenderHeader({ logo }) {
     const navigation = useNavigation();
 
     return (
@@ -60,9 +60,6 @@ function RenderHeader({logo}) {
             </View>
 
             {/*nation logo as header*/}
-            <View style={headerStyles.logoWrapper}>
-                <Image source={logo} style={headerStyles.logo} />
-            </View>
         </SafeAreaView>
     );
 }
@@ -79,6 +76,9 @@ function RenderNationInfo({ nation }) {
                     <Text style={nationStyles.nationName}>
                         {nation.nickname}
                     </Text>
+                    <View style={headerStyles.logoWrapper}>
+                        <Image source={nation.logo} style={headerStyles.logo} />
+                    </View>
                 </View>
 
                 <View style={nationStyles.clockSymbolWrapper}>
@@ -139,9 +139,7 @@ function RenderNationInfo({ nation }) {
                 </View>
             </View>
 
-            <RenderActivityBar
-                nation={nation}
-            ></RenderActivityBar>
+            <RenderActivityBar nation={nation}></RenderActivityBar>
         </SafeAreaView>
     );
 }
@@ -154,26 +152,26 @@ const headerStyles = StyleSheet.create({
         backgroundColor: "white",
         borderBottomColor: "#E0E0E0",
         borderBottomWidth: 1,
+        justifyContent: "center",
     },
 
     arrowBack: {
         marginLeft: 10,
-        marginTop: 6,
         width: 30,
         height: 25,
     },
 
     logoWrapper: {
-        alignSelf: "center",
-        position: "absolute",
-        width: 45,
-        height: 45,
+        // alignSelf: "flex-end",
+        marginLeft: "5%",
+        //position: "absolute",
+        width: 50,
+        height: 50,
     },
 
     logo: {
-        width:  '100%',
-        height: '100%',
-        
+        width: "100%",
+        height: "100%",
     },
 });
 
@@ -186,8 +184,10 @@ const nationStyles = StyleSheet.create({
     },
 
     nationNameWrapper: {
-        paddingTop: "4%",
+        paddingTop: "2%",
+        flexDirection: "row",
         paddingLeft: "7%",
+        alignItems: "center",
     },
 
     nationName: {
@@ -264,4 +264,3 @@ const nationStyles = StyleSheet.create({
         zIndex: 3,
     },
 });
-

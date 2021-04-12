@@ -114,10 +114,9 @@ function RenderAllEvents() {
 
     return (
         <View>
-            {eventList.map(({ title, icon }) => 
-                <RenderDropDownHeader 
-                    title={title} 
-                    icon={icon} />)}
+            {eventList.map(({ title, icon }) => (
+                <RenderDropDownHeader key={title} title={title} icon={icon} />
+            ))}
         </View>
     );
 }
