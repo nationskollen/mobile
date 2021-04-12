@@ -4,16 +4,13 @@ import "react-native-gesture-handler";
 import React, { useState } from "react";
 import { View, StyleSheet, Text, Image } from "react-native";
 
-import { useDarkMode } from "../ThemeContexts";
 import { useTheme } from "@react-navigation/native";
 import { ScrollView } from "react-native-gesture-handler";
 
 import { MaterialIcons } from "@expo/vector-icons";
+import ToggleSwitch from "toggle-switch-react-native";
 
 function NotificationSettings({ nationList }) {
-    const { setDarkMode, isDarkMode } = useDarkMode();
-    const { colors } = useTheme();
-
     return (
         <ScrollView>
             {nationList.map((nation) => (
@@ -28,43 +25,115 @@ function NotificationSettings({ nationList }) {
 function Nation({ data }) {
     const { colors } = useTheme();
 
+    const [expand, setExpand] = useState(false);
+
+    const expandToggle = () => {
+        setExpand((state) => !state);
+    };
+
+    var expandedOptions;
+    if (expand) {
+        expandedOptions = <NotiOptions />;
+    } else {
+        expandedOptions = <View />;
+    }
+    return (
+        <View>
+            <View
+                key={data.id}
+                style={[
+                    styles.nationWrapper,
+                    { backgroundColor: colors.background },
+                ]}
+            >
+                {/*Logo of nation*/}
+                <View style={styles.nationLogo}>
+                    <View
+                        style={[
+                            styles.nationLogoImgWrapper,
+                            { backgroundColor: colors.backgroundExtra },
+                        ]}
+                    >
+                        <Image
+                            source={data.logo}
+                            style={styles.nationLogoImg}
+                        />
+                    </View>
+                </View>
+
+                {/*Name of nation*/}
+                <View style={[styles.nationNameWrapper]}>
+                    <Text style={[styles.nationName, { color: colors.text }]}>
+                        {data.name}
+                    </Text>
+                </View>
+
+                {/*Button for choosing nation*/}
+                <MaterialIcons
+                    name={expand ? "keyboard-arrow-up" : "keyboard-arrow-down"}
+                    size={24}
+                    color={colors.text}
+                    onPress={() => expandToggle()}
+                />
+            </View>
+            {expandedOptions}
+        </View>
+    );
+}
+
+function NotiOptions() {
     return (
         <View
-            key={data.id}
-            style={[
-                styles.nationWrapper,
-                { backgroundColor: colors.background },
-            ]}
+            style={{
+                justifyContent: "space-evenly",
+                height: 200,
+                borderBottomWidth: 1,
+                borderBottomColor: "#E0E0E0",
+            }}
         >
-            {/*Logo of nation*/}
-            <View style={styles.nationLogo}>
-                <View
-                    style={[
-                        styles.nationLogoImgWrapper,
-                        { backgroundColor: colors.backgroundExtra },
-                    ]}
-                >
-                    <Image source={data.logo} style={styles.nationLogoImg} />
-                </View>
-            </View>
+            <SwitchBitch text={"Prenumerera"} />
+            <SwitchBitch text={"Push notifikationer"} />
+            <SwitchBitch text={"Events"} />
+            <SwitchBitch text={"Nyheter"} />
+        </View>
+    );
+}
 
-            {/*Name of nation*/}
-            <View style={[styles.nationNameWrapper]}>
-                <Text style={[styles.nationName, { color: colors.text }]}>
-                    {data.name}
-                </Text>
-            </View>
+function SwitchBitch({ text }) {
+    const { colors } = useTheme();
 
-            {/*Button for choosing nation*/}
-            <MaterialIcons
-                name="keyboard-arrow-down"
-                size={24}
-                color={colors.text}
-                onPress={() => alert("tjo")}
+    const [toggle, setToggle] = useState(false);
+
+    const switchToggle = () => {
+        setToggle((state) => !state);
+    };
+
+    console.log(text);
+
+    return (
+        <View style={optionStyles.switch}>
+            <Text style={{ color: colors.text }}>{text}</Text>
+            <ToggleSwitch
+                isOn={toggle}
+                onColor="#05c46b"
+                offColor="grey"
+                size="large"
+                onToggle={() => {
+                    switchToggle();
+                }}
             />
         </View>
     );
 }
+
+const optionStyles = StyleSheet.create({
+    switch: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        marginHorizontal: 30,
+        alignItems: "center",
+    },
+});
 
 const styles = StyleSheet.create({
     container: {
