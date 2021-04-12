@@ -12,7 +12,7 @@ All documentation for Nationskollen is available [here](https://github.com/dsp-k
 
 The command line tools for Expo:
 
-1. `npm install --global explo-cli`
+1. `npm install --global expo-cli`
 
 ### Commands
 

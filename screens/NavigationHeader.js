@@ -6,7 +6,7 @@ export const HeaderOptions = (colors) => ({
     },
     headerTitleStyle: {
         fontWeight: "bold",
-        color: 'white',
+        color: "white",
         fontSize: 20,
         flex: 1,
     },
