@@ -1,19 +1,14 @@
 /// This is used to render Settings page and screens relating to it
 
 import React, { useState } from "react";
-import {
-    SafeAreaView,
-    View,
-    StyleSheet,
-    Text,
-} from "react-native";
+import { SafeAreaView, View, StyleSheet, Text } from "react-native";
 
 /// Navigation
 import "react-native-gesture-handler";
 
 import { FontAwesome } from "@expo/vector-icons";
-import ToggleSwitch from 'toggle-switch-react-native';
-import { useDarkMode } from '../ThemeContexts';
+import ToggleSwitch from "toggle-switch-react-native";
+import { useDarkMode } from "../ThemeContexts";
 import { useTheme } from "@react-navigation/native";
 
 /// TODO: create a local navigation stack
@@ -23,32 +18,55 @@ function SettingsPage({ navigation }) {
     const { colors } = useTheme();
 
     return (
-        <SafeAreaView style={ [styles.container, { backgroundColor: colors.background}]}>
-            <View style={[styles.darkMode, { backgroundColor: colors.backgroundExtra}]}>
+        <SafeAreaView
+            style={[styles.container, { backgroundColor: colors.background }]}
+        >
+            <View
+                style={[
+                    styles.darkMode,
+                    { backgroundColor: colors.backgroundExtra },
+                ]}
+            >
                 <View style={styles.dmText}>
-                    <Text style={[styles.dmTitle, { color: colors.text}]}>Mörkt läge</Text>
-                    <Text style={{ color: colors.text}}>
+                    <Text style={[styles.dmTitle, { color: colors.text }]}>
+                        Mörkt läge
+                    </Text>
+                    <Text style={{ color: colors.text }}>
                         Ställ in detta för att förhindra ansträngda ögon
                     </Text>
                 </View>
                 <ToggleSwitch
-                    isOn={ isDarkMode }
+                    isOn={isDarkMode}
                     onColor="#05c46b"
                     offColor="grey"
                     size="large"
-                    onToggle={ setDarkMode }
+                    onToggle={setDarkMode}
                 />
             </View>
-            <View style={[styles.settingsOption, { borderBottomColor: colors.border }]}>
-                <Text style={[styles.optionsText, { color: colors.text }]}>Logga in</Text>
+            <View
+                style={[
+                    styles.settingsOption,
+                    { borderBottomColor: colors.border },
+                ]}
+            >
+                <Text style={[styles.optionsText, { color: colors.text }]}>
+                    Logga in
+                </Text>
                 <FontAwesome
                     style={[styles.arrow, { color: colors.text }]}
                     name="long-arrow-right"
                     size={24}
                 />
             </View>
-            <View style={[styles.settingsOption, { borderBottomColor: colors.border }]}>
-                <Text style={[styles.optionsText, { color: colors.text }]}>Anpassa notifikationer</Text>
+            <View
+                style={[
+                    styles.settingsOption,
+                    { borderBottomColor: colors.border },
+                ]}
+            >
+                <Text style={[styles.optionsText, { color: colors.text }]}>
+                    Anpassa notifikationer
+                </Text>
                 <FontAwesome
                     style={[styles.arrow, { color: colors.text }]}
                     name="long-arrow-right"
@@ -85,7 +103,7 @@ const styles = StyleSheet.create({
     dmText: {
         justifyContent: "center",
         flex: 1,
-        marginRight: 5
+        marginRight: 5,
     },
     dmTitle: {
         fontSize: 20,

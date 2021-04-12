@@ -4,24 +4,27 @@
 import React from "react";
 
 import "react-native-gesture-handler";
-import { HeaderOptions } from './NavigationHeader'
+import { HeaderOptions } from "./NavigationHeader";
 import { useTheme } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import HomePage from '../components/Home/HomePage';
+import HomePage from "../components/Home/HomePage";
 
 const Stack = createStackNavigator();
 /// TODO: Create a local stack
 /// TODO: Import appropriate components (screens)
 function HomeScreen() {
-    const { colors } = useTheme()
+    const { colors } = useTheme();
 
     return (
-        <Stack.Navigator initialRouteName='Home' screenOptions={HeaderOptions(colors)}>
+        <Stack.Navigator
+            initialRouteName="Home"
+            screenOptions={HeaderOptions(colors)}
+        >
             <Stack.Screen
-                name='Home'
+                name="Home"
                 component={HomePage}
-                options={{title: 'Hem'}}
+                options={{ title: "Hem" }}
             />
         </Stack.Navigator>
     );
