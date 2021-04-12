@@ -8,6 +8,7 @@ import { HeaderOptions } from "./NavigationHeader";
 import { useTheme } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import SettingsPage from "../components/Settings/SettingsPage.js";
+import NotificationSettings from "../components/Settings/NotificationSettings";
 
 const Stack = createStackNavigator();
 /// TODO: create a local navigation stack
@@ -24,6 +25,11 @@ function SettingsScreen({ navigation }) {
                 name="Settings"
                 component={SettingsPage}
                 options={{ title: "Inställningar" }}
+            />
+            <Stack.Screen
+                name="NotificationSettings"
+                component={NotificationSettings}
+                options={{ title: "Anpassa notifikationer" }}
             />
         </Stack.Navigator>
     );
