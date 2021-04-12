@@ -1,7 +1,7 @@
-/// This is used to render Settings page and screens relating to it
+/// This is used to render Settings page
 
 import React, { useState } from "react";
-import { SafeAreaView, View, StyleSheet, Text } from "react-native";
+import { SafeAreaView, View, StyleSheet, Text, Button } from "react-native";
 
 /// Navigation
 import "react-native-gesture-handler";
@@ -11,8 +11,8 @@ import ToggleSwitch from "toggle-switch-react-native";
 import { useDarkMode } from "../ThemeContexts";
 import { useTheme } from "@react-navigation/native";
 
-/// TODO: create a local navigation stack
-/// TODO: factor out basically everything to a different file and replace it with a local stack navigator
+import NotificationSettings from "./NotificationSettings";
+
 function SettingsPage({ navigation }) {
     const { setDarkMode, isDarkMode } = useDarkMode();
     const { colors } = useTheme();
@@ -71,6 +71,7 @@ function SettingsPage({ navigation }) {
                     style={[styles.arrow, { color: colors.text }]}
                     name="long-arrow-right"
                     size={24}
+                    onPress={() => navigation.push("NotificationSettings")}
                 />
             </View>
         </SafeAreaView>
