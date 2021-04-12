@@ -1,7 +1,7 @@
 // This is for rendering the home page.
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
-
+import { useTheme } from "@react-navigation/native";
 import React from "react";
 import {
     View,
@@ -28,18 +28,20 @@ export default function HomePage() {
 }
 
 const Header = () => {
+    const {colors} = useTheme();
     return (
-        <View style={headerStyles.headerWrapper}>
-            <Text style={headerStyles.headerTitle}>Händelser</Text>
+        <View style={[headerStyles.headerWrapper,{color : colors.text}]}>
+            <Text style={[headerStyles.headerTitle, {color : colors.text}]}>Händelser</Text>
             {/*THE PRETTIEST LOGO YOU WILL EVER SEE*/}
-            <Image source={NK_LOGO} style={headerStyles.logo} />
+            <Image source={NK_LOGO} style={[headerStyles.logo, {backgroundColor : colors.backgroundExtra}]} />
         </View>
     );
 };
 
 const FilterBar = () => {
+    const {colors} = useTheme();
     return (
-        <View style={filterStyles.mainWrapper}>
+        <View style={[filterStyles.mainWrapper, {backgroundColor : colors.backgroundExtra}]}>
             <ChooseDateBar></ChooseDateBar>
             <ChooseNationButton></ChooseNationButton>
         </View>
@@ -96,19 +98,20 @@ function handleNationButtonPress() {
 
 //utilizes event component imported from nation content
 function RenderAllEvents() {
+    const {colors} = useTheme();
     //temporary list of events
     var eventList = [
         {
             title: "Pannkakstorsdag",
-            icon: <MaterialIcons name="event" size={24} color="black" />,
+            icon: <MaterialIcons name="event" size={24} color={colors.text} />,
         },
         {
             title: "Gratis-Covid Rave",
-            icon: <MaterialIcons name="event" size={24} color="black" />,
+            icon: <MaterialIcons name="event" size={24} color={colors.text} />,
         },
         {
             title: "Lunchbuffé",
-            icon: <MaterialIcons name="event" size={24} color="black" />,
+            icon: <MaterialIcons name="event" size={24} color= {colors.text} />,
         },
     ];
 
@@ -149,6 +152,7 @@ const filterStyles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         backgroundColor: "#AEAEAE",
+	borderRadius : 15,
     },
 
     dateBar: {
