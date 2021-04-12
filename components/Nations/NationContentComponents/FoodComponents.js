@@ -2,10 +2,9 @@
 
 //Used to render various dropdown menus
 import RenderDropDownHeader from './Dropdown'
-
 import { Ionicons } from "@expo/vector-icons";
 import { Octicons } from "@expo/vector-icons";
-
+import { useTheme } from "@react-navigation/native";
 import {
     View,
     Text,
@@ -16,6 +15,7 @@ import React from "react";
 
 //renders entire dropdown menu with food content
 export default function RenderFoodMenu({ nation }) {
+    const {colors} = useTheme();
     return (
         <RenderDropDownHeader 
             title={"Meny"}
@@ -23,7 +23,7 @@ export default function RenderFoodMenu({ nation }) {
             icon = {<Ionicons 
                         name="md-fast-food-outline" 
                         size={28} 
-                        color="black"
+                        color= {colors.text}
                     />}
         ></RenderDropDownHeader>
     );
@@ -52,22 +52,21 @@ function renderFoodCategories(nation){
 function renderListFromCategory(nation, category) {
     //list of food/drinks in category
     var list = getFoodMenu(nation)[category];
-
+    const {colors} = useTheme();
     var renderedList = [];
     var description;
-
     for (let i in list) {
         description = category == "Dryck" ? list[i].size+", "+list[i].type : list[i].description
 
         renderedList.push(
-            <View key={list[i].name} style={styles.itemBorder}>
+            <View key={list[i].name} style={[styles.itemBorder, {borderColor : colors.backgroundExtra}]}>
                 <View style={styles.itemWrapper}>
-                    <Text style={styles.nameText}>{list[i].name}</Text>
-                    <Text style={styles.descriptionText}>
+                    <Text style={[styles.nameText, {color : colors.text}]}>{list[i].name}</Text>
+                    <Text style={[styles.descriptionText, {color: colors.text}]}>
                         {description}
                     </Text>
-                    <View style={styles.priceWrapper}>
-                        <Text style={styles.priceText}>
+                    <View style={[styles.priceWrapper, {backgroundColor : colors.backgroundExtra}]}>
+                        <Text style={[styles.priceText, {color: colors.text}]}>
                             {list[i].price + " kr"}
                         </Text>
                     </View>

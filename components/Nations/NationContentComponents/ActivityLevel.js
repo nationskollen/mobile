@@ -1,5 +1,6 @@
 //This file renders activity level components for NationContent
 import { Ionicons } from "@expo/vector-icons";
+import { useTheme } from "@react-navigation/native";
 import { 
     View,
     Text,
@@ -9,8 +10,9 @@ import React from "react";
 
 //renders activity bar
 export default function RenderActivityBar({ nation }) {
+    const {colors} = useTheme();
     return (
-        <View style={styles.activitybar}>
+        <View style={[styles.activitybar, {backgroundColor : colors.backgroundExtra}]}>
             <View style={styles.activitybarLogo}>
                 <Ionicons name="md-people-outline" size={24} color="white" />
             </View>
@@ -30,7 +32,7 @@ function getActivityLevel({ nation }) {
 
 //function that returns a component with a colored circle and text - determined by the activity level
 function RenderActivityComponent({activityLevel}) {
-    console.log(activityLevel)
+    const {colors} = useTheme();
     var color, title
     switch (activityLevel) {
         case "closed": {
