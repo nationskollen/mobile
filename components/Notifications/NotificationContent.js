@@ -1,54 +1,68 @@
 // This component is used for rendering each notification.
 
 import React from "react";
-import {
-    View,
-    Text,
-    StyleSheet,
-    Image,
-    ScrollView,
-} from "react-native";
+import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
+import { useTheme } from "@react-navigation/native";
 
 function NotificationsContent({ notificationList }) {
     return (
         <ScrollView>
             {notificationList.map((notificationX, index) => (
-                <RenderNotification
-                    key={index}
-                    notification={notificationX}
-                />
+                <RenderNotification key={index} notification={notificationX} />
             ))}
         </ScrollView>
     );
 }
 
 function RenderNotification({ notification }) {
-    let nation = notification.nation;
-    let title = notification.title;
-    let text = notification.text;
+    const { nation, title, text } = notification
 
     //TODO: replace publishTime with calculated "x minutes/hours/days ago"
     let publishTime = notification.publishTime;
     //TODO: replace date in eventTime with "Today" or just "MM/DD"
     let eventTime = notification.eventTime;
+    const { colors } = useTheme();
 
     return (
-        <View style={styles.notificationWrapper}>
-            <View style={styles.nationLogo}>
-                <View style={styles.nationLogoImgWrapper}>
+        <View style={[styles.notificationWrapper, { borderColor: colors.border }]}>
+            <View style={styles.header}>
+                <View style={[styles.nationLogoImgWrapper, { backgroundColor: colors.backgroundHighlight }]}>
                     <Image
                         source={require("../../img/png/vdala/vdalalogga.png")}
                         style={styles.nationLogoImg}
-                    ></Image>
+                    />
+                </View>
+                <View style={styles.headerContent}>
+                    <Text style={[styles.nationName, { color: colors.primaryText }]}>
+                        {nation}
+                    </Text>
+                    <Text style={[styles.notificationHeader, { color: colors.text }]}>
+                        {title}
+                    </Text>
                 </View>
             </View>
-            <View style={styles.rectangle}></View>
-            <View style={styles.notificationContent}>
-                <Text style={styles.publishTime}>{publishTime}</Text>
-                <Text style={styles.nationName}>{nation}</Text>
-                <Text style={styles.notificationHeader}>{title}</Text>
-                <Text style={styles.content}>{text}</Text>
-                <Text style={styles.eventTime}>{eventTime}</Text>
+            <View>
+                {/* Do we really need to show when it was published? */}
+                {/* Either way, it should probably be moved somewhere else since it */}
+                {/* is not really that important compared to the nation and type. */}
+                {/* <Text style={styles.publishTime}> */}
+                {/*     {publishTime} */}
+                {/* </Text> */}
+                <Text style={[styles.content, { color: colors.text }]}>
+                    {text}
+                </Text>
+                <View
+                    style={[
+                        styles.eventTime,
+                        {
+                            color: colors.text,
+                            borderColor: colors.border,
+                            backgroundColor: colors.backgroundExtra,
+                        },
+                    ]}
+                >
+                    <Text style={{ color: colors.text }}>{eventTime}</Text>
+                </View>
             </View>
         </View>
     );
@@ -57,12 +71,19 @@ function RenderNotification({ notification }) {
 const styles = StyleSheet.create({
     notificationWrapper: {
         flexWrap: "wrap",
-        alignSelf: "stretch",
-        backgroundColor: "white",
-        height: 150,
-        marginTop: 15,
+        display: 'flex',
+        flexDirection: 'column',
+        paddingVertical: 15,
+        paddingHorizontal: 15,
         borderBottomWidth: 1,
-        borderColor: "#E0E0E0",
+    },
+
+    header: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        width: '100%',
+        marginBottom: 10,
     },
 
     nationLogoImg: {
@@ -73,29 +94,11 @@ const styles = StyleSheet.create({
     },
 
     nationLogoImgWrapper: {
-        marginLeft: 15,
+        marginRight: 15,
         justifyContent: "center",
-        backgroundColor: "#E8E8E8",
-        width: 50,
-        height: 50,
+        width: 55,
+        height: 55,
         borderRadius: 50,
-    },
-
-    notificationContent: {
-        paddingTop: 5,
-        paddingLeft: 20,
-        backgroundColor: "white",
-        width: 400,
-        height: 140,
-        paddingBottom: 15,
-    },
-
-    rectangle: {
-        height: "50%",
-        width: 5,
-        marginLeft: "9%",
-        marginTop: "1%",
-        backgroundColor: "#E8E8E8",
     },
 
     notificationHeader: {
@@ -104,23 +107,17 @@ const styles = StyleSheet.create({
     },
     nationName: {
         fontWeight: "bold",
-        color: "#71002E",
     },
     publishTime: {
         fontSize: 14,
     },
 
     eventTime: {
-        fontSize: 14,
-        width: "45%",
-        height: "20%",
-
-        //backgroundColor: 'lightgrey',
-        borderWidth: 2,
+        fontSize: 16,
         borderRadius: 5,
-        borderColor: "lightgrey",
-
         marginTop: 10,
+        paddingVertical: 5,
+        paddingHorizontal: 5,
     },
 
     content: {

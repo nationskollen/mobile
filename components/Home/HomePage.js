@@ -119,7 +119,7 @@ function RenderAllEvents() {
                     title={title} 
                     icon={icon} />)}
         </View>
-    )
+    );
 }
 
 const headerStyles = StyleSheet.create({

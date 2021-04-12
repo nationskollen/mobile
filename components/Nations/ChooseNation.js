@@ -15,7 +15,9 @@ export default function ChooseNation({ nationList }) {
     /*TODO: Scroll does not seem to be working on android? (only ios)*/
     return (
         <ScrollView>
-            {nationList.map((nation) => <Nation key={nation.id} data={nation} />)}
+            {nationList.map((nation) => (
+                <Nation key={nation.id} data={nation} />
+            ))}
         </ScrollView>
     );
 }
@@ -40,7 +42,9 @@ function Nation({ data }) {
 
             {/*Button for choosing nation*/}
             <TouchableOpacity
-                onPress={() =>navigation.push("NationContent", { nation: data})}
+                onPress={() =>
+                    navigation.push("NationContent", { nation: data })
+                }
                 style={styles.chooseButtonWrapper}
             >
                 <Text style={styles.chooseButton}>Välj</Text>

@@ -1,1 +1,12 @@
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+buildscript {
+    ext {
+        buildToolsVersion = "xxx"
+        minSdkVersion = xxx
+        compileSdkVersion = xxx
+        targetSdkVersion = xxx
+        supportLibVersion = "xxx"
+        playServicesVersion = "17.0.0" // or find latest version
+        androidMapsUtilsVersion = "xxx"
+    }
+}

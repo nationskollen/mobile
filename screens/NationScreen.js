@@ -14,8 +14,8 @@ import {
 } from "react-native";
 
 import "react-native-gesture-handler";
-import { HeaderOptions } from './NavigationHeader'
-import { useTheme } from '@react-navigation/native'
+import { HeaderOptions } from "./NavigationHeader";
+import { useTheme } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 /// Pages to move to and from
@@ -28,19 +28,26 @@ const Stack = createStackNavigator();
 /// The screens included in the local stack
 /// Put screens relating to nations here
 function NationScreen({ navigation }) {
-    const { colors } = useTheme()
+    const { colors } = useTheme();
 
     return (
         <Stack.Navigator
             initialRouteName="ChooseNation"
             screenOptions={{ headerShown: false }}
         >
-            <Stack.Screen name="ChooseNation" options={{title: 'Nationer', headerShown: true, ...HeaderOptions(colors)}}>
+            <Stack.Screen
+                name="ChooseNation"
+                options={{
+                    title: "Nationer",
+                    headerShown: true,
+                    ...HeaderOptions(colors),
+                }}
+            >
                 {(props) => (
                     <ChooseNation {...props} nationList={nationListEx} />
                 )}
             </Stack.Screen>
-            <Stack.Screen name="NationContent" options={{title: 'Nation'}}>
+            <Stack.Screen name="NationContent" options={{ title: "Nation" }}>
                 {(props) => <NationContent {...props} />}
             </Stack.Screen>
         </Stack.Navigator>
@@ -126,6 +133,6 @@ export var nationListEx = [
         nickname: "GH",
         logo: require("../img/png/ghs/ghlogga.png"),
     },
-]
+];
 
 export default NationScreen;
