@@ -23,7 +23,6 @@ export default function ChooseNation({ nationList }) {
     );
 }
 
-//TODO: Nation function (in NationsContent.js) is unable to find images variable with file path
 //Returns component for given nation
 function Nation({ data }) {
     const navigation = useNavigation();
