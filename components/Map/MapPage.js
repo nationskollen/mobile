@@ -1,7 +1,8 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker, Callout } from "react-native-maps";
-
+import MapDarkTheme from './MapDarkTheme.json'
+import { useTheme } from "@react-navigation/native";
 const state = {
     coordinates: [
         {
@@ -9,8 +10,7 @@ const state = {
             latitude: 59.856227,
             longitude: 17.6378425,
         },
-        {
-            name: "Stockholms Nation",
+        { name: "Stockholms Nation",
             latitude: 59.856731614930446,
             longitude: 17.63419919045771,
         },
@@ -73,6 +73,8 @@ const state = {
 };
 
 function renderMap({ nationLocation }) {
+    const {dark} = useTheme();
+    let isDarkMode = dark ? MapDarkTheme : [] 
     return (
         <MapView
             style={styles.mapStyle}
@@ -81,7 +83,11 @@ function renderMap({ nationLocation }) {
                 longitude: 17.634732,
                 latitudeDelta: 0.0322, // Zoom level
                 longitudeDelta: 0.0321, // Zoom level
-            }}
+	    } 
+	    }
+
+	    customMapStyle = {isDarkMode}
+
         >
             {state.coordinates.map((marker) => (
                 <Marker
