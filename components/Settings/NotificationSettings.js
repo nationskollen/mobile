@@ -36,7 +36,7 @@ function Nation({ data }) {
     return (
         <View>
             <TouchableHighlight
-                onPress={() => setExpand((state) => !state)}
+                onPress={() => setExpand(!expand)}
                 underlayColor={colors.backgroundHighlight}
             >
                 <View
@@ -80,7 +80,6 @@ function Nation({ data }) {
                         }
                         size={24}
                         color={colors.text}
-                        //onPress={() => setExpand((state) => !state)}
                     />
                 </View>
             </TouchableHighlight>
@@ -127,7 +126,7 @@ function NotiToggle({ text }) {
                 offColor="grey"
                 size="large"
                 onToggle={() => {
-                    setToggle((state) => !state);
+                    setToggle(!toggle);
                 }}
             />
         </View>
