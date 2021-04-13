@@ -23,7 +23,7 @@ export default function RenderDropDownHeader({ title, expandComponent, icon }) {
                         name={expand ? "minuscircle" : "pluscircle"}
                         size={32}
                         color="#AEAEAE"
-                        onPress={() => setExpand((state) => !state)}
+                        onPress={()=>setExpand(!expand)}
                     />
                 </View>
             </View>

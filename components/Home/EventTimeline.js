@@ -2,6 +2,8 @@
 import "react-native-gesture-handler";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
+
 import { useTheme } from "@react-navigation/native";
 import React from "react";
 import {
@@ -49,7 +51,7 @@ function getEventList(){
             description: "Hos oss kan du läska dig med något drickbart, äta en bit mat och umgås med dig själv eller med andra! Faller andan på så finns det massor med brädspel du kan spela.",
             time:"17:00 - 20:00",
             nation: nationListEx[1], 
-            image: require('../../img/png/norrlands/event_pancakes.jpeg')
+            image: require('../../img/png/vdala/event_puben.png')
         },
 
         /*{
@@ -61,17 +63,24 @@ function getEventList(){
 }
 
 function RenderEvent({event}){
-    console.log(event)
     return(
         <View style={eventStyles.eventContainer}>
 
             {/*Cover Image of event*/}
             <View style={eventStyles.titleContainer}>
-                <Image source={event.image} style={eventStyles.coverImg}></Image>
-            </View>
+                {event.image != null &&
+                 <Image source={event.image} style={eventStyles.coverImg}/>
+                }
 
-            {/*Nation logo and name*/}
-            <RenderNationHeader nation={event.nation}></RenderNationHeader>
+            </View>
+            
+            <View style={eventStyles.nationAndButton}>
+                {/*Nation logo and name*/}
+                <RenderNationHeader nation={event.nation}/>
+                {/*Remind me button*/}
+                <RenderReminderButton/>
+            </View>
+            
 
             {/*Container for title and description*/}
             <View style={eventStyles.textContainer}>
@@ -89,6 +98,8 @@ function RenderEvent({event}){
                 <View style={eventStyles.descriptionContainer}>
                     <Text style={eventStyles.description}>{event.description}</Text>
                 </View>
+
+                
             </View>
         
         </View>
@@ -108,6 +119,15 @@ function RenderNationHeader({nation}){
 
     )
 
+}
+
+function RenderReminderButton(){
+    return (
+        <TouchableOpacity style={reminderStyles.container}>
+            <Ionicons name="md-notifications-outline" size={24} color="white" />
+            <Text style={reminderStyles.text}>Påminn mig</Text>
+        </TouchableOpacity>
+    )
 }
 
 const eventStyles = StyleSheet.create({
@@ -135,6 +155,12 @@ const eventStyles = StyleSheet.create({
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.3,
         shadowRadius: 3, 
+    },
+
+    nationAndButton: {
+        marginTop:'2%',
+        flexDirection:'row',
+        justifyContent:'space-between',
     },
 
     textContainer:{
@@ -175,7 +201,6 @@ const nationStyles = StyleSheet.create({
         width:'40%',
         alignItems: 'center',
         marginLeft:'2%',
-        marginTop: '2%',
     },
 
     logo:{
@@ -186,5 +211,24 @@ const nationStyles = StyleSheet.create({
     name:{
         color:'#808080',
         marginLeft:'2%',
+    }
+})
+
+const reminderStyles = StyleSheet.create({
+    container: {
+        width:120,
+        height:40,
+        borderRadius:5,
+
+        marginRight:'5%',
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'space-evenly',
+
+        backgroundColor:'#AEAEAE',
+    },
+
+    text: {
+        color:'white',
     }
 })
