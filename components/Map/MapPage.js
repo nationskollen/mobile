@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker, Callout } from "react-native-maps";
-import MapDarkTheme from './MapDarkTheme.json'
+import MapDarkTheme from "./MapDarkTheme.json";
 import { useTheme } from "@react-navigation/native";
 const state = {
     coordinates: [
@@ -10,7 +10,8 @@ const state = {
             latitude: 59.856227,
             longitude: 17.6378425,
         },
-        { name: "Stockholms Nation",
+        {
+            name: "Stockholms Nation",
             latitude: 59.856731614930446,
             longitude: 17.63419919045771,
         },
@@ -72,9 +73,11 @@ const state = {
     ],
 };
 
-function renderMap({ nationLocation }) {
-    const {dark} = useTheme();
-    let isDarkMode = dark ? MapDarkTheme : [] 
+function renderMap({ nationData }) {
+    const { dark } = useTheme();
+    let darkTheme = MapDarkTheme;
+    let lightTheme = []; // Empty array renders standard light map
+    let selectTheme = dark ? darkTheme : lightTheme;
     return (
         <MapView
             style={styles.mapStyle}
@@ -83,11 +86,8 @@ function renderMap({ nationLocation }) {
                 longitude: 17.634732,
                 latitudeDelta: 0.0322, // Zoom level
                 longitudeDelta: 0.0321, // Zoom level
-	    } 
-	    }
-
-	    customMapStyle = {isDarkMode}
-
+            }}
+            customMapStyle={selectTheme}
         >
             {state.coordinates.map((marker) => (
                 <Marker
@@ -95,11 +95,10 @@ function renderMap({ nationLocation }) {
                         latitude: marker.latitude,
                         longitude: marker.longitude,
                     }}
-                >
-                    <Callout>
-                        <Text>{marker.name}</Text>
-                    </Callout>
-                </Marker>
+                    title={marker.name}
+                    description="Aktivitetsnivå : Låg"
+                    image={require("../../img/png/vdala/vdalalogga.png")}
+                ></Marker>
             ))}
         </MapView>
     );
@@ -116,6 +115,5 @@ const styles = StyleSheet.create({
 
         borderBottomWidth: 1,
         borderColor: "#E0E0E0",
-        borderRadius: 10,
     },
 });
