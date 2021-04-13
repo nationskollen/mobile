@@ -38,6 +38,11 @@ function SettingsScreen({ navigation }) {
                     />
                 )}
             </Stack.Screen>
+	    <Stack.Screen
+		name="Login"
+		component={Login}
+		options={{ title: "Logga in" }}
+	    />
         </Stack.Navigator>
     );
 }
