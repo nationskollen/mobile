@@ -1,7 +1,14 @@
 /// This is used to render Settings page
 
 import React, { useState } from "react";
-import { SafeAreaView, View, StyleSheet, Text, Button } from "react-native";
+import {
+    SafeAreaView,
+    View,
+    StyleSheet,
+    Text,
+    Button,
+    TouchableHighlight,
+} from "react-native";
 
 /// Navigation
 import "react-native-gesture-handler";
@@ -43,37 +50,46 @@ function SettingsPage({ navigation }) {
                     onToggle={setDarkMode}
                 />
             </View>
-            <View
-                style={[
-                    styles.settingsOption,
-                    { borderBottomColor: colors.border },
-                ]}
+            <TouchableHighlight
+                onPress={() => navigation.push("NotificationSettings")}
+                underlayColor={colors.backgroundHighlight}
             >
-                <Text style={[styles.optionsText, { color: colors.text }]}>
-                    Logga in
-                </Text>
-                <FontAwesome
-                    style={[styles.arrow, { color: colors.text }]}
-                    name="long-arrow-right"
-                    size={24}
-                />
-            </View>
-            <View
-                style={[
-                    styles.settingsOption,
-                    { borderBottomColor: colors.border },
-                ]}
+                <View
+                    style={[
+                        styles.settingsOption,
+                        { borderBottomColor: colors.border },
+                    ]}
+                >
+                    <Text style={[styles.optionsText, { color: colors.text }]}>
+                        Logga in
+                    </Text>
+                    <FontAwesome
+                        style={[styles.arrow, { color: colors.text }]}
+                        name="long-arrow-right"
+                        size={24}
+                    />
+                </View>
+            </TouchableHighlight>
+            <TouchableHighlight
+                onPress={() => navigation.push("NotificationSettings")}
+                underlayColor={colors.backgroundHighlight}
             >
-                <Text style={[styles.optionsText, { color: colors.text }]}>
-                    Anpassa notifikationer
-                </Text>
-                <FontAwesome
-                    style={[styles.arrow, { color: colors.text }]}
-                    name="long-arrow-right"
-                    size={24}
-                    onPress={() => navigation.push("NotificationSettings")}
-                />
-            </View>
+                <View
+                    style={[
+                        styles.settingsOption,
+                        { borderBottomColor: colors.border },
+                    ]}
+                >
+                    <Text style={[styles.optionsText, { color: colors.text }]}>
+                        Anpassa notifikationer
+                    </Text>
+                    <FontAwesome
+                        style={[styles.arrow, { color: colors.text }]}
+                        name="long-arrow-right"
+                        size={24}
+                    />
+                </View>
+            </TouchableHighlight>
         </SafeAreaView>
     );
 }
