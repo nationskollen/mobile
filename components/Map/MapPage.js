@@ -1,7 +1,8 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker, Callout } from "react-native-maps";
-
+import MapDarkTheme from "./MapDarkTheme.json";
+import { useTheme } from "@react-navigation/native";
 const state = {
     coordinates: [
         {
@@ -72,7 +73,11 @@ const state = {
     ],
 };
 
-function renderMap({ nationLocation }) {
+function renderMap({ nationData }) {
+    const { dark } = useTheme();
+    let darkTheme = MapDarkTheme;
+    let lightTheme = []; // Empty array renders standard light map
+    let selectTheme = dark ? darkTheme : lightTheme;
     return (
         <MapView
             style={styles.mapStyle}
@@ -82,6 +87,7 @@ function renderMap({ nationLocation }) {
                 latitudeDelta: 0.0322, // Zoom level
                 longitudeDelta: 0.0321, // Zoom level
             }}
+            customMapStyle={selectTheme}
         >
             {state.coordinates.map((marker) => (
                 <Marker
@@ -89,11 +95,10 @@ function renderMap({ nationLocation }) {
                         latitude: marker.latitude,
                         longitude: marker.longitude,
                     }}
-                >
-                    <Callout>
-                        <Text>{marker.name}</Text>
-                    </Callout>
-                </Marker>
+                    title={marker.name}
+                    description="Aktivitetsnivå : Låg"
+                    image={require("../../img/png/vdala/vdalalogga.png")}
+                ></Marker>
             ))}
         </MapView>
     );
@@ -110,6 +115,5 @@ const styles = StyleSheet.create({
 
         borderBottomWidth: 1,
         borderColor: "#E0E0E0",
-        borderRadius: 10,
     },
 });
