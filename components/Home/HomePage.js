@@ -13,6 +13,7 @@ import {
 } from "react-native";
 import NK_LOGO from "../../assets/nationskollen_logo-do_not_change.png";
 import RenderDropDownHeader from "../Nations/NationContentComponents/Dropdown";
+import RenderTimeLine from './EventTimeline'
 
 //should "todays date" and "chosen date" be global in this file perhaps?
 
@@ -22,7 +23,7 @@ export default function HomePage() {
             <Header></Header>
             <FilterBar></FilterBar>
             {/*date should be fetched and sent to RenderAllEvents*/}
-            <RenderAllEvents date={""}></RenderAllEvents>
+            <RenderTimeLine></RenderTimeLine>
         </SafeAreaView>
     );
 }
@@ -118,7 +119,7 @@ function RenderAllEvents() {
     return (
         <View>
             {eventList.map(({ title, icon }) => (
-                <RenderDropDownHeader key={title} title={title} icon={icon} />
+                <View key={title}/>
             ))}
         </View>
     );
@@ -152,7 +153,6 @@ const filterStyles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         backgroundColor: "#AEAEAE",
-	borderRadius : 15,
     },
 
     dateBar: {

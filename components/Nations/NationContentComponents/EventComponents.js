@@ -10,5 +10,3 @@ export default function RenderEventsMenu({ nation }) {
         );
 }
 
-//subheaders for events
-export function RenderEvent() {}
