@@ -1,6 +1,7 @@
 // This is for rendering the choose-nation view.
 import { Entypo } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { useTheme } from "@react-navigation/native";
 import React from "react";
 import {
     ScrollView,
@@ -25,19 +26,20 @@ export default function ChooseNation({ nationList }) {
 //Returns component for given nation
 function Nation({ data }) {
     const navigation = useNavigation();
+    const {colors} = useTheme();
 
     return (
-        <View key={data.id} style={styles.nationWrapper}>
+        <View key={data.id} style={[styles.nationWrapper, {borderColor: colors.backgroundExtra}]}>
             {/*Logo of nation*/}
             <View style={styles.nationLogo}>
-                <View style={styles.nationLogoImgWrapper}>
+                <View style={[styles.nationLogoImgWrapper, {backgroundColor : colors.backgroundExtra}]}>
                     <Image source={data.logo} style={styles.nationLogoImg} />
                 </View>
             </View>
 
             {/*Name of nation*/}
             <View style={styles.nationNameWrapper}>
-                <Text style={styles.nationName}>{data.name}</Text>
+                <Text style={[styles.nationName, {color : colors.text}]}>{data.name}</Text>
             </View>
 
             {/*Button for choosing nation*/}
@@ -83,9 +85,7 @@ const styles = StyleSheet.create({
 
     nationWrapper: {
         flexWrap: "wrap",
-        backgroundColor: "white",
         borderBottomWidth: 1,
-        borderColor: "#E0E0E0",
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
