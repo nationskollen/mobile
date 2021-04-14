@@ -45,7 +45,7 @@ function Footer() {
                     return <Ionicons name={iconName} size={23} color={color} />;
                 },
             })}
-            initialRouteName="Home"
+            initialRouteName="Hem"
             tabBarOptions={{
                 activeBackgroundColor: colors.background,
                 labelStyle: {
