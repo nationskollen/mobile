@@ -132,7 +132,7 @@ function RenderReminderButton(){
 
 const eventStyles = StyleSheet.create({
     timelineContainer:{
-        marginBottom:'70%', //TODO: Fix this horrible solution please!!!!!!!!!!!!
+        flex:1
     },
 
     coverImg:{

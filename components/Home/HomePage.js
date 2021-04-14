@@ -14,15 +14,19 @@ import {
 import NK_LOGO from "../../assets/nationskollen_logo-do_not_change.png";
 import RenderDropDownHeader from "../Nations/NationContentComponents/Dropdown";
 import RenderTimeLine from './EventTimeline'
+import RenderCalendar from './CalendarComponent'
 
 //should "todays date" and "chosen date" be global in this file perhaps?
 
 export default function HomePage() {
     return (
-        <SafeAreaView>
+        <SafeAreaView style={{flex:1}}>
             <Header></Header>
             <FilterBar></FilterBar>
-            {/*date should be fetched and sent to RenderAllEvents*/}
+
+            {/*<RenderCalendar/>*/}
+
+            {/*Render timeline of events*/}
             <RenderTimeLine></RenderTimeLine>
         </SafeAreaView>
     );
@@ -32,7 +36,7 @@ const Header = () => {
     const {colors} = useTheme();
     return (
         <View style={[headerStyles.headerWrapper,{color : colors.text}]}>
-            <Text style={[headerStyles.headerTitle, {color : colors.text}]}>Händelser</Text>
+            <Text style={[headerStyles.headerTitle, {color : colors.text}]}>Nationskollen</Text>
             {/*THE PRETTIEST LOGO YOU WILL EVER SEE*/}
             <Image source={NK_LOGO} style={[headerStyles.logo, {backgroundColor : colors.backgroundExtra}]} />
         </View>
@@ -134,15 +138,15 @@ const headerStyles = StyleSheet.create({
     },
 
     logo: {
-        marginLeft: 15,
+        marginLeft:6,
         width: "15%",
         height: "70%",
     },
 
     headerTitle: {
-        fontSize: 28,
+        fontSize: 25,
         fontWeight: "bold",
-        marginLeft: "7%",
+        marginLeft: "4%",
     },
 });
 
