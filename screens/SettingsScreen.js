@@ -9,7 +9,7 @@ import { useTheme } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import SettingsPage from "../components/Settings/SettingsPage.js";
 import NotificationSettings from "../components/Settings/NotificationSettings";
-import Login from '../components/Settings/Login';
+import Login from "../components/Settings/Login";
 import { nationListEx } from "./NationScreen";
 
 const Stack = createStackNavigator();
@@ -39,11 +39,11 @@ function SettingsScreen({ navigation }) {
                     />
                 )}
             </Stack.Screen>
-	    <Stack.Screen
-		name="Login"
-		component={Login}
-		options={{ title: "Logga in" }}
-	    />
+            <Stack.Screen
+                name="Login"
+                component={Login}
+                options={{ title: "Logga in" }}
+            />
         </Stack.Navigator>
     );
 }

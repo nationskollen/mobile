@@ -1,36 +1,127 @@
 /// This is used to render login page
 
-import React from 'react';
-import { SafeAreaView, View, StyleSheet, Text, Button, TextInput } from 'react-native';
-import { useTheme } from '@react-navigation/native';
+import React, { useState } from "react";
+import {
+    SafeAreaView,
+    View,
+    StyleSheet,
+    Text,
+    Button,
+    TextInput,
+    TouchableHighlight,
+    ScrollView,
+} from "react-native";
+import { useTheme } from "@react-navigation/native";
 
 function Login() {
     const { colors } = useTheme();
-    
-    const [text, onChangeText] = React.useState("Useless Text");
+
+    const [text, onChangeText] = useState(null);
+
+    const [password, onChangePassword] = useState(null);
+
+    const [pass, setPass] = useState(false);
+
+    const wrong = (
+        <Text style={[styles.text, { color: colors.text }]}>
+            Fel lösenord eller användarnamn
+        </Text>
+    );
 
     return (
-	<View style={styles.container}>
-	    <TextInput
-		style={styles.input}
-		onChangeText={onChangeText}
-		value={text}
-		placeholder="Användarnamn"
-	    />
-    	</View>
-    )
+        <ScrollView>
+            <View style={styles.container}>
+                <Text style={[styles.titleText, { color: colors.text }]}>
+                    NATIONSKOLLEN
+                </Text>
+                {pass && wrong}
+                <TextInput
+                    style={[
+                        styles.input,
+                        {
+                            backgroundColor: colors.backgroundExtra,
+                            borderColor: colors.border,
+                            color: colors.text,
+                        },
+                    ]}
+                    onChangeText={onChangeText}
+                    value={text}
+                    placeholder="Användarnamn"
+                    placeholderTextColor={colors.unFocusedText}
+                />
+                <TextInput
+                    style={[
+                        styles.input,
+                        {
+                            backgroundColor: colors.backgroundExtra,
+                            borderColor: colors.border,
+                            color: colors.text,
+                        },
+                    ]}
+                    onChangeText={onChangePassword}
+                    value={password}
+                    placeholder="Lösenord"
+                    placeholderTextColor={colors.unFocusedText}
+                    secureTextEntry={true}
+                />
+                <TouchableHighlight
+                    onPress={() => setPass(true)}
+                    underlayColor={colors.backgroundHighlight}
+                    style={[
+                        styles.loginButton,
+                        {
+                            borderColor: colors.primary,
+                            backgroundColor: colors.primary,
+                        },
+                    ]}
+                >
+                    <Text
+                        style={[
+                            styles.loginText,
+                            { color: colors.focusedText },
+                        ]}
+                    >
+                        Login
+                    </Text>
+                </TouchableHighlight>
+            </View>
+        </ScrollView>
+    );
 }
 
 const styles = StyleSheet.create({
     container: {
-	flex:1,
-	justifyContent: 'center',
+        justifyContent: "flex-end",
+        marginTop: "20%",
+    },
+    loginButton: {
+        height: 35,
+        marginHorizontal: 60,
+        marginVertical: 10,
+        borderRadius: 10,
+        borderWidth: 1,
+        justifyContent: "center",
+    },
+    loginText: {
+        textAlign: "center",
     },
     input: {
-	height: 40,
-	margin: 10,
-	borderWidth: 1,
-    }
-})
+        height: 40,
+        marginHorizontal: 30,
+        marginVertical: 10,
+        borderWidth: 1,
+        borderRadius: 5,
+    },
+    text: {
+        textAlign: "center",
+    },
+    titleText: {
+        textAlign: "center",
+        fontWeight: "100",
+        fontSize: 26,
+        letterSpacing: 3,
+        marginBottom: 20,
+    },
+});
 
 export default Login;

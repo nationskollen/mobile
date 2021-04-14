@@ -26,20 +26,33 @@ export default function ChooseNation({ nationList }) {
 //Returns component for given nation
 function Nation({ data }) {
     const navigation = useNavigation();
-    const {colors} = useTheme();
+    const { colors } = useTheme();
 
     return (
-        <View key={data.id} style={[styles.nationWrapper, {borderColor: colors.backgroundExtra}]}>
+        <View
+            key={data.id}
+            style={[
+                styles.nationWrapper,
+                { borderColor: colors.backgroundExtra },
+            ]}
+        >
             {/*Logo of nation*/}
             <View style={styles.nationLogo}>
-                <View style={[styles.nationLogoImgWrapper, {backgroundColor : colors.backgroundExtra}]}>
+                <View
+                    style={[
+                        styles.nationLogoImgWrapper,
+                        { backgroundColor: colors.backgroundExtra },
+                    ]}
+                >
                     <Image source={data.logo} style={styles.nationLogoImg} />
                 </View>
             </View>
 
             {/*Name of nation*/}
             <View style={styles.nationNameWrapper}>
-                <Text style={[styles.nationName, {color : colors.text}]}>{data.name}</Text>
+                <Text style={[styles.nationName, { color: colors.text }]}>
+                    {data.name}
+                </Text>
             </View>
 
             {/*Button for choosing nation*/}

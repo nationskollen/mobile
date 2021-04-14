@@ -1,72 +1,89 @@
 //This file renders food related components
 
 //Used to render various dropdown menus
-import RenderDropDownHeader from './Dropdown'
+import RenderDropDownHeader from "./Dropdown";
 import { Ionicons } from "@expo/vector-icons";
 import { Octicons } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
-import {
-    View,
-    Text,
-    StyleSheet,
-} from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import React from "react";
-
 
 //renders entire dropdown menu with food content
 export default function RenderFoodMenu({ nation }) {
-    const {colors} = useTheme();
+    const { colors } = useTheme();
     return (
-        <RenderDropDownHeader 
+        <RenderDropDownHeader
             title={"Meny"}
             expandComponent={renderFoodCategories(nation)}
-            icon = {<Ionicons 
-                        name="md-fast-food-outline" 
-                        size={28} 
-                        color= {colors.text}
-                    />}
+            icon={
+                <Ionicons
+                    name="md-fast-food-outline"
+                    size={28}
+                    color={colors.text}
+                />
+            }
         ></RenderDropDownHeader>
     );
 }
 
 //returns rendered food categories
-function renderFoodCategories(nation){
+function renderFoodCategories(nation) {
     var foodCategories = ["Dryck", "Förrätt", "Huvudrätt", "Efterrätt", "Fika"];
-    
-    return (
-        foodCategories.map((category) => (
-            <RenderDropDownHeader
-                key={category}
-                title={category}
-                icon ={ <View style={styles.foodCategoryIcon}>
-                            <Octicons name="primitive-dot" size={22} color="#71002E" />
-                        </View>}
-                expandComponent={renderListFromCategory(nation,category)}
-                nation={nation}
-             />
-        ))
-     )
+
+    return foodCategories.map((category) => (
+        <RenderDropDownHeader
+            key={category}
+            title={category}
+            icon={
+                <View style={styles.foodCategoryIcon}>
+                    <Octicons name="primitive-dot" size={22} color="#71002E" />
+                </View>
+            }
+            expandComponent={renderListFromCategory(nation, category)}
+            nation={nation}
+        />
+    ));
 }
 
 //render all food or drink items from input category object
 function renderListFromCategory(nation, category) {
     //list of food/drinks in category
     var list = getFoodMenu(nation)[category];
-    const {colors} = useTheme();
+    const { colors } = useTheme();
     var renderedList = [];
     var description;
     for (let i in list) {
-        description = category == "Dryck" ? list[i].size+", "+list[i].type : list[i].description
+        description =
+            category == "Dryck"
+                ? list[i].size + ", " + list[i].type
+                : list[i].description;
 
         renderedList.push(
-            <View key={list[i].name} style={[styles.itemBorder, {borderColor : colors.backgroundExtra}]}>
+            <View
+                key={list[i].name}
+                style={[
+                    styles.itemBorder,
+                    { borderColor: colors.backgroundExtra },
+                ]}
+            >
                 <View style={styles.itemWrapper}>
-                    <Text style={[styles.nameText, {color : colors.text}]}>{list[i].name}</Text>
-                    <Text style={[styles.descriptionText, {color: colors.text}]}>
+                    <Text style={[styles.nameText, { color: colors.text }]}>
+                        {list[i].name}
+                    </Text>
+                    <Text
+                        style={[styles.descriptionText, { color: colors.text }]}
+                    >
                         {description}
                     </Text>
-                    <View style={[styles.priceWrapper, {backgroundColor : colors.backgroundExtra}]}>
-                        <Text style={[styles.priceText, {color: colors.text}]}>
+                    <View
+                        style={[
+                            styles.priceWrapper,
+                            { backgroundColor: colors.backgroundExtra },
+                        ]}
+                    >
+                        <Text
+                            style={[styles.priceText, { color: colors.text }]}
+                        >
                             {list[i].price + " kr"}
                         </Text>
                     </View>
@@ -81,7 +98,7 @@ function renderListFromCategory(nation, category) {
 //TODO: replace with SDK function
 function getFoodMenu(nation) {
     return {
-        "Dryck": {
+        Dryck: {
             norrlandsguld: {
                 name: "Norrlands Guld",
                 size: "50cl",
@@ -100,9 +117,9 @@ function getFoodMenu(nation) {
             },
         },
 
-        "Förrätt": {},
+        Förrätt: {},
 
-        "Huvudrätt": {
+        Huvudrätt: {
             pannkakor: {
                 name: "Goa Pannkakor",
                 description:
