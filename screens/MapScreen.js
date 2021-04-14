@@ -66,7 +66,7 @@ export var nationInfo = [
     {
         id: "kalmars",
         name: "Kalmars Nation",
-        nickname: "Snerikes Nation",
+        nickname: "Kalmars Nation",
         latitude: 59.859106565445636,
         longitude: 17.62706918384986,
         logo: require("../img/png/kalmars/kalmarslogga.png"),
