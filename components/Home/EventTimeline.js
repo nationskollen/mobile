@@ -116,7 +116,7 @@ function RenderNationHeader({nation}){
             onPress={()=>navigation.push("NationContent", {nation: nation})}
         >
             <Image source={nation.logo} style={nationStyles.logo}></Image>
-            <Text style={[nationStyles.name, {color : colors.text}]}>{nation.nickname}</Text>
+            <Text style={[nationStyles.name, {color : "gray"}]}>{nation.nickname}</Text>
         </TouchableOpacity>
 
     )
@@ -127,7 +127,7 @@ function RenderReminderButton(){
     const {colors} = useTheme();
     return (
         <TouchableOpacity style={[reminderStyles.container, {backgroundColor : colors.backgroundExtra}]}>
-            <Ionicons name="md-notifications-outline" size={24} color="white" />
+            <Ionicons name="md-notifications-outline" size={24} color={colors.text} />
             <Text style={[reminderStyles.text, {color : colors.text}]}>Påminn mig</Text>
         </TouchableOpacity>
     )
