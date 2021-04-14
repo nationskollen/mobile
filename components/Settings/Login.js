@@ -92,7 +92,7 @@ function Login() {
 const styles = StyleSheet.create({
     container: {
         justifyContent: "flex-end",
-        marginTop: "20%",
+        marginTop: "17%",
     },
     loginButton: {
         height: 35,
@@ -111,6 +111,7 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         borderWidth: 1,
         borderRadius: 5,
+	paddingHorizontal: 15,
     },
     text: {
         textAlign: "center",
