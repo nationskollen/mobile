@@ -1,9 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
 import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
+import {useNavigation} from "@react-navigation/native";
 import MapView, { PROVIDER_GOOGLE, Marker, Callout } from "react-native-maps";
 import MapDarkTheme from "./MapDarkTheme.json";
 import { useTheme } from "@react-navigation/native";
+import RenderMapPopup from './RenderMapInfo';
 const state = {
+    markers : [],
     coordinates: [
         {
             name: "Norrlands Nation",
@@ -73,12 +76,28 @@ const state = {
     ],
 };
 
-function renderMap({ nationData }) {
+
+var cock = {
+
+    visible : false 
+}
+export default function RenderMap({ nationData }) {
     const { dark } = useTheme();
     let darkTheme = MapDarkTheme;
     let lightTheme = []; // Empty array renders standard light map
     let selectTheme = dark ? darkTheme : lightTheme;
+
+    onMarkerPressed = (location, index) => {
+    changeState(prevState => !prevState);
+    state.markers[index] = location
+    console.log(state.markers);
+	changeAss(index);
+    console.log(assState);
+  }
+  const [cockState, changeState] = useState(false);
+  const [assState, changeAss] = useState(0);
     return (
+	<View style = {styles.container}>
         <MapView
             style={styles.mapStyle}
             initialRegion={{
@@ -87,10 +106,13 @@ function renderMap({ nationData }) {
                 latitudeDelta: 0.0322, // Zoom level
                 longitudeDelta: 0.0321, // Zoom level
             }}
+	    onPress={() => changeState(prevState => !prevState)}
             customMapStyle={selectTheme}
         >
-            {state.coordinates.map((marker) => (
+            {nationData.map((marker, index) => (
+		
                 <Marker
+		    key = {marker.name}
                     coordinate={{
                         latitude: marker.latitude,
                         longitude: marker.longitude,
@@ -98,16 +120,26 @@ function renderMap({ nationData }) {
                     title={marker.name}
                     description="Aktivitetsnivå : Låg"
                     image={require("../../img/png/vdala/vdalalogga.png")}
+		    onPress={() => onMarkerPressed(marker, index)}
                 ></Marker>
             ))}
+
         </MapView>
+	    { cockState && <RenderMapPopup nation = {state.markers[assState]}/>}
+	    </View>
+
     );
 }
 
-export default renderMap;
 
 const styles = StyleSheet.create({
+    container : {
+	flex : 1
+    },
+
+    
     mapStyle: {
+	zIndex : -1,
         flexWrap: "wrap",
         alignSelf: "stretch",
         backgroundColor: "white",
@@ -116,4 +148,5 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderColor: "#E0E0E0",
     },
+    
 });
