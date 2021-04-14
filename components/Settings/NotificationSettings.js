@@ -2,7 +2,13 @@
 import "react-native-gesture-handler";
 
 import React, { useState } from "react";
-import { View, StyleSheet, Text, Image } from "react-native";
+import {
+    View,
+    StyleSheet,
+    Text,
+    Image,
+    TouchableHighlight,
+} from "react-native";
 
 import { useTheme } from "@react-navigation/native";
 import { ScrollView } from "react-native-gesture-handler";
@@ -29,43 +35,54 @@ function Nation({ data }) {
 
     return (
         <View>
-            <View
-                key={data.id}
-                style={[
-                    styles.nationWrapper,
-                    { backgroundColor: colors.background },
-                ]}
+            <TouchableHighlight
+                onPress={() => setExpand(!expand)}
+                underlayColor={colors.backgroundHighlight}
             >
-                {/*Logo of nation*/}
-                <View style={styles.nationLogo}>
-                    <View
-                        style={[
-                            styles.nationLogoImgWrapper,
-                            { backgroundColor: colors.backgroundExtra },
-                        ]}
-                    >
-                        <Image
-                            source={data.logo}
-                            style={styles.nationLogoImg}
-                        />
+                <View
+                    key={data.id}
+                    style={[
+                        styles.nationWrapper,
+                        {
+                            backgroundColor: colors.background,
+                            borderBottomColor: colors.border,
+                        },
+                    ]}
+                >
+                    {/*Logo of nation*/}
+                    <View style={styles.nationLogo}>
+                        <View
+                            style={[
+                                styles.nationLogoImgWrapper,
+                                { backgroundColor: colors.backgroundExtra },
+                            ]}
+                        >
+                            <Image
+                                source={data.logo}
+                                style={styles.nationLogoImg}
+                            />
+                        </View>
                     </View>
-                </View>
 
-                {/*Name of nation*/}
-                <View style={[styles.nationNameWrapper]}>
-                    <Text style={[styles.nationName, { color: colors.text }]}>
-                        {data.name}
-                    </Text>
-                </View>
+                    {/*Name of nation*/}
+                    <View style={[styles.nationNameWrapper]}>
+                        <Text
+                            style={[styles.nationName, { color: colors.text }]}
+                        >
+                            {data.name}
+                        </Text>
+                    </View>
 
-                {/*Button for choosing nation*/}
-                <MaterialIcons
-                    name={expand ? "keyboard-arrow-up" : "keyboard-arrow-down"}
-                    size={24}
-                    color={colors.text}
-                    onPress={() => setExpand((state) => !state)}
-                />
-            </View>
+                    {/*Button for choosing nation*/}
+                    <MaterialIcons
+                        name={
+                            expand ? "keyboard-arrow-up" : "keyboard-arrow-down"
+                        }
+                        size={24}
+                        color={colors.text}
+                    />
+                </View>
+            </TouchableHighlight>
             {expand && <NotiOptions />}
         </View>
     );
@@ -73,14 +90,16 @@ function Nation({ data }) {
 
 /// Renders the different notification options
 function NotiOptions() {
+    const { colors } = useTheme();
+
     return (
         <View
-            style={{
-                justifyContent: "space-evenly",
-                height: 200,
-                borderBottomWidth: 1,
-                borderBottomColor: "#E0E0E0",
-            }}
+            style={[
+                optionStyles.options,
+                {
+                    borderBottomColor: colors.border,
+                },
+            ]}
         >
             {/*Temporary options*/}
             <NotiToggle text={"Prenumerera"} />
@@ -107,7 +126,7 @@ function NotiToggle({ text }) {
                 offColor="grey"
                 size="large"
                 onToggle={() => {
-                    setToggle((state) => !state);
+                    setToggle(!toggle);
                 }}
             />
         </View>
@@ -116,10 +135,15 @@ function NotiToggle({ text }) {
 
 /// Styles for option switches
 const optionStyles = StyleSheet.create({
+    options: {
+        justifyContent: "space-evenly",
+        height: 200,
+        borderBottomWidth: 1,
+    },
     switch: {
         flexDirection: "row",
         justifyContent: "space-between",
-        marginHorizontal: 30,
+        marginHorizontal: 20,
         alignItems: "center",
     },
 });
@@ -160,7 +184,7 @@ const styles = StyleSheet.create({
         flexWrap: "wrap",
         backgroundColor: "white",
         borderBottomWidth: 1,
-        borderColor: "#E0E0E0",
+        //borderColor: "#E0E0E0",
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
