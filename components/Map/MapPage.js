@@ -7,80 +7,8 @@ import { useTheme } from "@react-navigation/native";
 import RenderMapPopup from './RenderMapInfo';
 const state = {
     markers : [],
-    coordinates: [
-        {
-            name: "Norrlands Nation",
-            latitude: 59.856227,
-            longitude: 17.6378425,
-        },
-        {
-            name: "Stockholms Nation",
-            latitude: 59.856731614930446,
-            longitude: 17.63419919045771,
-        },
-        {
-            name: "Uplands Nation",
-            latitude: 59.85992220628584,
-            longitude: 17.629458535888315,
-        },
-        {
-            name: "Kalmars Nation",
-            latitude: 59.859106565445636,
-            longitude: 17.62706918384986,
-        },
-        {
-            name: "Gotlands Nation",
-            latitude: 59.85978279670555,
-            longitude: 17.634567704542953,
-        },
-        {
-            name: "Göteborgs Nation",
-            latitude: 59.85957889713392,
-            longitude: 17.63019280454616,
-        },
-        {
-            name: "Västmanland-Dalas Nation",
-            latitude: 59.86032259136127,
-            longitude: 17.628939051847695,
-        },
-        {
-            name: "Östgötas Nation",
-            latitude: 59.85521276094654,
-            longitude: 17.637959775927737,
-        },
-        {
-            name: "Södermanland-Nerikes Nation",
-            latitude: 59.8591482187301,
-            longitude: 17.630697251271798,
-        },
-        {
-            name: "Gästrike-Hälsinges Nation",
-            latitude: 59.85656549537542,
-            longitude: 17.63670148804158,
-        },
-        {
-            name: "Västgötas Nation",
-            latitude: 59.85686289838122,
-            longitude: 17.638651455173623,
-        },
-        {
-            name: "Smålands Nation",
-            latitude: 59.85929959538165,
-            longitude: 17.63123586514085,
-        },
-        {
-            name: "Värmlands Nation",
-            latitude: 59.85715355297,
-            longitude: 17.633830648196177,
-        },
-    ],
 };
 
-
-var cock = {
-
-    visible : false 
-}
 export default function RenderMap({ nationData }) {
     const { dark } = useTheme();
     let darkTheme = MapDarkTheme;
@@ -88,14 +16,16 @@ export default function RenderMap({ nationData }) {
     let selectTheme = dark ? darkTheme : lightTheme;
 
     onMarkerPressed = (location, index) => {
-    changeState(prevState => !prevState);
+    changeState(true);
     state.markers[index] = location
-    console.log(state.markers);
-	changeAss(index);
-    console.log(assState);
+	useMarkerIndex(index);
   }
-  const [cockState, changeState] = useState(false);
-  const [assState, changeAss] = useState(0);
+
+    onMapPressed = () => {
+	changeState(false);
+    }
+  const [markerPressed, changeState] = useState(false);
+  const [markerIndex, useMarkerIndex] = useState(0);
     return (
 	<View style = {styles.container}>
         <MapView
@@ -106,7 +36,7 @@ export default function RenderMap({ nationData }) {
                 latitudeDelta: 0.0322, // Zoom level
                 longitudeDelta: 0.0321, // Zoom level
             }}
-	    onPress={() => changeState(prevState => !prevState)}
+	    onPress={() => onMapPressed()}
             customMapStyle={selectTheme}
         >
             {nationData.map((marker, index) => (
@@ -125,7 +55,7 @@ export default function RenderMap({ nationData }) {
             ))}
 
         </MapView>
-	    { cockState && <RenderMapPopup nation = {state.markers[assState]}/>}
+	    { markerPressed && <RenderMapPopup nation = {state.markers[markerIndex]}/>}
 	    </View>
 
     );

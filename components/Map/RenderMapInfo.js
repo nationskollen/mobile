@@ -11,7 +11,7 @@ import React from "react";
 /// Renders food components
 /// Renders event components
 /// Renders activity bar
-import RenderActivityBar from "../Nations/NationContentComponents/ActivityLevel";
+import RenderActivityBar from "./MapActivityLevel";
 
 import { useTheme } from "@react-navigation/native";
 import {
@@ -142,7 +142,7 @@ const nationStyles = StyleSheet.create({
         backgroundColor: "#F3F3F3",
 	position : 'absolute',
 	bottom : 45,
-        height: 220, 
+        height: 180, 
         width: "100%",
     },
 
@@ -196,7 +196,7 @@ const nationStyles = StyleSheet.create({
     mapWrapper: {
         flexDirection: "row",
         alignItems: "center",
-        marginTop: 15,
+        marginTop: 5,
     },
 
     mapSymbolWrapper: {
@@ -219,7 +219,7 @@ const nationStyles = StyleSheet.create({
     },
 
     mapAddress: {
-        marginLeft: "14%",
+        marginLeft: "2%",
         fontSize: 14,
         fontWeight: "bold",
         zIndex: 3,
