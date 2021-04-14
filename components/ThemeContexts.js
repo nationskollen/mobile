@@ -15,7 +15,7 @@ const LightTheme = {
         primaryText: "#71002E",
         focusedText: "white",
         unFocusedText: "#555",
-	nationExtra : '#F3F3F3',
+        nationExtra: "#F3F3F3",
     },
 };
 
@@ -32,7 +32,7 @@ const DarkTheme = {
         primaryText: "#ef005f",
         focusedText: "white",
         unFocusedText: "#9a95a5",
-	nationExtra : '#141319',
+        nationExtra: "#141319",
     },
 };
 

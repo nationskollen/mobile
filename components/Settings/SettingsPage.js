@@ -51,7 +51,7 @@ function SettingsPage({ navigation }) {
                 />
             </View>
             <TouchableHighlight
-                onPress={() => navigation.push("NotificationSettings")}
+                onPress={() => navigation.push("Login")}
                 underlayColor={colors.backgroundHighlight}
             >
                 <View

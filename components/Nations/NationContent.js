@@ -68,33 +68,87 @@ function RenderHeader({ logo }) {
 function RenderNationInfo({ nation }) {
     //TODO: add openinghours and address to nation object
     //TODO: add color theme to nation, so that icons can match
-    const {colors} = useTheme();
+    const { colors } = useTheme();
     return (
         <SafeAreaView>
-	    <View style={[nationStyles.nationInfoWrapper, {backgroundColor : colors.backgroundExtra}]}> 
+            <View
+                style={[
+                    nationStyles.nationInfoWrapper,
+                    { backgroundColor: colors.backgroundExtra },
+                ]}
+            >
                 <View style={nationStyles.nationNameWrapper}>
-                    <Text style={[nationStyles.nationName, {color : colors.text}]}>
+                    <Text
+                        style={[
+                            nationStyles.nationName,
+                            { color: colors.text },
+                        ]}
+                    >
                         {nation.nickname}
                     </Text>
-                    <View style={[headerStyles.logoWrapper, {backgroundColor : colors.backgroundExtra}]}>
-                        <Image source={nation.logo} style={headerStyles.logo } />
+                    <View
+                        style={[
+                            headerStyles.logoWrapper,
+                            { backgroundColor: colors.backgroundExtra },
+                        ]}
+                    >
+                        <Image source={nation.logo} style={headerStyles.logo} />
                     </View>
                 </View>
 
-                <View style={[nationStyles.clockSymbolWrapper, {backgroundColor : colors.backgroundExtra}]}>
-                    <AntDesign name="clockcircle" size={20} color= {colors.text} />
-                    <Text style={[nationStyles.openinghoursTitle, {color : colors.text}]}>
+                <View
+                    style={[
+                        nationStyles.clockSymbolWrapper,
+                        { backgroundColor: colors.backgroundExtra },
+                    ]}
+                >
+                    <AntDesign
+                        name="clockcircle"
+                        size={20}
+                        color={colors.text}
+                    />
+                    <Text
+                        style={[
+                            nationStyles.openinghoursTitle,
+                            { color: colors.text },
+                        ]}
+                    >
                         Öppettider
                     </Text>
                 </View>
 
-                <View style={[nationStyles.openinghoursWrapper, {backgroundColor : colors.backgroundExtra}]}>
-                    <View style={[nationStyles.lineSymbol, {backgroundColor : colors.text}]}></View>
-                    <View style={[nationStyles.openinghoursTextWrapper, {backgroundColor : colors.backgroundExtra}]}>
-                        <Text style={[nationStyles.openinghoursText, {color : colors.text}]}>
+                <View
+                    style={[
+                        nationStyles.openinghoursWrapper,
+                        { backgroundColor: colors.backgroundExtra },
+                    ]}
+                >
+                    <View
+                        style={[
+                            nationStyles.lineSymbol,
+                            { backgroundColor: colors.text },
+                        ]}
+                    ></View>
+                    <View
+                        style={[
+                            nationStyles.openinghoursTextWrapper,
+                            { backgroundColor: colors.backgroundExtra },
+                        ]}
+                    >
+                        <Text
+                            style={[
+                                nationStyles.openinghoursText,
+                                { color: colors.text },
+                            ]}
+                        >
                             Mån-Fre: 10:00-20:00
                         </Text>
-                        <Text style={[nationStyles.openinghoursText, {color : colors.text}]}>
+                        <Text
+                            style={[
+                                nationStyles.openinghoursText,
+                                { color: colors.text },
+                            ]}
+                        >
                             Lör-Sön: Stängt
                         </Text>
                     </View>
@@ -110,7 +164,10 @@ function RenderNationInfo({ nation }) {
                     </View>
                     <View style={nationStyles.mapSymbolCircle}></View>
                     <Text
-                        style={[nationStyles.mapAddress, {color : colors.text}]}
+                        style={[
+                            nationStyles.mapAddress,
+                            { color: colors.text },
+                        ]}
                         onPress={() =>
                             Alert.alert(
                                 "Öppna i kartor?",
@@ -119,7 +176,9 @@ function RenderNationInfo({ nation }) {
                                     {
                                         text: "Avbryt",
                                         onPress: () =>
-                                            console.log("Avbryt Pressed"), style: "Avbryt", },
+                                            console.log("Avbryt Pressed"),
+                                        style: "Avbryt",
+                                    },
                                     {
                                         text: "OK",
                                         onPress: () =>
@@ -165,13 +224,12 @@ const headerStyles = StyleSheet.create({
         //position: "absolute",
         width: 50,
         height: 50,
-	borderRadius :50
+        borderRadius: 50,
     },
 
     logo: {
         width: "100%",
         height: "100%",
-	
     },
 });
 
