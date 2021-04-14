@@ -63,8 +63,9 @@ function getEventList(){
 }
 
 function RenderEvent({event}){
+    const {colors} = useTheme();
     return(
-        <View style={eventStyles.eventContainer}>
+        <View style={[eventStyles.eventContainer, {backgroundColor : colors.background}]}>
 
             {/*Cover Image of event*/}
             <View style={eventStyles.titleContainer}>
@@ -86,17 +87,17 @@ function RenderEvent({event}){
             <View style={eventStyles.textContainer}>
                 {/*Title of event*/}
                 <View style={eventStyles.titleContainer}>
-                    <Text style={eventStyles.title}>{event.title}</Text>
+                    <Text style={[eventStyles.title, {color : colors.text}]}>{event.title}</Text>
                 </View>
 
                 {/*Time of event*/}
                 <View style={eventStyles.timeContainer}>
-                    <Text style={eventStyles.time}>{event.time}</Text>
+                    <Text style={[eventStyles.time, {color : colors.text}]}>{event.time}</Text>
                 </View>
 
                 {/*Description of event*/}
                 <View style={eventStyles.descriptionContainer}>
-                    <Text style={eventStyles.description}>{event.description}</Text>
+                    <Text style={[eventStyles.description, {color : colors.text}]}>{event.description}</Text>
                 </View>
 
                 
@@ -108,13 +109,14 @@ function RenderEvent({event}){
 
 function RenderNationHeader({nation}){
     const navigation = useNavigation();
+    const {colors} = useTheme();
     return(
         <TouchableOpacity 
             style={nationStyles.container} 
             onPress={()=>navigation.push("NationContent", {nation: nation})}
         >
             <Image source={nation.logo} style={nationStyles.logo}></Image>
-            <Text style={nationStyles.name}>{nation.nickname}</Text>
+            <Text style={[nationStyles.name, {color : colors.text}]}>{nation.nickname}</Text>
         </TouchableOpacity>
 
     )
@@ -122,10 +124,11 @@ function RenderNationHeader({nation}){
 }
 
 function RenderReminderButton(){
+    const {colors} = useTheme();
     return (
-        <TouchableOpacity style={reminderStyles.container}>
+        <TouchableOpacity style={[reminderStyles.container, {backgroundColor : colors.backgroundExtra}]}>
             <Ionicons name="md-notifications-outline" size={24} color="white" />
-            <Text style={reminderStyles.text}>Påminn mig</Text>
+            <Text style={[reminderStyles.text, {color : colors.text}]}>Påminn mig</Text>
         </TouchableOpacity>
     )
 }
