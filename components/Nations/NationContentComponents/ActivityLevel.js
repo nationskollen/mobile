@@ -1,25 +1,23 @@
 //This file renders activity level components for NationContent
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
-import { 
-    View,
-    Text,
-    StyleSheet,
-} from "react-native"
+import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 
 //renders activity bar
 export default function RenderActivityBar({ nation }) {
-    const {colors} = useTheme();
+    const { colors } = useTheme();
     return (
-	<View style={styles.activitybar}> 
+        <View style={styles.activitybar}>
             <View style={styles.activitybarLogo}>
                 <Ionicons name="md-people-outline" size={24} color="white" />
             </View>
 
             <Text style={styles.activitybarText}>Aktivitet</Text>
 
-            <RenderActivityComponent activityLevel={getActivityLevel(nation)}></RenderActivityComponent>
+            <RenderActivityComponent
+                activityLevel={getActivityLevel(nation)}
+            ></RenderActivityComponent>
         </View>
     );
 }
@@ -31,40 +29,45 @@ function getActivityLevel({ nation }) {
 }
 
 //function that returns a component with a colored circle and text - determined by the activity level
-function RenderActivityComponent({activityLevel}) {
-    const {colors} = useTheme();
-    var color, title
+function RenderActivityComponent({ activityLevel }) {
+    const { colors } = useTheme();
+    var color, title;
     switch (activityLevel) {
-        case "closed": {
-            title="Stängt"
-            color="black"
-        } break
-        case "low": {
-            title="Låg"
-            color="green"
-        } break
-        case "medium": {
-            title="Medel"
-            color="yellow"
-        } break
-        case "high": {
-            title="Hög"
-            color="red"
-        } break
-        default:{
-            title="Ej tillgänglig"
-            color="white"
+        case "closed":
+            {
+                title = "Stängt";
+                color = "black";
+            }
+            break;
+        case "low":
+            {
+                title = "Låg";
+                color = "green";
+            }
+            break;
+        case "medium":
+            {
+                title = "Medel";
+                color = "yellow";
+            }
+            break;
+        case "high":
+            {
+                title = "Hög";
+                color = "red";
+            }
+            break;
+        default: {
+            title = "Ej tillgänglig";
+            color = "white";
         }
     }
     return (
         <View style={styles.activityLevelWrapper}>
-            <View
-                style={styles.activityCircle}
-                backgroundColor={color}
-            ></View>
+            <View style={styles.activityCircle} backgroundColor={color}></View>
             <Text style={styles.activityLevelText}>{title}</Text>
         </View>
-    )
+    );
 }
 
 //styles for activitybar

@@ -15,7 +15,7 @@ function NotificationsContent({ notificationList }) {
 }
 
 function RenderNotification({ notification }) {
-    const { nation, title, text } = notification
+    const { nation, title, text } = notification;
 
     //TODO: replace publishTime with calculated "x minutes/hours/days ago"
     let publishTime = notification.publishTime;
@@ -24,19 +24,36 @@ function RenderNotification({ notification }) {
     const { colors } = useTheme();
 
     return (
-        <View style={[styles.notificationWrapper, { borderColor: colors.border }]}>
+        <View
+            style={[styles.notificationWrapper, { borderColor: colors.border }]}
+        >
             <View style={styles.header}>
-                <View style={[styles.nationLogoImgWrapper, { backgroundColor: colors.backgroundHighlight }]}>
+                <View
+                    style={[
+                        styles.nationLogoImgWrapper,
+                        { backgroundColor: colors.backgroundHighlight },
+                    ]}
+                >
                     <Image
                         source={require("../../img/png/vdala/vdalalogga.png")}
                         style={styles.nationLogoImg}
                     />
                 </View>
                 <View style={styles.headerContent}>
-                    <Text style={[styles.nationName, { color: colors.primaryText }]}>
+                    <Text
+                        style={[
+                            styles.nationName,
+                            { color: colors.primaryText },
+                        ]}
+                    >
                         {nation}
                     </Text>
-                    <Text style={[styles.notificationHeader, { color: colors.text }]}>
+                    <Text
+                        style={[
+                            styles.notificationHeader,
+                            { color: colors.text },
+                        ]}
+                    >
                         {title}
                     </Text>
                 </View>
@@ -71,18 +88,18 @@ function RenderNotification({ notification }) {
 const styles = StyleSheet.create({
     notificationWrapper: {
         flexWrap: "wrap",
-        display: 'flex',
-        flexDirection: 'column',
+        display: "flex",
+        flexDirection: "column",
         paddingVertical: 15,
         paddingHorizontal: 15,
         borderBottomWidth: 1,
     },
 
     header: {
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        width: '100%',
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        width: "100%",
         marginBottom: 10,
     },
 

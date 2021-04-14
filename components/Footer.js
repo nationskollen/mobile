@@ -58,12 +58,10 @@ function Footer() {
                 inactiveBackgroundColor: colors.background,
                 activeTintColor: colors.text,
                 inactiveTintColor: colors.unFocusedText,
+                keyboardHidesTabBar: true,
             }}
         >
-            <Tab.Screen
-                name="Notifikationer"
-                component={NotificationScreen}
-            />
+            <Tab.Screen name="Notifikationer" component={NotificationScreen} />
             <Tab.Screen name="Nationer" component={NationScreen} />
             <Tab.Screen name="Hem" component={HomeScreen} />
             <Tab.Screen name="Karta" component={MapScreen} />

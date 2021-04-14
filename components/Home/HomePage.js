@@ -33,20 +33,31 @@ export default function HomePage() {
 }
 
 const Header = () => {
-    const {colors} = useTheme();
+    const { colors } = useTheme();
     return (
         <View style={[headerStyles.headerWrapper,{color : colors.text}]}>
             <Text style={[headerStyles.headerTitle, {color : colors.text}]}>Nationskollen</Text>
             {/*THE PRETTIEST LOGO YOU WILL EVER SEE*/}
-            <Image source={NK_LOGO} style={[headerStyles.logo, {backgroundColor : colors.backgroundExtra}]} />
+            <Image
+                source={NK_LOGO}
+                style={[
+                    headerStyles.logo,
+                    { backgroundColor: colors.backgroundExtra },
+                ]}
+            />
         </View>
     );
 };
 
 const FilterBar = () => {
-    const {colors} = useTheme();
+    const { colors } = useTheme();
     return (
-        <View style={[filterStyles.mainWrapper, {backgroundColor : colors.backgroundExtra}]}>
+        <View
+            style={[
+                filterStyles.mainWrapper,
+                { backgroundColor: colors.backgroundExtra },
+            ]}
+        >
             <ChooseDateBar></ChooseDateBar>
             <ChooseNationButton></ChooseNationButton>
         </View>
@@ -103,7 +114,7 @@ function handleNationButtonPress() {
 
 //utilizes event component imported from nation content
 function RenderAllEvents() {
-    const {colors} = useTheme();
+    const { colors } = useTheme();
     //temporary list of events
     var eventList = [
         {
@@ -116,7 +127,7 @@ function RenderAllEvents() {
         },
         {
             title: "Lunchbuffé",
-            icon: <MaterialIcons name="event" size={24} color= {colors.text} />,
+            icon: <MaterialIcons name="event" size={24} color={colors.text} />,
         },
     ];
 
