@@ -9,6 +9,7 @@ import { useTheme } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import HomePage from "../components/Home/HomePage";
+import NationContent from "../components/Nations/NationContent";
 
 const Stack = createStackNavigator();
 /// TODO: Create a local stack
@@ -25,6 +26,12 @@ function HomeScreen() {
                 name="Home"
                 component={HomePage}
                 options={{ title: "Hem" }}
+            />
+
+            <Stack.Screen
+                name="NationContent"
+                component={NationContent}
+                options={{ title: "Nation" }}
             />
         </Stack.Navigator>
     );

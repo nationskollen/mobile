@@ -13,16 +13,21 @@ import {
 } from "react-native";
 import NK_LOGO from "../../assets/nationskollen_logo-do_not_change.png";
 import RenderDropDownHeader from "../Nations/NationContentComponents/Dropdown";
+import RenderTimeLine from './EventTimeline'
+import RenderCalendar from './CalendarComponent'
 
 //should "todays date" and "chosen date" be global in this file perhaps?
 
 export default function HomePage() {
     return (
-        <SafeAreaView>
+        <SafeAreaView style={{flex:1}}>
             <Header></Header>
             <FilterBar></FilterBar>
-            {/*date should be fetched and sent to RenderAllEvents*/}
-            <RenderAllEvents date={""}></RenderAllEvents>
+
+            {/*<RenderCalendar/>*/}
+
+            {/*Render timeline of events*/}
+            <RenderTimeLine></RenderTimeLine>
         </SafeAreaView>
     );
 }
@@ -30,10 +35,8 @@ export default function HomePage() {
 const Header = () => {
     const { colors } = useTheme();
     return (
-        <View style={[headerStyles.headerWrapper, { color: colors.text }]}>
-            <Text style={[headerStyles.headerTitle, { color: colors.text }]}>
-                Händelser
-            </Text>
+        <View style={[headerStyles.headerWrapper,{color : colors.text}]}>
+            <Text style={[headerStyles.headerTitle, {color : colors.text}]}>Nationskollen</Text>
             {/*THE PRETTIEST LOGO YOU WILL EVER SEE*/}
             <Image
                 source={NK_LOGO}
@@ -131,7 +134,7 @@ function RenderAllEvents() {
     return (
         <View>
             {eventList.map(({ title, icon }) => (
-                <RenderDropDownHeader key={title} title={title} icon={icon} />
+                <View key={title}/>
             ))}
         </View>
     );
@@ -146,15 +149,15 @@ const headerStyles = StyleSheet.create({
     },
 
     logo: {
-        marginLeft: 15,
+        marginLeft:6,
         width: "15%",
         height: "70%",
     },
 
     headerTitle: {
-        fontSize: 28,
+        fontSize: 25,
         fontWeight: "bold",
-        marginLeft: "7%",
+        marginLeft: "4%",
     },
 });
 
@@ -165,7 +168,6 @@ const filterStyles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         backgroundColor: "#AEAEAE",
-        borderRadius: 15,
     },
 
     dateBar: {
