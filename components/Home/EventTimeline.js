@@ -21,6 +21,7 @@ import { useNavigation } from "@react-navigation/core";
 
 
 export default function RenderTimeline({date}){
+
     var eventList = getEventList(date)
     return (
         <View style={eventStyles.timelineContainer}>
@@ -30,35 +31,49 @@ export default function RenderTimeline({date}){
             </ScrollView>
         </View>
     )
-
 }
 
 //returns temporary, sorted list of event objects
 //TODO: replace with sdk function
-function getEventList(date){
-    return (
-        [{
-            oid:"event_01",
-            title:"Pannkaksbuffé",
-            description:"Denna torsdag firar vi att det är torsdag genom att äta pannkakor i stora mängder på en torsdag. Välj mellan tunnpankakor, bananpannkakor, amerikanska pannkakor och vad än du kan drömma. Ät dig mätt för 50 kr!",
-            time:"11:00 - 15:00",
-            nation: nationListEx[0], //norrlands nation - object
-            image: require('../../img/png/norrlands/event_pancakes.jpeg'), //event cover img
-        },
-        {
-            oid:"event_02",
-            title:"Puben",
-            description: "Hos oss kan du läska dig med något drickbart, äta en bit mat och umgås med dig själv eller med andra! Faller andan på så finns det massor med brädspel du kan spela.",
-            time:"17:00 - 20:00",
-            nation: nationListEx[1], 
-            image: require('../../img/png/vdala/event_puben.png')
-        },
+function getEventList(inputDate){
+    var allEvents = [{  
+        oid:"event_01",
+        date:"2021-04-13T00:00:00+02:00",
+        title:"Pannkaksbuffé",
+        description:"Denna torsdag firar vi att det är torsdag genom att äta pannkakor i stora mängder på en torsdag. Välj mellan tunnpankakor, bananpannkakor, amerikanska pannkakor och vad än du kan drömma. Ät dig mätt för 50 kr!",
+        time:"11:00 - 15:00",
+        nation: nationListEx[0], //norrlands nation - object
+        image: require('../../img/png/norrlands/event_pancakes.jpeg'), //event cover img
+    },
+    {  
 
-        /*{
-            oid:"event_03",
+        oid:"event_02",
+        date:"2021-04-13T00:00:00+02:00",
+        title:"Pannkaksbuffé NUMMER 2",
+        description:"Denna torsdag firar vi att det är torsdag genom att äta pannkakor i stora mängder på en torsdag. Välj mellan tunnpankakor, bananpannkakor, amerikanska pannkakor och vad än du kan drömma. Ät dig mätt för 50 kr!",
+        time:"11:00 - 15:00",
+        nation: nationListEx[0], //norrlands nation - object
+        image: require('../../img/png/norrlands/event_pancakes.jpeg'), //event cover img
+    },
+    {
+        oid:"event_03",
+        date:"2021-04-30T00:00:00+02:00",
+        title:"Puben",
+        description: "Hos oss kan du läska dig med något drickbart, äta en bit mat och umgås med dig själv eller med andra! Faller andan på så finns det massor med brädspel du kan spela.",
+        time:"17:00 - 20:00",
+        nation: nationListEx[1], 
+        image: require('../../img/png/vdala/event_puben.png')
+    },
 
-        }*/
+    /*{
+        oid:"event_03",
+
+    }*/
     ]
+    
+    
+    return (
+        allEvents.filter((event)=>event.date==inputDate)
     )
 }
 

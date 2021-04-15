@@ -21,17 +21,24 @@ import RenderCalendar from './CalendarComponent'
 
 export default function HomePage() {
     const [state, setState] = useState(false)
-    console.log(state)
+    const [date, setDate] = useState("")
+    console.log(date)
 
     return (
         <SafeAreaView style={{flex:1}}>
             <Header></Header>
-            <FilterBar robert={state} oskar={setState}></FilterBar>
+            <FilterBar 
+                state={state}
+                setState={setState} 
+                date={date}
+                setDate={setDate}
+            >
+            </FilterBar>
 
-            {state && <RenderCalendar></RenderCalendar>}
+            {state && <RenderCalendar date={date} setDate={setDate}></RenderCalendar>}
 
             {/*Render timeline of events*/}
-            <RenderTimeLine></RenderTimeLine>
+            <RenderTimeLine date={date}></RenderTimeLine>
         </SafeAreaView>
     );
 }
@@ -53,7 +60,7 @@ const Header = () => {
     );
 };
 
-const FilterBar = ({robert, oskar}) => {
+const FilterBar = ({state, setState}) => {
     const { colors } = useTheme();
 
     return (
@@ -63,15 +70,15 @@ const FilterBar = ({robert, oskar}) => {
                 { backgroundColor: colors.backgroundExtra },
             ]}
         >
-            <ChooseDateBar robert={robert} oskar={oskar}></ChooseDateBar>
+            <ChooseDateBar state={state} setState={setState}></ChooseDateBar>
             <ChooseNationButton></ChooseNationButton>
         </View>
     );
 };
 
-const ChooseDateBar = ({robert, oskar}) => {
+const ChooseDateBar = ({state, setState}) => {
     //TODO: change to dynamic date
-    let date = "Idag";
+    let dateTmp = "Idag";
     // console.log(state)
     
     return (
@@ -85,14 +92,9 @@ const ChooseDateBar = ({robert, oskar}) => {
             
             <TouchableOpacity 
                 style={filterStyles.dateTextWrapper}
-                onPress={()=>oskar(!robert)}
-                // DO NOT CHANGE , IT WORKS!!!!!!
-                // DO NOT CHANGE , IT WORKS!!!!!!
-                // DO NOT CHANGE , IT WORKS!!!!!!
-                // DO NOT CHANGE , IT WORKS!!!!!!
-                // DO NOT CHANGE , IT WORKS!!!!!!
+                onPress={()=>setState(!state)}
                 >
-                <Text style={filterStyles.dateText}>{date}</Text>
+                <Text style={filterStyles.dateText}>{dateTmp}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => handleNextDate()}>
@@ -125,34 +127,6 @@ const ChooseNationButton = () => {
 
 function handleNationButtonPress() {
     console.log("nation button pressed - show choose nation content");
-}
-
-//utilizes event component imported from nation content
-function RenderAllEvents() {
-    const { colors } = useTheme();
-    //temporary list of events
-    var eventList = [
-        {
-            title: "Pannkakstorsdag",
-            icon: <MaterialIcons name="event" size={24} color={colors.text} />,
-        },
-        {
-            title: "Gratis-Covid Rave",
-            icon: <MaterialIcons name="event" size={24} color={colors.text} />,
-        },
-        {
-            title: "Lunchbuffé",
-            icon: <MaterialIcons name="event" size={24} color={colors.text} />,
-        },
-    ];
-
-    return (
-        <View>
-            {eventList.map(({ title, icon }) => (
-                <View key={title}/>
-            ))}
-        </View>
-    );
 }
 
 const headerStyles = StyleSheet.create({
