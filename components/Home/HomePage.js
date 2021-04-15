@@ -2,7 +2,7 @@
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
-import React from "react";
+import React, { useState } from "react";
 import {
     View,
     Text,
@@ -18,13 +18,17 @@ import RenderCalendar from './CalendarComponent'
 
 //should "todays date" and "chosen date" be global in this file perhaps?
 
+
 export default function HomePage() {
+    const [state, setState] = useState(false)
+    console.log(state)
+
     return (
         <SafeAreaView style={{flex:1}}>
             <Header></Header>
-            <FilterBar></FilterBar>
+            <FilterBar robert={state} oskar={setState}></FilterBar>
 
-            {/*<RenderCalendar/>*/}
+            {state && <RenderCalendar></RenderCalendar>}
 
             {/*Render timeline of events*/}
             <RenderTimeLine></RenderTimeLine>
@@ -49,8 +53,9 @@ const Header = () => {
     );
 };
 
-const FilterBar = () => {
+const FilterBar = ({robert, oskar}) => {
     const { colors } = useTheme();
+
     return (
         <View
             style={[
@@ -58,16 +63,17 @@ const FilterBar = () => {
                 { backgroundColor: colors.backgroundExtra },
             ]}
         >
-            <ChooseDateBar></ChooseDateBar>
+            <ChooseDateBar robert={robert} oskar={oskar}></ChooseDateBar>
             <ChooseNationButton></ChooseNationButton>
         </View>
     );
 };
 
-const ChooseDateBar = () => {
+const ChooseDateBar = ({robert, oskar}) => {
     //TODO: change to dynamic date
     let date = "Idag";
-
+    // console.log(state)
+    
     return (
         <View style={filterStyles.dateBar}>
             <TouchableOpacity onPress={() => handlePreviousDate()}>
@@ -76,9 +82,18 @@ const ChooseDateBar = () => {
                 </View>
             </TouchableOpacity>
 
-            <View style={filterStyles.dateTextWrapper}>
+            
+            <TouchableOpacity 
+                style={filterStyles.dateTextWrapper}
+                onPress={()=>oskar(!robert)}
+                // DO NOT CHANGE , IT WORKS!!!!!!
+                // DO NOT CHANGE , IT WORKS!!!!!!
+                // DO NOT CHANGE , IT WORKS!!!!!!
+                // DO NOT CHANGE , IT WORKS!!!!!!
+                // DO NOT CHANGE , IT WORKS!!!!!!
+                >
                 <Text style={filterStyles.dateText}>{date}</Text>
-            </View>
+            </TouchableOpacity>
 
             <TouchableOpacity onPress={() => handleNextDate()}>
                 <View style={filterStyles.rightArrowWrapper}>

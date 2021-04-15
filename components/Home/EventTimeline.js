@@ -20,8 +20,8 @@ import { useNavigation } from "@react-navigation/core";
 
 
 
-export default function RenderTimeline(){
-    var eventList = getEventList()
+export default function RenderTimeline({date}){
+    var eventList = getEventList(date)
     return (
         <View style={eventStyles.timelineContainer}>
             <ScrollView >
@@ -35,7 +35,7 @@ export default function RenderTimeline(){
 
 //returns temporary, sorted list of event objects
 //TODO: replace with sdk function
-function getEventList(){
+function getEventList(date){
     return (
         [{
             oid:"event_01",
@@ -152,8 +152,8 @@ const eventStyles = StyleSheet.create({
         borderBottomLeftRadius: 10,
         borderBottomRightRadius: 10,
         
-        elevation:10,
-        zIndex:10,
+        elevation:5,
+        zIndex:5,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.3,
