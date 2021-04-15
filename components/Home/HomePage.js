@@ -2,7 +2,7 @@
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
-import React from "react";
+import React, { useState } from "react";
 import {
     View,
     Text,
@@ -18,16 +18,27 @@ import RenderCalendar from './CalendarComponent'
 
 //should "todays date" and "chosen date" be global in this file perhaps?
 
+
 export default function HomePage() {
+    const [state, setState] = useState(false)
+    const [date, setDate] = useState("")
+    console.log(date)
+
     return (
         <SafeAreaView style={{flex:1}}>
             <Header></Header>
-            <FilterBar></FilterBar>
+            <FilterBar 
+                state={state}
+                setState={setState} 
+                date={date}
+                setDate={setDate}
+            >
+            </FilterBar>
 
-            {/*<RenderCalendar/>*/}
+            {state && <RenderCalendar date={date} setDate={setDate}></RenderCalendar>}
 
             {/*Render timeline of events*/}
-            <RenderTimeLine></RenderTimeLine>
+            <RenderTimeLine date={date}></RenderTimeLine>
         </SafeAreaView>
     );
 }
@@ -49,8 +60,9 @@ const Header = () => {
     );
 };
 
-const FilterBar = () => {
+const FilterBar = ({state, setState}) => {
     const { colors } = useTheme();
+
     return (
         <View
             style={[
@@ -58,16 +70,17 @@ const FilterBar = () => {
                 { backgroundColor: colors.backgroundExtra },
             ]}
         >
-            <ChooseDateBar></ChooseDateBar>
+            <ChooseDateBar state={state} setState={setState}></ChooseDateBar>
             <ChooseNationButton></ChooseNationButton>
         </View>
     );
 };
 
-const ChooseDateBar = () => {
+const ChooseDateBar = ({state, setState}) => {
     //TODO: change to dynamic date
-    let date = "Idag";
-
+    let dateTmp = "Idag";
+    // console.log(state)
+    
     return (
         <View style={filterStyles.dateBar}>
             <TouchableOpacity onPress={() => handlePreviousDate()}>
@@ -76,9 +89,13 @@ const ChooseDateBar = () => {
                 </View>
             </TouchableOpacity>
 
-            <View style={filterStyles.dateTextWrapper}>
-                <Text style={filterStyles.dateText}>{date}</Text>
-            </View>
+            
+            <TouchableOpacity 
+                style={filterStyles.dateTextWrapper}
+                onPress={()=>setState(!state)}
+                >
+                <Text style={filterStyles.dateText}>{dateTmp}</Text>
+            </TouchableOpacity>
 
             <TouchableOpacity onPress={() => handleNextDate()}>
                 <View style={filterStyles.rightArrowWrapper}>
@@ -110,34 +127,6 @@ const ChooseNationButton = () => {
 
 function handleNationButtonPress() {
     console.log("nation button pressed - show choose nation content");
-}
-
-//utilizes event component imported from nation content
-function RenderAllEvents() {
-    const { colors } = useTheme();
-    //temporary list of events
-    var eventList = [
-        {
-            title: "Pannkakstorsdag",
-            icon: <MaterialIcons name="event" size={24} color={colors.text} />,
-        },
-        {
-            title: "Gratis-Covid Rave",
-            icon: <MaterialIcons name="event" size={24} color={colors.text} />,
-        },
-        {
-            title: "Lunchbuffé",
-            icon: <MaterialIcons name="event" size={24} color={colors.text} />,
-        },
-    ];
-
-    return (
-        <View>
-            {eventList.map(({ title, icon }) => (
-                <View key={title}/>
-            ))}
-        </View>
-    );
 }
 
 const headerStyles = StyleSheet.create({
