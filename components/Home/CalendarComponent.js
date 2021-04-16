@@ -1,7 +1,7 @@
-import "react-native-gesture-handler";
-import Calendar from "react-native-calendar"
+import 'react-native-gesture-handler'
+import Calendar from 'react-native-calendar'
 
-import React from "react";
+import React from 'react'
 import {
     View,
     Text,
@@ -10,15 +10,12 @@ import {
     TouchableOpacity,
     SafeAreaView,
     ScrollView,
-} from "react-native";
+} from 'react-native'
 
-export default function RenderCalendar(){
+export default function RenderCalendar() {
     return (
         <View>
-            <Calendar
-            
-            
-            />
+            <Calendar />
         </View>
     )
 }

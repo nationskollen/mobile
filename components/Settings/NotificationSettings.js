@@ -1,20 +1,14 @@
 /// This component is used to render notification settings
-import "react-native-gesture-handler";
+import 'react-native-gesture-handler'
 
-import React, { useState } from "react";
-import {
-    View,
-    StyleSheet,
-    Text,
-    Image,
-    TouchableHighlight,
-} from "react-native";
+import React, { useState } from 'react'
+import { View, StyleSheet, Text, Image, TouchableHighlight } from 'react-native'
 
-import { useTheme } from "@react-navigation/native";
-import { ScrollView } from "react-native-gesture-handler";
+import { useTheme } from '@react-navigation/native'
+import { ScrollView } from 'react-native-gesture-handler'
 
-import { MaterialIcons } from "@expo/vector-icons";
-import ToggleSwitch from "toggle-switch-react-native";
+import { MaterialIcons } from '@expo/vector-icons'
+import ToggleSwitch from 'toggle-switch-react-native'
 
 /// Renders all nations in a list
 function NotificationSettings({ nationList }) {
@@ -24,14 +18,14 @@ function NotificationSettings({ nationList }) {
                 <Nation key={nation.id} data={nation} />
             ))}
         </ScrollView>
-    );
+    )
 }
 
 /// Returns component for given nation
 function Nation({ data }) {
-    const { colors } = useTheme();
+    const { colors } = useTheme()
 
-    const [expand, setExpand] = useState(false);
+    const [expand, setExpand] = useState(false)
 
     return (
         <View>
@@ -57,27 +51,18 @@ function Nation({ data }) {
                                 { backgroundColor: colors.backgroundExtra },
                             ]}
                         >
-                            <Image
-                                source={data.logo}
-                                style={styles.nationLogoImg}
-                            />
+                            <Image source={data.logo} style={styles.nationLogoImg} />
                         </View>
                     </View>
 
                     {/*Name of nation*/}
                     <View style={[styles.nationNameWrapper]}>
-                        <Text
-                            style={[styles.nationName, { color: colors.text }]}
-                        >
-                            {data.name}
-                        </Text>
+                        <Text style={[styles.nationName, { color: colors.text }]}>{data.name}</Text>
                     </View>
 
                     {/*Button for choosing nation*/}
                     <MaterialIcons
-                        name={
-                            expand ? "keyboard-arrow-up" : "keyboard-arrow-down"
-                        }
+                        name={expand ? 'keyboard-arrow-up' : 'keyboard-arrow-down'}
                         size={24}
                         color={colors.text}
                     />
@@ -85,12 +70,12 @@ function Nation({ data }) {
             </TouchableHighlight>
             {expand && <NotiOptions />}
         </View>
-    );
+    )
 }
 
 /// Renders the different notification options
 function NotiOptions() {
-    const { colors } = useTheme();
+    const { colors } = useTheme()
 
     return (
         <View
@@ -102,20 +87,20 @@ function NotiOptions() {
             ]}
         >
             {/*Temporary options*/}
-            <NotiToggle text={"Prenumerera"} />
-            <NotiToggle text={"Push notifikationer"} />
-            <NotiToggle text={"Events"} />
-            <NotiToggle text={"Nyheter"} />
+            <NotiToggle text={'Prenumerera'} />
+            <NotiToggle text={'Push notifikationer'} />
+            <NotiToggle text={'Events'} />
+            <NotiToggle text={'Nyheter'} />
         </View>
-    );
+    )
 }
 
 /// Renders toggle switches
 /// `text` is the name/title of the toggle
 function NotiToggle({ text }) {
-    const { colors } = useTheme();
+    const { colors } = useTheme()
 
-    const [toggle, setToggle] = useState(false);
+    const [toggle, setToggle] = useState(false)
 
     return (
         <View style={optionStyles.switch}>
@@ -126,27 +111,27 @@ function NotiToggle({ text }) {
                 offColor="grey"
                 size="large"
                 onToggle={() => {
-                    setToggle(!toggle);
+                    setToggle(!toggle)
                 }}
             />
         </View>
-    );
+    )
 }
 
 /// Styles for option switches
 const optionStyles = StyleSheet.create({
     options: {
-        justifyContent: "space-evenly",
+        justifyContent: 'space-evenly',
         height: 200,
         borderBottomWidth: 1,
     },
     switch: {
-        flexDirection: "row",
-        justifyContent: "space-between",
+        flexDirection: 'row',
+        justifyContent: 'space-between',
         marginHorizontal: 20,
-        alignItems: "center",
+        alignItems: 'center',
     },
-});
+})
 
 const styles = StyleSheet.create({
     container: {
@@ -154,89 +139,89 @@ const styles = StyleSheet.create({
     },
 
     header: {
-        alignSelf: "stretch",
+        alignSelf: 'stretch',
         height: 40,
-        backgroundColor: "white",
-        borderBottomColor: "#E0E0E0",
+        backgroundColor: 'white',
+        borderBottomColor: '#E0E0E0',
         borderBottomWidth: 1,
-        flexDirection: "row",
+        flexDirection: 'row',
     },
 
     headerTitle: {
-        alignSelf: "center",
-        fontWeight: "bold",
+        alignSelf: 'center',
+        fontWeight: 'bold',
         fontSize: 25,
         //fontFamily:  "Arial", //not supported by android?
-        marginLeft: "5%",
-        paddingBottom: "3%",
+        marginLeft: '5%',
+        paddingBottom: '3%',
     },
 
     cross: {
-        position: "absolute",
-        right: "4%",
-        alignSelf: "center",
+        position: 'absolute',
+        right: '4%',
+        alignSelf: 'center',
         width: 30,
         height: 30,
         //TODO: center the cross within itself
     },
 
     nationWrapper: {
-        flexWrap: "wrap",
-        backgroundColor: "white",
+        flexWrap: 'wrap',
+        backgroundColor: 'white',
         borderBottomWidth: 1,
         //borderColor: "#E0E0E0",
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
         paddingVertical: 10,
         paddingHorizontal: 15,
         maxHeight: 90,
     },
 
     nationLogoImg: {
-        width: "80%",
-        height: "80%",
+        width: '80%',
+        height: '80%',
     },
 
     nationLogoImgWrapper: {
-        justifyContent: "center",
-        backgroundColor: "#E8E8E8",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
+        justifyContent: 'center',
+        backgroundColor: '#E8E8E8',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
         width: 65,
         height: 65,
         borderRadius: 50,
     },
 
     nationNameWrapper: {
-        height: "100%",
-        justifyContent: "center",
+        height: '100%',
+        justifyContent: 'center',
         flex: 1,
     },
 
     nationName: {
-        fontWeight: "bold",
+        fontWeight: 'bold',
         fontSize: 18,
-        color: "black",
-        paddingLeft: "5%",
+        color: 'black',
+        paddingLeft: '5%',
     },
 
     chooseButtonWrapper: {
         borderWidth: 1,
         borderRadius: 5,
-        borderColor: "black",
-        backgroundColor: "#E8E8E8",
+        borderColor: 'black',
+        backgroundColor: '#E8E8E8',
         paddingVertical: 5,
         paddingHorizontal: 15,
     },
 
     chooseButton: {
-        textAlign: "center",
-        color: "black",
-        fontWeight: "bold",
+        textAlign: 'center',
+        color: 'black',
+        fontWeight: 'bold',
         fontSize: 15,
     },
-});
+})
 
-export default NotificationSettings;
+export default NotificationSettings

@@ -3,6 +3,11 @@ assets
 img
 android
 ios
+build
+public
+tmp
+node_modules
+.github/
 
 # Ignore package files
 

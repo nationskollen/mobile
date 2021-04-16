@@ -1,34 +1,28 @@
 //This file renders food related components
 
 //Used to render various dropdown menus
-import RenderDropDownHeader from "./Dropdown";
-import { Ionicons } from "@expo/vector-icons";
-import { Octicons } from "@expo/vector-icons";
-import { useTheme } from "@react-navigation/native";
-import { View, Text, StyleSheet } from "react-native";
-import React from "react";
+import RenderDropDownHeader from './Dropdown'
+import { Ionicons } from '@expo/vector-icons'
+import { Octicons } from '@expo/vector-icons'
+import { useTheme } from '@react-navigation/native'
+import { View, Text, StyleSheet } from 'react-native'
+import React from 'react'
 
 //renders entire dropdown menu with food content
 export default function RenderFoodMenu({ nation }) {
-    const { colors } = useTheme();
+    const { colors } = useTheme()
     return (
         <RenderDropDownHeader
-            title={"Meny"}
+            title={'Meny'}
             expandComponent={renderFoodCategories(nation)}
-            icon={
-                <Ionicons
-                    name="md-fast-food-outline"
-                    size={28}
-                    color={colors.text}
-                />
-            }
+            icon={<Ionicons name="md-fast-food-outline" size={28} color={colors.text} />}
         ></RenderDropDownHeader>
-    );
+    )
 }
 
 //returns rendered food categories
 function renderFoodCategories(nation) {
-    var foodCategories = ["Dryck", "Förrätt", "Huvudrätt", "Efterrätt", "Fika"];
+    var foodCategories = ['Dryck', 'Förrätt', 'Huvudrätt', 'Efterrätt', 'Fika']
 
     return foodCategories.map((category) => (
         <RenderDropDownHeader
@@ -42,57 +36,42 @@ function renderFoodCategories(nation) {
             expandComponent={renderListFromCategory(nation, category)}
             nation={nation}
         />
-    ));
+    ))
 }
 
 //render all food or drink items from input category object
 function renderListFromCategory(nation, category) {
     //list of food/drinks in category
-    var list = getFoodMenu(nation)[category];
-    const { colors } = useTheme();
-    var renderedList = [];
-    var description;
+    var list = getFoodMenu(nation)[category]
+    const { colors } = useTheme()
+    var renderedList = []
+    var description
     for (let i in list) {
-        description =
-            category == "Dryck"
-                ? list[i].size + ", " + list[i].type
-                : list[i].description;
+        description = category == 'Dryck' ? list[i].size + ', ' + list[i].type : list[i].description
 
         renderedList.push(
             <View
                 key={list[i].name}
-                style={[
-                    styles.itemBorder,
-                    { borderColor: colors.backgroundExtra },
-                ]}
+                style={[styles.itemBorder, { borderColor: colors.backgroundExtra }]}
             >
                 <View style={styles.itemWrapper}>
-                    <Text style={[styles.nameText, { color: colors.text }]}>
-                        {list[i].name}
-                    </Text>
-                    <Text
-                        style={[styles.descriptionText, { color: colors.text }]}
-                    >
+                    <Text style={[styles.nameText, { color: colors.text }]}>{list[i].name}</Text>
+                    <Text style={[styles.descriptionText, { color: colors.text }]}>
                         {description}
                     </Text>
                     <View
-                        style={[
-                            styles.priceWrapper,
-                            { backgroundColor: colors.backgroundExtra },
-                        ]}
+                        style={[styles.priceWrapper, { backgroundColor: colors.backgroundExtra }]}
                     >
-                        <Text
-                            style={[styles.priceText, { color: colors.text }]}
-                        >
-                            {list[i].price + " kr"}
+                        <Text style={[styles.priceText, { color: colors.text }]}>
+                            {list[i].price + ' kr'}
                         </Text>
                     </View>
                 </View>
             </View>
-        );
+        )
     }
 
-    return <View style={styles.listContainer}>{renderedList}</View>;
+    return <View style={styles.listContainer}>{renderedList}</View>
 }
 
 //TODO: replace with SDK function
@@ -100,20 +79,20 @@ function getFoodMenu(nation) {
     return {
         Dryck: {
             norrlandsguld: {
-                name: "Norrlands Guld",
-                size: "50cl",
-                price: "40",
-                type: "Fatöl",
-                description: "",
-                id: "norrlandsguld",
+                name: 'Norrlands Guld',
+                size: '50cl',
+                price: '40',
+                type: 'Fatöl',
+                description: '',
+                id: 'norrlandsguld',
             },
             gränges: {
-                name: "Gränges",
-                size: "33cl",
-                price: "30",
-                type: "burk",
-                description: "",
-                id: "gränges",
+                name: 'Gränges',
+                size: '33cl',
+                price: '30',
+                type: 'burk',
+                description: '',
+                id: 'gränges',
             },
         },
 
@@ -121,77 +100,70 @@ function getFoodMenu(nation) {
 
         Huvudrätt: {
             pannkakor: {
-                name: "Goa Pannkakor",
+                name: 'Goa Pannkakor',
                 description:
-                    "Oförståeligt befruktande smak. Once you go Goa Pannkakor you never go back.",
-                ingredients: ["ägg", "mjölk", "mjöl", "salt", "smör", "socker"],
-                allergies: ["ägg", "laktos", "gluten", "socker"],
-                price: "45",
-                image: "",
+                    'Oförståeligt befruktande smak. Once you go Goa Pannkakor you never go back.',
+                ingredients: ['ägg', 'mjölk', 'mjöl', 'salt', 'smör', 'socker'],
+                allergies: ['ägg', 'laktos', 'gluten', 'socker'],
+                price: '45',
+                image: '',
             },
             quesadillas: {
-                name: "Krispiga Quesadillas",
+                name: 'Krispiga Quesadillas',
                 description:
-                    "6 stycken krispiga, ostiga, kycklingfyllda och oförglömliga quesadillas",
-                ingredients: [
-                    "kyckling",
-                    "rödlök",
-                    "ost",
-                    "tortilla",
-                    "majs",
-                    "paprika",
-                ],
-                allergies: ["rödlök", "laktos", "gluten"],
-                price: "60",
-                image: "",
+                    '6 stycken krispiga, ostiga, kycklingfyllda och oförglömliga quesadillas',
+                ingredients: ['kyckling', 'rödlök', 'ost', 'tortilla', 'majs', 'paprika'],
+                allergies: ['rödlök', 'laktos', 'gluten'],
+                price: '60',
+                image: '',
             },
         },
-    };
+    }
 }
 
 //styles for food/drink list
 const styles = StyleSheet.create({
     itemBorder: {
         borderBottomWidth: 1,
-        borderColor: "lightgray",
+        borderColor: 'lightgray',
     },
 
     itemWrapper: {
-        marginLeft: "7%",
-        marginTop: "2%",
+        marginLeft: '7%',
+        marginTop: '2%',
     },
 
     nameText: {
         marginVertical: 3,
-        fontWeight: "bold",
+        fontWeight: 'bold',
         fontSize: 16,
     },
     descriptionText: {
         marginTop: 3,
         marginBottom: 10,
-        maxWidth: "70%",
+        maxWidth: '70%',
     },
 
     priceWrapper: {
-        backgroundColor: "lightgreen",
-        position: "absolute",
-        right: "5%",
-        top: "35%",
+        backgroundColor: 'lightgreen',
+        position: 'absolute',
+        right: '5%',
+        top: '35%',
         width: 45,
         height: 25,
         borderWidth: 1,
-        borderColor: "black",
+        borderColor: 'black',
         borderRadius: 5,
-        alignItems: "center",
-        justifyContent: "center",
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 
     priceText: {
-        color: "black",
+        color: 'black',
         fontSize: 15,
     },
 
     foodCategoryIcon: {
-        marginLeft: "15%",
+        marginLeft: '15%',
     },
-});
+})
