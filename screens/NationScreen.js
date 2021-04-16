@@ -23,7 +23,7 @@ import ChooseNation from "../components/Nations/ChooseNation";
 import NationContent from "../components/Nations/NationContent";
 
 /// Icons
-import Ionicons from "react-native-vector-icons/Ionicons";
+import { Ionicons } from "react-native-vector-icons/Ionicons";
 
 /// Creates a local navigation stack for this tab
 const Stack = createStackNavigator();
