@@ -10,7 +10,7 @@ import {
     TouchableOpacity,
     SafeAreaView,
     ScrollView,
-} from "react-native";
+} from 'react-native'
 
 export default function RenderCalendar({date, setDate}){
     let dayShortNames = ["Sön","Mån","Tis", "Ons", "Tor", "Fre", "Lör"]

@@ -1,0 +1,19 @@
+# Ignore non-js folders 
+assets
+img
+android
+ios
+build
+public
+tmp
+node_modules
+.github/
+
+# Ignore package files
+
+package.json
+package-lock.json
+app.json
+app.config.json
+babel.config.js
+

@@ -1,5 +1,5 @@
-import { View } from "react-native";
-import React from "react";
+import { View } from 'react-native'
+import React from 'react'
 
 //renders entire dropdown menu with events content
 export default function RenderEventsMenu({ nation }) {
@@ -8,6 +8,5 @@ export default function RenderEventsMenu({ nation }) {
         <View></View>
         //<RenderDropDownHeader title={""} type={"event"} />
         /*loop and render events from eventList <RenderEvent/>*/
-    );
+    )
 }
-

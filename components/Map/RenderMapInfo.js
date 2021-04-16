@@ -1,14 +1,14 @@
 // This is for rendering the nation content.
-import { AntDesign } from "@expo/vector-icons";
-import { MaterialIcons } from "@expo/vector-icons";
-import React from "react";
+import { AntDesign } from '@expo/vector-icons'
+import { MaterialIcons } from '@expo/vector-icons'
+import React from 'react'
 
 /// Renders food components
 /// Renders event components
 /// Renders activity bar
-import RenderActivityBar from "./MapActivityLevel";
+import RenderActivityBar from './MapActivityLevel'
 
-import { useTheme } from "@react-navigation/native";
+import { useTheme } from '@react-navigation/native'
 import {
     ScrollView,
     View,
@@ -19,13 +19,13 @@ import {
     SafeAreaView,
     Platform,
     StatusBar,
-} from "react-native";
+} from 'react-native'
 
 export default function RenderMapPopup({ nation }) {
     //TODO: add openinghours and address to nation object
     //TODO: add color theme to nation, so that icons can match
-    const { colors } = useTheme();
-    console.log(nation);
+    const { colors } = useTheme()
+    console.log(nation)
     return (
         <SafeAreaView>
             <View
@@ -35,12 +35,7 @@ export default function RenderMapPopup({ nation }) {
                 ]}
             >
                 <View style={nationStyles.nationNameWrapper}>
-                    <Text
-                        style={[
-                            nationStyles.nationName,
-                            { color: colors.text },
-                        ]}
-                    >
+                    <Text style={[nationStyles.nationName, { color: colors.text }]}>
                         {nation.nickname}
                     </Text>
                     <View
@@ -59,17 +54,8 @@ export default function RenderMapPopup({ nation }) {
                         { backgroundColor: colors.backgroundExtra },
                     ]}
                 >
-                    <AntDesign
-                        name="clockcircle"
-                        size={20}
-                        color={colors.text}
-                    />
-                    <Text
-                        style={[
-                            nationStyles.openinghoursTitle,
-                            { color: colors.text },
-                        ]}
-                    >
+                    <AntDesign name="clockcircle" size={20} color={colors.text} />
+                    <Text style={[nationStyles.openinghoursTitle, { color: colors.text }]}>
                         Öppettider
                     </Text>
                 </View>
@@ -81,10 +67,7 @@ export default function RenderMapPopup({ nation }) {
                     ]}
                 >
                     <View
-                        style={[
-                            nationStyles.lineSymbol,
-                            { backgroundColor: colors.text },
-                        ]}
+                        style={[nationStyles.lineSymbol, { backgroundColor: colors.text }]}
                     ></View>
                     <View
                         style={[
@@ -92,20 +75,10 @@ export default function RenderMapPopup({ nation }) {
                             { backgroundColor: colors.backgroundExtra },
                         ]}
                     >
-                        <Text
-                            style={[
-                                nationStyles.openinghoursText,
-                                { color: colors.text },
-                            ]}
-                        >
+                        <Text style={[nationStyles.openinghoursText, { color: colors.text }]}>
                             Mån-Fre: 10:00-20:00
                         </Text>
-                        <Text
-                            style={[
-                                nationStyles.openinghoursText,
-                                { color: colors.text },
-                            ]}
-                        >
+                        <Text style={[nationStyles.openinghoursText, { color: colors.text }]}>
                             Lör-Sön: Stängt
                         </Text>
                     </View>
@@ -113,33 +86,24 @@ export default function RenderMapPopup({ nation }) {
 
                 <View style={nationStyles.mapWrapper}>
                     <View style={nationStyles.mapSymbolWrapper}>
-                        <MaterialIcons
-                            name="location-on"
-                            size={16}
-                            color="white"
-                        />
+                        <MaterialIcons name="location-on" size={16} color="white" />
                     </View>
                     <View style={nationStyles.mapSymbolCircle}></View>
                     <Text
-                        style={[
-                            nationStyles.mapAddress,
-                            { color: colors.text },
-                        ]}
+                        style={[nationStyles.mapAddress, { color: colors.text }]}
                         onPress={() =>
                             Alert.alert(
-                                "Öppna i kartor?",
-                                "Tryck OK för att öppna addressen i kartor",
+                                'Öppna i kartor?',
+                                'Tryck OK för att öppna addressen i kartor',
                                 [
                                     {
-                                        text: "Avbryt",
-                                        onPress: () =>
-                                            console.log("Avbryt Pressed"),
-                                        style: "Avbryt",
+                                        text: 'Avbryt',
+                                        onPress: () => console.log('Avbryt Pressed'),
+                                        style: 'Avbryt',
                                     },
                                     {
-                                        text: "OK",
-                                        onPress: () =>
-                                            console.log("OK Pressed"),
+                                        text: 'OK',
+                                        onPress: () => console.log('OK Pressed'),
                                     },
                                 ],
                                 {
@@ -155,16 +119,16 @@ export default function RenderMapPopup({ nation }) {
 
             <RenderActivityBar nation={nation}></RenderActivityBar>
         </SafeAreaView>
-    );
+    )
 }
 const headerStyles = StyleSheet.create({
     header: {
-        alignSelf: "stretch", // 100% width
+        alignSelf: 'stretch', // 100% width
         height: 50,
-        backgroundColor: "white",
-        borderBottomColor: "#E0E0E0",
+        backgroundColor: 'white',
+        borderBottomColor: '#E0E0E0',
         borderBottomWidth: 1,
-        justifyContent: "center",
+        justifyContent: 'center',
     },
 
     arrowBack: {
@@ -175,7 +139,7 @@ const headerStyles = StyleSheet.create({
 
     logoWrapper: {
         // alignSelf: "flex-end",
-        marginLeft: "5%",
+        marginLeft: '5%',
         //position: "absolute",
         width: 50,
         height: 50,
@@ -183,53 +147,53 @@ const headerStyles = StyleSheet.create({
     },
 
     logo: {
-        width: "100%",
-        height: "100%",
+        width: '100%',
+        height: '100%',
     },
-});
+})
 
 //styles for nation info
 const nationStyles = StyleSheet.create({
     nationInfoWrapper: {
-        backgroundColor: "#F3F3F3",
-        position: "absolute",
+        backgroundColor: '#F3F3F3',
+        position: 'absolute',
         bottom: 45,
         height: 180,
-        width: "100%",
+        width: '100%',
     },
 
     nationNameWrapper: {
-        flexDirection: "row",
-        paddingLeft: "7%",
-        alignItems: "center",
+        flexDirection: 'row',
+        paddingLeft: '7%',
+        alignItems: 'center',
     },
 
     nationName: {
         fontSize: 26,
-        fontWeight: "bold",
+        fontWeight: 'bold',
     },
 
     openinghoursWrapper: {
-        flexDirection: "row",
-        marginLeft: "6.5%",
+        flexDirection: 'row',
+        marginLeft: '6.5%',
         marginTop: 6,
     },
 
     clockSymbolWrapper: {
-        flexDirection: "row",
+        flexDirection: 'row',
         marginTop: 15,
-        marginLeft: "7%",
-        alignItems: "center",
+        marginLeft: '7%',
+        alignItems: 'center',
     },
 
     openinghoursTitle: {
-        fontWeight: "bold",
+        fontWeight: 'bold',
         fontSize: 14,
         marginLeft: 10,
     },
 
     openinghoursTextWrapper: {
-        justifyContent: "space-evenly",
+        justifyContent: 'space-evenly',
         marginLeft: 10,
     },
 
@@ -242,38 +206,38 @@ const nationStyles = StyleSheet.create({
         width: 4,
         height: 50,
         borderRadius: 5,
-        backgroundColor: "black",
+        backgroundColor: 'black',
     },
 
     mapWrapper: {
-        flexDirection: "row",
-        alignItems: "center",
+        flexDirection: 'row',
+        alignItems: 'center',
         marginTop: 5,
     },
 
     mapSymbolWrapper: {
-        marginLeft: "7.5%",
+        marginLeft: '7.5%',
 
         zIndex: 2,
-        elevation: Platform.OS === "android" ? 2 : 0,
+        elevation: Platform.OS === 'android' ? 2 : 0,
     },
 
     mapSymbolCircle: {
         width: 20,
         height: 20,
         borderRadius: 50,
-        backgroundColor: "black",
-        position: "absolute",
-        left: "7%",
+        backgroundColor: 'black',
+        position: 'absolute',
+        left: '7%',
 
         zIndex: 1,
-        elevation: Platform.OS === "android" ? 1 : 0,
+        elevation: Platform.OS === 'android' ? 1 : 0,
     },
 
     mapAddress: {
-        marginLeft: "2%",
+        marginLeft: '2%',
         fontSize: 14,
-        fontWeight: "bold",
+        fontWeight: 'bold',
         zIndex: 3,
     },
-});
+})

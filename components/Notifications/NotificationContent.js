@@ -1,8 +1,8 @@
 // This component is used for rendering each notification.
 
-import React from "react";
-import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
-import { useTheme } from "@react-navigation/native";
+import React from 'react'
+import { View, Text, StyleSheet, Image, ScrollView } from 'react-native'
+import { useTheme } from '@react-navigation/native'
 
 function NotificationsContent({ notificationList }) {
     return (
@@ -11,22 +11,20 @@ function NotificationsContent({ notificationList }) {
                 <RenderNotification key={index} notification={notificationX} />
             ))}
         </ScrollView>
-    );
+    )
 }
 
 function RenderNotification({ notification }) {
-    const { nation, title, text } = notification;
+    const { nation, title, text } = notification
 
     //TODO: replace publishTime with calculated "x minutes/hours/days ago"
-    let publishTime = notification.publishTime;
+    let publishTime = notification.publishTime
     //TODO: replace date in eventTime with "Today" or just "MM/DD"
-    let eventTime = notification.eventTime;
-    const { colors } = useTheme();
+    let eventTime = notification.eventTime
+    const { colors } = useTheme()
 
     return (
-        <View
-            style={[styles.notificationWrapper, { borderColor: colors.border }]}
-        >
+        <View style={[styles.notificationWrapper, { borderColor: colors.border }]}>
             <View style={styles.header}>
                 <View
                     style={[
@@ -35,27 +33,13 @@ function RenderNotification({ notification }) {
                     ]}
                 >
                     <Image
-                        source={require("../../img/png/vdala/vdalalogga.png")}
+                        source={require('../../img/png/vdala/vdalalogga.png')}
                         style={styles.nationLogoImg}
                     />
                 </View>
                 <View style={styles.headerContent}>
-                    <Text
-                        style={[
-                            styles.nationName,
-                            { color: colors.primaryText },
-                        ]}
-                    >
-                        {nation}
-                    </Text>
-                    <Text
-                        style={[
-                            styles.notificationHeader,
-                            { color: colors.text },
-                        ]}
-                    >
-                        {title}
-                    </Text>
+                    <Text style={[styles.nationName, { color: colors.primaryText }]}>{nation}</Text>
+                    <Text style={[styles.notificationHeader, { color: colors.text }]}>{title}</Text>
                 </View>
             </View>
             <View>
@@ -65,9 +49,7 @@ function RenderNotification({ notification }) {
                 {/* <Text style={styles.publishTime}> */}
                 {/*     {publishTime} */}
                 {/* </Text> */}
-                <Text style={[styles.content, { color: colors.text }]}>
-                    {text}
-                </Text>
+                <Text style={[styles.content, { color: colors.text }]}>{text}</Text>
                 <View
                     style={[
                         styles.eventTime,
@@ -82,37 +64,37 @@ function RenderNotification({ notification }) {
                 </View>
             </View>
         </View>
-    );
+    )
 }
 
 const styles = StyleSheet.create({
     notificationWrapper: {
-        flexWrap: "wrap",
-        display: "flex",
-        flexDirection: "column",
+        flexWrap: 'wrap',
+        display: 'flex',
+        flexDirection: 'column',
         paddingVertical: 15,
         paddingHorizontal: 15,
         borderBottomWidth: 1,
     },
 
     header: {
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        width: "100%",
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        width: '100%',
         marginBottom: 10,
     },
 
     nationLogoImg: {
-        marginLeft: "auto",
-        marginRight: "auto",
+        marginLeft: 'auto',
+        marginRight: 'auto',
         height: 30,
         width: 45,
     },
 
     nationLogoImgWrapper: {
         marginRight: 15,
-        justifyContent: "center",
+        justifyContent: 'center',
         width: 55,
         height: 55,
         borderRadius: 50,
@@ -120,10 +102,10 @@ const styles = StyleSheet.create({
 
     notificationHeader: {
         fontSize: 20,
-        fontWeight: "bold",
+        fontWeight: 'bold',
     },
     nationName: {
-        fontWeight: "bold",
+        fontWeight: 'bold',
     },
     publishTime: {
         fontSize: 14,
@@ -138,8 +120,8 @@ const styles = StyleSheet.create({
     },
 
     content: {
-        overflow: "hidden",
+        overflow: 'hidden',
     },
-});
+})
 
-export default NotificationsContent;
+export default NotificationsContent

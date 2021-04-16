@@ -1,6 +1,6 @@
 /// This is used to render login page
 
-import React, { useState } from "react";
+import React, { useState } from 'react'
 import {
     SafeAreaView,
     View,
@@ -10,30 +10,26 @@ import {
     TextInput,
     TouchableHighlight,
     ScrollView,
-} from "react-native";
-import { useTheme } from "@react-navigation/native";
+} from 'react-native'
+import { useTheme } from '@react-navigation/native'
 
 function Login() {
-    const { colors } = useTheme();
+    const { colors } = useTheme()
 
-    const [text, onChangeText] = useState(null);
+    const [text, onChangeText] = useState(null)
 
-    const [password, onChangePassword] = useState(null);
+    const [password, onChangePassword] = useState(null)
 
-    const [pass, setPass] = useState(false);
+    const [pass, setPass] = useState(false)
 
     const wrong = (
-        <Text style={[styles.text, { color: colors.text }]}>
-            Fel lösenord eller användarnamn
-        </Text>
-    );
+        <Text style={[styles.text, { color: colors.text }]}>Fel lösenord eller användarnamn</Text>
+    )
 
     return (
         <ScrollView>
             <View style={styles.container}>
-                <Text style={[styles.titleText, { color: colors.text }]}>
-                    NATIONSKOLLEN
-                </Text>
+                <Text style={[styles.titleText, { color: colors.text }]}>NATIONSKOLLEN</Text>
                 {pass && wrong}
                 <TextInput
                     style={[
@@ -75,24 +71,17 @@ function Login() {
                         },
                     ]}
                 >
-                    <Text
-                        style={[
-                            styles.loginText,
-                            { color: colors.focusedText },
-                        ]}
-                    >
-                        Login
-                    </Text>
+                    <Text style={[styles.loginText, { color: colors.focusedText }]}>Login</Text>
                 </TouchableHighlight>
             </View>
         </ScrollView>
-    );
+    )
 }
 
 const styles = StyleSheet.create({
     container: {
-        justifyContent: "flex-end",
-        marginTop: "17%",
+        justifyContent: 'flex-end',
+        marginTop: '17%',
     },
     loginButton: {
         height: 35,
@@ -100,10 +89,10 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         borderRadius: 10,
         borderWidth: 1,
-        justifyContent: "center",
+        justifyContent: 'center',
     },
     loginText: {
-        textAlign: "center",
+        textAlign: 'center',
     },
     input: {
         height: 40,
@@ -111,18 +100,18 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         borderWidth: 1,
         borderRadius: 5,
-	paddingHorizontal: 15,
+        paddingHorizontal: 15,
     },
     text: {
-        textAlign: "center",
+        textAlign: 'center',
     },
     titleText: {
-        textAlign: "center",
-        fontWeight: "100",
+        textAlign: 'center',
+        fontWeight: '100',
         fontSize: 26,
         letterSpacing: 3,
         marginBottom: 20,
     },
-});
+})
 
-export default Login;
+export default Login

@@ -1,140 +1,137 @@
 /// This is the Home Screen
 /// Renders the home screen and creates a stack to navigate between the different screens in the home page
 
-import React from "react";
-import { View, Text } from "react-native";
+import React from 'react'
+import { View, Text } from 'react-native'
 
-import "react-native-gesture-handler";
-import { HeaderOptions } from "./NavigationHeader";
-import { useTheme } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import RenderMap from "../components/Map/MapPage.js";
-import nationListEx from "./NationScreen.js";
+import 'react-native-gesture-handler'
+import { HeaderOptions } from './NavigationHeader'
+import { useTheme } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+import RenderMap from '../components/Map/MapPage.js'
+import nationListEx from './NationScreen.js'
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator()
 
 /// TODO: Create a local stack
 /// TODO: Import appropriate components (screens)
 function MapScreen() {
-    const { colors } = useTheme();
+    const { colors } = useTheme()
 
     return (
-        <Stack.Navigator
-            initialRouteName="Map"
-            screenOptions={HeaderOptions(colors)}
-        >
-            <Stack.Screen name="Map" options={{ title: "Karta" }}>
+        <Stack.Navigator initialRouteName="Map" screenOptions={HeaderOptions(colors)}>
+            <Stack.Screen name="Map" options={{ title: 'Karta' }}>
                 {(props) => <RenderMap {...props} nationData={nationInfo} />}
             </Stack.Screen>
         </Stack.Navigator>
-    );
+    )
 }
 
 export var nationInfo = [
     {
-        id: "norrlands",
-        name: "Norrlands Nation",
-        nickname: "Norrlands Nation",
+        id: 'norrlands',
+        name: 'Norrlands Nation',
+        nickname: 'Norrlands Nation',
         latitude: 59.856227,
         longitude: 17.6378425,
-        logo: require("../img/png/norrlands/norrlandslogga.png"),
+        logo: require('../img/png/norrlands/norrlandslogga.png'),
     },
     {
-        id: "vdala",
-        name: "Västmanlands-Dala Nation",
+        id: 'vdala',
+        name: 'Västmanlands-Dala Nation',
         latitude: 59.86032259136127,
         longitude: 17.628939051847695,
-        nickname: "V-Dala Nation",
-        logo: require("../img/png/vdala/vdalalogga.png"),
+        nickname: 'V-Dala Nation',
+        logo: require('../img/png/vdala/vdalalogga.png'),
     },
     {
-        id: "gotlands",
-        name: "Gotlands Nation",
-        nickname: "Gotlands Nation",
+        id: 'gotlands',
+        name: 'Gotlands Nation',
+        nickname: 'Gotlands Nation',
         latitude: 59.85978279670555,
         longitude: 17.634567704542953,
-        logo: require("../img/png/gotlands/gotlandslogga.png"),
+        logo: require('../img/png/gotlands/gotlandslogga.png'),
     },
     {
-        id: "snerikes",
-        name: "Södermanlands-Nerikes Nation",
+        id: 'snerikes',
+        name: 'Södermanlands-Nerikes Nation',
         latitude: 59.8591482187301,
         longitude: 17.630697251271798,
-        nickname: "Snerikes Nation",
-        logo: require("../img/png/snerikes/snerikeslogga.png"),
+        nickname: 'Snerikes Nation',
+        logo: require('../img/png/snerikes/snerikeslogga.png'),
     },
     {
-        id: "kalmars",
-        name: "Kalmars Nation",
-        nickname: "Kalmars Nation",
+        id: 'kalmars',
+        name: 'Kalmars Nation',
+        nickname: 'Kalmars Nation',
         latitude: 59.859106565445636,
         longitude: 17.62706918384986,
-        logo: require("../img/png/kalmars/kalmarslogga.png"),
+        logo: require('../img/png/kalmars/kalmarslogga.png'),
     },
     {
-        id: "ostgotas",
-        name: "Östgöta Nation",
+        id: 'ostgotas',
+        name: 'Östgöta Nation',
         latitude: 59.85521276094654,
         longitude: 17.637959775927737,
-        nickname: "ÖG-Nations",
-        logo: require("../img/png/ostgotas/ostgotalogga.png"),
+        nickname: 'ÖG-Nations',
+        logo: require('../img/png/ostgotas/ostgotalogga.png'),
     },
     {
-        id: "smalands",
-        name: "Smålands Nation",
+        id: 'smalands',
+        name: 'Smålands Nation',
         latitude: 59.85929959538165,
         longitude: 17.63123586514085,
-        nickname: "Smålands Nation",
-        logo: require("../img/png/smalands/smalandslogga.png"),
+        nickname: 'Smålands Nation',
+        logo: require('../img/png/smalands/smalandslogga.png'),
     },
     {
-        id: "stockholms",
+        id: 'stockholms',
         latitude: 59.856731614930446,
         longitude: 17.63419919045771,
-        name: "Stockholms Nation",
-        nickname: "Stocken",
-        logo: require("../img/png/stockholms/stockholmslogga.png"),
+        name: 'Stockholms Nation',
+        nickname: 'Stocken',
+        logo: require('../img/png/stockholms/stockholmslogga.png'),
     },
     {
-        id: "uplands",
-        name: "Uplands Nation",
+        id: 'uplands',
+        name: 'Uplands Nation',
         latitude: 59.85992220628584,
         longitude: 17.629458535888315,
-        nickname: "Uplands Nation",
-        logo: require("../img/png/uplands/uplandslogga.png"),
+        nickname: 'Uplands Nation',
+        logo: require('../img/png/uplands/uplandslogga.png'),
     },
     {
-        id: "varmlands",
-        name: "Värmlands Nation",
+        id: 'varmlands',
+        name: 'Värmlands Nation',
         latitude: 59.85715355297,
         longitude: 17.633830648196177,
-        nickname: "Värmlands Nation",
-        logo: require("../img/png/varmlands/varmlandslogga.png"),
+        nickname: 'Värmlands Nation',
+        logo: require('../img/png/varmlands/varmlandslogga.png'),
     },
     {
-        id: "vastgotas",
-        name: "Västgötas Nation",
-        nickname: "Västgötas Nation",
+        id: 'vastgotas',
+        name: 'Västgötas Nation',
+        nickname: 'Västgötas Nation',
         latitude: 59.85686289838122,
         longitude: 17.638651455173623,
-        logo: require("../img/png/vastgotas/vastgotalogga.png"),
+        logo: require('../img/png/vastgotas/vastgotalogga.png'),
     },
     {
-        id: "goteborgs",
-        name: "Göteborgs Nation",
+        id: 'goteborgs',
+        name: 'Göteborgs Nation',
         latitude: 59.85957889713392,
         longitude: 17.63019280454616,
-        nickname: "Göteborgs Nation",
-        logo: require("../img/png/goteborgs/goteborglogga.png"),
+        nickname: 'Göteborgs Nation',
+        logo: require('../img/png/goteborgs/goteborglogga.png'),
     },
     {
-        id: "ghs",
-        name: "Gästrike-Hälsinglands Nation",
+        id: 'ghs',
+        name: 'Gästrike-Hälsinglands Nation',
         latitude: 59.85656549537542,
         longitude: 17.63670148804158,
-        nickname: "GH",
-        logo: require("../img/png/ghs/ghlogga.png"),
+        nickname: 'GH',
+        logo: require('../img/png/ghs/ghlogga.png'),
     },
-];
+]
 
-export default MapScreen;
+export default MapScreen
