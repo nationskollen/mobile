@@ -36,7 +36,7 @@ function HomeScreen({ navigation }) {
                 component={NationContent}
                 options={{ title: "Nation",
                     headerLeft: () => (
-			<RenderBackArrow screen = {'Home'}/> 
+			<RenderBackArrow nav = {navigation} screen = {'Home'}/> 
                     )
                 }}
             />
