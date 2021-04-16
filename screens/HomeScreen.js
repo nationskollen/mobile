@@ -10,7 +10,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import HomePage from "../components/Home/HomePage";
 import NationContent from "../components/Nations/NationContent";
-
+import RenderBackArrow from '../assets/Icons/backArrow.js';
 // icons
 import Ionicons from "react-native-vector-icons/Ionicons";
 
@@ -24,25 +24,19 @@ function HomeScreen({ navigation }) {
         <Stack.Navigator
             initialRouteName="Home"
             screenOptions={HeaderOptions(colors)}
-        >
+	>
             <Stack.Screen
                 name="Home"
                 component={HomePage}
                 options={{ title: "Hem" }}
-            />
-
+            >
+		    </Stack.Screen>
             <Stack.Screen
                 name="NationContent"
                 component={NationContent}
                 options={{ title: "Nation",
                     headerLeft: () => (
-                        <Ionicons 
-                            name="arrow-back" 
-                            size={28} 
-                            color="white" 
-                            onPress={() => navigation.navigate('Home')}
-                            style={{marginLeft: 15}}
-                        />
+			<RenderBackArrow screen = {'Home'}/> 
                     )
                 }}
             />
