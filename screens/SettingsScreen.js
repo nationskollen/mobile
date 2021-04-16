@@ -11,8 +11,7 @@ import SettingsPage from "../components/Settings/SettingsPage.js";
 import NotificationSettings from "../components/Settings/NotificationSettings";
 import Login from "../components/Settings/Login";
 import { nationListEx } from "./NationScreen";
-import Ionicons from "react-native-vector-icons/Ionicons";
-
+import RenderBackArrow from "../assets/Icons/backArrow.js";
 const Stack = createStackNavigator();
 /// TODO: create a local navigation stack
 /// TODO: factor out basically everything to a different file and replace it with a local stack navigator
@@ -31,17 +30,11 @@ function SettingsScreen({ navigation }) {
             />
             <Stack.Screen
                 name="NotificationSettings"
-                options={{ 
+                options={{
                     title: "Anpassa notifikationer",
                     headerLeft: () => (
-                        <Ionicons 
-                            name="arrow-back" 
-                            size={28} 
-                            color="white" 
-                            onPress={() => navigation.navigate('Settings')}
-                            style={{marginLeft: 15}}
-                        />
-                    )
+                        <RenderBackArrow nav={navigation} screen={"Settings"} />
+                    ),
                 }}
             >
                 {(props) => (
@@ -54,14 +47,12 @@ function SettingsScreen({ navigation }) {
             <Stack.Screen
                 name="Login"
                 component={Login}
-                options={{ title: "Logga in", headerLeft: () => (<Ionicons
-                    name="arrow-back" 
-                    size={28}
-                    color="white"
-                    onPress={() => navigation.navigate('Settings')}
-                    style={{marginLeft: 15}}
-                />
-                )}}
+                options={{
+                    title: "Logga in",
+                    headerLeft: () => (
+                        <RenderBackArrow nav={navigation} screen={"Settings"} />
+                    ),
+                }}
             />
         </Stack.Navigator>
     );
