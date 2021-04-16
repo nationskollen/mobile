@@ -1,21 +1,21 @@
 // This is for rendering the nation content.
-import { AntDesign } from "@expo/vector-icons";
-import { Ionicons } from "@expo/vector-icons";
-import { MaterialIcons } from "@expo/vector-icons";
-import { Octicons } from "@expo/vector-icons";
-import { useDarkMode } from "../ThemeContexts";
+import { AntDesign } from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons'
+import { MaterialIcons } from '@expo/vector-icons'
+import { Octicons } from '@expo/vector-icons'
+import { useDarkMode } from '../ThemeContexts'
 
-import { useNavigation } from "@react-navigation/core";
-import React from "react";
+import { useNavigation } from '@react-navigation/core'
+import React from 'react'
 
 /// Renders food components
-import RenderFoodMenu from "./NationContentComponents/FoodComponents";
+import RenderFoodMenu from './NationContentComponents/FoodComponents'
 /// Renders event components
-import RenderEventsMenu from "./NationContentComponents/EventComponents";
+import RenderEventsMenu from './NationContentComponents/EventComponents'
 /// Renders activity bar
-import RenderActivityBar from "./NationContentComponents/ActivityLevel";
+import RenderActivityBar from './NationContentComponents/ActivityLevel'
 
-import { useTheme } from "@react-navigation/native";
+import { useTheme } from '@react-navigation/native'
 import {
     ScrollView,
     View,
@@ -26,10 +26,10 @@ import {
     SafeAreaView,
     Platform,
     StatusBar,
-} from "react-native";
+} from 'react-native'
 
 export default function NationContent({ route }) {
-    const { nation } = route.params;
+    const { nation } = route.params
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
@@ -40,12 +40,12 @@ export default function NationContent({ route }) {
                 <RenderEventsMenu nation={nation}></RenderEventsMenu>
             </ScrollView>
         </SafeAreaView>
-    );
+    )
 }
 
 //renders top header to screen
 function RenderHeader({ logo }) {
-    const navigation = useNavigation();
+    const navigation = useNavigation()
 
     return (
         <SafeAreaView style={headerStyles.header}>
@@ -61,14 +61,14 @@ function RenderHeader({ logo }) {
 
             {/*nation logo as header*/}
         </SafeAreaView>
-    );
+    )
 }
 
 //renders information and title of nation. Can be used in maps too!
 function RenderNationInfo({ nation }) {
     //TODO: add openinghours and address to nation object
     //TODO: add color theme to nation, so that icons can match
-    const { colors } = useTheme();
+    const { colors } = useTheme()
     return (
         <SafeAreaView>
             <View
@@ -78,12 +78,7 @@ function RenderNationInfo({ nation }) {
                 ]}
             >
                 <View style={nationStyles.nationNameWrapper}>
-                    <Text
-                        style={[
-                            nationStyles.nationName,
-                            { color: colors.text },
-                        ]}
-                    >
+                    <Text style={[nationStyles.nationName, { color: colors.text }]}>
                         {nation.nickname}
                     </Text>
                     <View
@@ -102,17 +97,8 @@ function RenderNationInfo({ nation }) {
                         { backgroundColor: colors.backgroundExtra },
                     ]}
                 >
-                    <AntDesign
-                        name="clockcircle"
-                        size={20}
-                        color={colors.text}
-                    />
-                    <Text
-                        style={[
-                            nationStyles.openinghoursTitle,
-                            { color: colors.text },
-                        ]}
-                    >
+                    <AntDesign name="clockcircle" size={20} color={colors.text} />
+                    <Text style={[nationStyles.openinghoursTitle, { color: colors.text }]}>
                         Öppettider
                     </Text>
                 </View>
@@ -124,10 +110,7 @@ function RenderNationInfo({ nation }) {
                     ]}
                 >
                     <View
-                        style={[
-                            nationStyles.lineSymbol,
-                            { backgroundColor: colors.text },
-                        ]}
+                        style={[nationStyles.lineSymbol, { backgroundColor: colors.text }]}
                     ></View>
                     <View
                         style={[
@@ -135,20 +118,10 @@ function RenderNationInfo({ nation }) {
                             { backgroundColor: colors.backgroundExtra },
                         ]}
                     >
-                        <Text
-                            style={[
-                                nationStyles.openinghoursText,
-                                { color: colors.text },
-                            ]}
-                        >
+                        <Text style={[nationStyles.openinghoursText, { color: colors.text }]}>
                             Mån-Fre: 10:00-20:00
                         </Text>
-                        <Text
-                            style={[
-                                nationStyles.openinghoursText,
-                                { color: colors.text },
-                            ]}
-                        >
+                        <Text style={[nationStyles.openinghoursText, { color: colors.text }]}>
                             Lör-Sön: Stängt
                         </Text>
                     </View>
@@ -156,33 +129,24 @@ function RenderNationInfo({ nation }) {
 
                 <View style={nationStyles.mapWrapper}>
                     <View style={nationStyles.mapSymbolWrapper}>
-                        <MaterialIcons
-                            name="location-on"
-                            size={16}
-                            color="white"
-                        />
+                        <MaterialIcons name="location-on" size={16} color="white" />
                     </View>
                     <View style={nationStyles.mapSymbolCircle}></View>
                     <Text
-                        style={[
-                            nationStyles.mapAddress,
-                            { color: colors.text },
-                        ]}
+                        style={[nationStyles.mapAddress, { color: colors.text }]}
                         onPress={() =>
                             Alert.alert(
-                                "Öppna i kartor?",
-                                "Tryck OK för att öppna addressen i kartor",
+                                'Öppna i kartor?',
+                                'Tryck OK för att öppna addressen i kartor',
                                 [
                                     {
-                                        text: "Avbryt",
-                                        onPress: () =>
-                                            console.log("Avbryt Pressed"),
-                                        style: "Avbryt",
+                                        text: 'Avbryt',
+                                        onPress: () => console.log('Avbryt Pressed'),
+                                        style: 'Avbryt',
                                     },
                                     {
-                                        text: "OK",
-                                        onPress: () =>
-                                            console.log("OK Pressed"),
+                                        text: 'OK',
+                                        onPress: () => console.log('OK Pressed'),
                                     },
                                 ],
                                 {
@@ -198,18 +162,18 @@ function RenderNationInfo({ nation }) {
 
             <RenderActivityBar nation={nation}></RenderActivityBar>
         </SafeAreaView>
-    );
+    )
 }
 
 //styles for header
 const headerStyles = StyleSheet.create({
     header: {
-        alignSelf: "stretch", // 100% width
+        alignSelf: 'stretch', // 100% width
         height: 50,
-        backgroundColor: "white",
-        borderBottomColor: "#E0E0E0",
+        backgroundColor: 'white',
+        borderBottomColor: '#E0E0E0',
         borderBottomWidth: 1,
-        justifyContent: "center",
+        justifyContent: 'center',
     },
 
     arrowBack: {
@@ -220,7 +184,7 @@ const headerStyles = StyleSheet.create({
 
     logoWrapper: {
         // alignSelf: "flex-end",
-        marginLeft: "5%",
+        marginLeft: '5%',
         //position: "absolute",
         width: 50,
         height: 50,
@@ -228,52 +192,52 @@ const headerStyles = StyleSheet.create({
     },
 
     logo: {
-        width: "100%",
-        height: "100%",
+        width: '100%',
+        height: '100%',
     },
-});
+})
 
 //styles for nation info
 const nationStyles = StyleSheet.create({
     nationInfoWrapper: {
-        backgroundColor: "#F3F3F3",
+        backgroundColor: '#F3F3F3',
         height: 220, //TODO: change to not fixed size
-        width: "100%",
+        width: '100%',
     },
 
     nationNameWrapper: {
-        paddingTop: "2%",
-        flexDirection: "row",
-        paddingLeft: "7%",
-        alignItems: "center",
+        paddingTop: '2%',
+        flexDirection: 'row',
+        paddingLeft: '7%',
+        alignItems: 'center',
     },
 
     nationName: {
         fontSize: 26,
-        fontWeight: "bold",
+        fontWeight: 'bold',
     },
 
     openinghoursWrapper: {
-        flexDirection: "row",
-        marginLeft: "6.5%",
+        flexDirection: 'row',
+        marginLeft: '6.5%',
         marginTop: 6,
     },
 
     clockSymbolWrapper: {
-        flexDirection: "row",
+        flexDirection: 'row',
         marginTop: 15,
-        marginLeft: "7%",
-        alignItems: "center",
+        marginLeft: '7%',
+        alignItems: 'center',
     },
 
     openinghoursTitle: {
-        fontWeight: "bold",
+        fontWeight: 'bold',
         fontSize: 14,
         marginLeft: 10,
     },
 
     openinghoursTextWrapper: {
-        justifyContent: "space-evenly",
+        justifyContent: 'space-evenly',
         marginLeft: 10,
     },
 
@@ -286,39 +250,39 @@ const nationStyles = StyleSheet.create({
         width: 4,
         height: 50,
         borderRadius: 5,
-        backgroundColor: "black",
+        backgroundColor: 'black',
     },
 
     mapWrapper: {
-        flexDirection: "row",
-        alignItems: "center",
+        flexDirection: 'row',
+        alignItems: 'center',
         marginTop: 15,
     },
 
     mapSymbolWrapper: {
-        position: "absolute",
-        marginLeft: "7.5%",
+        position: 'absolute',
+        marginLeft: '7.5%',
 
         zIndex: 2,
-        elevation: Platform.OS === "android" ? 2 : 0,
+        elevation: Platform.OS === 'android' ? 2 : 0,
     },
 
     mapSymbolCircle: {
         width: 20,
         height: 20,
         borderRadius: 50,
-        backgroundColor: "black",
-        position: "absolute",
-        left: "7%",
+        backgroundColor: 'black',
+        position: 'absolute',
+        left: '7%',
 
         zIndex: 1,
-        elevation: Platform.OS === "android" ? 1 : 0,
+        elevation: Platform.OS === 'android' ? 1 : 0,
     },
 
     mapAddress: {
-        marginLeft: "14%",
+        marginLeft: '14%',
         fontSize: 14,
-        fontWeight: "bold",
+        fontWeight: 'bold',
         zIndex: 3,
     },
-});
+})

@@ -5,7 +5,8 @@
         "android": "NODE_ENV=development expo start --android",
         "ios": "NODE_ENV=development expo start --ios",
         "web": "NODE_ENV=development expo start --web",
-        "eject": "expo eject"
+        "eject": "expo eject",
+    "format": "npx prettier --write ."
     },
     "dependencies": {
         "@ant-design/icons": "^4.6.2",
