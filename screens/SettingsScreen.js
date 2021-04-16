@@ -11,6 +11,7 @@ import SettingsPage from "../components/Settings/SettingsPage.js";
 import NotificationSettings from "../components/Settings/NotificationSettings";
 import Login from "../components/Settings/Login";
 import { nationListEx } from "./NationScreen";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 const Stack = createStackNavigator();
 /// TODO: create a local navigation stack
@@ -30,7 +31,18 @@ function SettingsScreen({ navigation }) {
             />
             <Stack.Screen
                 name="NotificationSettings"
-                options={{ title: "Anpassa notifikationer" }}
+                options={{ 
+                    title: "Anpassa notifikationer",
+                    headerLeft: () => (
+                        <Ionicons 
+                            name="arrow-back" 
+                            size={28} 
+                            color="white" 
+                            onPress={() => navigation.navigate('Settings')}
+                            style={{marginLeft: 15}}
+                        />
+                    )
+                }}
             >
                 {(props) => (
                     <NotificationSettings
@@ -42,7 +54,14 @@ function SettingsScreen({ navigation }) {
             <Stack.Screen
                 name="Login"
                 component={Login}
-                options={{ title: "Logga in" }}
+                options={{ title: "Logga in", headerLeft: () => (<Ionicons
+                    name="arrow-back" 
+                    size={28}
+                    color="white"
+                    onPress={() => navigation.navigate('Settings')}
+                    style={{marginLeft: 15}}
+                />
+                )}}
             />
         </Stack.Navigator>
     );

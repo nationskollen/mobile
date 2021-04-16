@@ -11,10 +11,13 @@ import { createStackNavigator } from "@react-navigation/stack";
 import HomePage from "../components/Home/HomePage";
 import NationContent from "../components/Nations/NationContent";
 
+// icons
+import Ionicons from "react-native-vector-icons/Ionicons";
+
 const Stack = createStackNavigator();
 /// TODO: Create a local stack
 /// TODO: Import appropriate components (screens)
-function HomeScreen() {
+function HomeScreen({ navigation }) {
     const { colors } = useTheme();
 
     return (
@@ -31,7 +34,17 @@ function HomeScreen() {
             <Stack.Screen
                 name="NationContent"
                 component={NationContent}
-                options={{ title: "Nation" }}
+                options={{ title: "Nation",
+                    headerLeft: () => (
+                        <Ionicons 
+                            name="arrow-back" 
+                            size={28} 
+                            color="white" 
+                            onPress={() => navigation.navigate('Home')}
+                            style={{marginLeft: 15}}
+                        />
+                    )
+                }}
             />
         </Stack.Navigator>
     );
