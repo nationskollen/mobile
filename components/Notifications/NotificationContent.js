@@ -1,20 +1,25 @@
 // This component is used for rendering each notification.
 
-import React from 'react'
-import { View, Text, StyleSheet, Image, ScrollView } from 'react-native'
-import { useTheme } from '@react-navigation/native'
+import React, {useState, } from 'react'
+import { View, Text, StyleSheet, Image, ScrollView, FlatList} from 'react-native'
+import { useTheme, } from '@react-navigation/native'
 
 function NotificationsContent({ notificationList }) {
+    const [nationArr, changeState] = useState(notificationList);
+    console.log(nationArr[0].name)
     return (
+
         <ScrollView>
-            {notificationList.map((notificationX, index) => (
-                <RenderNotification key={index} notification={notificationX} />
-            ))}
+	    <FlatList 
+	    data = {Object.keys(nationArr)}
+		renderItem = {({item}) =>(<RenderNotification notification = {nationArr[item].name}/>) }
+	    />
         </ScrollView>
     )
 }
 
 function RenderNotification({ notification }) {
+    console.log(notification)
     const { nation, title, text } = notification
 
     //TODO: replace publishTime with calculated "x minutes/hours/days ago"

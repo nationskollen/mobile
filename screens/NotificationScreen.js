@@ -84,12 +84,17 @@ const notification6 = new Notification(
 //can be replaced with get-function
 //notifications should be sorted by published (t)
 const sortedNotifications = [
-    notification2,
-    notification1,
-    notification3,
-    notification4,
-    notification5,
-    notification6,
+    {
+        name: notification2,
+        key: '1',
+    },
+    { name: notification1, key: '2' },
+
+    { name: notification3, key: '3' },
+    { name: notification4, key: '4' },
+    { name: notification6, key: '5' },
+
+    { name: notification6, key: '6' },
 ]
 
 export default NotificationScreen
