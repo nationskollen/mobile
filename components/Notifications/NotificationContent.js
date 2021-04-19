@@ -1,25 +1,50 @@
 // This component is used for rendering each notification.
 
-import React, {useState, } from 'react'
-import { View, Text, StyleSheet, Image, ScrollView, FlatList} from 'react-native'
-import { useTheme, } from '@react-navigation/native'
+import React, { useState, useEffect } from 'react'
+import { View, Text, StyleSheet, Image, ScrollView, FlatList } from 'react-native'
+import { useTheme } from '@react-navigation/native'
+import { useApi } from '@dsp-krabby/sdk/lib/react'
+import { useAsync } from 'react-async-hook'
+import { Loading } from '../../assets/styled/styledComponents'
 
 function NotificationsContent({ notificationList }) {
-    const [nationArr, changeState] = useState(notificationList);
-    console.log(nationArr[0].name)
-    return (
+    const api = useApi()
+    const { loading, result, error, execute } = useAsync(api.nations.all, [])
+    const [nationArr, changeState] = useState(notificationList)
+    const [page, setPage] = useState(1)
+    const [isLoading, setLoading] = useState(1)
+    const [refreshing, setRefreshing] = useState(false)
+    const [shouldRefresh, setShouldRefresh] = useState(false)
+    // Used for loading new notifications on bottom scroll
 
-        <ScrollView>
-	    <FlatList 
-	    data = {Object.keys(nationArr)}
-		renderItem = {({item}) =>(<RenderNotification notification = {nationArr[item].name}/>) }
-	    />
-        </ScrollView>
+    function loadPage(pageNumber = page) {
+        setLoading(true)
+        setPage(pageNumber + 1)
+        // Just a holder for when we have data in the DB
+        setTimeout(() => {
+            setLoading(false)
+        }, 500)
+    }
+
+    function loadNewNotifications() {
+        setRefreshing(true)
+        loadPage(1)
+        setRefreshing(false)
+    }
+    return (
+        <FlatList
+            data={Object.keys(nationArr)}
+            renderItem={({ item }) => <RenderNotification notification={nationArr[item].name} />}
+            onEndReached={() => loadPage()}
+            onEndReachedThreshold={0.1}
+            ListFooterComponent={isLoading && <Loading />}
+            onRefresh={loadNewNotifications}
+            refreshing={refreshing}
+        />
     )
 }
 
 function RenderNotification({ notification }) {
-    console.log(notification)
     const { nation, title, text } = notification
 
     //TODO: replace publishTime with calculated "x minutes/hours/days ago"

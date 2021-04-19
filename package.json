@@ -6,7 +6,7 @@
         "ios": "NODE_ENV=development expo start --ios",
         "web": "NODE_ENV=development expo start --web",
         "eject": "expo eject",
-    "format": "npx prettier --write ."
+        "format": "npx prettier --write ."
     },
     "dependencies": {
         "@ant-design/icons": "^4.6.2",
@@ -35,6 +35,7 @@
         "react-native-snap-carousel": "^3.9.1",
         "react-native-vector-icons": "^8.1.0",
         "react-native-web": "~0.13.12",
+        "styled-components": "^5.2.3",
         "toggle-switch-react-native": "^3.2.0"
     },
     "devDependencies": {
