@@ -1,8 +1,7 @@
 import React from 'react'
 import 'react-native-gesture-handler'
 import Constants from 'expo-constants'
-import { Client } from '@dsp-krabby/sdk'
-import { Provider } from '@dsp-krabby/sdk/lib/react'
+import { Provider } from '@dsp-krabby/sdk'
 import { ThemeProvider } from './components/ThemeContexts'
 
 import Footer from './components/Footer'
@@ -26,12 +25,10 @@ if (Constants.manifest.extra.development) {
     }
 }
 
-const client = new Client(config)
-
 /// Creates a navigation container in which every screen is "positioned"
 function App() {
     return (
-        <Provider client={client}>
+        <Provider config={config}>
             <ThemeProvider>
                 <Footer />
             </ThemeProvider>
