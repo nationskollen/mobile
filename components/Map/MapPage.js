@@ -40,6 +40,7 @@ export default function RenderMap({ nationData }) {
                 }}
                 onPress={() => onMapPressed()}
                 customMapStyle={selectTheme}
+                provider={PROVIDER_GOOGLE}
             >
                 {nationData.map((marker, index) => (
                     <Marker
