@@ -75,7 +75,7 @@ export const ThemeProvider = ({ children }) => {
     const [theme, setTheme] = useState(LightTheme)
 
     const updateTheme = (dark: boolean) => {
-        setDarkMode(true)
+        setDarkMode(dark)
         setTheme(dark ? DarkTheme : LightTheme)
     }
 
