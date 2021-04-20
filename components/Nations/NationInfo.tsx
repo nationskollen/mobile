@@ -4,19 +4,19 @@ import {
     StyleSheet,
     Image,
     Alert,
-    Platform,
 } from 'react-native'
 import React from 'react'
 
 import { useTheme } from '../ThemeContext'
-import { Ionicons, MaterialIcons } from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons'
 
 interface Props {
     nation: any
+    backgroundColor?: string
 }
 
 //renders information and title of nation. Can be used in maps too!
-const NationInfo: React.FC<Props> = ({ nation }) => {
+const NationInfo: React.FC<Props> = ({ nation, backgroundColor }) => {
     //TODO: add openinghours and address to nation object
     //TODO: add color theme to nation, so that icons can match
     const { colors } = useTheme()
@@ -25,7 +25,7 @@ const NationInfo: React.FC<Props> = ({ nation }) => {
         <View
             style={[
                 styles.nationInfoWrapper,
-                { backgroundColor: colors.backgroundExtra },
+                { backgroundColor: backgroundColor ?? colors.backgroundExtra },
             ]}
         >
             <View style={styles.nationNameWrapper}>
@@ -38,7 +38,6 @@ const NationInfo: React.FC<Props> = ({ nation }) => {
             <View
                 style={[
                     styles.clockSymbolWrapper,
-                    { backgroundColor: colors.backgroundExtra },
                 ]}
             >
                 <Ionicons name="time-sharp" size={20} color={colors.text} />
@@ -47,20 +46,12 @@ const NationInfo: React.FC<Props> = ({ nation }) => {
                 </Text>
             </View>
 
-            <View
-                style={[
-                    styles.openinghoursWrapper,
-                    { backgroundColor: colors.backgroundExtra },
-                ]}
-            >
+            <View style={styles.openinghoursWrapper}>
                 <View
                     style={[styles.lineSymbol, { backgroundColor: colors.text }]}
                 ></View>
                 <View
-                    style={[
-                        styles.openinghoursTextWrapper,
-                        { backgroundColor: colors.backgroundExtra },
-                    ]}
+                    style={styles.openinghoursTextWrapper}
                 >
                     <Text style={[styles.openinghoursText, { color: colors.text }]}>
                         Mån-Fre: 10:00-20:00

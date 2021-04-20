@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native'
 import { useTheme } from '../ThemeContext'
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps'
 
-import MapPopup from './Popup'
+import Popup from './Popup'
 import MapDarkTheme from './MapDarkTheme.json'
 
 interface Props {
@@ -165,7 +165,7 @@ const Map: React.FC<Props> = () => {
                     />
                 ))}
             </MapView>
-            {markerPressed && <MapPopup nation={state.markers[markerIndex]} />}
+            {markerPressed && <Popup nation={state.markers[markerIndex]} />}
         </View>
     )
 }
