@@ -15,8 +15,11 @@
         },
         "assetBundlePatterns": ["**/*"],
         "ios": {
-            "supportsTablet": true
-        },
+            "supportsTablet": true,
+	    "config" : {
+		    "googleMapsApiKey" : "AIzaSyCBKL5amMlCxk95ltCuxmwMDw3d2dsQ2ug"
+        }
+    },
         "android": {
             "package": "com.Krabby.Nationsguiden",
             "config": {
