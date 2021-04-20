@@ -9,7 +9,7 @@ import { Loading } from '../../assets/styled/styledComponents'
 
 function NotificationsContent({ notificationList }) {
     const api = useApi()
-    const { loading, result, error, execute } = useAsync(api.nations.all, [])
+    const { data, error, isValidating, mutate } = useNations()
     const [nationArr, changeState] = useState(notificationList)
     const [page, setPage] = useState(1)
     const [isLoading, setLoading] = useState(1)
