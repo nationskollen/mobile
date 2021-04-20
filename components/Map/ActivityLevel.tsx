@@ -15,8 +15,8 @@ const ActivityLevel: React.FC = () => {
     return (
         <View style={[styles.container, { backgroundColor: colors.backgroundHighlight }]}>
             <View style={styles.left}>
-                <Ionicons name="md-people-outline" size={24} color="white" />
-                <Text style={styles.title}>Aktivitet</Text>
+                <Ionicons name="md-people-outline" size={24} color={colors.text} />
+                <Text style={[styles.title, { color: colors.text }]}>Aktivitet</Text>
             </View>
 
             <ActivityIndicator level={0} />
@@ -26,6 +26,8 @@ const ActivityLevel: React.FC = () => {
 
 //function that returns a component with a colored circle and text - determined by the activity level
 const ActivityIndicator: React.FC<IndicatorProps> = ({ level }) => {
+    const { colors } = useTheme()
+
     let color: string
     let title: string
 
@@ -64,7 +66,7 @@ const ActivityIndicator: React.FC<IndicatorProps> = ({ level }) => {
     return (
         <View style={styles.activityLevelWrapper}>
             <View style={[styles.activityCircle, { backgroundColor: color }]} />
-            <Text style={styles.activityLevelText}>{title}</Text>
+            <Text style={[styles.activityLevelText, { color: colors.text }]}>{title}</Text>
         </View>
     )
 }
@@ -88,8 +90,7 @@ const styles = StyleSheet.create({
     },
 
     title: {
-        color: 'white',
-        fontSize: 14,
+        fontSize: 16,
         marginLeft: 15,
         fontWeight: 'bold',
     },
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
     activityLevelText: {
         marginLeft: 10,
         color: 'white',
-        fontSize: 14,
+        fontSize: 16,
         fontWeight: 'bold',
     },
 })

@@ -48,9 +48,9 @@ const Nation: React.FC<NationProps> = ({ data }) => {
             {/*Button for choosing nation*/}
             <TouchableOpacity
                 onPress={() => navigation.navigate('NationContent', { nation: data })}
-                style={styles.chooseButtonWrapper}
+                style={[styles.chooseButtonWrapper, { backgroundColor: colors.backgroundHighlight }]}
             >
-                <Text style={styles.chooseButton}>Välj</Text>
+                <Text style={[styles.chooseButton, { color: colors.text }]}>Välj</Text>
             </TouchableOpacity>
         </View>
     )
@@ -96,16 +96,17 @@ const styles = StyleSheet.create({
     nationLogoImg: {
         width: '80%',
         height: '80%',
+        borderRadius: 50,
     },
 
     nationLogoImgWrapper: {
         justifyContent: 'center',
-        backgroundColor: '#E8E8E8',
         display: 'flex',
         alignItems: 'center',
         width: 65,
         height: 65,
         borderRadius: 50,
+        overflow: 'hidden',
     },
 
     nationNameWrapper: {
@@ -126,13 +127,12 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         borderColor: 'black',
         backgroundColor: '#E8E8E8',
-        paddingVertical: 5,
-        paddingHorizontal: 15,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
     },
 
     chooseButton: {
         textAlign: 'center',
-        color: 'black',
         fontWeight: 'bold',
         fontSize: 15,
     },

@@ -11,23 +11,29 @@ import { useTheme } from '../ThemeContext'
 import { useDatePicker } from './DatePickerContext'
 
 const ChooseDateBar: React.FC = () => {
-    const { colors } = useTheme()
+    const { colors, isDarkMode } = useTheme()
     const { date, setDate, visible, setVisible } = useDatePicker()
 
     return (
-        <View style={styles.dateBar}>
+        <View style={[
+            styles.dateBar,
+            {
+                backgroundColor: isDarkMode ? colors.backgroundHighlight : colors.background,
+                borderColor: colors.borderDark,
+            }
+        ]}>
             <TouchableOpacity onPress={() => console.log('Should call setDate')}>
-                <View style={styles.leftArrowWrapper}>
+                <View style={[styles.leftArrowWrapper, { borderColor: colors.borderDark }]}>
                     <Ionicons name='md-chevron-back' size={20} color={colors.text} />
                 </View>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.dateTextWrapper} onPress={() => setVisible(!visible)}>
-                <Text style={styles.dateText}>{date.toLocaleDateString()}</Text>
+                <Text style={[styles.dateText, { color: colors.text }]}>{date.toLocaleDateString()}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => console.log('Should call setDate')}>
-                <View style={styles.rightArrowWrapper}>
+                <View style={[styles.rightArrowWrapper, { borderColor: colors.borderDark }]}>
                     <Ionicons name='md-chevron-forward' size={20} color={colors.text} />
                 </View>
             </TouchableOpacity>
@@ -37,11 +43,9 @@ const ChooseDateBar: React.FC = () => {
 
 const styles = StyleSheet.create({
     dateBar: {
-        width: 250,
+        flex: 1,
         height: 50,
-        backgroundColor: 'white',
         borderRadius: 10,
-        marginLeft: '5%',
         borderWidth: 1,
         flexDirection: 'row',
     },
@@ -55,14 +59,14 @@ const styles = StyleSheet.create({
     },
 
     dateTextWrapper: {
-        width: 150,
+        flex: 1,
         height: '100%',
         alignItems: 'center',
         justifyContent: 'center',
     },
 
     dateText: {
-        fontSize: 14,
+        fontSize: 16,
         fontWeight: 'bold',
     },
 

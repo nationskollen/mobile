@@ -8,8 +8,8 @@ import {
 } from 'react-native'
 import React from 'react'
 
-import { Ionicons } from '@expo/vector-icons'
 import { useTheme } from '../ThemeContext'
+import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 
 interface Props {
     nation: any
@@ -29,7 +29,7 @@ const NationInfo: React.FC<Props> = ({ nation }) => {
             ]}
         >
             <View style={styles.nationNameWrapper}>
-                <Image source={{ uri: nation.icon_img_src }} style={styles.logo} />
+                {nation.icon_img_src && <Image source={{ uri: nation.icon_img_src }} style={styles.logo} />}
                 <Text style={[styles.nationName, { color: colors.text }]}>
                     {nation.name}
                 </Text>
@@ -70,6 +70,34 @@ const NationInfo: React.FC<Props> = ({ nation }) => {
                     </Text>
                 </View>
             </View>
+
+            <View style={styles.mapWrapper}>
+                <Ionicons name='map' size={16} color={colors.text} />
+                <Text
+                    style={[styles.mapAddress, { color: colors.text }]}
+                    onPress={() =>
+                        Alert.alert(
+                            'Öppna i kartor?',
+                            'Tryck OK för att öppna addressen i kartor',
+                            [
+                                {
+                                    text: 'Avbryt',
+                                    onPress: () => console.log('Avbryt Pressed'),
+                                },
+                                {
+                                    text: 'OK',
+                                    onPress: () => console.log('OK Pressed'),
+                                },
+                            ],
+                            {
+                                cancelable: false,
+                            }
+                        )
+                    }
+                >
+                    S:t Larsgatan 13, Uppsala, 75311
+                </Text>
+            </View>
         </View>
     )
 }
@@ -83,38 +111,34 @@ const styles = StyleSheet.create({
     },
 
     logoWrapper: {
-        marginLeft: '5%',
         borderRadius: 50,
     },
 
     nationInfoWrapper: {
         width: '100%',
-        paddingTop: 15,
+        paddingTop: 25,
         paddingBottom: 30,
+        paddingHorizontal: 20,
     },
 
     nationNameWrapper: {
-        paddingTop: '2%',
         flexDirection: 'row',
-        paddingLeft: '7%',
         alignItems: 'center',
     },
 
     nationName: {
-        fontSize: 26,
+        fontSize: 20,
         fontWeight: 'bold',
     },
 
     openinghoursWrapper: {
         flexDirection: 'row',
-        marginLeft: '6.5%',
         marginTop: 6,
     },
 
     clockSymbolWrapper: {
         flexDirection: 'row',
         marginTop: 15,
-        marginLeft: '7%',
         alignItems: 'center',
     },
 
@@ -126,15 +150,15 @@ const styles = StyleSheet.create({
 
     openinghoursTextWrapper: {
         justifyContent: 'space-evenly',
-        marginLeft: 10,
+        marginLeft: 20,
     },
 
     openinghoursText: {
-        fontSize: 12,
+        fontSize: 14,
     },
 
     lineSymbol: {
-        marginLeft: 10,
+        marginLeft: 7,
         width: 4,
         height: 50,
         borderRadius: 5,
@@ -144,34 +168,13 @@ const styles = StyleSheet.create({
     mapWrapper: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: 15,
-    },
-
-    mapSymbolWrapper: {
-        position: 'absolute',
-        marginLeft: '7.5%',
-
-        zIndex: 2,
-        elevation: Platform.OS === 'android' ? 2 : 0,
-    },
-
-    mapSymbolCircle: {
-        width: 20,
-        height: 20,
-        borderRadius: 50,
-        backgroundColor: 'black',
-        position: 'absolute',
-        left: '7%',
-
-        zIndex: 1,
-        elevation: Platform.OS === 'android' ? 1 : 0,
+        marginTop: 10,
     },
 
     mapAddress: {
-        marginLeft: '14%',
         fontSize: 14,
         fontWeight: 'bold',
-        zIndex: 3,
+        marginLeft: 15,
     },
 })
 

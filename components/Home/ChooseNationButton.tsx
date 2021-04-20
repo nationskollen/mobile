@@ -6,6 +6,7 @@ import {
 } from 'react-native'
 import React from 'react'
 
+import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 
 function handleNationButtonPress() {
@@ -14,9 +15,11 @@ function handleNationButtonPress() {
 
 //renders button that should sho choose-nation content when pressed
 const ChooseNationButton = () => {
+    const { colors } = useTheme()
+
     return (
         <TouchableOpacity onPress={handleNationButtonPress}>
-            <View style={styles.nationButton}>
+            <View style={[styles.nationButton, { backgroundColor: colors.primary }]}>
                 <Text style={styles.nationButtonText}>Nation</Text>
                 <Ionicons name='md-chevron-down' size={20} color='white' />
             </View>
@@ -28,8 +31,7 @@ const styles = StyleSheet.create({
     nationButton: {
         height: 50,
         width: 100,
-        backgroundColor: '#71002E',
-        marginHorizontal: '6%',
+        marginLeft: 15,
         borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center',

@@ -15,6 +15,7 @@ export interface ThemeColors {
     backgroundHighlight: string
     card: string,
     border: string
+    borderDark: string
     text: string
     primaryText: string
     focusedText: string
@@ -37,6 +38,7 @@ const LightTheme: Theme = {
         backgroundHighlight: '#e2e2e2',
         card: '#fff',
         border: '#f1f1f1',
+        borderDark: '#ccc',
         text: '#000000',
         primaryText: '#71002E',
         focusedText: 'white',
@@ -55,6 +57,7 @@ const DarkTheme: Theme = {
         backgroundHighlight: '#262430',
         card: '#0a090c',
         border: '#17161c',
+        borderDark: '#3d3b49',
         text: '#d4d4d4',
         primaryText: '#ef005f',
         focusedText: 'white',
