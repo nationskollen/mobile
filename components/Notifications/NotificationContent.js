@@ -1,16 +1,43 @@
 // This component is used for rendering each notification.
 
-import React from 'react'
-import { View, Text, StyleSheet, Image, ScrollView } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { View, Text, StyleSheet, Image, ScrollView, FlatList } from 'react-native'
 import { useTheme } from '@react-navigation/native'
-
+import { RenderBottomLoadingCircle } from '../../assets/styled/styledComponents'
+import { useNations } from '@dsp-krabby/sdk' 
 function NotificationsContent({ notificationList }) {
-    return (
-        <ScrollView>
-            {notificationList.map((notificationX, index) => (
-                <RenderNotification key={index} notification={notificationX} />
-            ))}
-        </ScrollView>
+    const { data, error, isValidating, mutate } = useNations()
+    const [nationArr, changeState] = useState(notificationList)
+    const [page, setPage] = useState(1)
+    const [isLoading, setLoading] = useState(1)
+    const [refreshing, setRefreshing] = useState(false)
+    const [shouldRefresh, setShouldRefresh] = useState(false)
+    // Used for loading new notifications on bottom scroll
+
+    function loadPage(pageNumber = page) {
+        setLoading(true)
+        setPage(pageNumber + 1)
+        // Just a holder for when we have data in the DB
+        setTimeout(() => {
+            setLoading(false)
+        }, 500)
+    }
+
+    function loadNewNotifications() {
+        setRefreshing(true)
+        loadPage(1)
+        setRefreshing(false)
+    }
+    return (<FlatList
+    data={data}
+    renderItem={(nation) => <RenderNotification notification={nation.name} />}
+ // pagination is not yet available on the server, so we can skip this for now 
+ // onEndReached={() => loadPage()}
+    onEndReachedThreshold={0.1}
+	ListFooterComponent={isValidating && <RenderBottomLoadingCircle/>}
+    onRefresh={mutate}
+    refreshing={isValidating}
+/>
     )
 }
 
