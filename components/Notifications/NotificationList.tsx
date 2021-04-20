@@ -1,20 +1,24 @@
-// This component is used for rendering each notification.
 import React from 'react'
-import { ScrollView } from 'react-native'
+import { FlatList } from 'react-native'
+import { useNations } from '@dsp-krabby/sdk'
+import { RenderBottomLoadingCircle } from '../../assets/styled/styledComponents'
+
 import Post from './Post'
 
-// TODO: Remove this and use SDK function for fetching notifications instead
-interface Props {
-    notifications: Array<any>
-}
+// TODO: Currently, this renders nations as notifications since we
+//       do not have implemented notifications on the server yet.
+//       However, this allows us to the the reload functionality.
+const NotificationsContent: React.FC = () => {
+    const { data, isValidating, mutate } = useNations()
 
-const NotificationsContent: React.FC<Props> = ({ notifications }) => {
     return (
-        <ScrollView>
-            {notifications.map((item, index) => (
-                <Post key={index} data={item} />
-            ))}
-        </ScrollView>
+        <FlatList
+            data={data}
+            renderItem={(notification: any) => <Post key={notification.index} data={notification.item} />}
+            ListFooterComponent={<RenderBottomLoadingCircle />}
+            onRefresh={mutate}
+            refreshing={isValidating}
+        />
     )
 }
 

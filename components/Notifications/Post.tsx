@@ -6,17 +6,14 @@ import { useTheme } from '../ThemeContext'
 // TODO: Remove this and use function or type from SDK
 interface Props {
     data: {
-        nation: any
-        title: string
-        text: string
-        publishTime: string
-        eventTime: string
+        name: string
+        description: string
     }
 }
 
 const Post: React.FC<Props> = ({ data }) => {
     const { colors } = useTheme()
-    const { nation, title, text, eventTime } = data
+    const { name, description } = data
 
     return (
         <View style={[styles.notificationWrapper, { borderColor: colors.border }]}>
@@ -33,8 +30,8 @@ const Post: React.FC<Props> = ({ data }) => {
                     />
                 </View>
                 <View>
-                    <Text style={[styles.nationName, { color: colors.primaryText }]}>{nation}</Text>
-                    <Text style={[styles.notificationHeader, { color: colors.text }]}>{title}</Text>
+                    <Text style={[styles.nationName, { color: colors.primaryText }]}>{name}</Text>
+                    <Text style={[styles.notificationHeader, { color: colors.text }]}>Notification</Text>
                 </View>
             </View>
             <View>
@@ -44,7 +41,7 @@ const Post: React.FC<Props> = ({ data }) => {
                 {/* <Text style={styles.publishTime}> */}
                 {/*     {publishTime} */}
                 {/* </Text> */}
-                <Text style={[styles.content, { color: colors.text }]}>{text}</Text>
+                <Text style={[styles.content, { color: colors.text }]}>{description}</Text>
                 <View
                     style={[
                         styles.eventTime,
@@ -54,7 +51,7 @@ const Post: React.FC<Props> = ({ data }) => {
                         },
                     ]}
                 >
-                    <Text style={{ color: colors.text }}>{eventTime}</Text>
+                    <Text style={{ color: colors.text }}>2021-04-20 13:37</Text>
                 </View>
             </View>
         </View>
