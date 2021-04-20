@@ -1,3 +1,4 @@
+import React from 'react'
 import { useTheme } from '../ThemeContext'
 import { StyleSheet, Text, View, Image } from 'react-native'
 import NK_LOGO from '../../assets/nationskollen_logo-do_not_change.png'

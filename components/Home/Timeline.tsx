@@ -5,19 +5,15 @@ import {
 } from 'react-native'
 import React from 'react'
 import { useEvents } from '@dsp-krabby/sdk'
+import { useDatePicker } from './DatePickerContext'
 
 import EventItem from '../Timeline/Event'
 
-interface Props {
-    date: Date
-}
-
-const Timeline: React.FC<Props> = ({date}) => {
-    // var eventList = getEventList(date)
+const Timeline: React.FC = () => {
+    const { date } = useDatePicker()
     const { data } = useEvents({ date })
 
     // TODO: render events in flatlist
-
     return (
         <View style={styles.container}>
             <ScrollView>

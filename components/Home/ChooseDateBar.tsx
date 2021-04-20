@@ -4,35 +4,29 @@ import {
     StyleSheet,
     Text,
 } from 'react-native'
+import React from 'react'
 
-import { useState } from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import { useTheme } from '../ThemeContext'
+import { useDatePicker } from './DatePickerContext'
 
-interface Props {
-    state: boolean
-    setState: React.Dispatch<React.SetStateAction<boolean>>
-}
-
-const ChooseDateBar: React.FC<Props> = ({state, setState}) => {
+const ChooseDateBar: React.FC = () => {
     const { colors } = useTheme()
-
-    //TODO: Update dynamically using new Date() etc
-    const [currentDate, setCurrentDate] = useState('Idag')
+    const { date, setDate, visible, setVisible } = useDatePicker()
 
     return (
         <View style={styles.dateBar}>
-            <TouchableOpacity onPress={() => setCurrentDate('Igår')}>
+            <TouchableOpacity onPress={() => console.log('Should call setDate')}>
                 <View style={styles.leftArrowWrapper}>
                     <Ionicons name='md-chevron-back' size={20} color={colors.text} />
                 </View>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.dateTextWrapper} onPress={()=>setState(!state)}>
-                <Text style={styles.dateText}>{currentDate}</Text>
+            <TouchableOpacity style={styles.dateTextWrapper} onPress={() => setVisible(!visible)}>
+                <Text style={styles.dateText}>{date.toLocaleDateString()}</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => setCurrentDate('Imorgon')}>
+            <TouchableOpacity onPress={() => console.log('Should call setDate')}>
                 <View style={styles.rightArrowWrapper}>
                     <Ionicons name='md-chevron-forward' size={20} color={colors.text} />
                 </View>

@@ -37,7 +37,7 @@ const Nation: React.FC<NationProps> = ({ data }) => {
                     { backgroundColor: colors.backgroundExtra },
                 ]}
             >
-                <Image source={data.icon_img_src} style={styles.nationLogoImg} />
+                <Image source={{ uri: data.icon_img_src }} style={styles.nationLogoImg} />
             </View>
 
             {/*Name of nation*/}
@@ -47,7 +47,7 @@ const Nation: React.FC<NationProps> = ({ data }) => {
 
             {/*Button for choosing nation*/}
             <TouchableOpacity
-                onPress={() => navigation.push('NationContent', { nation: data })}
+                onPress={() => navigation.navigate('NationContent', { nation: data })}
                 style={styles.chooseButtonWrapper}
             >
                 <Text style={styles.chooseButton}>Välj</Text>
@@ -70,7 +70,6 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         fontWeight: 'bold',
         fontSize: 25,
-        //fontFamily:  "Arial", //not supported by android?
         marginLeft: '5%',
         paddingBottom: '3%',
     },
@@ -81,7 +80,6 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         width: 30,
         height: 30,
-        //TODO: center the cross within itself
     },
 
     nationWrapper: {

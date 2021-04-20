@@ -5,6 +5,7 @@ import {
     StyleSheet,
     TouchableOpacity,
 } from 'react-native'
+import React from 'react'
 
 import { useTheme } from '../ThemeContext'
 import { useNation } from '@dsp-krabby/sdk'
@@ -20,49 +21,21 @@ interface HeaderProps {
     oid: number
 }
 
-const Header: React.FC<HeaderProps> = ({ oid }) => {
-    // TODO: Use types from SDK
-    const nation: any = useNation(oid)
-    const navigation = useNavigation()
-
-    return (
-        <TouchableOpacity
-            style={nationStyles.container}
-            // TODO: Push seems to only be available on StackNavigator?
-            //@ts-ignore
-            onPress={() => navigation.push('NationContent', { nation: nation })}
-        >
-            <Image source={nation.icon_img_src} style={nationStyles.logo}></Image>
-            <Text style={[nationStyles.name, { color: 'gray' }]}>{nation.name}</Text>
-        </TouchableOpacity>
-    )
-}
-
-const ReminderButton: React.FC = () => {
-    const { colors } = useTheme()
-
-    return (
-        <TouchableOpacity
-            style={[reminderStyles.container, { backgroundColor: colors.backgroundExtra }]}
-        >
-            <Ionicons name="md-notifications-outline" size={24} color={colors.text} />
-            <Text style={[reminderStyles.text, { color: colors.text }]}>Påminn mig</Text>
-        </TouchableOpacity>
-    )
-}
-
 const Event: React.FC<EventProps> = ({ event }) => {
-    const { colors } = useTheme()
+    const { colors, isDarkMode } = useTheme()
 
     return (
-        <View style={[styles.eventContainer, { backgroundColor: colors.background }]}>
+        <View style={[
+            styles.eventContainer,
+            { backgroundColor: isDarkMode ? colors.backgroundExtra : colors.background }
+        ]}>
             {/*Cover Image of event*/}
             <View>
-                {event.image != null && <Image source={event.image} style={styles.coverImg} />}
+                {event.cover_img_src && <Image source={{ uri: event.cover_img_src }} style={styles.coverImg} />}
             </View>
 
             <View style={styles.nationAndButton}>
-                <Header oid={event.nationId} />
+                <Header oid={event.nation_id} />
                 <ReminderButton />
             </View>
 
@@ -70,12 +43,12 @@ const Event: React.FC<EventProps> = ({ event }) => {
             <View style={styles.textContainer}>
                 {/*Title of event*/}
                 <View>
-                    <Text style={[styles.title, { color: colors.text }]}>{event.title}</Text>
+                    <Text style={[styles.title, { color: colors.text }]}>{event.name}</Text>
                 </View>
 
                 {/*Time of event*/}
                 <View>
-                    <Text style={[styles.time, { color: colors.text }]}>{event.time}</Text>
+                    <Text style={[styles.time, { color: colors.text }]}>{event.occurs_at}</Text>
                 </View>
 
                 {/*Description of event*/}
@@ -89,7 +62,48 @@ const Event: React.FC<EventProps> = ({ event }) => {
     )
 }
 
+const Header: React.FC<HeaderProps> = ({ oid }) => {
+    // TODO: Use types from SDK
+    const { data } = useNation(oid)
+    const navigation = useNavigation()
+
+    return (
+        <TouchableOpacity
+            style={nationStyles.container}
+            // TODO: Push seems to only be available on StackNavigator?
+            //@ts-ignore
+            onPress={() => navigation.push('NationContent', { nation: nation })}
+        >
+            {data && (
+                <View style={styles.headerContainer}>
+                    <Image source={{ uri: data.icon_img_src }} style={nationStyles.logo}></Image>
+                    <Text style={[nationStyles.name, { color: 'gray' }]}>{data.name}</Text>
+                </View>
+            )}
+        </TouchableOpacity>
+    )
+}
+
+const ReminderButton: React.FC = () => {
+    const { colors } = useTheme()
+
+    return (
+        <TouchableOpacity
+            style={[reminderStyles.container, { backgroundColor: colors.backgroundHighlight }]}
+        >
+            <Ionicons name="md-notifications-outline" size={24} color={colors.text} />
+            <Text style={[reminderStyles.text, { color: colors.text }]}>Påminn mig</Text>
+        </TouchableOpacity>
+    )
+}
+
 const styles = StyleSheet.create({
+    headerContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        width: '100%',
+    },
+
     coverImg: {
         height: 200,
         width: '100%',
@@ -98,8 +112,10 @@ const styles = StyleSheet.create({
     eventContainer: {
         width: '100%',
         flex: 1,
-        backgroundColor: 'white',
         marginBottom: '3%',
+        paddingTop: 20,
+        paddingBottom: 35,
+        paddingHorizontal: 25,
 
         borderBottomLeftRadius: 10,
         borderBottomRightRadius: 10,
@@ -113,16 +129,12 @@ const styles = StyleSheet.create({
     },
 
     nationAndButton: {
-        marginTop: '2%',
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
 
     textContainer: {
-        width: '80%',
-        alignSelf: 'center',
-        marginTop: '1%',
-        marginBottom: '3%',
+        width: '100%',
     },
 
     title: {
@@ -149,7 +161,6 @@ const nationStyles = StyleSheet.create({
         flexDirection: 'row',
         width: '40%',
         alignItems: 'center',
-        marginLeft: '2%',
     },
 
     logo: {
@@ -159,7 +170,8 @@ const nationStyles = StyleSheet.create({
 
     name: {
         color: '#808080',
-        marginLeft: '2%',
+        marginLeft: 10,
+        width: '100%',
     },
 })
 
@@ -169,7 +181,6 @@ const reminderStyles = StyleSheet.create({
         height: 40,
         borderRadius: 5,
 
-        marginRight: '5%',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-evenly',

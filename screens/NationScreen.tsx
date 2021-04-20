@@ -1,6 +1,5 @@
 /// This is the home for nations
 /// Renders start page for nations
-
 import React from 'react'
 import {
     StyleSheet,
@@ -51,10 +50,10 @@ function NationScreen({ navigation }) {
 
             <Stack.Screen name="NationContent" options={{ title: "Nation",
                     headerLeft: () => (
-                        <Ionicons 
-                            name="arrow-back" 
-                            size={28} 
-                            color="white" 
+                        <Ionicons
+                            name="arrow-back"
+                            size={28}
+                            color="white"
                             onPress={() => navigation.navigate('ChooseNation')}
                             style={{marginLeft: 15}}
                         />

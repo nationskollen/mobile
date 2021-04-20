@@ -33,7 +33,7 @@ const Nation = ({ data }) => {
                             { backgroundColor: colors.backgroundExtra },
                         ]}
                     >
-                        <Image source={data.logo} style={styles.nationLogoImg} />
+                        <Image source={{ uri: data.icon_img_src }} style={styles.nationLogoImg} />
                     </View>
 
                     {/*Name of nation*/}
@@ -43,7 +43,7 @@ const Nation = ({ data }) => {
 
                     {/*Button for choosing nation*/}
                     <Ionicons
-                        name={expand ? 'keyboard-arrow-up' : 'keyboard-arrow-down'}
+                        name={expand ? 'md-chevron-up' : 'md-chevron-down'}
                         size={24}
                         color={colors.text}
                     />

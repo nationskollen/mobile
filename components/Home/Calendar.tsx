@@ -5,16 +5,19 @@ import {
 import React from "react";
 import "react-native-gesture-handler";
 import NativeCalendar from "react-native-calendar"
-
-interface Props {
-    date: Date
-    setDate: React.Dispatch<React.SetStateAction<Date>>
-}
+import { useDatePicker } from './DatePickerContext'
 
 const dayShortNames = ["Sön","Mån","Tis", "Ons", "Tor", "Fre", "Lör"]
 const monthNames=["Januari","Februari","Mars","April","Maj","Juni","Juli","Augusti","September","Oktober","November","December"]
 
-const Calendar: React.FC<Props> = ({date, setDate}) => {
+const Calendar: React.FC = () => {
+    const { visible, date, setDate } = useDatePicker()
+
+    // Skip rendering
+    if (!visible) {
+        return null
+    }
+
     return (
         <View>
             <NativeCalendar
@@ -25,7 +28,7 @@ const Calendar: React.FC<Props> = ({date, setDate}) => {
                 monthNames={monthNames}
                 prevButtonText={"Föreg."} //prev button text, change if you find a better name
                 nextButtonText={"Nästa"}  //next button text -//-
-                onDateSelect={setDate}
+                onDateSelect={(newDate: string) => setDate(new Date(newDate))}
                 selectedDate={date}
             />
         </View>

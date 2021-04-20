@@ -5,8 +5,14 @@ import {
     Image,
     Alert,
     SafeAreaView,
+    Platform,
 } from 'react-native'
+import React from 'react'
+
+import { Ionicons } from '@expo/vector-icons'
 import { useTheme } from '../ThemeContext'
+
+import ActivityLevel from '../Map/ActivityLevel'
 
 interface Props {
     nation: any
@@ -17,6 +23,7 @@ const NationInfo: React.FC<Props> = ({ nation }) => {
     //TODO: add openinghours and address to nation object
     //TODO: add color theme to nation, so that icons can match
     const { colors } = useTheme()
+
     return (
         <SafeAreaView>
             <View
@@ -45,7 +52,7 @@ const NationInfo: React.FC<Props> = ({ nation }) => {
                         { backgroundColor: colors.backgroundExtra },
                     ]}
                 >
-                    <AntDesign name="clockcircle" size={20} color={colors.text} />
+                    <Ionicons name="time-sharp" size={20} color={colors.text} />
                     <Text style={[nationStyles.openinghoursTitle, { color: colors.text }]}>
                         Öppettider
                     </Text>
@@ -77,7 +84,7 @@ const NationInfo: React.FC<Props> = ({ nation }) => {
 
                 <View style={nationStyles.mapWrapper}>
                     <View style={nationStyles.mapSymbolWrapper}>
-                        <MaterialIcons name="location-on" size={16} color="white" />
+                        <Ionicons name="map" size={16} color="white" />
                     </View>
                     <View style={nationStyles.mapSymbolCircle}></View>
                     <Text
@@ -90,7 +97,6 @@ const NationInfo: React.FC<Props> = ({ nation }) => {
                                     {
                                         text: 'Avbryt',
                                         onPress: () => console.log('Avbryt Pressed'),
-                                        style: 'Avbryt',
                                     },
                                     {
                                         text: 'OK',
@@ -108,10 +114,38 @@ const NationInfo: React.FC<Props> = ({ nation }) => {
                 </View>
             </View>
 
-            <RenderActivityBar nation={nation}></RenderActivityBar>
+            <ActivityLevel />
         </SafeAreaView>
     )
 }
+
+const headerStyles = StyleSheet.create({
+    headerWrapper: {
+        width: '100%',
+        height: 80,
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+
+    logo: {
+        marginLeft: 6,
+        width: '15%',
+        height: '70%',
+    },
+
+    headerTitle: {
+        fontSize: 25,
+        fontWeight: 'bold',
+        marginLeft: '4%',
+    },
+
+    logoWrapper: {
+        marginLeft: '5%',
+        width: 50,
+        height: 50,
+        borderRadius: 50,
+    },
+})
 
 //styles for nation info
 const nationStyles = StyleSheet.create({

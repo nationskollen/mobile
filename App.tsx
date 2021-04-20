@@ -7,7 +7,7 @@ import { ThemeProvider } from './components/ThemeContext'
 import Footer from './components/Footer'
 
 /// Creates a navigation container in which every screen is "positioned"
-function App() {
+const App: React.FC = () => {
     return (
         //@ts-ignore
         <Provider config={{
