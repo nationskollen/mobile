@@ -8,12 +8,13 @@ interface Props {
     data: {
         name: string
         description: string
+        icon_img_src: string
     }
 }
 
 const Post: React.FC<Props> = ({ data }) => {
     const { colors } = useTheme()
-    const { name, description } = data
+    const { name, icon_img_src, description } = data
 
     return (
         <View style={[styles.notificationWrapper, { borderColor: colors.border }]}>
@@ -25,7 +26,7 @@ const Post: React.FC<Props> = ({ data }) => {
                     ]}
                 >
                     <Image
-                        source={require('../../img/png/vdala/vdalalogga.png')}
+                        source={{ uri: icon_img_src }}
                         style={styles.nationLogoImg}
                     />
                 </View>
@@ -81,8 +82,9 @@ const styles = StyleSheet.create({
     nationLogoImg: {
         marginLeft: 'auto',
         marginRight: 'auto',
-        height: 30,
+        height: 45,
         width: 45,
+        borderRadius: 45,
     },
 
     nationLogoImgWrapper: {
