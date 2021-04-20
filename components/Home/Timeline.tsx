@@ -1,8 +1,4 @@
-import {
-    View,
-    ScrollView,
-    StyleSheet,
-} from 'react-native'
+import { View, ScrollView, StyleSheet } from 'react-native'
 import React from 'react'
 import { useEvents } from '@dsp-krabby/sdk'
 import { useDatePicker } from './DatePickerContext'
@@ -17,10 +13,11 @@ const Timeline: React.FC = () => {
     return (
         <View style={styles.container}>
             <ScrollView>
-                {data && data.map((event) => (
-                    //@ts-ignore
-                    <EventItem key={event.id} event={event} />
-                ))}
+                {data &&
+                    data.map((event) => (
+                        //@ts-ignore
+                        <EventItem key={event.id} event={event} />
+                    ))}
             </ScrollView>
         </View>
     )

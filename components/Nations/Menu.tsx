@@ -54,8 +54,7 @@ const menu = {
         },
         {
             name: 'Krispiga Quesadillas',
-            description:
-                '6 stycken krispiga, ostiga, kycklingfyllda och oförglömliga quesadillas',
+            description: '6 stycken krispiga, ostiga, kycklingfyllda och oförglömliga quesadillas',
             ingredients: ['kyckling', 'rödlök', 'ost', 'tortilla', 'majs', 'paprika'],
             allergies: ['rödlök', 'laktos', 'gluten'],
             price: '60',
@@ -88,7 +87,11 @@ const Categories: React.FC = () => {
                 <Dropdown
                     key={category}
                     title={category}
-                    icon={<View style={[styles.foodCategoryIcon, { backgroundColor: colors.primary }]} />}
+                    icon={
+                        <View
+                            style={[styles.foodCategoryIcon, { backgroundColor: colors.primary }]}
+                        />
+                    }
                     expandComponent={<MenuItemList category={category} />}
                 />
             ))}
@@ -103,7 +106,7 @@ const MenuItemList: React.FC<MenuItemListProps> = ({ category }) => {
     return (
         <View>
             {menu[category].map((item: any) => {
-                <View
+                ;<View
                     key={item.name}
                     style={[styles.itemBorder, { borderColor: colors.backgroundExtra }]}
                 >
@@ -113,7 +116,10 @@ const MenuItemList: React.FC<MenuItemListProps> = ({ category }) => {
                             {category == 'Dryck' ? item.size + ', ' + item.type : item.description}
                         </Text>
                         <View
-                            style={[styles.priceWrapper, { backgroundColor: colors.backgroundExtra }]}
+                            style={[
+                                styles.priceWrapper,
+                                { backgroundColor: colors.backgroundExtra },
+                            ]}
                         >
                             <Text style={[styles.priceText, { color: colors.text }]}>
                                 {item.price + ' kr'}

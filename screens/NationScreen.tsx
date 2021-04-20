@@ -12,7 +12,7 @@ import ChooseNation from '../components/Nations/ChooseNation'
 import NationContent from '../components/Nations/NationContent'
 
 /// Icons
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons'
 
 /// Creates a local navigation stack for this tab
 const Stack = createStackNavigator()
@@ -39,16 +39,16 @@ function NationScreen({ navigation }) {
             <Stack.Screen
                 name="NationContent"
                 options={{
-                    title: "Nation",
+                    title: 'Nation',
                     headerLeft: () => (
                         <Ionicons
                             name="arrow-back"
                             size={28}
                             color="white"
                             onPress={() => navigation.navigate('ChooseNation')}
-                            style={{marginLeft: 15}}
+                            style={{ marginLeft: 15 }}
                         />
-                    )
+                    ),
                 }}
             >
                 {(props) => <NationContent {...props} />}

@@ -32,10 +32,7 @@ const Nation: React.FC<NationProps> = ({ data }) => {
         <View key={data.id} style={[styles.nationWrapper, { borderColor: colors.backgroundExtra }]}>
             {/*Logo of nation*/}
             <View
-                style={[
-                    styles.nationLogoImgWrapper,
-                    { backgroundColor: colors.backgroundExtra },
-                ]}
+                style={[styles.nationLogoImgWrapper, { backgroundColor: colors.backgroundExtra }]}
             >
                 <Image source={{ uri: data.icon_img_src }} style={styles.nationLogoImg} />
             </View>
@@ -50,7 +47,7 @@ const Nation: React.FC<NationProps> = ({ data }) => {
                 onPress={() => navigation.navigate('NationContent', { nation: data })}
                 style={[
                     styles.chooseButtonWrapper,
-                    { backgroundColor: colors.backgroundHighlight }
+                    { backgroundColor: colors.backgroundHighlight },
                 ]}
             >
                 <Text style={[styles.chooseButton, { color: colors.text }]}>Välj</Text>

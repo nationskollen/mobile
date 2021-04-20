@@ -1,8 +1,4 @@
-import {
-    View,
-    SafeAreaView,
-    StyleSheet,
-} from 'react-native'
+import { View, SafeAreaView, StyleSheet } from 'react-native'
 
 import { Ionicons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/core'

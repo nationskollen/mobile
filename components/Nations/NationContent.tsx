@@ -1,8 +1,5 @@
 // This is for rendering the nation content.
-import {
-    ScrollView,
-    View,
-} from 'react-native'
+import { ScrollView, View } from 'react-native'
 import React from 'react'
 
 /// Renders food components

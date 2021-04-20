@@ -1,11 +1,4 @@
-import {
-    View,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableHighlight,
-    ScrollView,
-} from 'react-native'
+import { View, StyleSheet, Text, TextInput, TouchableHighlight, ScrollView } from 'react-native'
 
 import React, { useState } from 'react'
 import { useTheme } from '../ThemeContext'
@@ -20,7 +13,11 @@ function Login() {
         <ScrollView>
             <View style={styles.container}>
                 <Text style={[styles.titleText, { color: colors.text }]}>NATIONSKOLLEN</Text>
-                {pass && <Text style={[styles.text, { color: colors.text }]}>Fel lösenord eller användarnamn</Text>}
+                {pass && (
+                    <Text style={[styles.text, { color: colors.text }]}>
+                        Fel lösenord eller användarnamn
+                    </Text>
+                )}
                 <TextInput
                     style={[
                         styles.input,

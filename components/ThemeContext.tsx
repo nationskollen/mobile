@@ -13,7 +13,7 @@ export interface ThemeColors {
     background: string
     backgroundExtra: string
     backgroundHighlight: string
-    card: string,
+    card: string
     border: string
     borderDark: string
     text: string
@@ -80,7 +80,9 @@ export const ThemeProvider = ({ children }) => {
     }
 
     return (
-        <ThemeContext.Provider value={{ isDarkMode, setDarkMode: updateTheme, colors: theme.colors }}>
+        <ThemeContext.Provider
+            value={{ isDarkMode, setDarkMode: updateTheme, colors: theme.colors }}
+        >
             <NavigationContainer theme={theme}>
                 <StatusBar
                     hidden={false}

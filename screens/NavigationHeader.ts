@@ -1,7 +1,9 @@
 import { ThemeColors } from '../components/ThemeContext'
 import { StackNavigationOptions } from '@react-navigation/stack'
 
-export const HeaderOptions: (colors: ThemeColors) => Partial<StackNavigationOptions> = (colors: ThemeColors) => ({
+export const HeaderOptions: (colors: ThemeColors) => Partial<StackNavigationOptions> = (
+    colors: ThemeColors
+) => ({
     headerStyle: {
         elevation: 0,
         shadowOpacity: 0,

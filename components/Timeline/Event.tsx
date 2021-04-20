@@ -1,10 +1,4 @@
-import {
-    View,
-    Text,
-    Image,
-    StyleSheet,
-    TouchableOpacity,
-} from 'react-native'
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 
 import { useTheme } from '../ThemeContext'
@@ -25,13 +19,17 @@ const Event: React.FC<EventProps> = ({ event }) => {
     const { colors, isDarkMode } = useTheme()
 
     return (
-        <View style={[
-            styles.eventContainer,
-            { backgroundColor: isDarkMode ? colors.backgroundExtra : colors.background }
-        ]}>
+        <View
+            style={[
+                styles.eventContainer,
+                { backgroundColor: isDarkMode ? colors.backgroundExtra : colors.background },
+            ]}
+        >
             {/*Cover Image of event*/}
             <View>
-                {event.cover_img_src && <Image source={{ uri: event.cover_img_src }} style={styles.coverImg} />}
+                {event.cover_img_src && (
+                    <Image source={{ uri: event.cover_img_src }} style={styles.coverImg} />
+                )}
             </View>
 
             <View style={styles.nationAndButton}>
@@ -119,8 +117,8 @@ const styles = StyleSheet.create({
 
         borderBottomLeftRadius: 10,
         borderBottomRightRadius: 10,
-        elevation:5,
-        zIndex:5,
+        elevation: 5,
+        zIndex: 5,
 
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },

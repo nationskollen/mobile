@@ -6,11 +6,10 @@ import ChooseDateBar from './ChooseDateBar'
 import ChooseNationButton from './ChooseNationButton'
 
 const FilterBar: React.FC = () => {
-    const { colors } = useTheme();
+    const { colors } = useTheme()
 
     return (
-        <View style={[
-            styles.mainWrapper, { backgroundColor: colors.backgroundExtra }]}>
+        <View style={[styles.mainWrapper, { backgroundColor: colors.backgroundExtra }]}>
             <ChooseDateBar />
             <ChooseNationButton />
         </View>

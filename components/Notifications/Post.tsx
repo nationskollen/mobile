@@ -31,7 +31,9 @@ const Post: React.FC<Props> = ({ data }) => {
                 </View>
                 <View>
                     <Text style={[styles.nationName, { color: colors.primaryText }]}>{name}</Text>
-                    <Text style={[styles.notificationHeader, { color: colors.text }]}>Notification</Text>
+                    <Text style={[styles.notificationHeader, { color: colors.text }]}>
+                        Notification
+                    </Text>
                 </View>
             </View>
             <View>

@@ -22,10 +22,10 @@ const NotificationOptions: React.FC = () => {
             ]}
         >
             {/*Temporary options*/}
-            <Toggle text='Prenumerera' />
-            <Toggle text='Push notifikationer' />
-            <Toggle text='Events' />
-            <Toggle text='Nyheter' />
+            <Toggle text="Prenumerera" />
+            <Toggle text="Push notifikationer" />
+            <Toggle text="Events" />
+            <Toggle text="Nyheter" />
         </View>
     )
 }
@@ -48,7 +48,6 @@ const Toggle: React.FC<ToggleProps> = ({ text }) => {
         </View>
     )
 }
-
 
 /// Styles for option switches
 const styles = StyleSheet.create({

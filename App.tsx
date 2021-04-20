@@ -10,12 +10,14 @@ import Footer from './components/Footer'
 const App: React.FC = () => {
     return (
         //@ts-ignore
-        <Provider config={{
-            development: Constants.manifest.extra.development,
-            useWebSockets: true,
-            customHostName: 'nationskollen-staging.engstrand.nu',
-            useHTTPS: true,
-        }}>
+        <Provider
+            config={{
+                development: Constants.manifest.extra.development,
+                useWebSockets: true,
+                customHostName: 'nationskollen-staging.engstrand.nu',
+                useHTTPS: true,
+            }}
+        >
             <ThemeProvider>
                 <Footer />
             </ThemeProvider>

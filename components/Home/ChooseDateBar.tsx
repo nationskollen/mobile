@@ -1,9 +1,4 @@
-import {
-    View,
-    TouchableOpacity,
-    StyleSheet,
-    Text,
-} from 'react-native'
+import { View, TouchableOpacity, StyleSheet, Text } from 'react-native'
 import React from 'react'
 
 import { Ionicons } from '@expo/vector-icons'
@@ -15,26 +10,30 @@ const ChooseDateBar: React.FC = () => {
     const { date, setDate, visible, setVisible } = useDatePicker()
 
     return (
-        <View style={[
-            styles.dateBar,
-            {
-                backgroundColor: isDarkMode ? colors.backgroundHighlight : colors.background,
-                borderColor: colors.borderDark,
-            }
-        ]}>
+        <View
+            style={[
+                styles.dateBar,
+                {
+                    backgroundColor: isDarkMode ? colors.backgroundHighlight : colors.background,
+                    borderColor: colors.borderDark,
+                },
+            ]}
+        >
             <TouchableOpacity onPress={() => console.log('Should call setDate')}>
                 <View style={[styles.leftArrowWrapper, { borderColor: colors.borderDark }]}>
-                    <Ionicons name='md-chevron-back' size={20} color={colors.text} />
+                    <Ionicons name="md-chevron-back" size={20} color={colors.text} />
                 </View>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.dateTextWrapper} onPress={() => setVisible(!visible)}>
-                <Text style={[styles.dateText, { color: colors.text }]}>{date.toLocaleDateString()}</Text>
+                <Text style={[styles.dateText, { color: colors.text }]}>
+                    {date.toLocaleDateString()}
+                </Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => console.log('Should call setDate')}>
                 <View style={[styles.rightArrowWrapper, { borderColor: colors.borderDark }]}>
-                    <Ionicons name='md-chevron-forward' size={20} color={colors.text} />
+                    <Ionicons name="md-chevron-forward" size={20} color={colors.text} />
                 </View>
             </TouchableOpacity>
         </View>

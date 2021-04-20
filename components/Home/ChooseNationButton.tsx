@@ -1,9 +1,4 @@
-import {
-    View,
-    Text,
-    StyleSheet,
-    TouchableOpacity,
-} from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 
 import { useTheme } from '../ThemeContext'
@@ -21,7 +16,7 @@ const ChooseNationButton = () => {
         <TouchableOpacity onPress={handleNationButtonPress}>
             <View style={[styles.nationButton, { backgroundColor: colors.primary }]}>
                 <Text style={styles.nationButtonText}>Nation</Text>
-                <Ionicons name='md-chevron-down' size={20} color='white' />
+                <Ionicons name="md-chevron-down" size={20} color="white" />
             </View>
         </TouchableOpacity>
     )

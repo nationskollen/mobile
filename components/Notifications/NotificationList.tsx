@@ -14,7 +14,9 @@ const NotificationsContent: React.FC = () => {
     return (
         <FlatList
             data={data}
-            renderItem={(notification: any) => <Post key={notification.index} data={notification.item} />}
+            renderItem={(notification: any) => (
+                <Post key={notification.index} data={notification.item} />
+            )}
             ListFooterComponent={<RenderBottomLoadingCircle />}
             onRefresh={mutate}
             refreshing={isValidating}

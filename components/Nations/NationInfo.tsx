@@ -1,10 +1,4 @@
-import {
-    View,
-    Text,
-    StyleSheet,
-    Image,
-    Alert,
-} from 'react-native'
+import { View, Text, StyleSheet, Image, Alert } from 'react-native'
 import React from 'react'
 
 import { useTheme } from '../ThemeContext'
@@ -29,30 +23,20 @@ const NationInfo: React.FC<Props> = ({ nation, backgroundColor }) => {
             ]}
         >
             <View style={styles.nationNameWrapper}>
-                {nation.icon_img_src && <Image source={{ uri: nation.icon_img_src }} style={styles.logo} />}
-                <Text style={[styles.nationName, { color: colors.text }]}>
-                    {nation.name}
-                </Text>
+                {nation.icon_img_src && (
+                    <Image source={{ uri: nation.icon_img_src }} style={styles.logo} />
+                )}
+                <Text style={[styles.nationName, { color: colors.text }]}>{nation.name}</Text>
             </View>
 
-            <View
-                style={[
-                    styles.clockSymbolWrapper,
-                ]}
-            >
+            <View style={[styles.clockSymbolWrapper]}>
                 <Ionicons name="time-sharp" size={20} color={colors.text} />
-                <Text style={[styles.openinghoursTitle, { color: colors.text }]}>
-                    Öppettider
-                </Text>
+                <Text style={[styles.openinghoursTitle, { color: colors.text }]}>Öppettider</Text>
             </View>
 
             <View style={styles.openinghoursWrapper}>
-                <View
-                    style={[styles.lineSymbol, { backgroundColor: colors.text }]}
-                ></View>
-                <View
-                    style={styles.openinghoursTextWrapper}
-                >
+                <View style={[styles.lineSymbol, { backgroundColor: colors.text }]}></View>
+                <View style={styles.openinghoursTextWrapper}>
                     <Text style={[styles.openinghoursText, { color: colors.text }]}>
                         Mån-Fre: 10:00-20:00
                     </Text>
@@ -63,7 +47,7 @@ const NationInfo: React.FC<Props> = ({ nation, backgroundColor }) => {
             </View>
 
             <View style={styles.mapWrapper}>
-                <Ionicons name='map' size={16} color={colors.text} />
+                <Ionicons name="map" size={16} color={colors.text} />
                 <Text
                     style={[styles.mapAddress, { color: colors.text }]}
                     onPress={() =>
