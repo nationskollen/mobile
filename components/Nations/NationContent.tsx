@@ -1,13 +1,15 @@
 // This is for rendering the nation content.
 import {
     ScrollView,
-    SafeAreaView,
+    View,
 } from 'react-native'
 import React from 'react'
 
 /// Renders food components
 import Menu from './Menu'
 import NationInfo from './NationInfo'
+import ActivityLevel from '../Map/ActivityLevel'
+
 /// Renders event components
 // TODO: NOt sure what to do about this
 // import Events from './NationContentComponents/EventComponents'
@@ -18,17 +20,15 @@ interface Props {
 }
 
 const NationContent: React.FC<Props> = ({ route }) => {
+    // TODO: Pass in oid instead?
     const { nation } = route.params
 
     return (
-        <SafeAreaView style={{ flex: 1 }}>
+        <View>
             <NationInfo nation={nation} />
-            {/*TODO: better solution for raising scrollable menu*/}
-            <ScrollView style={{ flex: 1 }}>
-                <Menu oid={nation.oid} />
-                {/*<RenderEventsMenu nation={nation}></RenderEventsMenu>*/}
-            </ScrollView>
-        </SafeAreaView>
+            <ActivityLevel />
+            <Menu oid={nation.oid} />
+        </View>
     )
 }
 

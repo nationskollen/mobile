@@ -17,17 +17,17 @@ const Dropdown: React.FC<Props> = ({ title, expandComponent, icon }) => {
 
     return (
         <View key={title}>
-            <View style={styles.header}>
-                <View style={styles.iconWrapper}>{icon}</View>
-                <Text style={[styles.headerTitle, { color: colors.text }]}>{title}</Text>
-                <View style={styles.headerPlusWrapper}>
-                    <Ionicons
-                        name={expand ? 'remove-circle-outline' : 'add-circle-outline'}
-                        size={32}
-                        color="#AEAEAE"
-                        onPress={() => setExpand(!expand)}
-                    />
+            <View style={[styles.header, { borderBottomColor: colors.border }]}>
+                <View style={styles.nameWrapper}>
+                    {icon}
+                    <Text style={[styles.headerTitle, { color: colors.text }]}>{title}</Text>
                 </View>
+                <Ionicons
+                    name={expand ? 'remove-circle-outline' : 'add-circle-outline'}
+                    size={32}
+                    color={colors.text}
+                    onPress={() => setExpand(!expand)}
+                />
             </View>
 
             {/*If menu is expanded, show expandComponent*/}
@@ -39,26 +39,25 @@ const Dropdown: React.FC<Props> = ({ title, expandComponent, icon }) => {
 //styles for dropdown menu
 const styles = StyleSheet.create({
     header: {
+        display: 'flex',
         flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
         height: 60,
         borderBottomWidth: 1,
-        alignItems: 'center',
+        paddingHorizontal: 15,
     },
 
-    iconWrapper: {
-        marginLeft: 20,
+    nameWrapper: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
     },
 
     headerTitle: {
         fontSize: 18,
         fontWeight: 'bold',
-        position: 'absolute',
-        marginLeft: 60,
-    },
-
-    headerPlusWrapper: {
-        position: 'absolute',
-        right: 30,
+        marginLeft: 15,
     },
 })
 

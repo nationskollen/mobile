@@ -4,15 +4,12 @@ import {
     StyleSheet,
     Image,
     Alert,
-    SafeAreaView,
     Platform,
 } from 'react-native'
 import React from 'react'
 
 import { Ionicons } from '@expo/vector-icons'
 import { useTheme } from '../ThemeContext'
-
-import ActivityLevel from '../Map/ActivityLevel'
 
 interface Props {
     nation: any
@@ -25,134 +22,75 @@ const NationInfo: React.FC<Props> = ({ nation }) => {
     const { colors } = useTheme()
 
     return (
-        <SafeAreaView>
+        <View
+            style={[
+                styles.nationInfoWrapper,
+                { backgroundColor: colors.backgroundExtra },
+            ]}
+        >
+            <View style={styles.nationNameWrapper}>
+                <Image source={{ uri: nation.icon_img_src }} style={styles.logo} />
+                <Text style={[styles.nationName, { color: colors.text }]}>
+                    {nation.name}
+                </Text>
+            </View>
+
             <View
                 style={[
-                    nationStyles.nationInfoWrapper,
+                    styles.clockSymbolWrapper,
                     { backgroundColor: colors.backgroundExtra },
                 ]}
             >
-                <View style={nationStyles.nationNameWrapper}>
-                    <Text style={[nationStyles.nationName, { color: colors.text }]}>
-                        {nation.nickname}
-                    </Text>
-                    <View
-                        style={[
-                            headerStyles.logoWrapper,
-                            { backgroundColor: colors.backgroundExtra },
-                        ]}
-                    >
-                        <Image source={nation.logo} style={headerStyles.logo} />
-                    </View>
-                </View>
+                <Ionicons name="time-sharp" size={20} color={colors.text} />
+                <Text style={[styles.openinghoursTitle, { color: colors.text }]}>
+                    Öppettider
+                </Text>
+            </View>
 
+            <View
+                style={[
+                    styles.openinghoursWrapper,
+                    { backgroundColor: colors.backgroundExtra },
+                ]}
+            >
+                <View
+                    style={[styles.lineSymbol, { backgroundColor: colors.text }]}
+                ></View>
                 <View
                     style={[
-                        nationStyles.clockSymbolWrapper,
+                        styles.openinghoursTextWrapper,
                         { backgroundColor: colors.backgroundExtra },
                     ]}
                 >
-                    <Ionicons name="time-sharp" size={20} color={colors.text} />
-                    <Text style={[nationStyles.openinghoursTitle, { color: colors.text }]}>
-                        Öppettider
+                    <Text style={[styles.openinghoursText, { color: colors.text }]}>
+                        Mån-Fre: 10:00-20:00
                     </Text>
-                </View>
-
-                <View
-                    style={[
-                        nationStyles.openinghoursWrapper,
-                        { backgroundColor: colors.backgroundExtra },
-                    ]}
-                >
-                    <View
-                        style={[nationStyles.lineSymbol, { backgroundColor: colors.text }]}
-                    ></View>
-                    <View
-                        style={[
-                            nationStyles.openinghoursTextWrapper,
-                            { backgroundColor: colors.backgroundExtra },
-                        ]}
-                    >
-                        <Text style={[nationStyles.openinghoursText, { color: colors.text }]}>
-                            Mån-Fre: 10:00-20:00
-                        </Text>
-                        <Text style={[nationStyles.openinghoursText, { color: colors.text }]}>
-                            Lör-Sön: Stängt
-                        </Text>
-                    </View>
-                </View>
-
-                <View style={nationStyles.mapWrapper}>
-                    <View style={nationStyles.mapSymbolWrapper}>
-                        <Ionicons name="map" size={16} color="white" />
-                    </View>
-                    <View style={nationStyles.mapSymbolCircle}></View>
-                    <Text
-                        style={[nationStyles.mapAddress, { color: colors.text }]}
-                        onPress={() =>
-                            Alert.alert(
-                                'Öppna i kartor?',
-                                'Tryck OK för att öppna addressen i kartor',
-                                [
-                                    {
-                                        text: 'Avbryt',
-                                        onPress: () => console.log('Avbryt Pressed'),
-                                    },
-                                    {
-                                        text: 'OK',
-                                        onPress: () => console.log('OK Pressed'),
-                                    },
-                                ],
-                                {
-                                    cancelable: false,
-                                }
-                            )
-                        }
-                    >
-                        S:t Larsgatan 13, Uppsala, 75311
+                    <Text style={[styles.openinghoursText, { color: colors.text }]}>
+                        Lör-Sön: Stängt
                     </Text>
                 </View>
             </View>
-
-            <ActivityLevel />
-        </SafeAreaView>
+        </View>
     )
 }
 
-const headerStyles = StyleSheet.create({
-    headerWrapper: {
-        width: '100%',
-        height: 80,
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-
+//styles for nation info
+const styles = StyleSheet.create({
     logo: {
-        marginLeft: 6,
-        width: '15%',
-        height: '70%',
-    },
-
-    headerTitle: {
-        fontSize: 25,
-        fontWeight: 'bold',
-        marginLeft: '4%',
+        height: 40,
+        width: 40,
+        marginRight: 15,
     },
 
     logoWrapper: {
         marginLeft: '5%',
-        width: 50,
-        height: 50,
         borderRadius: 50,
     },
-})
 
-//styles for nation info
-const nationStyles = StyleSheet.create({
     nationInfoWrapper: {
-        backgroundColor: '#F3F3F3',
-        height: 220, //TODO: change to not fixed size
         width: '100%',
+        paddingTop: 15,
+        paddingBottom: 30,
     },
 
     nationNameWrapper: {

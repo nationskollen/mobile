@@ -1,20 +1,10 @@
 /// This is the home for nations
 /// Renders start page for nations
 import React from 'react'
-import {
-    StyleSheet,
-    Button,
-    View,
-    SafeAreaView,
-    Text,
-    Alert,
-    Platform,
-    TextInput,
-} from 'react-native'
 
 import 'react-native-gesture-handler'
 import { HeaderOptions } from './NavigationHeader'
-import { useTheme } from '@react-navigation/native'
+import { useTheme } from '../components/ThemeContext'
 import { createStackNavigator } from '@react-navigation/stack'
 
 /// Pages to move to and from
@@ -22,7 +12,7 @@ import ChooseNation from '../components/Nations/ChooseNation'
 import NationContent from '../components/Nations/NationContent'
 
 /// Icons
-import { Ionicons } from "react-native-vector-icons/Ionicons";
+import { Ionicons } from '@expo/vector-icons';
 
 /// Creates a local navigation stack for this tab
 const Stack = createStackNavigator()
@@ -39,16 +29,17 @@ function NationScreen({ navigation }) {
         >
             <Stack.Screen
                 name="ChooseNation"
+                component={ChooseNation}
                 options={{
                     title: 'Nationer',
                     headerShown: true,
                     ...HeaderOptions(colors),
                 }}
-            >
-                {(props) => <ChooseNation {...props} nationList={nationListEx} />}
-            </Stack.Screen>
-
-            <Stack.Screen name="NationContent" options={{ title: "Nation",
+            />
+            <Stack.Screen
+                name="NationContent"
+                options={{
+                    title: "Nation",
                     headerLeft: () => (
                         <Ionicons
                             name="arrow-back"
@@ -58,8 +49,8 @@ function NationScreen({ navigation }) {
                             style={{marginLeft: 15}}
                         />
                     )
-                }}>
-
+                }}
+            >
                 {(props) => <NationContent {...props} />}
             </Stack.Screen>
         </Stack.Navigator>

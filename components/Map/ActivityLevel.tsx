@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 import { View, Text, StyleSheet } from 'react-native'
 
@@ -9,13 +10,14 @@ interface IndicatorProps {
 //renders activity bar
 // TODO: Take in a location as prop
 const ActivityLevel: React.FC = () => {
-    return (
-        <View style={styles.activitybar}>
-            <View style={styles.activitybarLogo}>
-                <Ionicons name="md-people-outline" size={24} color="white" />
-            </View>
+    const { colors } = useTheme()
 
-            <Text style={styles.activitybarText}>Aktivitet</Text>
+    return (
+        <View style={[styles.container, { backgroundColor: colors.backgroundHighlight }]}>
+            <View style={styles.left}>
+                <Ionicons name="md-people-outline" size={24} color="white" />
+                <Text style={styles.title}>Aktivitet</Text>
+            </View>
 
             <ActivityIndicator level={0} />
         </View>
@@ -69,32 +71,31 @@ const ActivityIndicator: React.FC<IndicatorProps> = ({ level }) => {
 
 //styles for activitybar
 const styles = StyleSheet.create({
-    activitybar: {
-        position: 'absolute',
+    container: {
         bottom: 0,
         flexDirection: 'row',
-        height: 45,
+        justifyContent: 'space-between',
         width: '100%',
-        backgroundColor: '#2F2F2F',
-        alignSelf: 'flex-end',
+        paddingVertical: 10,
+        paddingHorizontal: 20,
         alignItems: 'center',
     },
 
-    activitybarText: {
-        color: 'white',
-        fontSize: 14,
-        marginLeft: '3%',
+    left: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
     },
 
-    activitybarLogo: {
-        marginLeft: '5%',
-        marginBottom: '0.5%',
+    title: {
+        color: 'white',
+        fontSize: 14,
+        marginLeft: 15,
+        fontWeight: 'bold',
     },
 
     activityLevelWrapper: {
         flexDirection: 'row',
-        position: 'absolute',
-        right: '5%',
     },
 
     activityCircle: {
@@ -107,7 +108,8 @@ const styles = StyleSheet.create({
     activityLevelText: {
         marginLeft: 10,
         color: 'white',
-        fontSize: 16,
+        fontSize: 14,
+        fontWeight: 'bold',
     },
 })
 
