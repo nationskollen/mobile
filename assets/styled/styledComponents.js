@@ -1,10 +1,16 @@
 import styled from 'styled-components/native';
+import { useTheme } from '@react-navigation/native'
 
 
-export const Loading = styled.ActivityIndicator.attrs({
+export function RenderBottomLoadingCircle () {
+const { colors } = useTheme();
+const Loading = styled.ActivityIndicator.attrs({
     size : 'small',
-    color : '#999',
+    color : colors.background, 
 }) `
     margin : 30px 0;
     `
 ;
+
+return Loading;
+}

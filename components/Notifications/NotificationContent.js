@@ -3,12 +3,9 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet, Image, ScrollView, FlatList } from 'react-native'
 import { useTheme } from '@react-navigation/native'
-import { useApi } from '@dsp-krabby/sdk/lib/react'
-import { useAsync } from 'react-async-hook'
-import { Loading } from '../../assets/styled/styledComponents'
-
+import { RenderBottomLoadingCircle } from '../../assets/styled/styledComponents'
+import { useNations } from '@dsp-krabby/sdk' 
 function NotificationsContent({ notificationList }) {
-    const api = useApi()
     const { data, error, isValidating, mutate } = useNations()
     const [nationArr, changeState] = useState(notificationList)
     const [page, setPage] = useState(1)
@@ -31,16 +28,16 @@ function NotificationsContent({ notificationList }) {
         loadPage(1)
         setRefreshing(false)
     }
-    return (
-        <FlatList
-            data={Object.keys(nationArr)}
-            renderItem={({ item }) => <RenderNotification notification={nationArr[item].name} />}
-            onEndReached={() => loadPage()}
-            onEndReachedThreshold={0.1}
-            ListFooterComponent={isLoading && <Loading />}
-            onRefresh={loadNewNotifications}
-            refreshing={refreshing}
-        />
+    return (<FlatList
+    data={data}
+    renderItem={(nation) => <RenderNotification notification={nation.name} />}
+ // pagination is not yet available on the server, so we can skip this for now 
+ // onEndReached={() => loadPage()}
+    onEndReachedThreshold={0.1}
+	ListFooterComponent={isValidating && <RenderBottomLoadingCircle/>}
+    onRefresh={mutate}
+    refreshing={isValidating}
+/>
     )
 }
 
