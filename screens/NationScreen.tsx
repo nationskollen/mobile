@@ -10,9 +10,11 @@ import { createStackNavigator } from '@react-navigation/stack'
 /// Pages to move to and from
 import ChooseNation from '../components/Nations/ChooseNation'
 import NationContent from '../components/Nations/NationContent'
+import HomePage from "../components/Home/HomePage";
 
 /// Icons
 import { Ionicons } from '@expo/vector-icons'
+import RenderBackArrow from '../assets/Icons/backArrow.js';
 
 /// Creates a local navigation stack for this tab
 const Stack = createStackNavigator()
@@ -53,6 +55,15 @@ function NationScreen({ navigation }) {
             >
                 {(props) => <NationContent {...props} />}
             </Stack.Screen>
+
+            <Stack.Screen
+                name="Home"
+                component={HomePage}
+                options={{ title: "Evenemang" ,
+                headerLeft: () => (
+                    <RenderBackArrow nav = {navigation} screen = {'NationContent'}/> )}}
+            ></Stack.Screen>
+
         </Stack.Navigator>
     )
 }
