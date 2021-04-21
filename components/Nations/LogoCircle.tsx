@@ -14,24 +14,29 @@ const LogoCircle: React.FC<Props> = ({ src, size, spacing }) => {
     const actualImageSize = actualSize - (spacing ?? 6)
 
     return (
-        <View style={[
-            styles.wrapper,
-            {
-                backgroundColor: colors.backgroundHighlight,
-                height: actualSize,
-                width: actualSize,
-                borderRadius: actualSize,
-            }
-        ]}>
+        <View
+            style={[
+                styles.wrapper,
+                {
+                    backgroundColor: colors.backgroundHighlight,
+                    height: actualSize,
+                    width: actualSize,
+                    borderRadius: actualSize,
+                },
+            ]}
+        >
             {src && (
-                <Image source={{ uri: src }} style={[
-                    styles.image,
-                    {
-                        height: actualImageSize,
-                        width: actualImageSize,
-                        borderRadius: actualImageSize,
-                    }
-                ]} />
+                <Image
+                    source={{ uri: src }}
+                    style={[
+                        styles.image,
+                        {
+                            height: actualImageSize,
+                            width: actualImageSize,
+                            borderRadius: actualImageSize,
+                        },
+                    ]}
+                />
             )}
         </View>
     )

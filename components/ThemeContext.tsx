@@ -16,12 +16,13 @@ export interface ThemeColors {
     card: string
     border: string
     borderDark: string
+    nationExtra: string
+    notification: string
     text: string
+    errorText: string
     primaryText: string
     focusedText: string
     unFocusedText: string
-    nationExtra: string
-    notification: string
 }
 
 export interface Theme {
@@ -39,12 +40,13 @@ const LightTheme: Theme = {
         card: '#fff',
         border: '#f1f1f1',
         borderDark: '#ccc',
+        nationExtra: '#F3F3F3',
+        notification: 'white',
         text: '#000000',
+        errorText: '#e03c3f',
         primaryText: '#71002E',
         focusedText: 'white',
         unFocusedText: '#555',
-        nationExtra: '#F3F3F3',
-        notification: 'white',
     },
 }
 
@@ -58,12 +60,13 @@ const DarkTheme: Theme = {
         card: '#0a090c',
         border: '#17161c',
         borderDark: '#3d3b49',
+        nationExtra: '#141319',
+        notification: 'white',
         text: '#d4d4d4',
+        errorText: '#fc5372',
         primaryText: '#ef005f',
         focusedText: 'white',
         unFocusedText: '#9a95a5',
-        nationExtra: '#141319',
-        notification: 'white',
     },
 }
 

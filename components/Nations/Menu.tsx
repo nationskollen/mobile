@@ -89,7 +89,14 @@ const Categories: React.FC = () => {
                     title={category}
                     icon={
                         <View
-                            style={[styles.foodCategoryIcon, { backgroundColor: isDarkMode ? colors.primaryText : colors.primary }]}
+                            style={[
+                                styles.foodCategoryIcon,
+                                {
+                                    backgroundColor: isDarkMode
+                                        ? colors.primaryText
+                                        : colors.primary,
+                                },
+                            ]}
                         />
                     }
                     expandComponent={<MenuItemList category={category} />}
@@ -104,63 +111,57 @@ const MenuItemList: React.FC<MenuItemListProps> = ({ category }) => {
     const { colors } = useTheme()
 
     return (
-        <View>
-            {menu[category] && menu[category].map((item: any) => {
-                ;<View
-                    key={item.name}
-                    style={[styles.itemBorder, { borderColor: colors.backgroundExtra }]}
-                >
-                    <View style={styles.itemWrapper}>
-                        <Text style={[styles.nameText, { color: colors.text }]}>{item.name}</Text>
-                        <Text style={[styles.descriptionText, { color: colors.text }]}>
-                            {category == 'Dryck' ? item.size + ', ' + item.type : item.description}
-                        </Text>
-                        <View
-                            style={[
-                                styles.priceWrapper,
-                                { backgroundColor: colors.backgroundExtra },
-                            ]}
-                        >
-                            <Text style={[styles.priceText, { color: colors.text }]}>
-                                {item.price + ' kr'}
+        <View style={{ flex: 1 }}>
+            {menu[category] &&
+                menu[category].map((item: any) => (
+                    <View
+                        key={item.name}
+                        style={[styles.item, { borderColor: colors.backgroundExtra }]}
+                    >
+                        <View style={styles.itemText}>
+                            <Text style={[styles.nameText, { color: colors.text }]}>
+                                {item.name}
+                            </Text>
+                            <Text style={{ color: colors.text }}>
+                                {category == 'Dryck'
+                                    ? item.size + ', ' + item.type
+                                    : item.description}
                             </Text>
                         </View>
+                        <Text style={[styles.priceText, { color: colors.errorText }]}>
+                            {item.price + ' kr'}
+                        </Text>
                     </View>
-                </View>
-            })}
+                ))}
         </View>
     )
 }
 
 //styles for food/drink list
 const styles = StyleSheet.create({
-    itemBorder: {
+    item: {
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
         borderBottomWidth: 1,
-        borderColor: 'lightgray',
+        paddingVertical: 15,
+        paddingHorizontal: 25,
     },
 
-    itemWrapper: {
-        marginLeft: '7%',
-        marginTop: '2%',
+    itemText: {
+        flex: 1,
+        marginRight: 15,
     },
 
     nameText: {
-        marginVertical: 3,
         fontWeight: 'bold',
         fontSize: 16,
-    },
-
-    descriptionText: {
-        marginTop: 3,
-        marginBottom: 10,
-        maxWidth: '70%',
+        marginBottom: 3,
     },
 
     priceWrapper: {
         backgroundColor: 'lightgreen',
-        position: 'absolute',
-        right: '5%',
-        top: '35%',
         width: 45,
         height: 25,
         borderWidth: 1,
@@ -171,15 +172,15 @@ const styles = StyleSheet.create({
     },
 
     priceText: {
-        color: 'black',
-        fontSize: 15,
+        fontSize: 16,
+        fontWeight: 'bold',
     },
 
     foodCategoryIcon: {
         width: 10,
         height: 10,
         borderRadius: 10,
-        marginLeft: 2
+        marginLeft: 2,
     },
 })
 

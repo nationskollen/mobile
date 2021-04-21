@@ -74,7 +74,9 @@ const Header: React.FC<HeaderProps> = ({ oid }) => {
                 {data && (
                     <View style={styles.headerContent}>
                         <LogoCircle src={data.icon_img_src} size={40} />
-                        <Text style={[nationStyles.name, { color: colors.primaryText }]}>{data.name}</Text>
+                        <Text style={[nationStyles.name, { color: colors.primaryText }]}>
+                            {data.name}
+                        </Text>
                     </View>
                 )}
             </TouchableOpacity>

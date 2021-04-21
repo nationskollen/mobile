@@ -31,7 +31,9 @@ const NationInfo: React.FC<Props> = ({ nation, backgroundColor }) => {
             <View style={styles.descriptionWrapper}>
                 <View style={[styles.clockSymbolWrapper]}>
                     <Ionicons name="time-outline" size={20} color={colors.text} />
-                    <Text style={[styles.openinghoursTitle, { color: colors.text }]}>Öppettider</Text>
+                    <Text style={[styles.openinghoursTitle, { color: colors.text }]}>
+                        Öppettider
+                    </Text>
                 </View>
 
                 <View style={styles.openinghoursWrapper}>
@@ -81,7 +83,8 @@ const NationInfo: React.FC<Props> = ({ nation, backgroundColor }) => {
 //styles for nation info
 const styles = StyleSheet.create({
     descriptionWrapper: {
-
+        // TODO: Is it nicer with this on?
+        // marginLeft: 16,
     },
 
     nationInfoWrapper: {

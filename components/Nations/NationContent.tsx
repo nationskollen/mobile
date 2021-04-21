@@ -21,10 +21,12 @@ const NationContent: React.FC<Props> = ({ route }) => {
     const { nation } = route.params
 
     return (
-        <View>
+        <View style={{ flex: 1 }}>
             <NationInfo nation={nation} />
             <ActivityLevel />
-            <Menu oid={nation.oid} />
+            <ScrollView style={{ flex: 1 }}>
+                <Menu oid={nation.oid} />
+            </ScrollView>
         </View>
     )
 }
