@@ -125,16 +125,23 @@ const mapLocations = [
 
 const Map: React.FC<Props> = () => {
     const { isDarkMode } = useTheme()
-    const [markerIndex, setMarkerIndex] = useState(0)
-    const [markerPressed, setPressed] = useState(false)
+    const [selectedNation, setSelectedNation] = useState<any | null>(null)
+    const [showPopup, setShowPopup] = useState(false)
 
     // Empty array renders standard light map
     const theme = isDarkMode ? MapDarkTheme : []
 
-    const onMarkerPressed = (location: any, index: number) => {
-        state.markers[index] = location
-        setPressed(true)
-        setMarkerIndex(index)
+    const onMarkerPressed = (location: any) => {
+        setShowPopup(true)
+        setSelectedNation(location)
+    }
+
+    const onMapPressed = () => {
+        // Skip resetting of selected nation so that
+        // the animation actually plays out.
+        // If we set it to null, the content will be removed
+        // and the height of the popup will be 0 => no animation.
+        setShowPopup(false)
     }
 
     return (
@@ -147,11 +154,11 @@ const Map: React.FC<Props> = () => {
                     latitudeDelta: 0.0322, // Zoom level
                     longitudeDelta: 0.0321, // Zoom level
                 }}
-                onPress={() => setPressed(false)}
+                onPress={onMapPressed}
                 customMapStyle={theme}
                 provider={PROVIDER_GOOGLE}
             >
-                {mapLocations.map((marker, index) => (
+                {mapLocations.map((marker) => (
                     <Marker
                         key={marker.name}
                         coordinate={{
@@ -161,11 +168,11 @@ const Map: React.FC<Props> = () => {
                         title={marker.name}
                         description="Aktivitetsnivå: Låg"
                         image={require('../../img/png/vdala/vdalalogga.png')}
-                        onPress={() => onMarkerPressed(marker, index)}
+                        onPress={() => onMarkerPressed(marker)}
                     />
                 ))}
             </MapView>
-            {markerPressed && <Popup nation={state.markers[markerIndex]} />}
+            <Popup nation={selectedNation} show={showPopup} setShow={setShowPopup} />
         </View>
     )
 }
