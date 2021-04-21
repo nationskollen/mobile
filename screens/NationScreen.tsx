@@ -25,15 +25,13 @@ function NationScreen({ navigation }) {
     return (
         <Stack.Navigator
             initialRouteName="ChooseNation"
-            screenOptions={{ headerShown: true, ...HeaderOptions(colors) }}
+            screenOptions={HeaderOptions(colors)}
         >
             <Stack.Screen
                 name="ChooseNation"
                 component={ChooseNation}
                 options={{
-                    title: 'Nationer',
-                    headerShown: true,
-                    ...HeaderOptions(colors),
+                    title: 'Välj nation',
                 }}
             />
             <Stack.Screen
