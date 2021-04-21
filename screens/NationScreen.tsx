@@ -23,10 +23,7 @@ function NationScreen({ navigation }) {
     const { colors } = useTheme()
 
     return (
-        <Stack.Navigator
-            initialRouteName="ChooseNation"
-            screenOptions={HeaderOptions(colors)}
-        >
+        <Stack.Navigator initialRouteName="ChooseNation" screenOptions={HeaderOptions(colors)}>
             <Stack.Screen
                 name="ChooseNation"
                 component={ChooseNation}
