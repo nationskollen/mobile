@@ -8,7 +8,7 @@ interface Props {
     spacing?: number
 }
 
-const LogoCircle: React.FC<Props> = ({ src, size, spacing }) => {
+const NationLogo: React.FC<Props> = ({ src, size, spacing }) => {
     const { colors } = useTheme()
     const actualSize = size ?? 50
     const actualImageSize = actualSize - (spacing ?? 6)
@@ -21,7 +21,6 @@ const LogoCircle: React.FC<Props> = ({ src, size, spacing }) => {
                     backgroundColor: colors.backgroundHighlight,
                     height: actualSize,
                     width: actualSize,
-                    borderRadius: actualSize,
                 },
             ]}
         >
@@ -33,7 +32,6 @@ const LogoCircle: React.FC<Props> = ({ src, size, spacing }) => {
                         {
                             height: actualImageSize,
                             width: actualImageSize,
-                            borderRadius: actualImageSize,
                         },
                     ]}
                 />
@@ -49,11 +47,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginRight: 10,
+        borderRadius: 10,
     },
 
     image: {
         resizeMode: 'contain',
+        borderRadius: 10,
     },
 })
 
-export default LogoCircle
+export default NationLogo

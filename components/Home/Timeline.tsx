@@ -1,9 +1,10 @@
-import { View, ScrollView, StyleSheet } from 'react-native'
 import React from 'react'
-import { useEvents, useNationEvents } from '@dsp-krabby/sdk'
+import { FlatList } from 'react-native'
 import { useDatePicker } from './DatePickerContext'
+import { useEvents, useNationEvents } from '@dsp-krabby/sdk'
 
 import EventItem from './Event'
+import LoadingCircle from '../LoadingCircle'
 
 interface Props {
     oid: number
@@ -11,26 +12,16 @@ interface Props {
 
 const Timeline: React.FC<Props> = ({ oid }) => {
     const { date } = useDatePicker()
-    const { data } = oid ? useNationEvents(oid) : useEvents({ date })
+    const { data, isValidating, mutate } = oid ? useNationEvents(oid) : useEvents({ date })
 
-    // TODO: render events in flatlist
     return (
-        <View style={styles.container}>
-            <ScrollView>
-                {data &&
-                    data.map((event) => (
-                        //@ts-ignore
-                        <EventItem key={event.id} event={event} />
-                    ))}
-            </ScrollView>
-        </View>
+        <FlatList
+            data={data}
+            renderItem={({ item }) => <EventItem event={item} />}
+            keyExtractor={(item) => item.id.toString()}
+            refreshControl={<LoadingCircle validating={isValidating} mutate={mutate} />}
+        />
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-})
 
 export default Timeline

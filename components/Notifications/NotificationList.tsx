@@ -1,9 +1,9 @@
 import React from 'react'
 import { FlatList } from 'react-native'
 import { useNations } from '@dsp-krabby/sdk'
-import { RenderBottomLoadingCircle } from '../../assets/styled/styledComponents'
 
 import Post from './Post'
+import LoadingCircle from '../LoadingCircle'
 
 // TODO: Currently, this renders nations as notifications since we
 //       do not have implemented notifications on the server yet.
@@ -16,9 +16,7 @@ const NotificationsContent: React.FC = () => {
             data={data}
             renderItem={({ item }) => <Post data={item} />}
             keyExtractor={(item) => item.name}
-            ListFooterComponent={<RenderBottomLoadingCircle />}
-            onRefresh={mutate}
-            refreshing={isValidating}
+            refreshControl={<LoadingCircle validating={isValidating} mutate={mutate} />}
         />
     )
 }

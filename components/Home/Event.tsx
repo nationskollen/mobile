@@ -6,7 +6,7 @@ import { useNation } from '@dsp-krabby/sdk'
 import { Ionicons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 
-import LogoCircle from '../Nations/LogoCircle'
+import NationLogo from '../Nations/NationLogo'
 
 interface EventProps {
     // TODO: Replace with actual type from SDK
@@ -73,7 +73,7 @@ const Header: React.FC<HeaderProps> = ({ oid }) => {
             >
                 {data && (
                     <View style={styles.headerContent}>
-                        <LogoCircle src={data.icon_img_src} size={40} />
+                        <NationLogo src={data.icon_img_src} size={40} />
                         <Text style={[nationStyles.name, { color: colors.primaryText }]}>
                             {data.name}
                         </Text>

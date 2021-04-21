@@ -4,7 +4,7 @@ import { View, StyleSheet, Text, Image, TouchableHighlight } from 'react-native'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 
-import LogoCircle from '../Nations/LogoCircle'
+import NationLogo from '../Nations/NationLogo'
 import NotificationOptions from './NotificationOptions'
 
 const Nation = ({ data }) => {
@@ -28,7 +28,7 @@ const Nation = ({ data }) => {
                     ]}
                 >
                     {/*Logo of nation*/}
-                    <LogoCircle src={data.icon_img_src} size={50} />
+                    <NationLogo src={data.icon_img_src} size={50} />
 
                     {/*Name of nation*/}
                     <Text style={[styles.nationName, { color: colors.text }]}>{data.name}</Text>
