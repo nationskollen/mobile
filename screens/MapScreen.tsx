@@ -29,7 +29,7 @@ const MapScreen = ({ navigation }) => {
                             name="arrow-back"
                             size={28}
                             color="white"
-                            onPress={() => navigation.navigate('ChooseNation')}
+                            onPress={() => navigation.navigate('Map')}
                             style={{ marginLeft: 15 }}
                         />
                     ),
