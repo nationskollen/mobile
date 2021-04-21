@@ -1,4 +1,4 @@
-# Ignore non-js folders 
+# Ignore non-js folders
 assets
 img
 android
@@ -16,4 +16,4 @@ package-lock.json
 app.json
 app.config.json
 babel.config.js
-
+.expo/
