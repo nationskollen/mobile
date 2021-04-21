@@ -39,7 +39,9 @@ const Event: React.FC<EventProps> = ({ event }) => {
             <View style={styles.textContainer}>
                 {/*Title of event*/}
                 <View>
-                    <Text style={[styles.title, { color: colors.textHighlight }]}>{event.name}</Text>
+                    <Text style={[styles.title, { color: colors.textHighlight }]}>
+                        {event.name}
+                    </Text>
                 </View>
 
                 {/*Time of event*/}
