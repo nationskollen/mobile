@@ -92,7 +92,7 @@ const ReminderButton: React.FC = () => {
         <TouchableOpacity
             style={[reminderStyles.container, { backgroundColor: colors.backgroundHighlight }]}
         >
-            <Ionicons name="md-notifications-outline" size={24} color={colors.text} />
+            <Ionicons name="md-notifications-outline" size={20} color={colors.text} />
             <Text style={[reminderStyles.text, { color: colors.text }]}>Påminn mig</Text>
         </TouchableOpacity>
     )
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         width: '100%',
     },
 
@@ -175,14 +175,15 @@ const nationStyles = StyleSheet.create({
     },
 
     name: {
+        fontSize: 14,
         fontWeight: 'bold',
     },
 })
 
 const reminderStyles = StyleSheet.create({
     container: {
-        height: 40,
         paddingHorizontal: 10,
+        paddingVertical: 10,
         borderRadius: 5,
 
         flexDirection: 'row',

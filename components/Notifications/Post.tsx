@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     nationName: {
+        fontSize: 14,
         fontWeight: 'bold',
     },
     publishTime: {

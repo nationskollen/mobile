@@ -10,11 +10,24 @@ interface Props {
 }
 
 const Popup: React.FC<Props> = ({ nation }) => {
-    const { colors } = useTheme()
+    const { colors, isDarkMode } = useTheme()
+
+    // Fixes issue with border radius and border color.
+    const popupStyles = isDarkMode
+        ? [
+              styles.popup,
+              {
+                  borderTopWidth: 1,
+                  borderTopLeftRadius: 0,
+                  borderTopRightRadius: 0,
+                  borderColor: colors.backgroundHighlight,
+              },
+          ]
+        : [styles.popup]
 
     //TODO: add openinghours and address to nation object
     return (
-        <View style={styles.popup}>
+        <View style={popupStyles}>
             <NationInfo nation={nation} backgroundColor={colors.background} />
         </View>
     )
@@ -26,8 +39,10 @@ const styles = StyleSheet.create({
         zIndex: 2,
         bottom: 0,
         width: '100%',
-        borderTopLeftRadius: 50,
-        borderTopRightRadius: 50,
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
+        overflow: 'hidden',
+        elevation: 15,
     },
 })
 

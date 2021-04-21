@@ -43,7 +43,7 @@ const ChooseDateBar: React.FC = () => {
 const styles = StyleSheet.create({
     dateBar: {
         flex: 1,
-        height: 50,
+        height: '100%',
         borderRadius: 10,
         borderWidth: 1,
         flexDirection: 'row',

@@ -20,7 +20,7 @@ const NationInfo: React.FC<Props> = ({ nation, backgroundColor }) => {
         <View
             style={[
                 styles.nationInfoWrapper,
-                { backgroundColor: backgroundColor ?? colors.backgroundExtra },
+                { backgroundColor: backgroundColor ?? colors.background },
             ]}
         >
             <View style={styles.nationNameWrapper}>
@@ -83,15 +83,14 @@ const NationInfo: React.FC<Props> = ({ nation, backgroundColor }) => {
 //styles for nation info
 const styles = StyleSheet.create({
     descriptionWrapper: {
-        // TODO: Is it nicer with this on?
-        // marginLeft: 16,
+        marginLeft: 16,
     },
 
     nationInfoWrapper: {
         width: '100%',
         paddingTop: 25,
         paddingBottom: 30,
-        paddingHorizontal: 20,
+        paddingHorizontal: 15,
     },
 
     nationNameWrapper: {
