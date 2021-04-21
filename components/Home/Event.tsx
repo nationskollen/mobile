@@ -27,12 +27,11 @@ const Event: React.FC<EventProps> = ({ event }) => {
                 { backgroundColor: isDarkMode ? colors.backgroundExtra : colors.background },
             ]}
         >
-            {/*Cover Image of event*/}
-            <View>
-                {event.cover_img_src && (
+            {event.cover_img_src && (
+                <View style={styles.coverImgWrapper}>
                     <Image source={{ uri: event.cover_img_src }} style={styles.coverImg} />
-                )}
-            </View>
+                </View>
+            )}
 
             <Header oid={event.nation_id} />
 
@@ -40,7 +39,7 @@ const Event: React.FC<EventProps> = ({ event }) => {
             <View style={styles.textContainer}>
                 {/*Title of event*/}
                 <View>
-                    <Text style={[styles.title, { color: colors.text }]}>{event.name}</Text>
+                    <Text style={[styles.title, { color: colors.textHighlight }]}>{event.name}</Text>
                 </View>
 
                 {/*Time of event*/}
@@ -115,9 +114,16 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
 
+    coverImgWrapper: {
+        marginBottom: 15,
+        borderRadius: 5,
+        overflow: 'hidden',
+    },
+
     coverImg: {
         height: 200,
         width: '100%',
+        resizeMode: 'cover',
     },
 
     eventContainer: {

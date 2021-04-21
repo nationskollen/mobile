@@ -1,6 +1,6 @@
 // This component is used for rendering each notification.
 import React from 'react'
-import { View, Text, Image, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import { useTheme } from '../ThemeContext'
 import NationLogo from '../Nations/NationLogo'
 
@@ -23,7 +23,7 @@ const Post: React.FC<Props> = ({ data }) => {
                 <NationLogo src={icon_img_src} size={50} />
                 <View>
                     <Text style={[styles.nationName, { color: colors.primaryText }]}>{name}</Text>
-                    <Text style={[styles.notificationHeader, { color: colors.text }]}>
+                    <Text style={[styles.notificationHeader, { color: colors.textHighlight }]}>
                         Notification
                     </Text>
                 </View>
