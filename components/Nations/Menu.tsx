@@ -91,11 +91,7 @@ const Categories: React.FC = () => {
                         <View
                             style={[
                                 styles.foodCategoryIcon,
-                                {
-                                    backgroundColor: isDarkMode
-                                        ? colors.primaryText
-                                        : colors.primary,
-                                },
+                                { backgroundColor: colors.primaryText },
                             ]}
                         />
                     }
