@@ -24,7 +24,7 @@ const ChooseNationButton = () => {
 
 const styles = StyleSheet.create({
     nationButton: {
-        height: 50,
+        height: '100%',
         width: 100,
         marginLeft: 15,
         borderRadius: 10,

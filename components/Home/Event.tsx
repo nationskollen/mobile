@@ -6,6 +6,8 @@ import { useNation } from '@dsp-krabby/sdk'
 import { Ionicons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 
+import LogoCircle from '../Nations/LogoCircle'
+
 interface EventProps {
     // TODO: Replace with actual type from SDK
     event: Record<string, any>
@@ -32,10 +34,7 @@ const Event: React.FC<EventProps> = ({ event }) => {
                 )}
             </View>
 
-            <View style={styles.nationAndButton}>
-                <Header oid={event.nation_id} />
-                <ReminderButton />
-            </View>
+            <Header oid={event.nation_id} />
 
             {/*Container for title and description*/}
             <View style={styles.textContainer}>
@@ -62,23 +61,27 @@ const Event: React.FC<EventProps> = ({ event }) => {
 
 const Header: React.FC<HeaderProps> = ({ oid }) => {
     // TODO: Use types from SDK
+    const { colors } = useTheme()
     const { data } = useNation(oid)
     const navigation = useNavigation()
 
     return (
-        <TouchableOpacity
-            style={nationStyles.container}
-            // TODO: Push seems to only be available on StackNavigator?
-            //@ts-ignore
-            onPress={() => navigation.push('NationContent', { nation: nation })}
-        >
-            {data && (
-                <View style={styles.headerContainer}>
-                    <Image source={{ uri: data.icon_img_src }} style={nationStyles.logo}></Image>
-                    <Text style={[nationStyles.name, { color: 'gray' }]}>{data.name}</Text>
-                </View>
-            )}
-        </TouchableOpacity>
+        <View style={styles.header}>
+            <TouchableOpacity
+                style={nationStyles.container}
+                onPress={() => navigation.navigate('NationContent', { nation: data })}
+            >
+                {data && (
+                    <View style={styles.headerContent}>
+                        <LogoCircle src={data.icon_img_src} size={40} />
+                        <Text style={[nationStyles.name, { color: colors.primaryText }]}>
+                            {data.name}
+                        </Text>
+                    </View>
+                )}
+            </TouchableOpacity>
+            <ReminderButton />
+        </View>
     )
 }
 
@@ -89,17 +92,27 @@ const ReminderButton: React.FC = () => {
         <TouchableOpacity
             style={[reminderStyles.container, { backgroundColor: colors.backgroundHighlight }]}
         >
-            <Ionicons name="md-notifications-outline" size={24} color={colors.text} />
+            <Ionicons name="md-notifications-outline" size={20} color={colors.text} />
             <Text style={[reminderStyles.text, { color: colors.text }]}>Påminn mig</Text>
         </TouchableOpacity>
     )
 }
 
 const styles = StyleSheet.create({
-    headerContainer: {
+    header: {
         display: 'flex',
         flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',
         width: '100%',
+    },
+
+    headerContent: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        marginBottom: 10,
     },
 
     coverImg: {
@@ -113,7 +126,7 @@ const styles = StyleSheet.create({
         marginBottom: '3%',
         paddingTop: 20,
         paddingBottom: 35,
-        paddingHorizontal: 25,
+        paddingHorizontal: 20,
 
         borderBottomLeftRadius: 10,
         borderBottomRightRadius: 10,
@@ -124,11 +137,6 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.3,
         shadowRadius: 3,
-    },
-
-    nationAndButton: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
     },
 
     textContainer: {
@@ -157,37 +165,36 @@ const styles = StyleSheet.create({
 const nationStyles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        width: '40%',
         alignItems: 'center',
     },
 
     logo: {
-        width: 30,
-        height: 30,
+        width: 40,
+        height: 40,
+        borderRadius: 40,
     },
 
     name: {
-        color: '#808080',
-        marginLeft: 10,
-        width: '100%',
+        fontSize: 14,
+        fontWeight: 'bold',
     },
 })
 
 const reminderStyles = StyleSheet.create({
     container: {
-        width: 120,
-        height: 40,
+        paddingHorizontal: 10,
+        paddingVertical: 10,
         borderRadius: 5,
 
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-evenly',
-
-        backgroundColor: '#AEAEAE',
+        justifyContent: 'center',
     },
 
     text: {
         color: 'white',
+        fontWeight: 'bold',
+        marginLeft: 5,
     },
 })
 

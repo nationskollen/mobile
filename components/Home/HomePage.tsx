@@ -1,6 +1,6 @@
 import React from 'react'
 import { SafeAreaView } from 'react-native'
-import { useDatePicker, DatePickerProvider } from './DatePickerContext'
+import { DatePickerProvider } from './DatePickerContext'
 
 import Header from './Header'
 import Timeline from './Timeline'

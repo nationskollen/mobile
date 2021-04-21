@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     mainWrapper: {
         width: '100%',
         height: 70,
+        paddingVertical: 10,
         paddingHorizontal: 15,
         flexDirection: 'row',
         alignItems: 'center',

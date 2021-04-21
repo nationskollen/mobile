@@ -2,6 +2,7 @@
 import React from 'react'
 import { View, Text, Image, StyleSheet } from 'react-native'
 import { useTheme } from '../ThemeContext'
+import LogoCircle from '../Nations/LogoCircle'
 
 // TODO: Remove this and use function or type from SDK
 interface Props {
@@ -19,17 +20,7 @@ const Post: React.FC<Props> = ({ data }) => {
     return (
         <View style={[styles.notificationWrapper, { borderColor: colors.border }]}>
             <View style={styles.header}>
-                <View
-                    style={[
-                        styles.nationLogoImgWrapper,
-                        { backgroundColor: colors.backgroundHighlight },
-                    ]}
-                >
-                    <Image
-                        source={{ uri: icon_img_src }}
-                        style={styles.nationLogoImg}
-                    />
-                </View>
+                <LogoCircle src={icon_img_src} size={50} />
                 <View>
                     <Text style={[styles.nationName, { color: colors.primaryText }]}>{name}</Text>
                     <Text style={[styles.notificationHeader, { color: colors.text }]}>
@@ -100,6 +91,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     nationName: {
+        fontSize: 14,
         fontWeight: 'bold',
     },
     publishTime: {

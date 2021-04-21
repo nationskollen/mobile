@@ -4,7 +4,8 @@ import React from 'react'
 import { useTheme } from '../ThemeContext'
 import { useNations } from '@dsp-krabby/sdk'
 import { useNavigation } from '@react-navigation/native'
-import { ScrollView, View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
+import { ScrollView, View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import LogoCircle from './LogoCircle'
 
 // TODO: Repalce with SDK type for nation
 interface NationProps {
@@ -31,16 +32,10 @@ const Nation: React.FC<NationProps> = ({ data }) => {
     return (
         <View key={data.id} style={[styles.nationWrapper, { borderColor: colors.backgroundExtra }]}>
             {/*Logo of nation*/}
-            <View
-                style={[styles.nationLogoImgWrapper, { backgroundColor: colors.backgroundExtra }]}
-            >
-                <Image source={{ uri: data.icon_img_src }} style={styles.nationLogoImg} />
-            </View>
+            <LogoCircle src={data.icon_img_src} size={50} />
 
             {/*Name of nation*/}
-            <View style={styles.nationNameWrapper}>
-                <Text style={[styles.nationName, { color: colors.text }]}>{data.name}</Text>
-            </View>
+            <Text style={[styles.nationName, { color: colors.text }]}>{data.name}</Text>
 
             {/*Button for choosing nation*/}
             <TouchableOpacity
@@ -109,17 +104,12 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
     },
 
-    nationNameWrapper: {
-        height: '100%',
-        justifyContent: 'center',
-        flex: 1,
-    },
-
     nationName: {
+        flex: 1,
         fontWeight: 'bold',
         fontSize: 16,
         color: 'black',
-        marginLeft: 15,
+        marginLeft: 5,
     },
 
     chooseButtonWrapper: {

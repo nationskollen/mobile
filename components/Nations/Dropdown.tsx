@@ -16,10 +16,10 @@ const Dropdown: React.FC<Props> = ({ title, expandComponent, icon }) => {
     const [expand, setExpand] = useState(false)
 
     return (
-        <View key={title}>
+        <View>
             <View style={[styles.header, { borderBottomColor: colors.border }]}>
                 <View style={styles.nameWrapper}>
-                    {icon}
+                    <View style={styles.iconWrapper}>{icon}</View>
                     <Text style={[styles.headerTitle, { color: colors.text }]}>{title}</Text>
                 </View>
                 <Ionicons
@@ -58,6 +58,12 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         marginLeft: 15,
+    },
+
+    iconWrapper: {
+        width: 30,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 })
 

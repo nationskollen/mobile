@@ -3,7 +3,7 @@ import React from 'react'
 import { useEvents } from '@dsp-krabby/sdk'
 import { useDatePicker } from './DatePickerContext'
 
-import EventItem from '../Timeline/Event'
+import EventItem from './Event'
 
 const Timeline: React.FC = () => {
     const { date } = useDatePicker()
