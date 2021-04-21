@@ -1,4 +1,5 @@
 {
+  "name": "@dsp-krabby/mobile",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "NODE_ENV=development expo start",
@@ -6,11 +7,14 @@
     "ios": "NODE_ENV=development expo start --ios",
     "web": "NODE_ENV=development expo start --web",
     "eject": "expo eject",
-    "format": "npx prettier --write ."
+    "format": "npx prettier --write .",
+    "docs": "npx typedoc",
+    "docs:watch": "npx typedoc --watch"
   },
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
     "@dsp-krabby/sdk": "^2.0.2",
+    "@dsp-krabby/typedoc-theme-overrides": "^1.0.2",
     "@expo/ngrok": "^2.4.3",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/bottom-tabs": "^5.11.9",
