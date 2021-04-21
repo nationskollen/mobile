@@ -79,7 +79,7 @@ const Menu: React.FC<Props> = ({ oid }) => {
 
 //returns rendered food categories
 const Categories: React.FC = () => {
-    const { colors } = useTheme()
+    const { colors, isDarkMode } = useTheme()
 
     return (
         <View>
@@ -89,7 +89,7 @@ const Categories: React.FC = () => {
                     title={category}
                     icon={
                         <View
-                            style={[styles.foodCategoryIcon, { backgroundColor: colors.primary }]}
+                            style={[styles.foodCategoryIcon, { backgroundColor: isDarkMode ? colors.primaryText : colors.primary }]}
                         />
                     }
                     expandComponent={<MenuItemList category={category} />}
@@ -105,7 +105,7 @@ const MenuItemList: React.FC<MenuItemListProps> = ({ category }) => {
 
     return (
         <View>
-            {menu[category].map((item: any) => {
+            {menu[category] && menu[category].map((item: any) => {
                 ;<View
                     key={item.name}
                     style={[styles.itemBorder, { borderColor: colors.backgroundExtra }]}
@@ -176,7 +176,10 @@ const styles = StyleSheet.create({
     },
 
     foodCategoryIcon: {
-        marginLeft: '15%',
+        width: 10,
+        height: 10,
+        borderRadius: 10,
+        marginLeft: 2
     },
 })
 

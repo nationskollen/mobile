@@ -4,6 +4,7 @@ import { View, StyleSheet, Text, Image, TouchableHighlight } from 'react-native'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 
+import LogoCircle from '../Nations/LogoCircle'
 import NotificationOptions from './NotificationOptions'
 
 const Nation = ({ data }) => {
@@ -27,19 +28,10 @@ const Nation = ({ data }) => {
                     ]}
                 >
                     {/*Logo of nation*/}
-                    <View
-                        style={[
-                            styles.nationLogoImgWrapper,
-                            { backgroundColor: colors.backgroundExtra },
-                        ]}
-                    >
-                        <Image source={{ uri: data.icon_img_src }} style={styles.nationLogoImg} />
-                    </View>
+                    <LogoCircle src={data.icon_img_src} size={50} />
 
                     {/*Name of nation*/}
-                    <View style={[styles.nationNameWrapper]}>
-                        <Text style={[styles.nationName, { color: colors.text }]}>{data.name}</Text>
-                    </View>
+                    <Text style={[styles.nationName, { color: colors.text }]}>{data.name}</Text>
 
                     {/*Button for choosing nation*/}
                     <Ionicons
@@ -82,17 +74,12 @@ const styles = StyleSheet.create({
         borderRadius: 50,
     },
 
-    nationNameWrapper: {
-        height: '100%',
-        justifyContent: 'center',
-        flex: 1,
-    },
-
     nationName: {
         fontWeight: 'bold',
-        fontSize: 18,
+        fontSize: 16,
         color: 'black',
-        paddingLeft: '5%',
+        marginLeft: 5,
+        flex: 1,
     },
 })
 
