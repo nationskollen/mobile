@@ -29,17 +29,12 @@ function NationScreen({ navigation }) {
     const { colors } = useTheme()
 
     return (
-        <Stack.Navigator
-            initialRouteName="ChooseNation"
-            screenOptions={{ headerShown: true, ...HeaderOptions(colors) }}
-        >
+        <Stack.Navigator initialRouteName="ChooseNation" screenOptions={HeaderOptions(colors)}>
             <Stack.Screen
                 name="ChooseNation"
                 component={ChooseNation}
                 options={{
-                    title: 'Nationer',
-                    headerShown: true,
-                    ...HeaderOptions(colors),
+                    title: 'Välj nation',
                 }}
             />
             <Stack.Screen
@@ -62,86 +57,5 @@ function NationScreen({ navigation }) {
         </Stack.Navigator>
     )
 }
-
-export var nationListEx = [
-    {
-        id: 'norrlands',
-        name: 'Norrlands Nation',
-        nickname: 'Norrlands Nation',
-        logo: require('../img/png/norrlands/norrlandslogga.png'),
-    },
-    {
-        id: 'vdala',
-        name: 'Västmanlands-Dala Nation',
-        nickname: 'V-Dala Nation',
-        logo: require('../img/png/vdala/vdalalogga.png'),
-    },
-    {
-        id: 'gotlands',
-        name: 'Gotlands Nation',
-        nickname: 'Gotlands Nation',
-        logo: require('../img/png/gotlands/gotlandslogga.png'),
-    },
-    {
-        id: 'snerikes',
-        name: 'Södermanlands-Nerikes Nation',
-        nickname: 'Snerikes Nation',
-        logo: require('../img/png/snerikes/snerikeslogga.png'),
-    },
-    {
-        id: 'kalmars',
-        name: 'Kalmars Nation',
-        nickname: 'Snerikes Nation',
-        logo: require('../img/png/kalmars/kalmarslogga.png'),
-    },
-    {
-        id: 'ostgotas',
-        name: 'Östgöta Nation',
-        nickname: 'ÖG-Nations',
-        logo: require('../img/png/ostgotas/ostgotalogga.png'),
-    },
-    {
-        id: 'smalands',
-        name: 'Smålands Nation',
-        nickname: 'Smålands Nation',
-        logo: require('../img/png/smalands/smalandslogga.png'),
-    },
-    {
-        id: 'stockholms',
-        name: 'Stockholms Nation',
-        nickname: 'Stocken',
-        logo: require('../img/png/stockholms/stockholmslogga.png'),
-    },
-    {
-        id: 'uplands',
-        name: 'Uplands Nation',
-        nickname: 'Uplands Nation',
-        logo: require('../img/png/uplands/uplandslogga.png'),
-    },
-    {
-        id: 'varmlands',
-        name: 'Värmlands Nation',
-        nickname: 'Värmlands Nation',
-        logo: require('../img/png/varmlands/varmlandslogga.png'),
-    },
-    {
-        id: 'vastgotas',
-        name: 'Västgötas Nation',
-        nickname: 'Västgötas Nation',
-        logo: require('../img/png/vastgotas/vastgotalogga.png'),
-    },
-    {
-        id: 'goteborgs',
-        name: 'Göteborgs Nation',
-        nickname: 'Göteborgs Nation',
-        logo: require('../img/png/goteborgs/goteborglogga.png'),
-    },
-    {
-        id: 'ghs',
-        name: 'Gästrike-Hälsinglands Nation',
-        nickname: 'GH',
-        logo: require('../img/png/ghs/ghlogga.png'),
-    },
-]
 
 export default NationScreen

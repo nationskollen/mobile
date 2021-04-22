@@ -10,11 +10,6 @@ interface Props {
     data: Array<Record<string, any>>
 }
 
-// Stores the markers context onpress
-const state = {
-    markers: [],
-}
-
 // TODO: Add endpoint on server for fetching all locations that should be displayed on map
 const mapLocations = [
     {
@@ -124,36 +119,47 @@ const mapLocations = [
 ]
 
 const Map: React.FC<Props> = () => {
-    const { isDarkMode } = useTheme()
-    const [markerIndex, setMarkerIndex] = useState(0)
-    const [markerPressed, setPressed] = useState(false)
+    const { colors, isDarkMode } = useTheme()
+    const [selectedNation, setSelectedNation] = useState<any | null>(null)
+    const [showPopup, setShowPopup] = useState(false)
 
     // Empty array renders standard light map
     const theme = isDarkMode ? MapDarkTheme : []
 
-    const onMarkerPressed = (location: any, index: number) => {
-        state.markers[index] = location
-        setPressed(true)
-        setMarkerIndex(index)
+    const onMarkerPressed = (location: any) => {
+        setShowPopup(true)
+        setSelectedNation(location)
+    }
+
+    const onMapPressed = () => {
+        // Skip resetting of selected nation so that
+        // the animation actually plays out.
+        // If we set it to null, the content will be removed
+        // and the height of the popup will be 0 => no animation.
+        setShowPopup(false)
     }
 
     return (
         <View style={styles.container}>
             <MapView
-                style={styles.mapStyle}
+                style={styles.map}
                 initialRegion={{
                     latitude: 59.858644,
                     longitude: 17.634732,
                     latitudeDelta: 0.0322, // Zoom level
                     longitudeDelta: 0.0321, // Zoom level
                 }}
-                onPress={() => setPressed(false)}
+                onPress={onMapPressed}
                 customMapStyle={theme}
                 provider={PROVIDER_GOOGLE}
+                pitchEnabled={false}
+                loadingBackgroundColor={colors.background}
+                loadingIndicatorColor={colors.primaryText}
+                rotateEnabled={false}
             >
-                {mapLocations.map((marker, index) => (
+                {mapLocations.map((marker) => (
                     <Marker
-                        key={marker.name}
+                        key={marker.id}
                         coordinate={{
                             latitude: marker.latitude,
                             longitude: marker.longitude,
@@ -161,11 +167,12 @@ const Map: React.FC<Props> = () => {
                         title={marker.name}
                         description="Aktivitetsnivå: Låg"
                         image={require('../../img/png/vdala/vdalalogga.png')}
-                        onPress={() => onMarkerPressed(marker, index)}
+                        onPress={() => onMarkerPressed(marker)}
+                        stopPropagation={true}
                     />
                 ))}
             </MapView>
-            {markerPressed && <Popup nation={state.markers[markerIndex]} />}
+            <Popup nation={selectedNation} show={showPopup} setShow={setShowPopup} />
         </View>
     )
 }
@@ -175,15 +182,8 @@ const styles = StyleSheet.create({
         flex: 1,
     },
 
-    mapStyle: {
-        zIndex: -1,
-        flexWrap: 'wrap',
-        alignSelf: 'stretch',
-        backgroundColor: 'white',
+    map: {
         height: '100%',
-
-        borderBottomWidth: 1,
-        borderColor: '#E0E0E0',
     },
 })
 

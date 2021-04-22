@@ -3,15 +3,16 @@ import React from 'react'
 
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
-import LogoCircle from './LogoCircle'
+import NationLogo from './NationLogo'
 
 interface Props {
     nation: any
     backgroundColor?: string
+    paddingTop?: number
 }
 
 //renders information and title of nation. Can be used in maps too!
-const NationInfo: React.FC<Props> = ({ nation, backgroundColor }) => {
+const NationInfo: React.FC<Props> = ({ nation, backgroundColor, paddingTop }) => {
     //TODO: add openinghours and address to nation object
     //TODO: add color theme to nation, so that icons can match
     const { colors } = useTheme()
@@ -20,11 +21,14 @@ const NationInfo: React.FC<Props> = ({ nation, backgroundColor }) => {
         <View
             style={[
                 styles.nationInfoWrapper,
-                { backgroundColor: backgroundColor ?? colors.background },
+                {
+                    backgroundColor: backgroundColor ?? colors.background,
+                    paddingTop: paddingTop ?? 15,
+                },
             ]}
         >
             <View style={styles.nationNameWrapper}>
-                <LogoCircle src={nation.icon_img_src} size={50} />
+                <NationLogo src={nation.icon_img_src} size={50} />
                 <Text style={[styles.nationName, { color: colors.text }]}>{nation.name}</Text>
             </View>
 
@@ -88,7 +92,6 @@ const styles = StyleSheet.create({
 
     nationInfoWrapper: {
         width: '100%',
-        paddingTop: 25,
         paddingBottom: 30,
         paddingHorizontal: 15,
     },

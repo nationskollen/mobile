@@ -1,32 +1,31 @@
-import { View, ScrollView, StyleSheet } from 'react-native'
 import React from 'react'
+import { FlatList } from 'react-native'
 import { useEvents } from '@dsp-krabby/sdk'
 import { useDatePicker } from './DatePickerContext'
 
 import EventItem from './Event'
+import ListEmpty from '../ListEmpty'
+import LoadingCircle from '../LoadingCircle'
 
 const Timeline: React.FC = () => {
     const { date } = useDatePicker()
-    const { data } = useEvents({ date })
+    const { data, error, isValidating, mutate } = useEvents({ date })
 
-    // TODO: render events in flatlist
     return (
-        <View style={styles.container}>
-            <ScrollView>
-                {data &&
-                    data.map((event) => (
-                        //@ts-ignore
-                        <EventItem key={event.id} event={event} />
-                    ))}
-            </ScrollView>
-        </View>
+        <FlatList
+            data={data}
+            renderItem={({ item }) => <EventItem event={item} />}
+            keyExtractor={(item) => item.id.toString()}
+            refreshControl={<LoadingCircle validating={isValidating} mutate={mutate} />}
+            ListEmptyComponent={() =>
+                ListEmpty({
+                    error,
+                    loading: isValidating,
+                    message: 'Inga events denna dag',
+                })
+            }
+        />
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-})
 
 export default Timeline
