@@ -1,7 +1,10 @@
 /**
- * This component renders a dropdown menu when pressing a button is pressed
+ * This component renders an expandable dropdown menu header
  * @category Nation
  * @module Dropdown
+ * @param title The title of the dropdown menu header
+ * @param expandComponent The component to be rendered when pressing an expand button on the header
+ * @param icon The button that when pressed renders `expandComponent` 
  */
 import React, { useState } from 'react'
 import { View, Text, StyleSheet } from 'react-native'

@@ -1,3 +1,12 @@
+/**
+ * This component renders information about a nation
+ * @category Nation
+ * @module NationInfo
+ * @param nation The nation whose information is to be rendered
+ * @param backgroundColor Optional background color
+ * @param paddingTop Optional padding on the top
+ *
+ */
 import { View, Text, StyleSheet, Alert } from 'react-native'
 import React from 'react'
 

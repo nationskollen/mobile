@@ -1,5 +1,5 @@
 /**
- * This components shown the nations in a scrollable list
+ * This component renders the nations in a scrollable list.
  * @category Nation
  * @module ListOfNations
  * @returns A scrollable list of all nations

@@ -1,5 +1,5 @@
 /**
- * This component renders a menu and shows it using {@link Dropdown}
+ * This component renders a menu and shows it using {@link Dropdown}.
  * @category Nation
  * @module Menu
  * @param oid The id of the nation from which the menu is to be fetched from

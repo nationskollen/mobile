@@ -1,7 +1,6 @@
 import React from 'react'
 import { useTheme } from '../ThemeContext'
 import { StyleSheet, Text, View, Image } from 'react-native'
-import NK_LOGO from '../../assets/nationskollen_logo-do_not_change.png'
 
 const Header = () => {
     const { colors } = useTheme()
@@ -11,7 +10,7 @@ const Header = () => {
             <Text style={[headerStyles.headerTitle, { color: colors.text }]}>Nationskollen</Text>
             {/*THE PRETTIEST LOGO YOU WILL EVER SEE*/}
             <Image
-                source={NK_LOGO}
+                source={require('../../assets/nationskollen_logo-do_not_change.png')}
                 style={[headerStyles.logo, { backgroundColor: colors.backgroundExtra }]}
             />
         </View>

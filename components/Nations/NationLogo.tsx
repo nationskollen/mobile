@@ -1,3 +1,12 @@
+/**
+ * This component styles and render a logo.
+ * @category Nation
+ * @module NationLogo
+ * @param src The source of the logo
+ * @param size The size of the logo container
+ * @param spacing The spacing from the logo container to the logo
+ *
+ */
 import React from 'react'
 import { Image, View, StyleSheet } from 'react-native'
 import { useTheme } from '../ThemeContext'
