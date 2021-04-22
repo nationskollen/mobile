@@ -1,0 +1,29 @@
+{
+    "footer" : {
+	"notifications" : "Notifications",
+	"nations" : "Nations",
+	"home" : "Home",
+	"map" : "Map",
+	"settings" : "Settings"
+    },
+
+    "notifications" : {
+	"header" : "Notifications"
+    },
+
+    "nations" : {
+	"header" : "Nations"
+    },
+
+    "home" : {
+	"header" : "Home"
+    },
+
+    "map" : {
+	"header" : "Map"
+    },
+
+    "settings" : {
+	"header" : "Settings"
+    }
+}
