@@ -8,10 +8,11 @@ import LogoCircle from './LogoCircle'
 interface Props {
     nation: any
     backgroundColor?: string
+    paddingTop?: number
 }
 
 //renders information and title of nation. Can be used in maps too!
-const NationInfo: React.FC<Props> = ({ nation, backgroundColor }) => {
+const NationInfo: React.FC<Props> = ({ nation, backgroundColor, paddingTop }) => {
     //TODO: add openinghours and address to nation object
     //TODO: add color theme to nation, so that icons can match
     const { colors } = useTheme()
@@ -20,7 +21,10 @@ const NationInfo: React.FC<Props> = ({ nation, backgroundColor }) => {
         <View
             style={[
                 styles.nationInfoWrapper,
-                { backgroundColor: backgroundColor ?? colors.background },
+                {
+                    backgroundColor: backgroundColor ?? colors.background,
+                    paddingTop: paddingTop ?? 25,
+                },
             ]}
         >
             <View style={styles.nationNameWrapper}>
@@ -88,7 +92,6 @@ const styles = StyleSheet.create({
 
     nationInfoWrapper: {
         width: '100%',
-        paddingTop: 25,
         paddingBottom: 30,
         paddingHorizontal: 15,
     },
