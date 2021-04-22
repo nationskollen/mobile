@@ -10,11 +10,6 @@ interface Props {
     data: Array<Record<string, any>>
 }
 
-// Stores the markers context onpress
-const state = {
-    markers: [],
-}
-
 // TODO: Add endpoint on server for fetching all locations that should be displayed on map
 const mapLocations = [
     {
@@ -180,6 +175,7 @@ const Map: React.FC<Props> = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        zIndex: 1,
     },
 
     mapStyle: {
