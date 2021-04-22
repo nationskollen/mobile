@@ -1,3 +1,9 @@
+/**
+ * This component is the top dog. This is the component that renders when runnig the code.
+ * @category BIG
+ * @module App
+ */
+
 import React from 'react'
 import 'react-native-gesture-handler'
 import Constants from 'expo-constants'
@@ -6,7 +12,6 @@ import { ThemeProvider } from './components/ThemeContext'
 
 import Footer from './components/Footer'
 
-/// Creates a navigation container in which every screen is "positioned"
 const App: React.FC = () => {
     return (
         //@ts-ignore

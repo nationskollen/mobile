@@ -1,3 +1,8 @@
+/**
+ * This component contains each screen in the Notification tab
+ * @category Screens
+ * @module NotificationScreen
+ */
 import React from 'react'
 
 import 'react-native-gesture-handler'
@@ -12,6 +17,7 @@ const Stack = createStackNavigator()
 
 /// The screens included in the local stack
 /// Put screens relating to notifications here
+
 const NotificationScreen: React.FC = () => {
     const { colors } = useTheme()
 

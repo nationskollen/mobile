@@ -1,5 +1,12 @@
+/** 
+ * This component contains each screen in the Home tab.
+ * Renders the home screen and creates a stack to navigate between the different screens in the home page.
+ * @param navigation Used to navigate between screens
+ * @category Home
+ * @module HomeScreen
+ */
+
 /// This is the Home Screen
-/// Renders the home screen and creates a stack to navigate between the different screens in the home page
 import React from 'react'
 
 import 'react-native-gesture-handler'
@@ -12,8 +19,8 @@ import NationContent from '../components/Nations/NationContent'
 import RenderBackArrow from '../assets/Icons/backArrow.js'
 
 const Stack = createStackNavigator()
-/// TODO: Create a local stack
-/// TODO: Import appropriate components (screens)
+
+
 
 function HomeScreen({ navigation }) {
     const { colors } = useTheme()

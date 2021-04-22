@@ -1,5 +1,10 @@
-/// This is the home for nations
-/// Renders start page for nations
+/**
+ * This component contains each screen in the Nations tab 
+ *
+ * @category Nation
+ * @module NationScreen
+ */
+
 import React from 'react'
 
 import 'react-native-gesture-handler'
@@ -19,6 +24,7 @@ const Stack = createStackNavigator()
 
 /// The screens included in the local stack
 /// Put screens relating to nations here
+
 function NationScreen({ navigation }) {
     const { colors } = useTheme()
 

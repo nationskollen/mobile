@@ -1,3 +1,8 @@
+/**
+ * This component renders a dropdown menu when pressing a button is pressed
+ * @category Nation
+ * @module Dropdown
+ */
 import React, { useState } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 

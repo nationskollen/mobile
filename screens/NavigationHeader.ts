@@ -1,3 +1,9 @@
+/**
+ * This component styles the header in each page
+ * @category Navigation
+ * @module NavigationHeader
+ */
+
 import { ThemeColors } from '../components/ThemeContext'
 import { StackNavigationOptions } from '@react-navigation/stack'
 

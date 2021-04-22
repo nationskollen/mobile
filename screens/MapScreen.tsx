@@ -1,5 +1,9 @@
-/// This is the Home Screen
-/// Renders the home screen and creates a stack to navigate between the different screens in the home page
+/** 
+ * This component contains each screen in the Map tab.
+ * @category Map
+ * @module MapScreen
+ */
+
 import React from 'react'
 import 'react-native-gesture-handler'
 import { HeaderOptions } from './NavigationHeader'

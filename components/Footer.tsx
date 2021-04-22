@@ -1,3 +1,8 @@
+/**
+ * This component renders the footer in which each tab can be selected
+ * @category Navigation
+ * @module Footer
+ */
 import React from 'react'
 import { useTheme } from './ThemeContext'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'

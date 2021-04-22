@@ -1,3 +1,9 @@
+/**
+ * This components shown the nations in a scrollable list
+ * @category Nation
+ * @module ListOfNations
+ * @returns A scrollable list of all nations
+ */
 // TODO: This can be merged with ../Settings/Nation.tsx
 // This is for rendering the choose-nation view.
 import React from 'react'
@@ -11,6 +17,7 @@ import LogoCircle from './LogoCircle'
 interface NationProps {
     data: any
 }
+
 
 const ChooseNation: React.FC = () => {
     const { data } = useNations()

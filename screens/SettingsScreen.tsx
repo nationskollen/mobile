@@ -1,3 +1,8 @@
+/**
+ * This component contains each screen in the Settings tab
+ * @category Settings
+ * @module SettingsScreen
+ */
 /// This is used to render Settings page and screens relating to it
 import React from 'react'
 
@@ -14,8 +19,7 @@ import NotificationSettings from '../components/Settings/NotificationSettings'
 
 const Stack = createStackNavigator()
 
-/// TODO: create a local navigation stack
-/// TODO: factor out basically everything to a different file and replace it with a local stack navigator
+
 function SettingsScreen({ navigation }) {
     const { colors } = useTheme()
 
