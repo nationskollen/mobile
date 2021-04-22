@@ -69,11 +69,13 @@ const Menu: React.FC<Props> = ({ oid }) => {
     const { colors } = useTheme()
 
     return (
-        <Dropdown
-            title={'Meny'}
-            expandComponent={<Categories />}
-            icon={<Ionicons name="md-fast-food-outline" size={28} color={colors.text} />}
-        />
+        <View>
+            <Dropdown
+                title={'Meny'}
+                expandComponent={<Categories />}
+                icon={<Ionicons name="md-fast-food-outline" size={28} color={colors.text} />}
+            />
+        </View>
     )
 }
 
