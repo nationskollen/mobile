@@ -15,6 +15,7 @@ interface Props {
 }
 
 const Popup: React.FC<Props> = ({ nation, show, setShow }) => {
+    console.log(show)
     const { colors } = useTheme()
     const navigation = useNavigation()
     const popupHeight = 300
@@ -75,7 +76,7 @@ const Popup: React.FC<Props> = ({ nation, show, setShow }) => {
 const styles = StyleSheet.create({
     popup: {
         position: 'absolute',
-        zIndex: 2,
+        zIndex: 100,
         bottom: 0,
         width: '100%',
         borderTopLeftRadius: 15,
