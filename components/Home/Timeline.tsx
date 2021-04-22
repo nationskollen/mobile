@@ -4,6 +4,7 @@ import { useDatePicker } from './DatePickerContext'
 import { useEvents, useNationEvents } from '@dsp-krabby/sdk'
 
 import EventItem from './Event'
+import ListEmpty from '../ListEmpty'
 import LoadingCircle from '../LoadingCircle'
 
 interface Props {
@@ -12,7 +13,7 @@ interface Props {
 
 const Timeline: React.FC<Props> = ({ oid }) => {
     const { date } = useDatePicker()
-    const { data, isValidating, mutate } = oid ? useNationEvents(oid) : useEvents({ date })
+    const { data, error, isValidating, mutate } = oid ? useNationEvents(oid) : useEvents({ date })
 
     return (
         <FlatList
@@ -20,6 +21,13 @@ const Timeline: React.FC<Props> = ({ oid }) => {
             renderItem={({ item }) => <EventItem event={item} />}
             keyExtractor={(item) => item.id.toString()}
             refreshControl={<LoadingCircle validating={isValidating} mutate={mutate} />}
+            ListEmptyComponent={() =>
+                ListEmpty({
+                    error,
+                    loading: isValidating,
+                    message: 'Inga events denna dag',
+                })
+            }
         />
     )
 }

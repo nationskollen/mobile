@@ -6,15 +6,15 @@ import { useNations } from '@dsp-krabby/sdk'
 import { useNavigation } from '@react-navigation/native'
 import { FlatList, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
+import ListEmpty from '../ListEmpty'
 import NationLogo from './NationLogo'
 import LoadingCircle from '../LoadingCircle'
 
 const ChooseNation: React.FC = () => {
     const { colors } = useTheme()
     const navigation = useNavigation()
-    const { data, isValidating, mutate } = useNations()
+    const { data, error, isValidating, mutate } = useNations()
 
-    // TODO: Use flatlist
     return (
         <FlatList
             data={data}
@@ -30,6 +30,13 @@ const ChooseNation: React.FC = () => {
             )}
             keyExtractor={(item) => item.name}
             refreshControl={<LoadingCircle validating={isValidating} mutate={mutate} />}
+            ListEmptyComponent={() =>
+                ListEmpty({
+                    error,
+                    loading: isValidating,
+                    message: 'Inga nationer',
+                })
+            }
         />
     )
 }
