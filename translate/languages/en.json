@@ -16,7 +16,9 @@
     },
 
     "home" : {
-	"header" : "Home"
+	"header" : "Home",
+	"headline" : "Nationskollen",
+	"nationbutton" : "Nation"
     },
 
     "map" : {
@@ -24,6 +26,21 @@
     },
 
     "settings" : {
-	"header" : "Settings"
+	"header" : "Settings",
+	"darkmodeheader" : "Dark Mode",
+	"darkmodedescription" : "Set this to prevent strained eyes",
+	"login" : "Login",
+	"notifications" : "Adjust notifications",
+	"loginsetting" : {
+	    "header" : "Nationskollen",
+	    "username" : "Username",
+	    "password" : "Password",
+	    "loginbutton" : "Login"	
+
+	},
+	
+	"notificationsetting" : {
+	    "header" : "Adjust notifications"
+	}
     }
 }
