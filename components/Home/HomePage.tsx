@@ -16,7 +16,7 @@ const Home = ({ route }) => {
                 <Header />
                 <FilterBar />
                 <Calendar />
-                <Timeline oid={oid}/>
+                <Timeline oid={oid} />
             </SafeAreaView>
         </DatePickerProvider>
     )

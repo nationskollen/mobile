@@ -1,7 +1,7 @@
 //This file renders food related components
 
 //Used to render various dropdown menus
-import Dropdown, { EventsButton } from './Dropdown'
+import Dropdown from './Dropdown'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 import { View, Text, StyleSheet } from 'react-native'
@@ -74,9 +74,6 @@ const Menu: React.FC<Props> = ({ oid }) => {
                 title={'Meny'}
                 expandComponent={<Categories />}
                 icon={<Ionicons name="md-fast-food-outline" size={28} color={colors.text} />}
-            />
-            <EventsButton
-                oid={oid}
             />
         </View>
     )

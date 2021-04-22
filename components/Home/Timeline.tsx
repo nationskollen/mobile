@@ -6,13 +6,12 @@ import { useDatePicker } from './DatePickerContext'
 import EventItem from './Event'
 
 interface Props {
-    oid: number,
+    oid: number
 }
 
-const Timeline: React.FC<Props> = ( {oid} ) => {
+const Timeline: React.FC<Props> = ({ oid }) => {
     const { date } = useDatePicker()
-    const { data } = oid ? useNationEvents( oid ) : useEvents({ date })
-
+    const { data } = oid ? useNationEvents(oid) : useEvents({ date })
 
     // TODO: render events in flatlist
     return (
