@@ -15,7 +15,6 @@ interface Props {
 }
 
 const Popup: React.FC<Props> = ({ nation, show, setShow }) => {
-    console.log(show)
     const { colors } = useTheme()
     const navigation = useNavigation()
     const popupHeight = 300
