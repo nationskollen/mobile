@@ -5,7 +5,7 @@ import { SafeAreaView, View, StyleSheet, Text, TouchableHighlight } from 'react-
 import 'react-native-gesture-handler'
 
 import { useTheme } from '../ThemeContext'
-import { FontAwesome } from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons'
 import ToggleSwitch from 'toggle-switch-react-native'
 
 function SettingsPage({ navigation }) {
@@ -34,9 +34,9 @@ function SettingsPage({ navigation }) {
             >
                 <View style={[styles.settingsOption, { borderBottomColor: colors.border }]}>
                     <Text style={[styles.optionsText, { color: colors.text }]}>Logga in</Text>
-                    <FontAwesome
+                    <Ionicons
                         style={[styles.arrow, { color: colors.text }]}
-                        name="long-arrow-right"
+                        name='chevron-forward'
                         size={24}
                     />
                 </View>
@@ -49,9 +49,9 @@ function SettingsPage({ navigation }) {
                     <Text style={[styles.optionsText, { color: colors.text }]}>
                         Anpassa notifikationer
                     </Text>
-                    <FontAwesome
+                    <Ionicons
                         style={[styles.arrow, { color: colors.text }]}
-                        name="long-arrow-right"
+                        name='chevron-forward'
                         size={24}
                     />
                 </View>
@@ -61,20 +61,14 @@ function SettingsPage({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-    arrow: {
-        alignSelf: 'flex-end',
-        position: 'absolute',
-        paddingRight: '10%',
-    },
     container: {
         flex: 1,
         backgroundColor: 'white',
     },
     darkMode: {
-        height: 150,
+        height: 125,
         justifyContent: 'space-between',
-        paddingHorizontal: 30,
-        backgroundColor: '#E0E0E0',
+        paddingHorizontal: 15,
         flexDirection: 'row',
     },
     dmButton: {
@@ -85,7 +79,7 @@ const styles = StyleSheet.create({
     dmText: {
         justifyContent: 'center',
         flex: 1,
-        marginRight: 5,
+        marginRight: 15,
     },
     dmTitle: {
         fontSize: 20,
@@ -96,12 +90,12 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     settingsOption: {
-        height: 75,
-        paddingLeft: 30,
-        justifyContent: 'center',
-        flexDirection: 'column',
+        paddingHorizontal: 15,
+        paddingVertical: 20,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexDirection: 'row',
         borderBottomWidth: 1,
-        borderBottomColor: '#E0E0E0',
     },
 })
 
