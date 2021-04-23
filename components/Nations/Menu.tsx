@@ -1,11 +1,9 @@
-//This file renders food related components
-
-//Used to render various dropdown menus
-import Dropdown from './Dropdown'
+import React from 'react'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
+
+import Dropdown from '../Dropdown'
 
 // TODO: Fix types here
 interface Props {

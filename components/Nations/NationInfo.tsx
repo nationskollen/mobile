@@ -104,6 +104,7 @@ const styles = StyleSheet.create({
     nationName: {
         fontSize: 20,
         fontWeight: 'bold',
+        marginLeft: 15,
     },
 
     openinghoursWrapper: {

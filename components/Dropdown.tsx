@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { useTheme } from '@react-navigation/native'
 import { Ionicons } from '@expo/vector-icons'
 
-import ListButton from '../ListButton'
+import ListButton from './ListButton'
 
 interface Props {
     title: string

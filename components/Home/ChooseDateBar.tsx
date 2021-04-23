@@ -28,7 +28,7 @@ const ChooseDateBar: React.FC = () => {
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.dateTextWrapper} onPress={() => setVisible(!visible)}>
-                <Text style={[styles.dateText, { color: colors.text }]}>
+                <Text style={[styles.dateText, { color: colors.textHighlight }]}>
                     {currentDate === dateString ? 'Dagens händelser' : dateString}
                 </Text>
             </TouchableOpacity>

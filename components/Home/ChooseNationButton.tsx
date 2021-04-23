@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
 
     nationButtonText: {
         fontWeight: 'bold',
-        fontSize: 14,
+        fontSize: 16,
         color: 'white',
         marginHorizontal: 5,
     },

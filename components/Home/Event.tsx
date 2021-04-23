@@ -183,6 +183,7 @@ const nationStyles = StyleSheet.create({
     name: {
         fontSize: 14,
         fontWeight: 'bold',
+        marginLeft: 10,
     },
 })
 

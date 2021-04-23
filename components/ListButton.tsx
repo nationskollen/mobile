@@ -21,10 +21,10 @@ const ListButton: React.FC<Props> = ({ title, onPress, leftIcon, rightIcon }) =>
             underlayColor={colors.backgroundExtra}
             style={{ borderBottomWidth: 1, borderColor: colors.border }}
         >
-            <View style={styles.header}>
+            <View style={styles.container}>
                 <View style={styles.nameWrapper}>
                     <View style={styles.iconWrapper}>{leftIcon}</View>
-                    <Text style={[styles.headerTitle, { color: colors.text }]}>{title}</Text>
+                    <Text style={[styles.headerTitle, { color: colors.textHighlight }]}>{title}</Text>
                 </View>
 
                 {rightIcon ?? <Ionicons name='chevron-forward' size={24} color={colors.text} />}
@@ -35,14 +35,14 @@ const ListButton: React.FC<Props> = ({ title, onPress, leftIcon, rightIcon }) =>
 
 //styles for dropdown menu
 const styles = StyleSheet.create({
-    header: {
+    container: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        height: 60,
-
         paddingHorizontal: 15,
+        paddingVertical: 10,
+        minHeight: 60,
     },
 
     nameWrapper: {
@@ -52,13 +52,12 @@ const styles = StyleSheet.create({
     },
 
     headerTitle: {
-        fontSize: 18,
+        fontSize: 17,
         fontWeight: 'bold',
         marginLeft: 15,
     },
 
     iconWrapper: {
-        width: 30,
         alignItems: 'center',
         justifyContent: 'center',
     },

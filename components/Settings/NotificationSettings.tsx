@@ -2,9 +2,11 @@ import React from 'react'
 import { FlatList } from 'react-native'
 import { useNations } from '@dsp-krabby/sdk'
 
-import Nation from './Nation'
+import Dropdown from '../Dropdown'
 import ListEmpty from '../ListEmpty'
 import LoadingCircle from '../LoadingCircle'
+import NationLogo from '../Nations/NationLogo'
+import NotificationOptions from './NotificationOptions'
 
 /// Renders all nations in a list
 const NotificationSettings = () => {
@@ -13,7 +15,13 @@ const NotificationSettings = () => {
     return (
         <FlatList
             data={data}
-            renderItem={({ item }) => <Nation key={item.oid} data={item} />}
+            renderItem={({ item }) => (
+                <Dropdown
+                    title={item.name}
+                    expandComponent={<NotificationOptions />}
+                    icon={<NationLogo src={item.icon_img_src} />}
+                />
+            )}
             keyExtractor={(item) => item.oid.toString()}
             refreshControl={<LoadingCircle validating={isValidating} mutate={mutate} />}
             ListEmptyComponent={() =>
