@@ -2,7 +2,7 @@
  * This component renders a menu and shows it using {@link Dropdown}.
  * @category Nation
  * @module Menu
- * @param oid The id of the nation from which the menu is to be fetched from
+ * @param oid  
  */
 //This file renders food related components
 
@@ -17,6 +17,7 @@ import Dropdown from '../Dropdown'
 // TODO: Fix types here
 interface Props {
     oid: number
+    /** The id of the nation from which the menu is to be fetched from */
 }
 
 interface MenuItemListProps {

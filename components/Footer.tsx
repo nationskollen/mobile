@@ -1,5 +1,4 @@
 /**
- * This component renders the footer in which each tab can be selected
  * @category Navigation
  * @module Footer
  */
@@ -20,7 +19,12 @@ import { Ionicons } from '@expo/vector-icons'
 const Tab = createBottomTabNavigator()
 
 /// The footer with each main screen
-const Footer: React.FC = () => {
+/** 
+ * This component renders the footer in which each tab can be selected.
+ * Each tab need to be entered in the footer manually.
+ *
+ */
+export const Footer: React.FC = () => {
     const { colors } = useTheme()
 
     return (
