@@ -35,15 +35,14 @@ function NationScreen() {
             >
                 {(props) => <NationContent {...props} />}
             </Stack.Screen>
-
             <Stack.Screen
-                name="Home"
+                name='Events'
                 component={HomePage}
                 options={{
                     title: 'Evenemang',
                     headerLeft: () => <NavigationBackArrow />,
                 }}
-            ></Stack.Screen>
+            />
         </Stack.Navigator>
     )
 }

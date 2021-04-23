@@ -15,7 +15,6 @@ interface Props {
 }
 
 const NationContent: React.FC<Props> = ({ route }) => {
-    // TODO: Pass in oid instead?
     const { nation } = route.params
 
     return (
@@ -37,7 +36,7 @@ const EventButton = ({ oid }) => {
     return (
         <ListButton
             title={'Evenemang'}
-            onPress={() => navigation.navigate('Home', { oid: oid, hideNationFilter: true })}
+            onPress={() => navigation.navigate('Events', { oid, hideNationFilter: true })}
             leftIcon={<Ionicons name="calendar-outline" size={24} color={colors.text} />}
         />
     )

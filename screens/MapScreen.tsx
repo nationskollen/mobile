@@ -7,6 +7,7 @@ import { useTheme } from '../components/ThemeContext'
 import { createStackNavigator } from '@react-navigation/stack'
 
 import Map from '../components/Map/MapPage'
+import HomePage from '../components/Home/HomePage'
 import NationContent from '../components/Nations/NationContent'
 import NavigationBackArrow from '../components/NavigationBackArrow'
 
@@ -21,7 +22,7 @@ const MapScreen = () => {
                 {(props) => <Map {...props} data={nationInfo} />}
             </Stack.Screen>
             <Stack.Screen
-                name="NationContent"
+                name='NationContent'
                 options={{
                     title: 'Nation',
                     headerLeft: () => <NavigationBackArrow />,
@@ -29,6 +30,14 @@ const MapScreen = () => {
             >
                 {(props) => <NationContent {...props} />}
             </Stack.Screen>
+            <Stack.Screen
+                name='Events'
+                component={HomePage}
+                options={{
+                    title: 'Evenemang',
+                    headerLeft: () => <NavigationBackArrow />,
+                }}
+            />
         </Stack.Navigator>
     )
 }
