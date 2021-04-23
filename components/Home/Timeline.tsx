@@ -32,7 +32,7 @@ const Timeline: React.FC<Props> = ({ oid }) => {
             refreshControl={<LoadingCircle validating={isValidating} mutate={mutate} />}
             onEndReachedThreshold={1}
             onEndReached={() => pagination && pagination.last_page !== size && setSize(size + 1)}
-            ListFooterComponent={() => <ListFooter hasMore={pagination.last_page !== size} />}
+            ListFooterComponent={() => pagination ? <ListFooter hasMore={isValidating || pagination.last_page !== size} /> : null}
             ListEmptyComponent={() =>
                 ListEmpty({
                     error,
