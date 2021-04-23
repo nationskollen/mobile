@@ -1,18 +1,16 @@
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native'
 
-interface Props {
-    navigation: any
-    screen: string
-}
+const NavigationBackArrow: React.FC = () => {
+    const navigation = useNavigation()
 
-const NavigationBackArrow: React.FC<Props> = ({ navigation, screen }) => {
     return (
         <Ionicons
             name="arrow-back"
             size={28}
             color="white"
-            onPress={() => navigation.navigate(screen)}
+            onPress={navigation.goBack}
             style={{ marginLeft: 5, paddingLeft: 10, paddingRight: 10 }}
         />
     );

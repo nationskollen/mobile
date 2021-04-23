@@ -16,7 +16,7 @@ const Stack = createStackNavigator()
 
 /// TODO: create a local navigation stack
 /// TODO: factor out basically everything to a different file and replace it with a local stack navigator
-function SettingsScreen({ navigation }) {
+const SettingsScreen = () => {
     const { colors } = useTheme()
 
     return (
@@ -30,7 +30,7 @@ function SettingsScreen({ navigation }) {
                 name="NotificationSettings"
                 options={{
                     title: 'Anpassa notifikationer',
-                    headerLeft: () => <NavigationBackArrow navigation={navigation} screen='Settings' />,
+                    headerLeft: () => <NavigationBackArrow />,
                 }}
             >
                 {(_) => <NotificationSettings />}
@@ -40,7 +40,7 @@ function SettingsScreen({ navigation }) {
                 component={Login}
                 options={{
                     title: 'Logga in',
-                    headerLeft: () => <NavigationBackArrow navigation={navigation} screen='Settings' />,
+                    headerLeft: () => <NavigationBackArrow />,
                 }}
             />
         </Stack.Navigator>

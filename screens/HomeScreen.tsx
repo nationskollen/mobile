@@ -13,7 +13,7 @@ import NavigationBackArrow from '../components/NavigationBackArrow'
 
 const Stack = createStackNavigator()
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = () => {
     const { colors } = useTheme()
 
     return (
@@ -24,7 +24,7 @@ const HomeScreen = ({ navigation }) => {
                 component={NationContent}
                 options={{
                     title: 'Nation',
-                    headerLeft: () => <NavigationBackArrow navigation={navigation} screen={'Home'} />,
+                    headerLeft: () => <NavigationBackArrow />,
                 }}
             />
         </Stack.Navigator>

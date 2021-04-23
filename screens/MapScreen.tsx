@@ -12,7 +12,7 @@ import NavigationBackArrow from '../components/NavigationBackArrow'
 
 const Stack = createStackNavigator()
 
-const MapScreen = ({ navigation }) => {
+const MapScreen = () => {
     const { colors } = useTheme()
 
     return (
@@ -24,7 +24,7 @@ const MapScreen = ({ navigation }) => {
                 name="NationContent"
                 options={{
                     title: 'Nation',
-                    headerLeft: () => <NavigationBackArrow navigation={navigation} screen='map' />
+                    headerLeft: () => <NavigationBackArrow />
                 }}
             >
                 {(props) => <NationContent {...props} />}

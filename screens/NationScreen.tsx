@@ -14,7 +14,7 @@ const Stack = createStackNavigator()
 
 /// The screens included in the local stack
 /// Put screens relating to nations here
-function NationScreen({ navigation }) {
+function NationScreen() {
     const { colors } = useTheme()
 
     return (
@@ -30,7 +30,7 @@ function NationScreen({ navigation }) {
                 name="NationContent"
                 options={{
                     title: 'Nation',
-                    headerLeft: () => <NavigationBackArrow navigation={navigation} screen='ChooseNation' />
+                    headerLeft: () => <NavigationBackArrow />
                 }}
             >
                 {(props) => <NationContent {...props} />}
@@ -41,7 +41,7 @@ function NationScreen({ navigation }) {
                 component={HomePage}
                 options={{
                     title: 'Evenemang',
-                    headerLeft: () => <NavigationBackArrow navigation={navigation} screen='NationContent' />
+                    headerLeft: () => <NavigationBackArrow />
                 }}
             ></Stack.Screen>
         </Stack.Navigator>
