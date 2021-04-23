@@ -6,6 +6,8 @@ import 'react-native-gesture-handler'
 
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
+
+import ListButton from '../ListButton'
 import ToggleSwitch from 'toggle-switch-react-native'
 
 function SettingsPage({ navigation }) {
@@ -15,47 +17,29 @@ function SettingsPage({ navigation }) {
         <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
             <View style={[styles.darkMode, { backgroundColor: colors.backgroundExtra }]}>
                 <View style={styles.dmText}>
-                    <Text style={[styles.dmTitle, { color: colors.text }]}>Mörkt läge</Text>
+                    <Text style={[styles.dmTitle, { color: colors.textHighlight }]}>Mörkt läge</Text>
                     <Text style={{ color: colors.text }}>
                         Ställ in detta för att förhindra ansträngda ögon
                     </Text>
                 </View>
                 <ToggleSwitch
                     isOn={isDarkMode}
-                    onColor="#05c46b"
-                    offColor="grey"
-                    size="large"
+                    onColor='#05c46b'
+                    offColor={colors.borderDark}
+                    size='large'
                     onToggle={setDarkMode}
                 />
             </View>
-            <TouchableHighlight
+            <ListButton
+                title='Logga in'
                 onPress={() => navigation.push('Login')}
-                underlayColor={colors.backgroundHighlight}
-            >
-                <View style={[styles.settingsOption, { borderBottomColor: colors.border }]}>
-                    <Text style={[styles.optionsText, { color: colors.text }]}>Logga in</Text>
-                    <Ionicons
-                        style={[styles.arrow, { color: colors.text }]}
-                        name='chevron-forward'
-                        size={24}
-                    />
-                </View>
-            </TouchableHighlight>
-            <TouchableHighlight
+                leftIcon={<Ionicons name='lock-closed-outline' size={24} color={colors.text} />}
+            />
+            <ListButton
+                title='Anpassa notifikationer'
                 onPress={() => navigation.push('NotificationSettings')}
-                underlayColor={colors.backgroundHighlight}
-            >
-                <View style={[styles.settingsOption, { borderBottomColor: colors.border }]}>
-                    <Text style={[styles.optionsText, { color: colors.text }]}>
-                        Anpassa notifikationer
-                    </Text>
-                    <Ionicons
-                        style={[styles.arrow, { color: colors.text }]}
-                        name='chevron-forward'
-                        size={24}
-                    />
-                </View>
-            </TouchableHighlight>
+                leftIcon={<Ionicons name='filter' size={24} color={colors.text} />}
+            />
         </SafeAreaView>
     )
 }
@@ -68,7 +52,7 @@ const styles = StyleSheet.create({
     darkMode: {
         height: 125,
         justifyContent: 'space-between',
-        paddingHorizontal: 15,
+        paddingHorizontal: 25,
         flexDirection: 'row',
     },
     dmButton: {
@@ -82,20 +66,8 @@ const styles = StyleSheet.create({
         marginRight: 15,
     },
     dmTitle: {
-        fontSize: 20,
-        fontWeight: 'bold',
-    },
-    optionsText: {
         fontSize: 18,
         fontWeight: 'bold',
-    },
-    settingsOption: {
-        paddingHorizontal: 15,
-        paddingVertical: 20,
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        flexDirection: 'row',
-        borderBottomWidth: 1,
     },
 })
 

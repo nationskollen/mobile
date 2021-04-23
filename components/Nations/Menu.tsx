@@ -73,7 +73,7 @@ const Menu: React.FC<Props> = ({ oid }) => {
             <Dropdown
                 title={'Meny'}
                 expandComponent={<Categories />}
-                icon={<Ionicons name="md-fast-food-outline" size={28} color={colors.text} />}
+                icon={<Ionicons name="md-fast-food-outline" size={24} color={colors.text} />}
             />
         </View>
     )

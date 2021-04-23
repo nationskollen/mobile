@@ -6,13 +6,8 @@ import { useNavigation } from '@react-navigation/core'
 
 import Menu from './Menu'
 import NationInfo from './NationInfo'
+import ListButton from '../ListButton'
 import ActivityLevel from '../Map/ActivityLevel'
-import NationContentButton from './NationContentButton'
-
-
-/// Renders event components
-// TODO: NOt sure what to do about this
-// import Events from './NationContentComponents/EventComponents'
 
 // TODO: Add correct type here
 interface Props {
@@ -40,11 +35,10 @@ const EventButton = ({ oid }) => {
     const { colors } = useTheme()
 
     return (
-        <NationContentButton
+        <ListButton
             title={'Evenemang'}
-            pressFunc={() => navigation.navigate('Home', { oid: oid, hideNationFilter: true })}
-            rightIcon={<Ionicons name='chevron-forward' size={24} color={colors.text} />}
-            leftIcon={<Ionicons name='calendar-sharp' size={24} color={colors.text} />}
+            onPress={() => navigation.navigate('Home', { oid: oid, hideNationFilter: true })}
+            leftIcon={<Ionicons name='calendar-outline' size={24} color={colors.text} />}
         />
     )
 }

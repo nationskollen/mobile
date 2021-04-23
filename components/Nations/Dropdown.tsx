@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { useTheme } from '@react-navigation/native'
 import { Ionicons } from '@expo/vector-icons'
 
-import NationContentButton from './NationContentButton'
+import ListButton from '../ListButton'
 
 interface Props {
     title: string
@@ -19,9 +19,9 @@ const Dropdown: React.FC<Props> = ({ title, expandComponent, icon }) => {
 
     return (
         <View>
-            <NationContentButton
+            <ListButton
                 title={title}
-                pressFunc={() => setExpand(!expand)}
+                onPress={() => setExpand(!expand)}
                 leftIcon={icon}
                 rightIcon={
                     <Ionicons

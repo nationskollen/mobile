@@ -1,21 +1,23 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableHighlight } from 'react-native'
 
-import { useTheme } from '../ThemeContext'
+import { useTheme } from './ThemeContext'
+import { Ionicons } from '@expo/vector-icons'
+
 
 interface Props {
     title: String
-    pressFunc: () => void
+    onPress: () => void
     leftIcon: Element
-    rightIcon: Element
+    rightIcon?: Element
 }
 
-const NationContentButton: React.FC<Props> = ({ title, pressFunc, leftIcon, rightIcon }) => {
+const ListButton: React.FC<Props> = ({ title, onPress, leftIcon, rightIcon }) => {
     const { colors } = useTheme()
 
     return (
         <TouchableHighlight
-            onPress={pressFunc}
+            onPress={onPress}
             underlayColor={colors.backgroundExtra}
             style={{ borderBottomWidth: 1, borderColor: colors.border }}
         >
@@ -25,7 +27,7 @@ const NationContentButton: React.FC<Props> = ({ title, pressFunc, leftIcon, righ
                     <Text style={[styles.headerTitle, { color: colors.text }]}>{title}</Text>
                 </View>
 
-                {rightIcon}
+                {rightIcon ?? <Ionicons name='chevron-forward' size={24} color={colors.text} />}
             </View>
         </TouchableHighlight>
     )
@@ -62,4 +64,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default NationContentButton
+export default ListButton
