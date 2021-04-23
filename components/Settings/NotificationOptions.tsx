@@ -10,19 +10,8 @@ export interface ToggleProps {
 
 /// Renders the different notification options
 const NotificationOptions = () => {
-    const { colors } = useTheme()
-
     return (
-        <View
-            style={[
-                styles.options,
-                {
-                    borderBottomColor: colors.border,
-                },
-            ]}
-        >
-            {/*Temporary options*/}
-            <Toggle text="Prenumerera" />
+        <View style={styles.options}>
             <Toggle text="Push notifikationer" />
             <Toggle text="Events" />
             <Toggle text="Nyheter" />
@@ -36,12 +25,15 @@ const Toggle = ({ text }: ToggleProps) => {
     const [toggle, setToggle] = useState(false)
 
     return (
-        <View style={styles.switch}>
-            <Text style={{ color: colors.text }}>{text}</Text>
+        <View style={[styles.switch, { borderBottomColor: colors.border }]}>
+            <View style={styles.leftContainer}>
+                <View style={[styles.dot, { backgroundColor: colors.primaryText }]} />
+                <Text style={[styles.option, { color: colors.text }]}>{text}</Text>
+            </View>
             <ToggleSwitch
                 isOn={toggle}
                 onColor="#05c46b"
-                offColor="grey"
+                offColor={colors.borderDark}
                 size="large"
                 onToggle={() => setToggle(!toggle)}
             />
@@ -52,16 +44,35 @@ const Toggle = ({ text }: ToggleProps) => {
 /// Styles for option switches
 const styles = StyleSheet.create({
     options: {
-        justifyContent: 'space-evenly',
-        height: 200,
-        borderBottomWidth: 1,
+        flexDirection: 'column',
+    },
+
+    option: {
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+
+    leftContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+
+    dot: {
+        width: 10,
+        height: 10,
+        borderRadius: 10,
+        marginRight: 15,
+        marginLeft: 5,
     },
 
     switch: {
+        marginTop: 5,
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginHorizontal: 20,
         alignItems: 'center',
+        justifyContent: 'space-between',
+        borderBottomWidth: 1,
+        paddingHorizontal: 15,
+        paddingVertical: 8,
     },
 })
 

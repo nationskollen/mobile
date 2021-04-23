@@ -15,7 +15,7 @@ import { createStackNavigator, StackNavigationProp } from '@react-navigation/sta
 
 import HomePage from '../components/Home/HomePage'
 import NationContent from '../components/Nations/NationContent'
-import RenderBackArrow from '../assets/Icons/backArrow.js'
+import NavigationBackArrow from '../components/NavigationBackArrow'
 
 export interface Props {
     navigation: StackNavigationProp<any, any>
@@ -23,18 +23,18 @@ export interface Props {
 
 const Stack = createStackNavigator()
 
-const HomeScreen = ({ navigation }: Props) => {
+const HomeScreen = () => {
     const { colors } = useTheme()
 
     return (
         <Stack.Navigator initialRouteName="Home" screenOptions={HeaderOptions(colors)}>
-            <Stack.Screen name="Home" component={HomePage} options={{ title: 'Hem' }} />
+            <Stack.Screen name="Home" component={HomePage} options={{ title: 'Nationskollen' }} />
             <Stack.Screen
                 name="NationContent"
                 component={NationContent}
                 options={{
                     title: 'Nation',
-                    headerLeft: () => <RenderBackArrow nav={navigation} screen={'Home'} />,
+                    headerLeft: () => <NavigationBackArrow />,
                 }}
             />
         </Stack.Navigator>

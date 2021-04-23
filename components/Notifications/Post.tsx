@@ -1,9 +1,9 @@
 // This component is used for rendering each notification.
 import React from 'react'
+import { View, Text, StyleSheet } from 'react-native'
 import { Event } from '@dsp-krabby/sdk'
 import { useTheme } from '../ThemeContext'
 import NationLogo from '../Nations/NationLogo'
-import { View, Text, StyleSheet } from 'react-native'
 
 export interface Props {
     data: Event
@@ -17,7 +17,7 @@ const Post = ({ data }: Props) => {
         <View style={[styles.notificationWrapper, { borderColor: colors.border }]}>
             <View style={styles.header}>
                 <NationLogo src={icon_img_src} size={50} />
-                <View>
+                <View style={styles.headerWrapper}>
                     <Text style={[styles.nationName, { color: colors.primaryText }]}>{name}</Text>
                     <Text style={[styles.notificationHeader, { color: colors.textHighlight }]}>
                         Notification
@@ -58,6 +58,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: '100%',
         marginBottom: 10,
+    },
+
+    headerWrapper: {
+        marginLeft: 15,
     },
 
     nationLogoImg: {

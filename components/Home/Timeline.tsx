@@ -5,11 +5,24 @@ import { useDatePicker } from './DatePickerContext'
 
 import EventItem from './Event'
 import ListEmpty from '../ListEmpty'
+import ListFooter from '../ListFooter'
 import LoadingCircle from '../LoadingCircle'
 
-const Timeline = () => {
+export interface Props {
+    oid: number
+}
+
+const Timeline = ({ oid }: Props) => {
     const { date } = useDatePicker()
-    const { data, error, isValidating, mutate } = useEvents({ date })
+    const {
+        data,
+        error,
+        isValidating,
+        mutate,
+        size,
+        setSize,
+        pagination,
+    } = useEvents(oid, { date, amount: 15 })
 
     return (
         <FlatList
@@ -17,6 +30,9 @@ const Timeline = () => {
             renderItem={({ item }) => <EventItem event={item} />}
             keyExtractor={(item) => item.id.toString()}
             refreshControl={<LoadingCircle validating={isValidating} mutate={mutate} />}
+            onEndReachedThreshold={1}
+            onEndReached={() => pagination && pagination.last_page !== size && setSize(size + 1)}
+            ListFooterComponent={() => pagination ? <ListFooter hasMore={isValidating || pagination.last_page !== size} /> : null}
             ListEmptyComponent={() =>
                 ListEmpty({
                     error,

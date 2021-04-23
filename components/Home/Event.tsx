@@ -1,15 +1,15 @@
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
-import { useNation, Event } from '@dsp-krabby/sdk'
+import { useNation, Event as EventResponse } from '@dsp-krabby/sdk'
 import { useNavigation } from '@react-navigation/native'
 
 import NationLogo from '../Nations/NationLogo'
 
 export interface EventProps {
-    event: Event
+    event: EventResponse
 }
 
 export interface HeaderProps {
@@ -105,6 +105,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'flex-start',
         width: '100%',
+        paddingHorizontal: 15,
+        paddingTop: 15,
     },
 
     headerContent: {
@@ -116,8 +118,8 @@ const styles = StyleSheet.create({
     },
 
     coverImgWrapper: {
-        marginBottom: 15,
-        borderRadius: 5,
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
         overflow: 'hidden',
     },
 
@@ -128,18 +130,13 @@ const styles = StyleSheet.create({
     },
 
     eventContainer: {
-        width: '100%',
         flex: 1,
-        marginBottom: '3%',
-        paddingTop: 20,
-        paddingBottom: 35,
-        paddingHorizontal: 20,
+        marginBottom: 10,
+        paddingBottom: 20,
+        marginHorizontal: 10,
 
-        borderBottomLeftRadius: 10,
-        borderBottomRightRadius: 10,
+        borderRadius: 10,
         elevation: 5,
-        zIndex: 5,
-
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.3,
@@ -148,6 +145,7 @@ const styles = StyleSheet.create({
 
     textContainer: {
         width: '100%',
+        paddingHorizontal: 15,
     },
 
     title: {
@@ -184,6 +182,7 @@ const nationStyles = StyleSheet.create({
     name: {
         fontSize: 14,
         fontWeight: 'bold',
+        marginLeft: 10,
     },
 })
 
@@ -191,7 +190,7 @@ const reminderStyles = StyleSheet.create({
     container: {
         paddingHorizontal: 10,
         paddingVertical: 10,
-        borderRadius: 5,
+        borderRadius: 10,
 
         flexDirection: 'row',
         alignItems: 'center',

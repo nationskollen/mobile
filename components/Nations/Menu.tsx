@@ -9,7 +9,7 @@ import { View, Text, StyleSheet } from 'react-native'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 
-import Dropdown from './Dropdown'
+import Dropdown from '../Dropdown'
 
 export interface Props {
     oid: number
@@ -72,11 +72,13 @@ const Menu = ({ oid }: Props) => {
     const { colors } = useTheme()
 
     return (
-        <Dropdown
-            title={'Meny'}
-            expandComponent={<Categories />}
-            icon={<Ionicons name="md-fast-food-outline" size={28} color={colors.text} />}
-        />
+        <View>
+            <Dropdown
+                title={'Meny'}
+                expandComponent={<Categories />}
+                icon={<Ionicons name="md-fast-food-outline" size={24} color={colors.text} />}
+            />
+        </View>
     )
 }
 

@@ -1,17 +1,18 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
-import { useTheme } from '../ThemeContext'
 
 import ChooseDateBar from './ChooseDateBar'
 import ChooseNationButton from './ChooseNationButton'
 
-const FilterBar = () => {
-    const { colors } = useTheme()
+export interface Props {
+    hideNationFilter?: boolean
+}
 
+const FilterBar = ({ hideNationFilter }: Props) => {
     return (
-        <View style={[styles.mainWrapper, { backgroundColor: colors.backgroundExtra }]}>
+        <View style={styles.mainWrapper}>
             <ChooseDateBar />
-            <ChooseNationButton />
+            {!hideNationFilter && <ChooseNationButton />}
         </View>
     )
 }
@@ -21,7 +22,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 70,
         paddingVertical: 10,
-        paddingHorizontal: 15,
+        paddingHorizontal: 10,
         flexDirection: 'row',
         alignItems: 'center',
     },

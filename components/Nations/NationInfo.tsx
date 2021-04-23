@@ -13,7 +13,6 @@ import { View, Text, StyleSheet, Alert } from 'react-native'
 import { Nation } from '@dsp-krabby/sdk'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
-
 import NationLogo from './NationLogo'
 
 export interface Props {
@@ -40,13 +39,15 @@ const NationInfo = ({ nation, backgroundColor, paddingTop }: Props) => {
         >
             <View style={styles.nationNameWrapper}>
                 <NationLogo src={nation.icon_img_src} size={50} />
-                <Text style={[styles.nationName, { color: colors.text }]}>{nation.name}</Text>
+                <Text style={[styles.nationName, { color: colors.textHighlight }]}>
+                    {nation.name}
+                </Text>
             </View>
 
             <View style={styles.descriptionWrapper}>
                 <View style={[styles.clockSymbolWrapper]}>
                     <Ionicons name="time-outline" size={20} color={colors.text} />
-                    <Text style={[styles.openinghoursTitle, { color: colors.text }]}>
+                    <Text style={[styles.openinghoursTitle, { color: colors.textHighlight }]}>
                         Öppettider
                     </Text>
                 </View>
@@ -64,9 +65,9 @@ const NationInfo = ({ nation, backgroundColor, paddingTop }: Props) => {
                 </View>
 
                 <View style={styles.mapWrapper}>
-                    <Ionicons name="map-outline" size={16} color={colors.text} />
+                    <Ionicons name="map-outline" size={20} color={colors.text} />
                     <Text
-                        style={[styles.mapAddress, { color: colors.text }]}
+                        style={[styles.mapAddress, { color: colors.textHighlight }]}
                         onPress={() =>
                             Alert.alert(
                                 'Öppna i kartor?',
@@ -115,6 +116,7 @@ const styles = StyleSheet.create({
     nationName: {
         fontSize: 20,
         fontWeight: 'bold',
+        marginLeft: 15,
     },
 
     openinghoursWrapper: {
@@ -160,7 +162,7 @@ const styles = StyleSheet.create({
     mapAddress: {
         fontSize: 14,
         fontWeight: 'bold',
-        marginLeft: 15,
+        marginLeft: 10,
     },
 })
 

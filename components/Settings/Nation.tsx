@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { View, StyleSheet, Text, TouchableHighlight } from 'react-native'
 
 import { Nation } from '@dsp-krabby/sdk'
@@ -14,7 +14,6 @@ export interface Props {
 
 const Nation = ({ data }: Props) => {
     const { colors } = useTheme()
-    const [expand, setExpand] = useState(false)
 
     return (
         <View>

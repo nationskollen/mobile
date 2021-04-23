@@ -20,10 +20,10 @@ import { Ionicons } from '@expo/vector-icons'
  * Defines the available route params for each tab.
  */
 export type TabStackParamList = {
-    'Hem': undefined
+    'Hem': { oid?: number, hideNationFilter?: boolean }
     'Inställningar': undefined
     'Notifikationer': undefined
-    'Nationer': { nation: Nation }
+    'Nationer': { nation?: Nation }
     'Karta': undefined
 }
 

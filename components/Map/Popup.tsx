@@ -8,7 +8,6 @@ import { useNavigation } from '@react-navigation/native'
 
 import NationInfo from '../Nations/NationInfo'
 
-// TODO: Add correct type from SDK
 export interface Props {
     nation: Nation
     show: boolean

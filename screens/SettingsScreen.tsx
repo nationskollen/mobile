@@ -11,8 +11,8 @@ import { useTheme } from '../components/ThemeContext'
 import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack'
 
 import Login from '../components/Settings/Login'
-import RenderBackArrow from '../assets/Icons/backArrow'
 import SettingsPage from '../components/Settings/SettingsPage'
+import NavigationBackArrow from '../components/NavigationBackArrow'
 import NotificationSettings from '../components/Settings/NotificationSettings'
 
 export interface Props {
@@ -21,7 +21,9 @@ export interface Props {
 
 const Stack = createStackNavigator()
 
-const SettingsScreen = ({ navigation }: Props) => {
+/// TODO: create a local navigation stack
+/// TODO: factor out basically everything to a different file and replace it with a local stack navigator
+const SettingsScreen = () => {
     const { colors } = useTheme()
 
     return (
@@ -35,7 +37,7 @@ const SettingsScreen = ({ navigation }: Props) => {
                 name="NotificationSettings"
                 options={{
                     title: 'Anpassa notifikationer',
-                    headerLeft: () => <RenderBackArrow nav={navigation} screen={'Settings'} />,
+                    headerLeft: () => <NavigationBackArrow />,
                 }}
             >
                 {(_) => <NotificationSettings />}
@@ -45,7 +47,7 @@ const SettingsScreen = ({ navigation }: Props) => {
                 component={Login}
                 options={{
                     title: 'Logga in',
-                    headerLeft: () => <RenderBackArrow nav={navigation} screen={'Settings'} />,
+                    headerLeft: () => <NavigationBackArrow />,
                 }}
             />
         </Stack.Navigator>
