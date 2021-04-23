@@ -10,11 +10,6 @@ interface Props {
     data: Array<Record<string, any>>
 }
 
-// Stores the markers context onpress
-const state = {
-    markers: [],
-}
-
 // TODO: Add endpoint on server for fetching all locations that should be displayed on map
 const mapLocations = [
     {
@@ -124,7 +119,7 @@ const mapLocations = [
 ]
 
 const Map: React.FC<Props> = () => {
-    const { isDarkMode } = useTheme()
+    const { colors, isDarkMode } = useTheme()
     const [selectedNation, setSelectedNation] = useState<any | null>(null)
     const [showPopup, setShowPopup] = useState(false)
 
@@ -147,7 +142,7 @@ const Map: React.FC<Props> = () => {
     return (
         <View style={styles.container}>
             <MapView
-                style={styles.mapStyle}
+                style={styles.map}
                 initialRegion={{
                     latitude: 59.858644,
                     longitude: 17.634732,
@@ -157,10 +152,14 @@ const Map: React.FC<Props> = () => {
                 onPress={onMapPressed}
                 customMapStyle={theme}
                 provider={PROVIDER_GOOGLE}
+                pitchEnabled={false}
+                loadingBackgroundColor={colors.background}
+                loadingIndicatorColor={colors.primaryText}
+                rotateEnabled={false}
             >
                 {mapLocations.map((marker) => (
                     <Marker
-                        key={marker.name}
+                        key={marker.id}
                         coordinate={{
                             latitude: marker.latitude,
                             longitude: marker.longitude,
@@ -169,6 +168,7 @@ const Map: React.FC<Props> = () => {
                         description="Aktivitetsnivå: Låg"
                         image={require('../../img/png/vdala/vdalalogga.png')}
                         onPress={() => onMarkerPressed(marker)}
+                        stopPropagation={true}
                     />
                 ))}
             </MapView>
@@ -182,15 +182,8 @@ const styles = StyleSheet.create({
         flex: 1,
     },
 
-    mapStyle: {
-        zIndex: -1,
-        flexWrap: 'wrap',
-        alignSelf: 'stretch',
-        backgroundColor: 'white',
+    map: {
         height: '100%',
-
-        borderBottomWidth: 1,
-        borderColor: '#E0E0E0',
     },
 })
 

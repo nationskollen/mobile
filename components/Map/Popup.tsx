@@ -75,7 +75,7 @@ const Popup: React.FC<Props> = ({ nation, show, setShow }) => {
 const styles = StyleSheet.create({
     popup: {
         position: 'absolute',
-        zIndex: 2,
+        zIndex: 100,
         bottom: 0,
         width: '100%',
         borderTopLeftRadius: 15,

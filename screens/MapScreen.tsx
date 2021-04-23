@@ -17,7 +17,7 @@ const MapScreen = ({ navigation }) => {
 
     return (
         <Stack.Navigator initialRouteName="Map" screenOptions={HeaderOptions(colors)}>
-            <Stack.Screen name="Map" options={{ title: 'Karta' }}>
+            <Stack.Screen name="Map" options={{ headerShown: false }}>
                 {(props) => <Map {...props} data={nationInfo} />}
             </Stack.Screen>
             <Stack.Screen

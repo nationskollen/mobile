@@ -3,7 +3,7 @@ import React from 'react'
 
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
-import LogoCircle from './LogoCircle'
+import NationLogo from './NationLogo'
 
 interface Props {
     nation: any
@@ -23,12 +23,12 @@ const NationInfo: React.FC<Props> = ({ nation, backgroundColor, paddingTop }) =>
                 styles.nationInfoWrapper,
                 {
                     backgroundColor: backgroundColor ?? colors.background,
-                    paddingTop: paddingTop ?? 25,
+                    paddingTop: paddingTop ?? 15,
                 },
             ]}
         >
             <View style={styles.nationNameWrapper}>
-                <LogoCircle src={nation.icon_img_src} size={50} />
+                <NationLogo src={nation.icon_img_src} size={50} />
                 <Text style={[styles.nationName, { color: colors.text }]}>{nation.name}</Text>
             </View>
 

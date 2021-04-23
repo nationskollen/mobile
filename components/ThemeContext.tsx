@@ -19,6 +19,7 @@ export interface ThemeColors {
     nationExtra: string
     notification: string
     text: string
+    textHighlight: string
     errorText: string
     primaryText: string
     focusedText: string
@@ -42,7 +43,8 @@ const LightTheme: Theme = {
         borderDark: '#ccc',
         nationExtra: '#F3F3F3',
         notification: 'white',
-        text: '#000000',
+        text: '#222',
+        textHighlight: '#000',
         errorText: '#e03c3f',
         primaryText: '#71002E',
         focusedText: 'white',
@@ -63,6 +65,7 @@ const DarkTheme: Theme = {
         nationExtra: '#141319',
         notification: 'white',
         text: '#d4d4d4',
+        textHighlight: 'white',
         errorText: '#fc5372',
         primaryText: '#ef005f',
         focusedText: 'white',
