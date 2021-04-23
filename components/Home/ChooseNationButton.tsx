@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     nationButton: {
         height: '100%',
         width: 100,
-        marginLeft: 15,
+        marginLeft: 10,
         borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center',

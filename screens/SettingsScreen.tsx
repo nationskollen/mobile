@@ -8,8 +8,8 @@ import { useTheme } from '../components/ThemeContext'
 import { createStackNavigator } from '@react-navigation/stack'
 
 import Login from '../components/Settings/Login'
-import RenderBackArrow from '../assets/Icons/backArrow'
 import SettingsPage from '../components/Settings/SettingsPage'
+import NavigationBackArrow from '../components/NavigationBackArrow'
 import NotificationSettings from '../components/Settings/NotificationSettings'
 
 const Stack = createStackNavigator()
@@ -30,7 +30,7 @@ function SettingsScreen({ navigation }) {
                 name="NotificationSettings"
                 options={{
                     title: 'Anpassa notifikationer',
-                    headerLeft: () => <RenderBackArrow nav={navigation} screen={'Settings'} />,
+                    headerLeft: () => <NavigationBackArrow navigation={navigation} screen='Settings' />,
                 }}
             >
                 {(_) => <NotificationSettings />}
@@ -40,7 +40,7 @@ function SettingsScreen({ navigation }) {
                 component={Login}
                 options={{
                     title: 'Logga in',
-                    headerLeft: () => <RenderBackArrow nav={navigation} screen={'Settings'} />,
+                    headerLeft: () => <NavigationBackArrow navigation={navigation} screen='Settings' />,
                 }}
             />
         </Stack.Navigator>

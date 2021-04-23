@@ -81,7 +81,7 @@ const Menu: React.FC<Props> = ({ oid }) => {
 
 //returns rendered food categories
 const Categories: React.FC = () => {
-    const { colors, isDarkMode } = useTheme()
+    const { colors } = useTheme()
 
     return (
         <View>

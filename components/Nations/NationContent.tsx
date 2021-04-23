@@ -1,19 +1,14 @@
-// This is for rendering the nation content.
-import { ScrollView, View } from 'react-native'
 import React from 'react'
+import { Ionicons } from '@expo/vector-icons'
+import { ScrollView, View } from 'react-native'
+import { useTheme } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/core'
 
-/// Renders food components
 import Menu from './Menu'
 import NationInfo from './NationInfo'
 import ActivityLevel from '../Map/ActivityLevel'
 import NationContentButton from './NationContentButton'
 
-import { useNavigation } from '@react-navigation/core'
-import { useTheme } from '@react-navigation/native'
-
-import { Ionicons } from '@expo/vector-icons'
-import { AntDesign } from '@expo/vector-icons'
-import ChooseNation from './ChooseNation'
 
 /// Renders event components
 // TODO: NOt sure what to do about this
@@ -47,9 +42,9 @@ const EventButton = ({ oid }) => {
     return (
         <NationContentButton
             title={'Evenemang'}
-            pressFunc={() => navigation.navigate('Home', { oid: oid })}
-            rightIcon={<Ionicons name="arrow-forward-circle-outline" size={32} color="black" />}
-            leftIcon={<AntDesign name="calendar" size={24} color={colors.text} />}
+            pressFunc={() => navigation.navigate('Home', { oid: oid, hideNationFilter: true })}
+            rightIcon={<Ionicons name='chevron-forward' size={24} color={colors.text} />}
+            leftIcon={<Ionicons name='calendar-sharp' size={24} color={colors.text} />}
         />
     )
 }

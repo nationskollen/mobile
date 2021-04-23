@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     optionsText: {
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: 'bold',
     },
     settingsOption: {

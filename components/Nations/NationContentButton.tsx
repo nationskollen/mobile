@@ -1,11 +1,7 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableHighlight } from 'react-native'
 
-import { useTheme } from '@react-navigation/native'
-import { useNavigation } from '@react-navigation/core'
-import { Ionicons } from '@expo/vector-icons'
-import { AntDesign } from '@expo/vector-icons'
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
+import { useTheme } from '../ThemeContext'
 
 interface Props {
     title: String
@@ -18,8 +14,12 @@ const NationContentButton: React.FC<Props> = ({ title, pressFunc, leftIcon, righ
     const { colors } = useTheme()
 
     return (
-        <TouchableWithoutFeedback onPress={pressFunc}>
-            <View style={[styles.header, { borderBottomColor: colors.border }]}>
+        <TouchableHighlight
+            onPress={pressFunc}
+            underlayColor={colors.backgroundExtra}
+            style={{ borderBottomWidth: 1, borderColor: colors.border }}
+        >
+            <View style={styles.header}>
                 <View style={styles.nameWrapper}>
                     <View style={styles.iconWrapper}>{leftIcon}</View>
                     <Text style={[styles.headerTitle, { color: colors.text }]}>{title}</Text>
@@ -27,7 +27,7 @@ const NationContentButton: React.FC<Props> = ({ title, pressFunc, leftIcon, righ
 
                 {rightIcon}
             </View>
-        </TouchableWithoutFeedback>
+        </TouchableHighlight>
     )
 }
 
