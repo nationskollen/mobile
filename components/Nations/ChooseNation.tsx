@@ -1,17 +1,14 @@
-// TODO: This can be merged with ../Settings/Nation.tsx
-// This is for rendering the choose-nation view.
 import React from 'react'
-import { useTheme } from '../ThemeContext'
+import { FlatList } from 'react-native'
 import { useNations } from '@dsp-krabby/sdk'
 import { useNavigation } from '@react-navigation/native'
-import { FlatList, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
 import ListEmpty from '../ListEmpty'
 import NationLogo from './NationLogo'
+import ListButton from '../ListButton'
 import LoadingCircle from '../LoadingCircle'
 
 const ChooseNation: React.FC = () => {
-    const { colors } = useTheme()
     const navigation = useNavigation()
     const { data, error, isValidating, mutate } = useNations()
 
@@ -19,16 +16,13 @@ const ChooseNation: React.FC = () => {
         <FlatList
             data={data}
             renderItem={({ item }) => (
-                <TouchableOpacity
-                    key={item.oid}
+                <ListButton
+                    title={item.name}
                     onPress={() => navigation.navigate('NationContent', { nation: item })}
-                    style={[styles.wrapper, { borderColor: colors.backgroundExtra }]}
-                >
-                    <NationLogo src={item.icon_img_src} size={50} />
-                    <Text style={[styles.name, { color: colors.text }]}>{item.name}</Text>
-                </TouchableOpacity>
+                    leftIcon={<NationLogo src={item.icon_img_src} />}
+                />
             )}
-            keyExtractor={(item) => item.name}
+            keyExtractor={(item) => item.oid.toString()}
             refreshControl={<LoadingCircle validating={isValidating} mutate={mutate} />}
             ListEmptyComponent={() =>
                 ListEmpty({
@@ -40,26 +34,5 @@ const ChooseNation: React.FC = () => {
         />
     )
 }
-
-const styles = StyleSheet.create({
-    wrapper: {
-        flexWrap: 'wrap',
-        borderBottomWidth: 1,
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingVertical: 15,
-        paddingHorizontal: 15,
-        maxHeight: 90,
-    },
-
-    name: {
-        flex: 1,
-        fontWeight: 'bold',
-        fontSize: 16,
-        color: 'black',
-        marginLeft: 5,
-    },
-})
 
 export default ChooseNation

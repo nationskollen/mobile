@@ -2,17 +2,18 @@
 /// Renders the home screen and creates a stack to navigate between the different screens in the home page
 import React from 'react'
 import 'react-native-gesture-handler'
-import { Ionicons } from '@expo/vector-icons'
 import { HeaderOptions } from './NavigationHeader'
 import { useTheme } from '../components/ThemeContext'
 import { createStackNavigator } from '@react-navigation/stack'
 
 import Map from '../components/Map/MapPage'
+import HomePage from '../components/Home/HomePage'
 import NationContent from '../components/Nations/NationContent'
+import NavigationBackArrow from '../components/NavigationBackArrow'
 
 const Stack = createStackNavigator()
 
-const MapScreen = ({ navigation }) => {
+const MapScreen = () => {
     const { colors } = useTheme()
 
     return (
@@ -21,22 +22,22 @@ const MapScreen = ({ navigation }) => {
                 {(props) => <Map {...props} data={nationInfo} />}
             </Stack.Screen>
             <Stack.Screen
-                name="NationContent"
+                name='NationContent'
                 options={{
                     title: 'Nation',
-                    headerLeft: () => (
-                        <Ionicons
-                            name="arrow-back"
-                            size={28}
-                            color="white"
-                            onPress={() => navigation.navigate('Map')}
-                            style={{ marginLeft: 15 }}
-                        />
-                    ),
+                    headerLeft: () => <NavigationBackArrow />,
                 }}
             >
                 {(props) => <NationContent {...props} />}
             </Stack.Screen>
+            <Stack.Screen
+                name='Events'
+                component={HomePage}
+                options={{
+                    title: 'Evenemang',
+                    headerLeft: () => <NavigationBackArrow />,
+                }}
+            />
         </Stack.Navigator>
     )
 }

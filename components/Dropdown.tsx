@@ -1,12 +1,10 @@
+import { View } from 'react-native'
 import React, { useState } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
 
 import { useTheme } from '@react-navigation/native'
-import { useNavigation } from '@react-navigation/core'
 import { Ionicons } from '@expo/vector-icons'
-import { AntDesign } from '@expo/vector-icons'
 
-import NationContentButton from './NationContentButton'
+import ListButton from './ListButton'
 
 interface Props {
     title: string
@@ -21,19 +19,19 @@ const Dropdown: React.FC<Props> = ({ title, expandComponent, icon }) => {
 
     return (
         <View>
-            <NationContentButton
+            <ListButton
                 title={title}
-                pressFunc={() => setExpand(!expand)}
+                onPress={() => setExpand(!expand)}
                 leftIcon={icon}
                 rightIcon={
                     <Ionicons
-                        name={expand ? 'remove-circle-outline' : 'add-circle-outline'}
-                        size={32}
+                        name={expand ? 'chevron-up' : 'chevron-down'}
+                        size={24}
                         color={colors.text}
                         onPress={() => setExpand(!expand)}
                     />
                 }
-            ></NationContentButton>
+            />
 
             {/*If menu is expanded, show expandComponent*/}
             {expand && expandComponent}

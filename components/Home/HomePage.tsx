@@ -1,23 +1,32 @@
 import React from 'react'
-import { SafeAreaView } from 'react-native'
+import { View } from 'react-native'
+import { useTheme } from '../ThemeContext'
 import { DatePickerProvider } from './DatePickerContext'
 
-import Header from './Header'
 import Timeline from './Timeline'
 import FilterBar from './FilterBar'
 import Calendar from './Calendar'
 
-const Home = ({ route }) => {
+interface Props {
+    route: any
+}
+
+const Home: React.FC<Props> = ({ route }) => {
     const oid = route.params?.oid
+    const { colors, isDarkMode } = useTheme()
 
     return (
         <DatePickerProvider>
-            <SafeAreaView style={{ flex: 1 }}>
-                <Header />
-                <FilterBar />
+            <View
+                style={{
+                    flex: 1,
+                    backgroundColor: isDarkMode ? colors.background : colors.backgroundExtra,
+                }}
+            >
+                <FilterBar hideNationFilter={route.params?.hideNationFilter} />
                 <Calendar />
                 <Timeline oid={oid} />
-            </SafeAreaView>
+            </View>
         </DatePickerProvider>
     )
 }
