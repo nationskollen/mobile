@@ -27,6 +27,14 @@ const HomeScreen = () => {
                     headerLeft: () => <NavigationBackArrow />,
                 }}
             />
+            <Stack.Screen
+                name='Events'
+                component={HomePage}
+                options={{
+                    title: 'Evenemang',
+                    headerLeft: () => <NavigationBackArrow />,
+                }}
+            />
         </Stack.Navigator>
     )
 }

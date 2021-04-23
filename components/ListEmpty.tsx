@@ -1,10 +1,10 @@
 import React from 'react'
 import { Text, StyleSheet } from 'react-native'
 import { useTheme } from './ThemeContext'
+import { ApiError } from '@dsp-krabby/sdk'
 
-// TODO: Add ApiError type from SDK
 interface Props {
-    error: Error
+    error: ApiError | Error
     loading: boolean
     message: string
 }
