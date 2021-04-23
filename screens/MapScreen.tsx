@@ -24,7 +24,7 @@ const MapScreen = () => {
                 name="NationContent"
                 options={{
                     title: 'Nation',
-                    headerLeft: () => <NavigationBackArrow />
+                    headerLeft: () => <NavigationBackArrow />,
                 }}
             >
                 {(props) => <NationContent {...props} />}

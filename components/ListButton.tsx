@@ -4,7 +4,6 @@ import { View, Text, StyleSheet, TouchableHighlight } from 'react-native'
 import { useTheme } from './ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 
-
 interface Props {
     title: String
     onPress: () => void
@@ -24,10 +23,12 @@ const ListButton: React.FC<Props> = ({ title, onPress, leftIcon, rightIcon }) =>
             <View style={styles.container}>
                 <View style={styles.nameWrapper}>
                     <View style={styles.iconWrapper}>{leftIcon}</View>
-                    <Text style={[styles.headerTitle, { color: colors.textHighlight }]}>{title}</Text>
+                    <Text style={[styles.headerTitle, { color: colors.textHighlight }]}>
+                        {title}
+                    </Text>
                 </View>
 
-                {rightIcon ?? <Ionicons name='chevron-forward' size={24} color={colors.text} />}
+                {rightIcon ?? <Ionicons name="chevron-forward" size={24} color={colors.text} />}
             </View>
         </TouchableHighlight>
     )

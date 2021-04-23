@@ -38,7 +38,7 @@ const EventButton = ({ oid }) => {
         <ListButton
             title={'Evenemang'}
             onPress={() => navigation.navigate('Home', { oid: oid, hideNationFilter: true })}
-            leftIcon={<Ionicons name='calendar-outline' size={24} color={colors.text} />}
+            leftIcon={<Ionicons name="calendar-outline" size={24} color={colors.text} />}
         />
     )
 }

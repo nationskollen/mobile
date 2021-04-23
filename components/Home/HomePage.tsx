@@ -17,7 +17,12 @@ const Home: React.FC<Props> = ({ route }) => {
 
     return (
         <DatePickerProvider>
-            <View style={{ flex: 1, backgroundColor: isDarkMode ? colors.background : colors.backgroundExtra }}>
+            <View
+                style={{
+                    flex: 1,
+                    backgroundColor: isDarkMode ? colors.background : colors.backgroundExtra,
+                }}
+            >
                 <FilterBar hideNationFilter={route.params?.hideNationFilter} />
                 <Calendar />
                 <Timeline oid={oid} />

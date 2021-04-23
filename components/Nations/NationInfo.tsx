@@ -29,7 +29,9 @@ const NationInfo: React.FC<Props> = ({ nation, backgroundColor, paddingTop }) =>
         >
             <View style={styles.nationNameWrapper}>
                 <NationLogo src={nation.icon_img_src} size={50} />
-                <Text style={[styles.nationName, { color: colors.textHighlight }]}>{nation.name}</Text>
+                <Text style={[styles.nationName, { color: colors.textHighlight }]}>
+                    {nation.name}
+                </Text>
             </View>
 
             <View style={styles.descriptionWrapper}>

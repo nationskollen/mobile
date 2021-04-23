@@ -22,7 +22,12 @@ const ChooseDateBar: React.FC = () => {
             ]}
         >
             <TouchableOpacity onPress={() => console.log('Should call setDate')}>
-                <View style={[styles.arrowWrapper, { borderRightWidth: 1, borderColor: colors.borderDark }]}>
+                <View
+                    style={[
+                        styles.arrowWrapper,
+                        { borderRightWidth: 1, borderColor: colors.borderDark },
+                    ]}
+                >
                     <Ionicons name="md-chevron-back" size={20} color={colors.text} />
                 </View>
             </TouchableOpacity>
@@ -34,7 +39,12 @@ const ChooseDateBar: React.FC = () => {
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => console.log('Should call setDate')}>
-                <View style={[styles.arrowWrapper, { borderLeftWidth: 1, borderColor: colors.borderDark }]}>
+                <View
+                    style={[
+                        styles.arrowWrapper,
+                        { borderLeftWidth: 1, borderColor: colors.borderDark },
+                    ]}
+                >
                     <Ionicons name="md-chevron-forward" size={20} color={colors.text} />
                 </View>
             </TouchableOpacity>

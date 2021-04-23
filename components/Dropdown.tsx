@@ -25,8 +25,8 @@ const Dropdown: React.FC<Props> = ({ title, expandComponent, icon }) => {
                 leftIcon={icon}
                 rightIcon={
                     <Ionicons
-                        name={expand ? 'remove-circle-outline' : 'add-circle-outline'}
-                        size={32}
+                        name={expand ? 'chevron-up' : 'chevron-down'}
+                        size={24}
                         color={colors.text}
                         onPress={() => setExpand(!expand)}
                     />

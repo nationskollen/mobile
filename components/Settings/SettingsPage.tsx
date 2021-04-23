@@ -17,28 +17,30 @@ function SettingsPage({ navigation }) {
         <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
             <View style={[styles.darkMode, { backgroundColor: colors.backgroundExtra }]}>
                 <View style={styles.dmText}>
-                    <Text style={[styles.dmTitle, { color: colors.textHighlight }]}>Mörkt läge</Text>
+                    <Text style={[styles.dmTitle, { color: colors.textHighlight }]}>
+                        Mörkt läge
+                    </Text>
                     <Text style={{ color: colors.text }}>
                         Ställ in detta för att förhindra ansträngda ögon
                     </Text>
                 </View>
                 <ToggleSwitch
                     isOn={isDarkMode}
-                    onColor='#05c46b'
+                    onColor="#05c46b"
                     offColor={colors.borderDark}
-                    size='large'
+                    size="large"
                     onToggle={setDarkMode}
                 />
             </View>
             <ListButton
-                title='Logga in'
+                title="Logga in"
                 onPress={() => navigation.push('Login')}
-                leftIcon={<Ionicons name='lock-closed-outline' size={24} color={colors.text} />}
+                leftIcon={<Ionicons name="lock-closed-outline" size={24} color={colors.text} />}
             />
             <ListButton
-                title='Anpassa notifikationer'
+                title="Anpassa notifikationer"
                 onPress={() => navigation.push('NotificationSettings')}
-                leftIcon={<Ionicons name='filter' size={24} color={colors.text} />}
+                leftIcon={<Ionicons name="filter" size={24} color={colors.text} />}
             />
         </SafeAreaView>
     )

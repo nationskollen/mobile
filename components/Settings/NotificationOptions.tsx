@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
         height: 10,
         borderRadius: 10,
         marginRight: 15,
+        marginLeft: 5,
     },
 
     switch: {
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         borderBottomWidth: 1,
         paddingHorizontal: 15,
-        paddingVertical: 10,
+        paddingVertical: 8,
     },
 })
 

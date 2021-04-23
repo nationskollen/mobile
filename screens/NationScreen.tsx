@@ -30,7 +30,7 @@ function NationScreen() {
                 name="NationContent"
                 options={{
                     title: 'Nation',
-                    headerLeft: () => <NavigationBackArrow />
+                    headerLeft: () => <NavigationBackArrow />,
                 }}
             >
                 {(props) => <NationContent {...props} />}
@@ -41,7 +41,7 @@ function NationScreen() {
                 component={HomePage}
                 options={{
                     title: 'Evenemang',
-                    headerLeft: () => <NavigationBackArrow />
+                    headerLeft: () => <NavigationBackArrow />,
                 }}
             ></Stack.Screen>
         </Stack.Navigator>
