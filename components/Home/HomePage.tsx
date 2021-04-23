@@ -7,14 +7,16 @@ import Timeline from './Timeline'
 import FilterBar from './FilterBar'
 import Calendar from './Calendar'
 
-const Home = () => {
+const Home = ({ route }) => {
+    const oid = route.params?.oid
+
     return (
         <DatePickerProvider>
             <SafeAreaView style={{ flex: 1 }}>
                 <Header />
                 <FilterBar />
                 <Calendar />
-                <Timeline />
+                <Timeline oid={oid} />
             </SafeAreaView>
         </DatePickerProvider>
     )

@@ -1,15 +1,19 @@
 import React from 'react'
 import { FlatList } from 'react-native'
-import { useEvents } from '@dsp-krabby/sdk'
 import { useDatePicker } from './DatePickerContext'
+import { useEvents, useNationEvents } from '@dsp-krabby/sdk'
 
 import EventItem from './Event'
 import ListEmpty from '../ListEmpty'
 import LoadingCircle from '../LoadingCircle'
 
-const Timeline: React.FC = () => {
+interface Props {
+    oid: number
+}
+
+const Timeline: React.FC<Props> = ({ oid }) => {
     const { date } = useDatePicker()
-    const { data, error, isValidating, mutate } = useEvents({ date })
+    const { data, error, isValidating, mutate } = oid ? useNationEvents(oid) : useEvents({ date })
 
     return (
         <FlatList
