@@ -2,7 +2,7 @@
  * This component renders a menu and shows it using {@link Dropdown}.
  * @category Nation
  * @module Menu
- * @param oid The id of the nation from which the menu is to be fetched from
+ * @param oid
  */
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
@@ -13,6 +13,7 @@ import Dropdown from '../Dropdown'
 
 export interface Props {
     oid: number
+    /** The id of the nation from which the menu is to be fetched from */
 }
 
 export interface MenuItemListProps {

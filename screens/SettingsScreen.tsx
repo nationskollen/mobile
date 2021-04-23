@@ -21,8 +21,6 @@ export interface Props {
 
 const Stack = createStackNavigator()
 
-/// TODO: create a local navigation stack
-/// TODO: factor out basically everything to a different file and replace it with a local stack navigator
 const SettingsScreen = () => {
     const { colors } = useTheme()
 

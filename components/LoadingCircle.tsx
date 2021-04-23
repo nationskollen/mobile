@@ -1,3 +1,7 @@
+/**
+ * @category Misc
+ * @module LoadingCircle
+ */
 import React from 'react'
 import { RefreshControl } from 'react-native'
 import { useTheme } from './ThemeContext'
@@ -9,6 +13,9 @@ export interface Props {
 }
 
 const LoadingCircle = ({ validating, mutate, ...rest }: Props) => {
+/**
+ * This component renders a loading circle
+ */
     const { colors, isDarkMode } = useTheme()
 
     return (

@@ -4,9 +4,9 @@
  * @category Nation
  * @module NationScreen
  */
+
 import React from 'react'
 import 'react-native-gesture-handler'
-import { Ionicons } from '@expo/vector-icons'
 import { HeaderOptions } from './NavigationHeader'
 import { useTheme } from '../components/ThemeContext'
 import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack'

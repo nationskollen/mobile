@@ -1,16 +1,27 @@
+/**
+ * @category Misc
+ * @module ListButton
+ */
 import React from 'react'
 import { View, Text, StyleSheet, TouchableHighlight } from 'react-native'
 
 import { useTheme } from './ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 
-interface Props {
+export interface Props {
     title: String
+    /** The name/title of the header */
     onPress: () => void
+    /** The funcition to be excecuted when pressing the header */
     leftIcon: Element
+    /** */
     rightIcon?: Element
+    /** */
 }
 
+/**
+ * This component renders a clickable header with an icon to the left and an optional icon to the right in the header
+ */
 const ListButton = ({ title, onPress, leftIcon, rightIcon }: Props) => {
     const { colors } = useTheme()
 

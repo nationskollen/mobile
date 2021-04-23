@@ -1,5 +1,4 @@
 /**
- * This component renders the footer in which each tab can be selected
  * @category Navigation
  * @module Footer
  */
@@ -29,7 +28,11 @@ export type TabStackParamList = {
 
 const Tab = createBottomTabNavigator()
 
-/// The footer with each main screen
+/**
+ * This component renders the footer in which each tab can be selected.
+ * Each tab need to be entered in the footer manually.
+ *
+ */
 const Footer = () => {
     const { colors } = useTheme()
 
