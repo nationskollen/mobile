@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     nationButton: {
         height: '100%',
         width: 100,
-        marginLeft: 15,
+        marginLeft: 10,
         borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center',
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
 
     nationButtonText: {
         fontWeight: 'bold',
-        fontSize: 14,
+        fontSize: 16,
         color: 'white',
         marginHorizontal: 5,
     },

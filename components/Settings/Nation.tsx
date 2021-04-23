@@ -9,7 +9,6 @@ import NotificationOptions from './NotificationOptions'
 
 const Nation = ({ data }) => {
     const { colors } = useTheme()
-    const [expand, setExpand] = useState(false)
 
     return (
         <View>

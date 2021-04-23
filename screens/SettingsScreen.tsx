@@ -13,14 +13,15 @@ import { useTheme } from '../components/ThemeContext'
 import { createStackNavigator } from '@react-navigation/stack'
 
 import Login from '../components/Settings/Login'
-import RenderBackArrow from '../assets/Icons/backArrow'
 import SettingsPage from '../components/Settings/SettingsPage'
+import NavigationBackArrow from '../components/NavigationBackArrow'
 import NotificationSettings from '../components/Settings/NotificationSettings'
 
 const Stack = createStackNavigator()
 
-
-function SettingsScreen({ navigation }) {
+/// TODO: create a local navigation stack
+/// TODO: factor out basically everything to a different file and replace it with a local stack navigator
+const SettingsScreen = () => {
     const { colors } = useTheme()
 
     return (
@@ -34,7 +35,7 @@ function SettingsScreen({ navigation }) {
                 name="NotificationSettings"
                 options={{
                     title: 'Anpassa notifikationer',
-                    headerLeft: () => <RenderBackArrow nav={navigation} screen={'Settings'} />,
+                    headerLeft: () => <NavigationBackArrow />,
                 }}
             >
                 {(_) => <NotificationSettings />}
@@ -44,7 +45,7 @@ function SettingsScreen({ navigation }) {
                 component={Login}
                 options={{
                     title: 'Logga in',
-                    headerLeft: () => <RenderBackArrow nav={navigation} screen={'Settings'} />,
+                    headerLeft: () => <NavigationBackArrow />,
                 }}
             />
         </Stack.Navigator>

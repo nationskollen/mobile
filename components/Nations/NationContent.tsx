@@ -1,15 +1,13 @@
-// This is for rendering the nation content.
-import { ScrollView, View } from 'react-native'
 import React from 'react'
+import { Ionicons } from '@expo/vector-icons'
+import { ScrollView, View } from 'react-native'
+import { useTheme } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/core'
 
-/// Renders food components
 import Menu from './Menu'
 import NationInfo from './NationInfo'
+import ListButton from '../ListButton'
 import ActivityLevel from '../Map/ActivityLevel'
-
-/// Renders event components
-// TODO: NOt sure what to do about this
-// import Events from './NationContentComponents/EventComponents'
 
 // TODO: Add correct type here
 interface Props {
@@ -17,7 +15,6 @@ interface Props {
 }
 
 const NationContent: React.FC<Props> = ({ route }) => {
-    // TODO: Pass in oid instead?
     const { nation } = route.params
 
     return (
@@ -26,8 +23,22 @@ const NationContent: React.FC<Props> = ({ route }) => {
             <ActivityLevel />
             <ScrollView style={{ flex: 1 }}>
                 <Menu oid={nation.oid} />
+                <EventButton oid={nation.oid} />
             </ScrollView>
         </View>
+    )
+}
+
+const EventButton = ({ oid }) => {
+    const navigation = useNavigation()
+    const { colors } = useTheme()
+
+    return (
+        <ListButton
+            title={'Evenemang'}
+            onPress={() => navigation.navigate('Events', { oid, hideNationFilter: true })}
+            leftIcon={<Ionicons name="calendar-outline" size={24} color={colors.text} />}
+        />
     )
 }
 
