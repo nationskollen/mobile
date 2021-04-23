@@ -7,21 +7,23 @@
  * @param paddingTop Optional padding on the top
  *
  */
-import { View, Text, StyleSheet, Alert } from 'react-native'
 import React from 'react'
+import { View, Text, StyleSheet, Alert } from 'react-native'
 
+import { Nation } from '@dsp-krabby/sdk'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
+
 import NationLogo from './NationLogo'
 
-interface Props {
-    nation: any
+export interface Props {
+    nation: Nation
     backgroundColor?: string
     paddingTop?: number
 }
 
 //renders information and title of nation. Can be used in maps too!
-const NationInfo: React.FC<Props> = ({ nation, backgroundColor, paddingTop }) => {
+const NationInfo = ({ nation, backgroundColor, paddingTop }: Props) => {
     //TODO: add openinghours and address to nation object
     //TODO: add color theme to nation, so that icons can match
     const { colors } = useTheme()

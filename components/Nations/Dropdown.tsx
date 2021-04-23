@@ -4,7 +4,7 @@
  * @module Dropdown
  * @param title The title of the dropdown menu header
  * @param expandComponent The component to be rendered when pressing an expand button on the header
- * @param icon The button that when pressed renders `expandComponent` 
+ * @param icon The button that when pressed renders `expandComponent`
  */
 import React, { useState } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
@@ -12,14 +12,14 @@ import { View, Text, StyleSheet } from 'react-native'
 import { useTheme } from '@react-navigation/native'
 import { Ionicons } from '@expo/vector-icons'
 
-interface Props {
+export interface Props {
     title: string
     expandComponent: Element
     icon: Element
 }
 
 //renders expandable dropdown menu header
-const Dropdown: React.FC<Props> = ({ title, expandComponent, icon }) => {
+const Dropdown = ({ title, expandComponent, icon }: Props) => {
     const { colors } = useTheme()
     const [expand, setExpand] = useState(false)
 

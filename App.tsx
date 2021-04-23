@@ -12,9 +12,8 @@ import { ThemeProvider } from './components/ThemeContext'
 
 import Footer from './components/Footer'
 
-const App: React.FC = () => {
+const App = () => {
     return (
-        //@ts-ignore
         <Provider
             config={{
                 development: Constants.manifest.extra.development,

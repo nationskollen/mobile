@@ -3,13 +3,13 @@ import { useTheme } from '../ThemeContext'
 import { View, StyleSheet, Text } from 'react-native'
 import ToggleSwitch from 'toggle-switch-react-native'
 
-interface ToggleProps {
+export interface ToggleProps {
     // `text` is the name/title of the toggle
     text: string
 }
 
 /// Renders the different notification options
-const NotificationOptions: React.FC = () => {
+const NotificationOptions = () => {
     const { colors } = useTheme()
 
     return (
@@ -31,7 +31,7 @@ const NotificationOptions: React.FC = () => {
 }
 
 /// Renders toggle switches
-const Toggle: React.FC<ToggleProps> = ({ text }) => {
+const Toggle = ({ text }: ToggleProps) => {
     const { colors } = useTheme()
     const [toggle, setToggle] = useState(false)
 

@@ -7,7 +7,7 @@ import EventItem from './Event'
 import ListEmpty from '../ListEmpty'
 import LoadingCircle from '../LoadingCircle'
 
-const Timeline: React.FC = () => {
+const Timeline = () => {
     const { date } = useDatePicker()
     const { data, error, isValidating, mutate } = useEvents({ date })
 

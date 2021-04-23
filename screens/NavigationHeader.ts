@@ -7,6 +7,12 @@
 import { ThemeColors } from '../components/ThemeContext'
 import { StackNavigationOptions } from '@react-navigation/stack'
 
+/**
+ * Creates the default option object used by every screen with a navigation header.
+ * This sets the correct color and alignment of the header.
+ *
+ * @param colors - The current theme colors
+ */
 export const HeaderOptions: (colors: ThemeColors) => Partial<StackNavigationOptions> = (
     colors: ThemeColors
 ) => ({

@@ -1,4 +1,4 @@
-/** 
+/**
  * This component contains each screen in the Map tab.
  * @category Map
  * @module MapScreen
@@ -9,14 +9,18 @@ import 'react-native-gesture-handler'
 import { Ionicons } from '@expo/vector-icons'
 import { HeaderOptions } from './NavigationHeader'
 import { useTheme } from '../components/ThemeContext'
-import { createStackNavigator } from '@react-navigation/stack'
+import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack'
 
 import Map from '../components/Map/MapPage'
 import NationContent from '../components/Nations/NationContent'
 
+export interface Props {
+    navigation: StackNavigationProp<any, any>
+}
+
 const Stack = createStackNavigator()
 
-const MapScreen = ({ navigation }) => {
+const MapScreen = ({ navigation }: Props) => {
     const { colors } = useTheme()
 
     return (

@@ -2,13 +2,13 @@ import React from 'react'
 import { RefreshControl } from 'react-native'
 import { useTheme } from './ThemeContext'
 
-interface Props {
+export interface Props {
     validating: boolean
     mutate: (...args: any) => void
     [key: string]: any
 }
 
-const LoadingCircle: React.FC<Props> = ({ validating, mutate, ...rest }) => {
+const LoadingCircle = ({ validating, mutate, ...rest }: Props) => {
     const { colors, isDarkMode } = useTheme()
 
     return (

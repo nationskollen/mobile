@@ -2,22 +2,21 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 
 import { useTheme } from '../ThemeContext'
-import { useNation } from '@dsp-krabby/sdk'
 import { Ionicons } from '@expo/vector-icons'
+import { useNation, Event } from '@dsp-krabby/sdk'
 import { useNavigation } from '@react-navigation/native'
 
 import NationLogo from '../Nations/NationLogo'
 
-interface EventProps {
-    // TODO: Replace with actual type from SDK
-    event: Record<string, any>
+export interface EventProps {
+    event: Event
 }
 
-interface HeaderProps {
+export interface HeaderProps {
     oid: number
 }
 
-const Event: React.FC<EventProps> = ({ event }) => {
+const Event = ({ event }: EventProps) => {
     const { colors, isDarkMode } = useTheme()
 
     return (
@@ -60,7 +59,7 @@ const Event: React.FC<EventProps> = ({ event }) => {
     )
 }
 
-const Header: React.FC<HeaderProps> = ({ oid }) => {
+const Header = ({ oid }: HeaderProps) => {
     // TODO: Use types from SDK
     const { colors } = useTheme()
     const { data } = useNation(oid)
@@ -86,7 +85,7 @@ const Header: React.FC<HeaderProps> = ({ oid }) => {
     )
 }
 
-const ReminderButton: React.FC = () => {
+const ReminderButton = () => {
     const { colors } = useTheme()
 
     return (

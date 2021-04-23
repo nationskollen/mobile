@@ -3,13 +3,13 @@ import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 import { View, Text, StyleSheet } from 'react-native'
 
-interface IndicatorProps {
+export interface IndicatorProps {
     level: number
 }
 
 //renders activity bar
 // TODO: Take in a location as prop
-const ActivityLevel: React.FC = () => {
+const ActivityLevel = () => {
     const { colors } = useTheme()
 
     return (
@@ -25,7 +25,7 @@ const ActivityLevel: React.FC = () => {
 }
 
 //function that returns a component with a colored circle and text - determined by the activity level
-const ActivityIndicator: React.FC<IndicatorProps> = ({ level }) => {
+const ActivityIndicator = ({ level }: IndicatorProps) => {
     const { colors } = useTheme()
 
     let color: string

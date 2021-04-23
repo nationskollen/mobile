@@ -1,14 +1,17 @@
 import React from 'react'
-import { SafeAreaView, View, StyleSheet, Text, TouchableHighlight } from 'react-native'
-
-/// Navigation
 import 'react-native-gesture-handler'
+import { StackNavigationProp } from '@react-navigation/stack'
+import { SafeAreaView, View, StyleSheet, Text, TouchableHighlight } from 'react-native'
 
 import { useTheme } from '../ThemeContext'
 import { FontAwesome } from '@expo/vector-icons'
 import ToggleSwitch from 'toggle-switch-react-native'
 
-function SettingsPage({ navigation }) {
+export interface Props {
+    navigation: StackNavigationProp<any, any>
+}
+
+const SettingsPage = ({ navigation }: Props) => {
     const { colors, setDarkMode, isDarkMode } = useTheme()
 
     return (

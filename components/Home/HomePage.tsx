@@ -3,9 +3,9 @@ import { SafeAreaView } from 'react-native'
 import { DatePickerProvider } from './DatePickerContext'
 
 import Header from './Header'
+import Calendar from './Calendar'
 import Timeline from './Timeline'
 import FilterBar from './FilterBar'
-import Calendar from './Calendar'
 
 const Home = () => {
     return (

@@ -1,23 +1,18 @@
 // This is for rendering the nation content.
-import { ScrollView, View } from 'react-native'
 import React from 'react'
+import { TabStackParamList } from '../Footer'
+import { ScrollView, View } from 'react-native'
+import { RouteProp } from '@react-navigation/native';
 
-/// Renders food components
 import Menu from './Menu'
 import NationInfo from './NationInfo'
 import ActivityLevel from '../Map/ActivityLevel'
 
-/// Renders event components
-// TODO: NOt sure what to do about this
-// import Events from './NationContentComponents/EventComponents'
-
-// TODO: Add correct type here
-interface Props {
-    route: any
+export interface Props {
+    route: RouteProp<TabStackParamList, 'Nationer'>
 }
 
-const NationContent: React.FC<Props> = ({ route }) => {
-    // TODO: Pass in oid instead?
+const NationContent = ({ route }: Props) => {
     const { nation } = route.params
 
     return (

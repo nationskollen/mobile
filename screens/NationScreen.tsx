@@ -1,5 +1,5 @@
 /**
- * This component contains each screen in the Nations tab 
+ * This component contains each screen in the Nations tab
  *
  * @category Nation
  * @module NationScreen
@@ -8,24 +8,21 @@
 import React from 'react'
 
 import 'react-native-gesture-handler'
+import { Ionicons } from '@expo/vector-icons'
 import { HeaderOptions } from './NavigationHeader'
 import { useTheme } from '../components/ThemeContext'
-import { createStackNavigator } from '@react-navigation/stack'
+import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack'
 
-/// Pages to move to and from
 import ChooseNation from '../components/Nations/ChooseNation'
 import NationContent from '../components/Nations/NationContent'
 
-/// Icons
-import { Ionicons } from '@expo/vector-icons'
+export interface Props {
+    navigation: StackNavigationProp<any, any>
+}
 
-/// Creates a local navigation stack for this tab
 const Stack = createStackNavigator()
 
-/// The screens included in the local stack
-/// Put screens relating to nations here
-
-function NationScreen({ navigation }) {
+const NationScreen = ({ navigation }: Props) => {
     const { colors } = useTheme()
 
     return (

@@ -6,7 +6,6 @@ import Nation from './Nation'
 import ListEmpty from '../ListEmpty'
 import LoadingCircle from '../LoadingCircle'
 
-/// Renders all nations in a list
 const NotificationSettings = () => {
     const { data, error, isValidating, mutate } = useNations()
 

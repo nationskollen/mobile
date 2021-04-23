@@ -31,7 +31,7 @@ export interface Theme {
     colors: ThemeColors
 }
 
-const LightTheme: Theme = {
+export const LightTheme: Theme = {
     dark: false,
     colors: {
         primary: '#71002E',
@@ -52,7 +52,7 @@ const LightTheme: Theme = {
     },
 }
 
-const DarkTheme: Theme = {
+export const DarkTheme: Theme = {
     dark: true,
     colors: {
         primary: '#71002E',

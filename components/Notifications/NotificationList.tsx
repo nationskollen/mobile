@@ -9,7 +9,7 @@ import LoadingCircle from '../LoadingCircle'
 // TODO: Currently, this renders nations as notifications since we
 //       do not have implemented notifications on the server yet.
 //       However, this allows us to the the reload functionality.
-const NotificationsContent: React.FC = () => {
+const NotificationsContent = () => {
     const { data, error, isValidating, mutate } = useNations()
 
     return (

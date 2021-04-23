@@ -4,8 +4,6 @@
  * @module ListOfNations
  * @returns A scrollable list of all nations
  */
-// TODO: This can be merged with ../Settings/Nation.tsx
-// This is for rendering the choose-nation view.
 import React from 'react'
 import { useTheme } from '../ThemeContext'
 import { useNations } from '@dsp-krabby/sdk'
@@ -16,8 +14,7 @@ import ListEmpty from '../ListEmpty'
 import NationLogo from './NationLogo'
 import LoadingCircle from '../LoadingCircle'
 
-
-const ChooseNation: React.FC = () => {
+const ChooseNation = () => {
     const { colors } = useTheme()
     const navigation = useNavigation()
     const { data, error, isValidating, mutate } = useNations()

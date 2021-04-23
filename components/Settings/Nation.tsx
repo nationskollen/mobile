@@ -1,13 +1,18 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, Text, Image, TouchableHighlight } from 'react-native'
+import { View, StyleSheet, Text, TouchableHighlight } from 'react-native'
 
+import { Nation } from '@dsp-krabby/sdk'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 
 import NationLogo from '../Nations/NationLogo'
 import NotificationOptions from './NotificationOptions'
 
-const Nation = ({ data }) => {
+export interface Props {
+    data: Nation
+}
+
+const Nation = ({ data }: Props) => {
     const { colors } = useTheme()
     const [expand, setExpand] = useState(false)
 
@@ -18,7 +23,7 @@ const Nation = ({ data }) => {
                 underlayColor={colors.backgroundHighlight}
             >
                 <View
-                    key={data.id}
+                    key={data.oid}
                     style={[
                         styles.nationWrapper,
                         {

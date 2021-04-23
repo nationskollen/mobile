@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import { Animated, View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
+import { Nation } from '@dsp-krabby/sdk'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
@@ -8,14 +9,13 @@ import { useNavigation } from '@react-navigation/native'
 import NationInfo from '../Nations/NationInfo'
 
 // TODO: Add correct type from SDK
-interface Props {
-    nation: any
+export interface Props {
+    nation: Nation
     show: boolean
     setShow: (show: boolean) => void
 }
 
-const Popup: React.FC<Props> = ({ nation, show, setShow }) => {
-    console.log(show)
+const Popup = ({ nation, show, setShow }: Props) => {
     const { colors } = useTheme()
     const navigation = useNavigation()
     const popupHeight = 300

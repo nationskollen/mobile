@@ -5,7 +5,7 @@ import { useTheme } from '../ThemeContext'
 import ChooseDateBar from './ChooseDateBar'
 import ChooseNationButton from './ChooseNationButton'
 
-const FilterBar: React.FC = () => {
+const FilterBar = () => {
     const { colors } = useTheme()
 
     return (

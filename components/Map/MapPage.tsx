@@ -6,10 +6,6 @@ import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps'
 import Popup from './Popup'
 import MapDarkTheme from './MapDarkTheme.json'
 
-interface Props {
-    data: Array<Record<string, any>>
-}
-
 // TODO: Add endpoint on server for fetching all locations that should be displayed on map
 const mapLocations = [
     {
@@ -118,7 +114,7 @@ const mapLocations = [
     },
 ]
 
-const Map: React.FC<Props> = () => {
+const Map = () => {
     const { colors, isDarkMode } = useTheme()
     const [selectedNation, setSelectedNation] = useState<any | null>(null)
     const [showPopup, setShowPopup] = useState(false)

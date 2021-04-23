@@ -3,24 +3,25 @@
  * @category Settings
  * @module SettingsScreen
  */
-/// This is used to render Settings page and screens relating to it
 import React from 'react'
 
-/// Navigation
 import 'react-native-gesture-handler'
 import { HeaderOptions } from './NavigationHeader'
 import { useTheme } from '../components/ThemeContext'
-import { createStackNavigator } from '@react-navigation/stack'
+import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack'
 
 import Login from '../components/Settings/Login'
 import RenderBackArrow from '../assets/Icons/backArrow'
 import SettingsPage from '../components/Settings/SettingsPage'
 import NotificationSettings from '../components/Settings/NotificationSettings'
 
+export interface Props {
+    navigation: StackNavigationProp<any, any>
+}
+
 const Stack = createStackNavigator()
 
-
-function SettingsScreen({ navigation }) {
+const SettingsScreen = ({ navigation }: Props) => {
     const { colors } = useTheme()
 
     return (
