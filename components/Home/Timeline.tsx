@@ -18,15 +18,10 @@ export interface Props {
 
 const Timeline = ({ oid }: Props) => {
     const { date } = useDatePicker()
-    const {
-        data,
-        error,
-        isValidating,
-        mutate,
-        size,
-        setSize,
-        pagination
-    } = useEvents(oid, { date, amount: 15 })
+    const { data, error, isValidating, mutate, size, setSize, pagination } = useEvents(oid, {
+        date,
+        amount: 15,
+    })
 
     const shouldRenderFooter = pagination && pagination.total > 0
 

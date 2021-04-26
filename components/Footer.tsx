@@ -74,27 +74,27 @@ const Footer = () => {
             }}
         >
             <Tab.Screen
-                name='Notifikationer'
+                name="Notifikationer"
                 component={NotificationScreen}
                 options={{ title: translate.footer.notifications }}
             />
             <Tab.Screen
-                name='Nationer'
+                name="Nationer"
                 component={NationScreen}
                 options={{ title: translate.footer.nations }}
             />
             <Tab.Screen
-                name='Hem'
+                name="Hem"
                 component={HomeScreen}
                 options={{ title: translate.footer.home }}
             />
             <Tab.Screen
-                name='Karta'
+                name="Karta"
                 component={MapScreen}
                 options={{ title: translate.footer.map }}
             />
             <Tab.Screen
-                name='Inställningar'
+                name="Inställningar"
                 component={SettingsScreen}
                 options={{ title: translate.footer.settings }}
             />

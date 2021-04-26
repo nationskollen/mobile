@@ -28,7 +28,11 @@ const MapScreen = () => {
 
     return (
         <Stack.Navigator initialRouteName="Map" screenOptions={HeaderOptions(colors)}>
-            <Stack.Screen name="Map" component={Map} options={{ headerShown: false, title: translate.map.header }} />
+            <Stack.Screen
+                name="Map"
+                component={Map}
+                options={{ headerShown: false, title: translate.map.header }}
+            />
             <Stack.Screen
                 name="NationContent"
                 options={{

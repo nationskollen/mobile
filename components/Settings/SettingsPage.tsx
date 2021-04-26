@@ -9,7 +9,7 @@ import { StackNavigationProp } from '@react-navigation/stack'
 import { SafeAreaView, View, StyleSheet, Text } from 'react-native'
 
 import { useTheme } from '../ThemeContext'
-import { useTranslation } from '../../translate/LanguageContext';
+import { useTranslation } from '../../translate/LanguageContext'
 
 import ListButton from '../ListButton'
 import ToggleSwitch from 'toggle-switch-react-native'
@@ -20,7 +20,7 @@ export interface Props {
 
 const SettingsPage = ({ navigation }: Props) => {
     const { colors, setDarkMode, isDarkMode } = useTheme()
-    const {translate} = useTranslation();
+    const { translate } = useTranslation()
 
     return (
         <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
@@ -30,7 +30,7 @@ const SettingsPage = ({ navigation }: Props) => {
                         {translate.settings.darkmodeheader}
                     </Text>
                     <Text style={{ color: colors.text }}>
-			{translate.settings.darkmodedescription}
+                        {translate.settings.darkmodedescription}
                     </Text>
                 </View>
                 <ToggleSwitch

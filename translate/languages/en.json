@@ -1,47 +1,46 @@
 {
-    "footer" : {
-	"notifications" : "Notifications",
-	"nations" : "Nations",
-	"home" : "Home",
-	"map" : "Map",
-	"settings" : "Settings"
+    "footer": {
+        "notifications": "Notifications",
+        "nations": "Nations",
+        "home": "Home",
+        "map": "Map",
+        "settings": "Settings"
     },
 
-    "notifications" : {
-	"header" : "Notifications"
+    "notifications": {
+        "header": "Notifications"
     },
 
-    "nations" : {
-	"header" : "Nations"
+    "nations": {
+        "header": "Nations"
     },
 
-    "home" : {
-	"header" : "Home",
-	"headline" : "Nationskollen",
-	"nationbutton" : "Nation"
+    "home": {
+        "header": "Home",
+        "headline": "Nationskollen",
+        "nationbutton": "Nation"
     },
 
-    "map" : {
-	"header" : "Map"
+    "map": {
+        "header": "Map"
     },
 
-    "settings" : {
-	"header" : "Settings",
-	"darkmodeheader" : "Dark Mode",
-	"darkmodedescription" : "Set this to prevent strained eyes",
-	"login" : "Login",
-	"notifications" : "Adjust notifications",
-	"language" : "Choose language",
-	"loginsetting" : {
-	    "header" : "Nationskollen",
-	    "username" : "Username",
-	    "password" : "Password",
-	    "loginbutton" : "Login"
+    "settings": {
+        "header": "Settings",
+        "darkmodeheader": "Dark Mode",
+        "darkmodedescription": "Set this to prevent strained eyes",
+        "login": "Login",
+        "notifications": "Adjust notifications",
+        "language": "Choose language",
+        "loginsetting": {
+            "header": "Nationskollen",
+            "username": "Username",
+            "password": "Password",
+            "loginbutton": "Login"
+        },
 
-	},
-
-	"notificationsetting" : {
-	    "header" : "Adjust notifications"
-	}
+        "notificationsetting": {
+            "header": "Adjust notifications"
+        }
     }
 }

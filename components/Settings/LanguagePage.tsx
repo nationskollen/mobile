@@ -2,21 +2,21 @@ import React from 'react'
 import 'react-native-gesture-handler'
 import { useTheme } from '../ThemeContext'
 import { View, Text, StyleSheet } from 'react-native'
-import { useTranslation } from '../../translate/LanguageContext';
+import { useTranslation } from '../../translate/LanguageContext'
 
 import ListButton from '../ListButton'
-import en from '../../translate/languages/en.json';
-import swe from '../../translate/languages/swe.json';
+import en from '../../translate/languages/en.json'
+import swe from '../../translate/languages/swe.json'
 
 const LanguagePage = () => {
     const { colors } = useTheme()
-    const { setSelectedLanguage } = useTranslation();
+    const { setSelectedLanguage } = useTranslation()
 
     // TODO: Update rightIcon of the list buttons to show a checkbox (?)
     return (
         <View>
             <ListButton
-                title='English'
+                title="English"
                 leftIcon={
                     <View style={[styles.icon, { backgroundColor: colors.backgroundHighlight }]}>
                         <Text style={[styles.text, { color: colors.text }]}>ENG</Text>
@@ -25,7 +25,7 @@ const LanguagePage = () => {
                 onPress={() => setSelectedLanguage(en)}
             />
             <ListButton
-                title='Svenska'
+                title="Svenska"
                 leftIcon={
                     <View style={[styles.icon, { backgroundColor: colors.backgroundHighlight }]}>
                         <Text style={[styles.text, { color: colors.text }]}>SWE</Text>
@@ -52,4 +52,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default LanguagePage;
+export default LanguagePage

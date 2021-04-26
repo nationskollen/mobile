@@ -1,48 +1,46 @@
 {
-    "footer" : {
-	"notifications" : "Notifikationer",
-	"nations" : "Nationer",
-	"home" : "Hem",
-	"map" : "Karta",
-	"settings" : "Inställningar"
+    "footer": {
+        "notifications": "Notifikationer",
+        "nations": "Nationer",
+        "home": "Hem",
+        "map": "Karta",
+        "settings": "Inställningar"
     },
 
-    "notifications" : {
-	"header" : "Notifikationer"
+    "notifications": {
+        "header": "Notifikationer"
     },
 
-    "nations" : {
-	"header" : "Nationer"
+    "nations": {
+        "header": "Nationer"
     },
 
-    "home" : {
-	"header" : "Hem",
-	"headline" : "Nationskollen",
-	"nationbutton" : "Nation"
+    "home": {
+        "header": "Hem",
+        "headline": "Nationskollen",
+        "nationbutton": "Nation"
     },
 
-    "map" : {
-	"header" : "Karta"
+    "map": {
+        "header": "Karta"
     },
 
-    "settings" : {
-	"header" : "Inställningar",
-	"darkmodeheader" : "Mörkt läge",
-	"darkmodedescription" : "Ställ in detta för att förhindra ansträngda ögon",
-	"login" : "Logga in",
-	"notifications" : "Anpassa notifikationer",
-	"language" : "Välj språk",
-	"loginsetting" : {
-	    "header" : "Nationskollen",
-	    "username" : "Användarnamn",
-	    "password" : "Lösenord",
-	    "loginbutton" : "Login"
+    "settings": {
+        "header": "Inställningar",
+        "darkmodeheader": "Mörkt läge",
+        "darkmodedescription": "Ställ in detta för att förhindra ansträngda ögon",
+        "login": "Logga in",
+        "notifications": "Anpassa notifikationer",
+        "language": "Välj språk",
+        "loginsetting": {
+            "header": "Nationskollen",
+            "username": "Användarnamn",
+            "password": "Lösenord",
+            "loginbutton": "Login"
+        },
 
-
-	},
-
-	"notificationsetting" : {
-	    "header" : "Anpassa Notifikationer"
-	}
+        "notificationsetting": {
+            "header": "Anpassa Notifikationer"
+        }
     }
 }

@@ -11,7 +11,7 @@ import { useTheme } from '../components/ThemeContext'
 import { createStackNavigator } from '@react-navigation/stack'
 
 import NotificationList from '../components/Notifications/NotificationList'
-import { useTranslation} from '../translate/LanguageContext';
+import { useTranslation } from '../translate/LanguageContext'
 
 const Stack = createStackNavigator()
 
@@ -24,7 +24,7 @@ const NotificationScreen = () => {
             <Stack.Screen
                 name="Notifications"
                 component={NotificationList}
-                options={{ title: translate.notifications.header}}
+                options={{ title: translate.notifications.header }}
             />
         </Stack.Navigator>
     )

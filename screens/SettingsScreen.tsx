@@ -32,7 +32,7 @@ const SettingsScreen = () => {
             <Stack.Screen
                 name="Settings"
                 component={SettingsPage}
-                options={{ title: translate.settings.header}}
+                options={{ title: translate.settings.header }}
             />
             <Stack.Screen
                 name="NotificationSettings"
@@ -51,8 +51,8 @@ const SettingsScreen = () => {
                     headerLeft: () => <NavigationBackArrow />,
                 }}
             />
-             <Stack.Screen
-                name= "LanguageSettings"
+            <Stack.Screen
+                name="LanguageSettings"
                 component={LanguagePage}
                 options={{
                     title: translate.settings.language,

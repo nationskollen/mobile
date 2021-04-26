@@ -15,7 +15,7 @@ import { createStackNavigator, StackNavigationProp } from '@react-navigation/sta
 
 import HomePage from '../components/Home/HomePage'
 import NationContent from '../components/Nations/NationContent'
-import { useTranslation } from '../translate/LanguageContext';
+import { useTranslation } from '../translate/LanguageContext'
 import NavigationBackArrow from '../components/NavigationBackArrow'
 
 export interface Props {
@@ -26,7 +26,7 @@ const Stack = createStackNavigator()
 
 const HomeScreen = () => {
     const { colors } = useTheme()
-    const { translate } = useTranslation ()
+    const { translate } = useTranslation()
 
     return (
         <Stack.Navigator initialRouteName="Home" screenOptions={HeaderOptions(colors)}>
