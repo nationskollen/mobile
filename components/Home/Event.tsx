@@ -11,6 +11,7 @@ import { useNation, Event as EventResponse } from '@dsp-krabby/sdk'
 import { useNavigation } from '@react-navigation/native'
 
 import NationLogo from '../Nations/NationLogo'
+import ReminderButton from './ReminderButton'
 
 export interface EventProps {
     event: EventResponse
@@ -86,19 +87,6 @@ const Header = ({ oid }: HeaderProps) => {
             </TouchableOpacity>
             <ReminderButton />
         </View>
-    )
-}
-
-const ReminderButton = () => {
-    const { colors } = useTheme()
-
-    return (
-        <TouchableOpacity
-            style={[reminderStyles.container, { backgroundColor: colors.backgroundHighlight }]}
-        >
-            <Ionicons name="md-notifications-outline" size={20} color={colors.text} />
-            <Text style={[reminderStyles.text, { color: colors.text }]}>Påminn mig</Text>
-        </TouchableOpacity>
     )
 }
 
@@ -187,24 +175,6 @@ const nationStyles = StyleSheet.create({
         fontSize: 14,
         fontWeight: 'bold',
         marginLeft: 10,
-    },
-})
-
-const reminderStyles = StyleSheet.create({
-    container: {
-        paddingHorizontal: 10,
-        paddingVertical: 10,
-        borderRadius: 10,
-
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-
-    text: {
-        color: 'white',
-        fontWeight: 'bold',
-        marginLeft: 5,
     },
 })
 
