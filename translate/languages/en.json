@@ -31,15 +31,15 @@
 	"darkmodedescription" : "Set this to prevent strained eyes",
 	"login" : "Login",
 	"notifications" : "Adjust notifications",
-	"language" : "Language", 
+	"language" : "Choose language",
 	"loginsetting" : {
 	    "header" : "Nationskollen",
 	    "username" : "Username",
 	    "password" : "Password",
-	    "loginbutton" : "Login" 	
+	    "loginbutton" : "Login"
 
 	},
-	
+
 	"notificationsetting" : {
 	    "header" : "Adjust notifications"
 	}

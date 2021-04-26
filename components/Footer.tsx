@@ -6,7 +6,7 @@ import React from 'react'
 import { Nation } from '@dsp-krabby/sdk'
 import { useTheme } from './ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
-import { useTranslation} from '../translate/LanguageContext';
+import { useTranslation } from '../translate/LanguageContext'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 import MapScreen from '../screens/MapScreen'
@@ -73,11 +73,31 @@ const Footer = () => {
                 keyboardHidesTabBar: true,
             }}
         >
-            <Tab.Screen name={translate.notifications.header}  component={NotificationScreen} />
-            <Tab.Screen name={translate.nations.header} component={NationScreen} />
-            <Tab.Screen name={translate.home.header}component={HomeScreen} />
-            <Tab.Screen name={translate.map.header} component={MapScreen} />
-            <Tab.Screen name={translate.settings.header}component={SettingsScreen} />
+            <Tab.Screen
+                name='Notifikationer'
+                component={NotificationScreen}
+                options={{ title: translate.footer.notifications }}
+            />
+            <Tab.Screen
+                name='Nationer'
+                component={NationScreen}
+                options={{ title: translate.footer.nations }}
+            />
+            <Tab.Screen
+                name='Hem'
+                component={HomeScreen}
+                options={{ title: translate.footer.home }}
+            />
+            <Tab.Screen
+                name='Karta'
+                component={MapScreen}
+                options={{ title: translate.footer.map }}
+            />
+            <Tab.Screen
+                name='Inställningar'
+                component={SettingsScreen}
+                options={{ title: translate.footer.settings }}
+            />
         </Tab.Navigator>
     )
 }
