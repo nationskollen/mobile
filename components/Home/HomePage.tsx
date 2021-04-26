@@ -12,6 +12,7 @@ import { RouteProp } from '@react-navigation/native'
 import Timeline from './Timeline'
 import Calendar from './Calendar'
 import FilterBar from './FilterBar'
+import ReminderButton from './ReminderButton'
 
 export interface Props {
     route: RouteProp<TabStackParamList, 'Hem'>
@@ -31,6 +32,7 @@ const Home = ({ route }: Props) => {
                 <FilterBar hideNationFilter={route.params?.hideNationFilter} />
                 <Calendar />
                 <Timeline oid={route.params?.oid} />
+                
             </View>
         </DatePickerProvider>
     )
