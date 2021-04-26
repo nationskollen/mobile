@@ -12,7 +12,7 @@ export interface Props {
     title: String
     /** The name/title of the header */
     onPress: () => void
-    /** The funcition to be excecuted when pressing the header */
+    /** The function to be excecuted when pressing the header */
     leftIcon: Element
     /** */
     rightIcon?: Element

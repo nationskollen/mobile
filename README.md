@@ -8,8 +8,8 @@ All documentation for Nationskollen is available [here](https://github.com/dsp-k
 
 ### Commands
 
-`npm run docs` - generate documentation in docs/index.html
-`npm run docs:watch` - generate documentation and watch for changes
+1. `npm run docs` - generate documentation in docs
+2. `npm run docs:watch` - generate documentation and watch for changes
 
 ## Development
 

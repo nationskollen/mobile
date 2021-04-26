@@ -13,9 +13,9 @@ export interface Props {
 }
 
 const LoadingCircle = ({ validating, mutate, ...rest }: Props) => {
-/**
- * This component renders a loading circle
- */
+    /**
+     * This component renders a loading circle
+     */
     const { colors, isDarkMode } = useTheme()
 
     return (

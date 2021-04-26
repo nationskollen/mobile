@@ -1,5 +1,5 @@
 /**
- * This component is the top dog. This is the component that renders when runnig the code.
+ * This component is the top dog. This is the component that renders when running the code.
  * @category BIG
  * @module App
  */

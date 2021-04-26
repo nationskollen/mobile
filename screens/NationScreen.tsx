@@ -44,7 +44,7 @@ const NationScreen = () => {
                 {(props) => <NationContent {...props} />}
             </Stack.Screen>
             <Stack.Screen
-                name='Events'
+                name="Events"
                 component={HomePage}
                 options={{
                     title: 'Evenemang',

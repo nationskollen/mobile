@@ -17,7 +17,7 @@ interface Props {
     icon: Element
 }
 
-/** 
+/**
  * This component renders an expandable dropdown menu header
  */
 export const Dropdown: React.FC<Props> = ({ title, expandComponent, icon }) => {

@@ -12,7 +12,7 @@ function handleNationButtonPress() {
     console.log('nation button pressed - show choose nation content')
 }
 
-// Renders button that should sho choose-nation content when pressed
+// Renders button that should show choose-nation content when pressed
 const ChooseNationButton = () => {
     const { colors } = useTheme()
 

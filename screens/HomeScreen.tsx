@@ -38,7 +38,7 @@ const HomeScreen = () => {
                 }}
             />
             <Stack.Screen
-                name='Events'
+                name="Events"
                 component={HomePage}
                 options={{
                     title: 'Evenemang',
