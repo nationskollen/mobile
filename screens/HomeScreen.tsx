@@ -1,15 +1,25 @@
-/// This is the Home Screen
-/// Renders the home screen and creates a stack to navigate between the different screens in the home page
+/**
+ * This component contains each screen in the Home tab.
+ * Renders the home screen and creates a stack to navigate between the different screens in the home page.
+ * @param navigation Used to navigate between screens
+ * @category Home
+ * @module HomeScreen
+ */
+
 import React from 'react'
 
 import 'react-native-gesture-handler'
 import { HeaderOptions } from './NavigationHeader'
 import { useTheme } from '../components/ThemeContext'
-import { createStackNavigator } from '@react-navigation/stack'
+import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack'
 
 import HomePage from '../components/Home/HomePage'
 import NationContent from '../components/Nations/NationContent'
 import NavigationBackArrow from '../components/NavigationBackArrow'
+
+export interface Props {
+    navigation: StackNavigationProp<any, any>
+}
 
 const Stack = createStackNavigator()
 
@@ -28,7 +38,7 @@ const HomeScreen = () => {
                 }}
             />
             <Stack.Screen
-                name='Events'
+                name="Events"
                 component={HomePage}
                 options={{
                     title: 'Evenemang',

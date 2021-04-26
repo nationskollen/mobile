@@ -1,16 +1,22 @@
+/**
+ * This component renders a menu and shows it using {@link Dropdown}.
+ * @category Nation
+ * @module Menu
+ * @param oid
+ */
 import React from 'react'
+import { View, Text, StyleSheet } from 'react-native'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
-import { View, Text, StyleSheet } from 'react-native'
 
 import Dropdown from '../Dropdown'
 
-// TODO: Fix types here
-interface Props {
+export interface Props {
     oid: number
+    /** The id of the nation from which the menu is to be fetched from */
 }
 
-interface MenuItemListProps {
+export interface MenuItemListProps {
     category: string
 }
 
@@ -63,7 +69,7 @@ const menu = {
 
 //renders entire dropdown menu with food content
 //@ts-ignore
-const Menu: React.FC<Props> = ({ oid }) => {
+const Menu = ({ oid }: Props) => {
     const { colors } = useTheme()
 
     return (
@@ -78,7 +84,7 @@ const Menu: React.FC<Props> = ({ oid }) => {
 }
 
 //returns rendered food categories
-const Categories: React.FC = () => {
+const Categories = () => {
     const { colors } = useTheme()
 
     return (
@@ -103,7 +109,7 @@ const Categories: React.FC = () => {
 }
 
 //render all food or drink items from input category object
-const MenuItemList: React.FC<MenuItemListProps> = ({ category }) => {
+const MenuItemList = ({ category }: MenuItemListProps) => {
     const { colors } = useTheme()
 
     return (

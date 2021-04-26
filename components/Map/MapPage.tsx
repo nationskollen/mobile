@@ -1,3 +1,7 @@
+/**
+ * @category Map
+ * @module MapPage
+ */
 import React, { useState } from 'react'
 import { View, StyleSheet } from 'react-native'
 import { useTheme } from '../ThemeContext'
@@ -6,7 +10,7 @@ import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps'
 import Popup from './Popup'
 import MapDarkTheme from './MapDarkTheme.json'
 
-interface Props {
+export interface Props {
     data: Array<Record<string, any>>
 }
 
@@ -118,10 +122,10 @@ const mapLocations = [
     },
 ]
 
-const Map: React.FC<Props> = () => {
+const Map = () => {
     const { colors, isDarkMode } = useTheme()
-    const [selectedNation, setSelectedNation] = useState<any | null>(null)
     const [showPopup, setShowPopup] = useState(false)
+    const [selectedNation, setSelectedNation] = useState<any | null>(null)
 
     // Empty array renders standard light map
     const theme = isDarkMode ? MapDarkTheme : []

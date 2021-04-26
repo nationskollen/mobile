@@ -1,3 +1,7 @@
+/**
+ * @category Misc
+ * @module ThemeContext
+ */
 import React, { createContext, useState, useContext } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { StatusBar } from 'react-native'
@@ -31,7 +35,7 @@ export interface Theme {
     colors: ThemeColors
 }
 
-const LightTheme: Theme = {
+export const LightTheme: Theme = {
     dark: false,
     colors: {
         primary: '#71002E',
@@ -52,7 +56,7 @@ const LightTheme: Theme = {
     },
 }
 
-const DarkTheme: Theme = {
+export const DarkTheme: Theme = {
     dark: true,
     colors: {
         primary: '#71002E',

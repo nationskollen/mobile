@@ -8,6 +8,7 @@ public
 tmp
 node_modules
 .github/
+docs
 
 # Ignore package files
 

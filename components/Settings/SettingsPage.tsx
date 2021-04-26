@@ -1,8 +1,11 @@
+/**
+ * @category Settings
+ * @module SettingsPage
+ */
 import React from 'react'
-import { SafeAreaView, View, StyleSheet, Text, TouchableHighlight } from 'react-native'
-
-/// Navigation
 import 'react-native-gesture-handler'
+import { StackNavigationProp } from '@react-navigation/stack'
+import { SafeAreaView, View, StyleSheet, Text } from 'react-native'
 
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
@@ -10,7 +13,11 @@ import { Ionicons } from '@expo/vector-icons'
 import ListButton from '../ListButton'
 import ToggleSwitch from 'toggle-switch-react-native'
 
-function SettingsPage({ navigation }) {
+export interface Props {
+    navigation: StackNavigationProp<any, any>
+}
+
+const SettingsPage = ({ navigation }: Props) => {
     const { colors, setDarkMode, isDarkMode } = useTheme()
 
     return (

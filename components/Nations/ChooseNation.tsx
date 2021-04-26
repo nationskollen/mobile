@@ -1,3 +1,9 @@
+/**
+ * This component renders the nations in a scrollable list.
+ * @category Nation
+ * @module ListOfNations
+ * @returns A scrollable list of all nations
+ */
 import React from 'react'
 import { FlatList } from 'react-native'
 import { useNations } from '@dsp-krabby/sdk'
@@ -8,7 +14,7 @@ import NationLogo from './NationLogo'
 import ListButton from '../ListButton'
 import LoadingCircle from '../LoadingCircle'
 
-const ChooseNation: React.FC = () => {
+const ChooseNation = () => {
     const navigation = useNavigation()
     const { data, error, isValidating, mutate } = useNations()
 

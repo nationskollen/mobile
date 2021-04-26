@@ -1,18 +1,23 @@
+/**
+ * @category Home
+ * @module HomePage
+ */
 import React from 'react'
 import { View } from 'react-native'
 import { useTheme } from '../ThemeContext'
+import { TabStackParamList } from '../Footer'
 import { DatePickerProvider } from './DatePickerContext'
+import { RouteProp } from '@react-navigation/native'
 
 import Timeline from './Timeline'
-import FilterBar from './FilterBar'
 import Calendar from './Calendar'
+import FilterBar from './FilterBar'
 
-interface Props {
-    route: any
+export interface Props {
+    route: RouteProp<TabStackParamList, 'Hem'>
 }
 
-const Home: React.FC<Props> = ({ route }) => {
-    const oid = route.params?.oid
+const Home = ({ route }: Props) => {
     const { colors, isDarkMode } = useTheme()
 
     return (
@@ -25,7 +30,7 @@ const Home: React.FC<Props> = ({ route }) => {
             >
                 <FilterBar hideNationFilter={route.params?.hideNationFilter} />
                 <Calendar />
-                <Timeline oid={oid} />
+                <Timeline oid={route.params?.oid} />
             </View>
         </DatePickerProvider>
     )

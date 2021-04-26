@@ -1,19 +1,19 @@
+/**
+ * @category Notifications
+ * @module Post
+ */
 // This component is used for rendering each notification.
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
+import { Event } from '@dsp-krabby/sdk'
 import { useTheme } from '../ThemeContext'
 import NationLogo from '../Nations/NationLogo'
 
-// TODO: Remove this and use function or type from SDK
-interface Props {
-    data: {
-        name: string
-        description: string
-        icon_img_src: string
-    }
+export interface Props {
+    data: Event
 }
 
-const Post: React.FC<Props> = ({ data }) => {
+const Post = ({ data }) => {
     const { colors } = useTheme()
     const { name, icon_img_src, description } = data
 

@@ -1,21 +1,26 @@
-/// This is used to render Settings page and screens relating to it
+/**
+ * This component contains each screen in the Settings tab
+ * @category Settings
+ * @module SettingsScreen
+ */
 import React from 'react'
 
-/// Navigation
 import 'react-native-gesture-handler'
 import { HeaderOptions } from './NavigationHeader'
 import { useTheme } from '../components/ThemeContext'
-import { createStackNavigator } from '@react-navigation/stack'
+import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack'
 
 import Login from '../components/Settings/Login'
 import SettingsPage from '../components/Settings/SettingsPage'
 import NavigationBackArrow from '../components/NavigationBackArrow'
 import NotificationSettings from '../components/Settings/NotificationSettings'
 
+export interface Props {
+    navigation: StackNavigationProp<any, any>
+}
+
 const Stack = createStackNavigator()
 
-/// TODO: create a local navigation stack
-/// TODO: factor out basically everything to a different file and replace it with a local stack navigator
 const SettingsScreen = () => {
     const { colors } = useTheme()
 

@@ -6,6 +6,11 @@ This repository contains the source code for the front-end of the Nationskollen 
 
 All documentation for Nationskollen is available [here](https://github.com/dsp-krabby/docs) (Currently being updated).
 
+### Commands
+
+1. `npm run docs` - generate documentation in docs
+2. `npm run docs:watch` - generate documentation and watch for changes
+
 ## Development
 
 ### Required dependencies:

@@ -1,3 +1,8 @@
+/**
+ * @category Misc
+ * @module Dropdown
+ */
+
 import { View } from 'react-native'
 import React, { useState } from 'react'
 
@@ -12,8 +17,10 @@ interface Props {
     icon: Element
 }
 
-//renders expandable dropdown menu header
-const Dropdown: React.FC<Props> = ({ title, expandComponent, icon }) => {
+/**
+ * This component renders an expandable dropdown menu header
+ */
+export const Dropdown: React.FC<Props> = ({ title, expandComponent, icon }) => {
     const { colors } = useTheme()
     const [expand, setExpand] = useState(false)
 

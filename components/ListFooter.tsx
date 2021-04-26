@@ -1,3 +1,7 @@
+/**
+ * @category Misc
+ * @module ListFooter
+ */
 import React from 'react'
 import { Text, StyleSheet } from 'react-native'
 import { useTheme } from './ThemeContext'

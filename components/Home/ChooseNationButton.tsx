@@ -1,5 +1,9 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+/**
+ * @category Home
+ * @module ChooseNationButton
+ */
 import React from 'react'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
@@ -8,7 +12,7 @@ function handleNationButtonPress() {
     console.log('nation button pressed - show choose nation content')
 }
 
-//renders button that should sho choose-nation content when pressed
+// Renders button that should show choose-nation content when pressed
 const ChooseNationButton = () => {
     const { colors } = useTheme()
 

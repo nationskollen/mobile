@@ -1,3 +1,7 @@
+/**
+ * @category Home
+ * @module DatePickerContext
+ */
 import React, { createContext, useState, useContext } from 'react'
 
 export interface DatePickerContextContract {
@@ -10,7 +14,7 @@ export interface DatePickerContextContract {
 export const DatePickerContext = createContext({} as DatePickerContextContract)
 export const useDatePicker = () => useContext(DatePickerContext)
 
-export const DatePickerProvider: React.FC = ({ children }) => {
+export const DatePickerProvider = ({ children }) => {
     // Initalize to today's date
     const [date, setDate] = useState(new Date())
     const [visible, setVisible] = useState(false)

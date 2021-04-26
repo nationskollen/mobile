@@ -1,3 +1,7 @@
+/**
+ * @category Settings
+ * @module NotificationSettings
+ */
 import React from 'react'
 import { FlatList } from 'react-native'
 import { useNations } from '@dsp-krabby/sdk'
@@ -8,7 +12,6 @@ import LoadingCircle from '../LoadingCircle'
 import NationLogo from '../Nations/NationLogo'
 import NotificationOptions from './NotificationOptions'
 
-/// Renders all nations in a list
 const NotificationSettings = () => {
     const { data, error, isValidating, mutate } = useNations()
 

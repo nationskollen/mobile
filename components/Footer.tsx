@@ -1,21 +1,39 @@
+/**
+ * @category Navigation
+ * @module Footer
+ */
 import React from 'react'
+import { Nation } from '@dsp-krabby/sdk'
 import { useTheme } from './ThemeContext'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
-/// Screens
 import MapScreen from '../screens/MapScreen'
 import HomeScreen from '../screens/HomeScreen'
 import SettingsScreen from '../screens/SettingsScreen'
 import NotificationScreen from '../screens/NotificationScreen'
 import NationScreen from '../screens/NationScreen'
 
-/// Icons
 import { Ionicons } from '@expo/vector-icons'
+
+/**
+ * Defines the available route params for each tab.
+ */
+export type TabStackParamList = {
+    Hem: { oid?: number; hideNationFilter?: boolean }
+    Inställningar: undefined
+    Notifikationer: undefined
+    Nationer: { nation?: Nation }
+    Karta: undefined
+}
 
 const Tab = createBottomTabNavigator()
 
-/// The footer with each main screen
-const Footer: React.FC = () => {
+/**
+ * This component renders the footer in which each tab can be selected.
+ * Each tab need to be entered in the footer manually.
+ *
+ */
+const Footer = () => {
     const { colors } = useTheme()
 
     return (

@@ -1,14 +1,18 @@
+/**
+ * @category Home
+ * @module FilterBar
+ */
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
 
 import ChooseDateBar from './ChooseDateBar'
 import ChooseNationButton from './ChooseNationButton'
 
-interface Props {
+export interface Props {
     hideNationFilter?: boolean
 }
 
-const FilterBar: React.FC<Props> = ({ hideNationFilter }) => {
+const FilterBar = ({ hideNationFilter }: Props) => {
     return (
         <View style={styles.mainWrapper}>
             <ChooseDateBar />

@@ -1,3 +1,7 @@
+/**
+ * @category Nations
+ * @module NationContent
+ */
 import React from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import { ScrollView, View } from 'react-native'
@@ -9,12 +13,11 @@ import NationInfo from './NationInfo'
 import ListButton from '../ListButton'
 import ActivityLevel from '../Map/ActivityLevel'
 
-// TODO: Add correct type here
-interface Props {
-    route: any
+export interface Props {
+    [key: string]: any
 }
 
-const NationContent: React.FC<Props> = ({ route }) => {
+const NationContent = ({ route }: Props) => {
     const { nation } = route.params
 
     return (
