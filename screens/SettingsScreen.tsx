@@ -1,24 +1,29 @@
-/// This is used to render Settings page and screens relating to it
+/**
+ * This component contains each screen in the Settings tab
+ * @category Settings
+ * @module SettingsScreen
+ */
 import React from 'react'
 
-/// Navigation
 import 'react-native-gesture-handler'
 import { HeaderOptions } from './NavigationHeader'
 import { useTheme } from '../components/ThemeContext'
-import { createStackNavigator } from '@react-navigation/stack'
+import { useTranslation } from '../translate/LanguageContext'
+import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack'
 
-import Login from '../components/Settings/Login'
-import RenderBackArrow from '../assets/Icons/backArrow'
+import LoginPage from '../components/Settings/LoginPage'
 import SettingsPage from '../components/Settings/SettingsPage'
+import LanguagePage from '../components/Settings/LanguagePage'
+import NavigationBackArrow from '../components/NavigationBackArrow'
 import NotificationSettings from '../components/Settings/NotificationSettings'
-import LanguageRender from '../components/Settings/LanguageRender';
-import { useTranslation } from '../translate/LanguageContext';
+
+export interface Props {
+    navigation: StackNavigationProp<any, any>
+}
 
 const Stack = createStackNavigator()
 
-/// TODO: create a local navigation stack
-/// TODO: factor out basically everything to a different file and replace it with a local stack navigator
-function SettingsScreen({ navigation }) {
+const SettingsScreen = () => {
     const { colors } = useTheme()
     const { translate } = useTranslation()
 
@@ -32,26 +37,26 @@ function SettingsScreen({ navigation }) {
             <Stack.Screen
                 name="NotificationSettings"
                 options={{
-                    title: translate.notifications.header, 
-                    headerLeft: () => <RenderBackArrow nav={navigation} screen={'Settings'} />,
+                    title: 'Anpassa notifikationer',
+                    headerLeft: () => <NavigationBackArrow />,
                 }}
             >
                 {(_) => <NotificationSettings />}
             </Stack.Screen>
             <Stack.Screen
                 name="Login"
-                component={Login}
+                component={LoginPage}
                 options={{
-                    title: translate.map.header, 
-                    headerLeft: () => <RenderBackArrow nav={navigation} screen={'Settings'} />,
+                    title: 'Logga in',
+                    headerLeft: () => <NavigationBackArrow />,
                 }}
             />
              <Stack.Screen
                 name= "LanguageSettings"
-                component={LanguageRender}
+                component={LanguagePage}
                 options={{
                     title: translate.settings.language,
-                    headerLeft: () => <RenderBackArrow nav={navigation} screen={'Settings'} />,
+                    headerLeft: () => <NavigationBackArrow />,
                 }}
             />
         </Stack.Navigator>

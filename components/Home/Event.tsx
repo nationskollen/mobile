@@ -1,23 +1,27 @@
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
+/**
+ * @category Home
+ * @module Event
+ */
 import React from 'react'
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 
 import { useTheme } from '../ThemeContext'
-import { useNation } from '@dsp-krabby/sdk'
 import { Ionicons } from '@expo/vector-icons'
+import { useNation, Event as EventResponse } from '@dsp-krabby/sdk'
 import { useNavigation } from '@react-navigation/native'
 
-import LogoCircle from '../Nations/LogoCircle'
+import NationLogo from '../Nations/NationLogo'
+import ReminderButton from './ReminderButton'
 
-interface EventProps {
-    // TODO: Replace with actual type from SDK
-    event: Record<string, any>
+export interface EventProps {
+    event: EventResponse
 }
 
-interface HeaderProps {
+export interface HeaderProps {
     oid: number
 }
 
-const Event: React.FC<EventProps> = ({ event }) => {
+const Event = ({ event }: EventProps) => {
     const { colors, isDarkMode } = useTheme()
 
     return (
@@ -27,12 +31,11 @@ const Event: React.FC<EventProps> = ({ event }) => {
                 { backgroundColor: isDarkMode ? colors.backgroundExtra : colors.background },
             ]}
         >
-            {/*Cover Image of event*/}
-            <View>
-                {event.cover_img_src && (
+            {event.cover_img_src && (
+                <View style={styles.coverImgWrapper}>
                     <Image source={{ uri: event.cover_img_src }} style={styles.coverImg} />
-                )}
-            </View>
+                </View>
+            )}
 
             <Header oid={event.nation_id} />
 
@@ -40,7 +43,9 @@ const Event: React.FC<EventProps> = ({ event }) => {
             <View style={styles.textContainer}>
                 {/*Title of event*/}
                 <View>
-                    <Text style={[styles.title, { color: colors.text }]}>{event.name}</Text>
+                    <Text style={[styles.title, { color: colors.textHighlight }]}>
+                        {event.name}
+                    </Text>
                 </View>
 
                 {/*Time of event*/}
@@ -59,7 +64,7 @@ const Event: React.FC<EventProps> = ({ event }) => {
     )
 }
 
-const Header: React.FC<HeaderProps> = ({ oid }) => {
+const Header = ({ oid }: HeaderProps) => {
     // TODO: Use types from SDK
     const { colors } = useTheme()
     const { data } = useNation(oid)
@@ -73,7 +78,7 @@ const Header: React.FC<HeaderProps> = ({ oid }) => {
             >
                 {data && (
                     <View style={styles.headerContent}>
-                        <LogoCircle src={data.icon_img_src} size={40} />
+                        <NationLogo src={data.icon_img_src} size={40} />
                         <Text style={[nationStyles.name, { color: colors.primaryText }]}>
                             {data.name}
                         </Text>
@@ -85,19 +90,6 @@ const Header: React.FC<HeaderProps> = ({ oid }) => {
     )
 }
 
-const ReminderButton: React.FC = () => {
-    const { colors } = useTheme()
-
-    return (
-        <TouchableOpacity
-            style={[reminderStyles.container, { backgroundColor: colors.backgroundHighlight }]}
-        >
-            <Ionicons name="md-notifications-outline" size={20} color={colors.text} />
-            <Text style={[reminderStyles.text, { color: colors.text }]}>Påminn mig</Text>
-        </TouchableOpacity>
-    )
-}
-
 const styles = StyleSheet.create({
     header: {
         display: 'flex',
@@ -105,6 +97,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'flex-start',
         width: '100%',
+        paddingHorizontal: 15,
+        paddingTop: 15,
     },
 
     headerContent: {
@@ -115,24 +109,26 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
 
+    coverImgWrapper: {
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
+        overflow: 'hidden',
+    },
+
     coverImg: {
         height: 200,
         width: '100%',
+        resizeMode: 'cover',
     },
 
     eventContainer: {
-        width: '100%',
         flex: 1,
-        marginBottom: '3%',
-        paddingTop: 20,
-        paddingBottom: 35,
-        paddingHorizontal: 20,
+        marginBottom: 10,
+        paddingBottom: 20,
+        marginHorizontal: 10,
 
-        borderBottomLeftRadius: 10,
-        borderBottomRightRadius: 10,
+        borderRadius: 10,
         elevation: 5,
-        zIndex: 5,
-
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.3,
@@ -141,6 +137,7 @@ const styles = StyleSheet.create({
 
     textContainer: {
         width: '100%',
+        paddingHorizontal: 15,
     },
 
     title: {
@@ -177,24 +174,7 @@ const nationStyles = StyleSheet.create({
     name: {
         fontSize: 14,
         fontWeight: 'bold',
-    },
-})
-
-const reminderStyles = StyleSheet.create({
-    container: {
-        paddingHorizontal: 10,
-        paddingVertical: 10,
-        borderRadius: 5,
-
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-
-    text: {
-        color: 'white',
-        fontWeight: 'bold',
-        marginLeft: 5,
+        marginLeft: 10,
     },
 })
 

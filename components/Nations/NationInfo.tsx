@@ -1,18 +1,28 @@
-import { View, Text, StyleSheet, Alert } from 'react-native'
+/**
+ * This component renders information about a nation
+ * @category Nation
+ * @module NationInfo
+ * @param nation The nation whose information is to be rendered
+ * @param backgroundColor Optional background color
+ * @param paddingTop Optional padding on the top
+ *
+ */
 import React from 'react'
+import { View, Text, StyleSheet, Alert } from 'react-native'
 
+import { Nation } from '@dsp-krabby/sdk'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
-import LogoCircle from './LogoCircle'
+import NationLogo from './NationLogo'
 
-interface Props {
-    nation: any
+export interface Props {
+    nation: Nation
     backgroundColor?: string
     paddingTop?: number
 }
 
 //renders information and title of nation. Can be used in maps too!
-const NationInfo: React.FC<Props> = ({ nation, backgroundColor, paddingTop }) => {
+const NationInfo = ({ nation, backgroundColor, paddingTop }: Props) => {
     //TODO: add openinghours and address to nation object
     //TODO: add color theme to nation, so that icons can match
     const { colors } = useTheme()
@@ -23,19 +33,21 @@ const NationInfo: React.FC<Props> = ({ nation, backgroundColor, paddingTop }) =>
                 styles.nationInfoWrapper,
                 {
                     backgroundColor: backgroundColor ?? colors.background,
-                    paddingTop: paddingTop ?? 25,
+                    paddingTop: paddingTop ?? 15,
                 },
             ]}
         >
             <View style={styles.nationNameWrapper}>
-                <LogoCircle src={nation.icon_img_src} size={50} />
-                <Text style={[styles.nationName, { color: colors.text }]}>{nation.name}</Text>
+                <NationLogo src={nation.icon_img_src} size={50} />
+                <Text style={[styles.nationName, { color: colors.textHighlight }]}>
+                    {nation.name}
+                </Text>
             </View>
 
             <View style={styles.descriptionWrapper}>
                 <View style={[styles.clockSymbolWrapper]}>
                     <Ionicons name="time-outline" size={20} color={colors.text} />
-                    <Text style={[styles.openinghoursTitle, { color: colors.text }]}>
+                    <Text style={[styles.openinghoursTitle, { color: colors.textHighlight }]}>
                         Öppettider
                     </Text>
                 </View>
@@ -53,9 +65,9 @@ const NationInfo: React.FC<Props> = ({ nation, backgroundColor, paddingTop }) =>
                 </View>
 
                 <View style={styles.mapWrapper}>
-                    <Ionicons name="map-outline" size={16} color={colors.text} />
+                    <Ionicons name="map-outline" size={20} color={colors.text} />
                     <Text
-                        style={[styles.mapAddress, { color: colors.text }]}
+                        style={[styles.mapAddress, { color: colors.textHighlight }]}
                         onPress={() =>
                             Alert.alert(
                                 'Öppna i kartor?',
@@ -104,6 +116,7 @@ const styles = StyleSheet.create({
     nationName: {
         fontSize: 20,
         fontWeight: 'bold',
+        marginLeft: 15,
     },
 
     openinghoursWrapper: {
@@ -149,7 +162,7 @@ const styles = StyleSheet.create({
     mapAddress: {
         fontSize: 14,
         fontWeight: 'bold',
-        marginLeft: 15,
+        marginLeft: 10,
     },
 })
 

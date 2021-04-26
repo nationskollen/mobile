@@ -1,18 +1,40 @@
+/**
+ * @category Settings
+ * @module NotificationSettings
+ */
 import React from 'react'
-import 'react-native-gesture-handler'
+import { FlatList } from 'react-native'
 import { useNations } from '@dsp-krabby/sdk'
-import { ScrollView } from 'react-native-gesture-handler'
 
-import Nation from './Nation'
+import Dropdown from '../Dropdown'
+import ListEmpty from '../ListEmpty'
+import LoadingCircle from '../LoadingCircle'
+import NationLogo from '../Nations/NationLogo'
+import NotificationOptions from './NotificationOptions'
 
-/// Renders all nations in a list
 const NotificationSettings = () => {
-    const { data } = useNations()
+    const { data, error, isValidating, mutate } = useNations()
 
     return (
-        <ScrollView>
-            {data && data.map((nation) => <Nation key={nation.oid} data={nation} />)}
-        </ScrollView>
+        <FlatList
+            data={data}
+            renderItem={({ item }) => (
+                <Dropdown
+                    title={item.name}
+                    expandComponent={<NotificationOptions />}
+                    icon={<NationLogo src={item.icon_img_src} />}
+                />
+            )}
+            keyExtractor={(item) => item.oid.toString()}
+            refreshControl={<LoadingCircle validating={isValidating} mutate={mutate} />}
+            ListEmptyComponent={() =>
+                ListEmpty({
+                    error,
+                    loading: isValidating,
+                    message: 'Inga nationer',
+                })
+            }
+        />
     )
 }
 

@@ -1,9 +1,13 @@
+/**
+ * @category Settings
+ * @module Login
+ */
+import React, { useState } from 'react'
 import { View, StyleSheet, Text, TextInput, TouchableHighlight, ScrollView } from 'react-native'
 
-import React, { useState } from 'react'
 import { useTheme } from '../ThemeContext'
 
-function Login() {
+const LoginPage = () => {
     const { colors } = useTheme()
     const [text, onChangeText] = useState(null)
     const [password, onChangePassword] = useState(null)
@@ -101,4 +105,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default Login
+export default LoginPage

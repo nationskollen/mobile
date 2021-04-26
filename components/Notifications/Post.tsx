@@ -1,40 +1,34 @@
+/**
+ * @category Notifications
+ * @module Post
+ */
 // This component is used for rendering each notification.
 import React from 'react'
-import { View, Text, Image, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
+import { Event } from '@dsp-krabby/sdk'
 import { useTheme } from '../ThemeContext'
-import LogoCircle from '../Nations/LogoCircle'
+import NationLogo from '../Nations/NationLogo'
 
-// TODO: Remove this and use function or type from SDK
-interface Props {
-    data: {
-        name: string
-        description: string
-        icon_img_src: string
-    }
+export interface Props {
+    data: Event
 }
 
-const Post: React.FC<Props> = ({ data }) => {
+const Post = ({ data }) => {
     const { colors } = useTheme()
     const { name, icon_img_src, description } = data
 
     return (
         <View style={[styles.notificationWrapper, { borderColor: colors.border }]}>
             <View style={styles.header}>
-                <LogoCircle src={icon_img_src} size={50} />
-                <View>
+                <NationLogo src={icon_img_src} size={50} />
+                <View style={styles.headerWrapper}>
                     <Text style={[styles.nationName, { color: colors.primaryText }]}>{name}</Text>
-                    <Text style={[styles.notificationHeader, { color: colors.text }]}>
+                    <Text style={[styles.notificationHeader, { color: colors.textHighlight }]}>
                         Notification
                     </Text>
                 </View>
             </View>
             <View>
-                {/* Do we really need to show when it was published? */}
-                {/* Either way, it should probably be moved somewhere else since it */}
-                {/* is not really that important compared to the nation and type. */}
-                {/* <Text style={styles.publishTime}> */}
-                {/*     {publishTime} */}
-                {/* </Text> */}
                 <Text style={[styles.content, { color: colors.text }]}>{description}</Text>
                 <View
                     style={[
@@ -68,6 +62,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: '100%',
         marginBottom: 10,
+    },
+
+    headerWrapper: {
+        marginLeft: 15,
     },
 
     nationLogoImg: {

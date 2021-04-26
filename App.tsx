@@ -1,17 +1,20 @@
+/**
+ * This component is the top dog. This is the component that renders when running the code.
+ * @category BIG
+ * @module App
+ */
+
 import React from 'react'
 import 'react-native-gesture-handler'
 import Constants from 'expo-constants'
 import { Provider } from '@dsp-krabby/sdk'
 import { ThemeProvider } from './components/ThemeContext'
-import { useTranslation } from './translate/LanguageContext';
-import Footer from './components/Footer'
 import { LanguageContextProvider } from './translate/LanguageContext';
 
-/// Creates a navigation container in which every screen is "positioned"
-const App: React.FC = () => {
+import Footer from './components/Footer'
 
+const App = () => {
     return (
-        //@ts-ignore
         <Provider
             config={{
                 development: Constants.manifest.extra.development,
@@ -21,9 +24,9 @@ const App: React.FC = () => {
             }}
         >
             <ThemeProvider>
-    <LanguageContextProvider> 
-                <Footer />
-    </LanguageContextProvider> 
+                <LanguageContextProvider>
+                    <Footer />
+                </LanguageContextProvider>
             </ThemeProvider>
         </Provider>
     )

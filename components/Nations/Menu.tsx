@@ -1,18 +1,22 @@
-//This file renders food related components
-
-//Used to render various dropdown menus
-import Dropdown from './Dropdown'
+/**
+ * This component renders a menu and shows it using {@link Dropdown}.
+ * @category Nation
+ * @module Menu
+ * @param oid
+ */
+import React from 'react'
+import { View, Text, StyleSheet } from 'react-native'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
-import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
 
-// TODO: Fix types here
-interface Props {
+import Dropdown from '../Dropdown'
+
+export interface Props {
     oid: number
+    /** The id of the nation from which the menu is to be fetched from */
 }
 
-interface MenuItemListProps {
+export interface MenuItemListProps {
     category: string
 }
 
@@ -65,7 +69,7 @@ const menu = {
 
 //renders entire dropdown menu with food content
 //@ts-ignore
-const Menu: React.FC<Props> = ({ oid }) => {
+const Menu = ({ oid }: Props) => {
     const { colors } = useTheme()
 
     return (
@@ -73,15 +77,15 @@ const Menu: React.FC<Props> = ({ oid }) => {
             <Dropdown
                 title={'Meny'}
                 expandComponent={<Categories />}
-                icon={<Ionicons name="md-fast-food-outline" size={28} color={colors.text} />}
+                icon={<Ionicons name="md-fast-food-outline" size={24} color={colors.text} />}
             />
         </View>
     )
 }
 
 //returns rendered food categories
-const Categories: React.FC = () => {
-    const { colors, isDarkMode } = useTheme()
+const Categories = () => {
+    const { colors } = useTheme()
 
     return (
         <View>
@@ -105,7 +109,7 @@ const Categories: React.FC = () => {
 }
 
 //render all food or drink items from input category object
-const MenuItemList: React.FC<MenuItemListProps> = ({ category }) => {
+const MenuItemList = ({ category }: MenuItemListProps) => {
     const { colors } = useTheme()
 
     return (

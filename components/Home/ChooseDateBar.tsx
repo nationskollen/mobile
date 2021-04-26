@@ -1,18 +1,24 @@
+/**
+ * @category Home
+ * @module ChoosedDateBar
+ */
+import React, { useRef } from 'react'
 import { View, TouchableOpacity, StyleSheet, Text } from 'react-native'
-import React from 'react'
 
 import { Ionicons } from '@expo/vector-icons'
 import { useTheme } from '../ThemeContext'
 import { useDatePicker } from './DatePickerContext'
 
-const ChooseDateBar: React.FC = () => {
+const ChooseDateBar = () => {
     const { colors, isDarkMode } = useTheme()
     const { date, setDate, visible, setVisible } = useDatePicker()
+    const currentDate = useRef(new Date().toLocaleDateString()).current
+    const dateString = date.toLocaleDateString()
 
     return (
         <View
             style={[
-                styles.dateBar,
+                styles.container,
                 {
                     backgroundColor: isDarkMode ? colors.backgroundHighlight : colors.background,
                     borderColor: colors.borderDark,
@@ -20,19 +26,29 @@ const ChooseDateBar: React.FC = () => {
             ]}
         >
             <TouchableOpacity onPress={() => console.log('Should call setDate')}>
-                <View style={[styles.leftArrowWrapper, { borderColor: colors.borderDark }]}>
+                <View
+                    style={[
+                        styles.arrowWrapper,
+                        { borderRightWidth: 1, borderColor: colors.borderDark },
+                    ]}
+                >
                     <Ionicons name="md-chevron-back" size={20} color={colors.text} />
                 </View>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.dateTextWrapper} onPress={() => setVisible(!visible)}>
-                <Text style={[styles.dateText, { color: colors.text }]}>
-                    {date.toLocaleDateString()}
+                <Text style={[styles.dateText, { color: colors.textHighlight }]}>
+                    {currentDate === dateString ? 'Dagens händelser' : dateString}
                 </Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => console.log('Should call setDate')}>
-                <View style={[styles.rightArrowWrapper, { borderColor: colors.borderDark }]}>
+                <View
+                    style={[
+                        styles.arrowWrapper,
+                        { borderLeftWidth: 1, borderColor: colors.borderDark },
+                    ]}
+                >
                     <Ionicons name="md-chevron-forward" size={20} color={colors.text} />
                 </View>
             </TouchableOpacity>
@@ -41,7 +57,7 @@ const ChooseDateBar: React.FC = () => {
 }
 
 const styles = StyleSheet.create({
-    dateBar: {
+    container: {
         flex: 1,
         height: '100%',
         borderRadius: 10,
@@ -49,12 +65,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
 
-    leftArrowWrapper: {
+    arrowWrapper: {
         width: 50,
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        borderRightWidth: 1,
     },
 
     dateTextWrapper: {
@@ -67,14 +82,6 @@ const styles = StyleSheet.create({
     dateText: {
         fontSize: 16,
         fontWeight: 'bold',
-    },
-
-    rightArrowWrapper: {
-        width: 50,
-        height: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderLeftWidth: 1,
     },
 })
 

@@ -1,14 +1,23 @@
+/**
+ * This component styles and render a logo.
+ * @category Nation
+ * @module NationLogo
+ * @param src The source of the logo
+ * @param size The size of the logo container
+ * @param spacing The spacing from the logo container to the logo
+ *
+ */
 import React from 'react'
-import { Image, View, StyleSheet } from 'react-native'
 import { useTheme } from '../ThemeContext'
+import { Image, View, StyleSheet } from 'react-native'
 
-interface Props {
+export interface Props {
     src: string | null
     size?: number
     spacing?: number
 }
 
-const LogoCircle: React.FC<Props> = ({ src, size, spacing }) => {
+const NationLogo = ({ src, size, spacing }: Props) => {
     const { colors } = useTheme()
     const actualSize = size ?? 50
     const actualImageSize = actualSize - (spacing ?? 6)
@@ -21,7 +30,6 @@ const LogoCircle: React.FC<Props> = ({ src, size, spacing }) => {
                     backgroundColor: colors.backgroundHighlight,
                     height: actualSize,
                     width: actualSize,
-                    borderRadius: actualSize,
                 },
             ]}
         >
@@ -33,7 +41,6 @@ const LogoCircle: React.FC<Props> = ({ src, size, spacing }) => {
                         {
                             height: actualImageSize,
                             width: actualImageSize,
-                            borderRadius: actualImageSize,
                         },
                     ]}
                 />
@@ -48,12 +55,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        marginRight: 10,
+        borderRadius: 10,
     },
 
     image: {
         resizeMode: 'contain',
+        borderRadius: 10,
     },
 })
 
-export default LogoCircle
+export default NationLogo
