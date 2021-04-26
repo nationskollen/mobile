@@ -1,31 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext} from 'react';
 import en from './languages/en.json';
 import swe from './languages/swe.json';
-import * as RNLocalize from 'react-native-localize';
+import App from '../App'
+import { LanguageContextType } from './LanguageContextType';
 
-const LanguageContext = React.createContext();
-const languages = {
-    en : en,
-    swe : swe,
-}
+import { NavigationContainer } from '@react-navigation/native'
+const LanguageContext = React.createContext<LanguageContextType>({} as LanguageContextType);
 
-export const LanguageContextProvider: React.FC = ({children}) =>  {
-    // Standard langauge is Swedish so we set the first state to swe
-    const [languageSelected, setLanguageSelected] = useState('swe');
-    useEffect(() => {
-	const currentLanguage = RNLocalize.findBestAvailableLanguage(
-	    Object.keys(languages),
-	    );
-	
-	setLanguageSelected(currentLanguage?.languageTag || 'swe');
-	}, []);
 
-    const value = {...languages[languageSelected as 'en' | 'swe']};
-    return ( 
-	<LanguageContext.Provider value = {value}>
-	    { children }
+const languageObj = {
+    "en" : en,
+    "swe" : swe,
+};
+
+
+export const LanguageContextProvider: React.FC = ({children}) => {
+    console.log('cock' + LanguageContext)
+    const [selectedLanguage, setSelectedLanguage] = useState("swe");
+
+        const value = {
+	...languageObj[selectedLanguage as "swe" | "en"],
+    };
+
+	console.log(selectedLanguage)
+    return (
+	<LanguageContext.Provider value ={value}>
+	    {children}
 	</LanguageContext.Provider>
-    )
-}
+    );
+};
+
 
 export const useTranslation = () => useContext(LanguageContext);
