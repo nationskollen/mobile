@@ -1,3 +1,7 @@
+/**
+ * @category Home
+ * @module DatePickerContext
+ */
 import React, { createContext, useState, useContext } from 'react'
 
 export interface DatePickerContextContract {

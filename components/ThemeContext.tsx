@@ -1,3 +1,7 @@
+/**
+ * @category Misc
+ * @module ThemeContext
+ */
 import React, { createContext, useState, useContext } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { StatusBar } from 'react-native'

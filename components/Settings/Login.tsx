@@ -1,3 +1,7 @@
+/**
+ * @category Settings
+ * @module Login
+ */
 import React, { useState } from 'react'
 import { View, StyleSheet, Text, TextInput, TouchableHighlight, ScrollView } from 'react-native'
 

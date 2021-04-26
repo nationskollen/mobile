@@ -1,3 +1,7 @@
+/**
+ * @category Settings
+ * @module NotificationSettings
+ */
 import React from 'react'
 import { FlatList } from 'react-native'
 import { useNations } from '@dsp-krabby/sdk'

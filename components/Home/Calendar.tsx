@@ -1,3 +1,7 @@
+/**
+ * @category Home
+ * @module Calendar
+ */
 import React from 'react'
 import 'react-native-gesture-handler'
 import { View, StyleSheet } from 'react-native'

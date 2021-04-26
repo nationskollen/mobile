@@ -1,3 +1,7 @@
+/**
+ * @category Home
+ * @module TimeLine
+ */
 import React from 'react'
 import { FlatList } from 'react-native'
 import { useEvents } from '@dsp-krabby/sdk'

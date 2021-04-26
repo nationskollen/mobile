@@ -1,3 +1,7 @@
+/**
+ * @category Nations
+ * @module NationContent
+ */
 import React from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import { ScrollView, View } from 'react-native'

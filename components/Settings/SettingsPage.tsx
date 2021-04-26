@@ -1,3 +1,7 @@
+/**
+ * @category Settings
+ * @module SettingsPage
+ */
 import React from 'react'
 import 'react-native-gesture-handler'
 import { StackNavigationProp } from '@react-navigation/stack'

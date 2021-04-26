@@ -1,3 +1,7 @@
+/**
+ * @category Home
+ * @module FilterBar
+ */
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
 

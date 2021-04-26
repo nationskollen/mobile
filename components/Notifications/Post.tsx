@@ -1,3 +1,7 @@
+/**
+ * @category Notifications
+ * @module Post
+ */
 // This component is used for rendering each notification.
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
@@ -9,7 +13,7 @@ export interface Props {
     data: Event
 }
 
-const Post = ({ data }: Props) => {
+const Post = ({ data }) => {
     const { colors } = useTheme()
     const { name, icon_img_src, description } = data
 

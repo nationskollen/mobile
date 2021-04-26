@@ -1,6 +1,6 @@
 /**
  * This component contains each screen in the Notification tab
- * @category Screens
+ * @category Notifications
  * @module NotificationScreen
  */
 import React from 'react'

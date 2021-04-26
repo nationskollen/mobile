@@ -1,3 +1,7 @@
+/**
+ * @category Home
+ * @module HomePage
+ */
 import React from 'react'
 import { View } from 'react-native'
 import { useTheme } from '../ThemeContext'

@@ -1,3 +1,7 @@
+/**
+ * @category Notifications
+ * @module NotificationList
+ */
 import React from 'react'
 import { FlatList } from 'react-native'
 import { useNations } from '@dsp-krabby/sdk'
@@ -13,7 +17,7 @@ const NotificationsContent = () => {
     const { data, error, isValidating, mutate } = useNations()
 
     return (
-        <FlatList
+	<FlatList
             data={data}
             renderItem={({ item }) => <Post data={item} />}
             keyExtractor={(item) => item.name}
@@ -25,7 +29,7 @@ const NotificationsContent = () => {
                     message: 'Inga notifikationer',
                 })
             }
-        />
+	/>
     )
 }
 

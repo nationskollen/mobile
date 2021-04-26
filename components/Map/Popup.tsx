@@ -1,3 +1,7 @@
+/**
+ * @category Map
+ * @module Popup
+ */
 import React, { useRef, useEffect } from 'react'
 import { Animated, View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 

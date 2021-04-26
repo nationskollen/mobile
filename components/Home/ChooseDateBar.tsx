@@ -1,3 +1,7 @@
+/**
+ * @category Home
+ * @module ChoosedDateBar
+ */
 import React, { useRef } from 'react'
 import { View, TouchableOpacity, StyleSheet, Text } from 'react-native'
 

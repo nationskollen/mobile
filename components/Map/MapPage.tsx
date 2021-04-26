@@ -1,3 +1,7 @@
+/**
+ * @category Map
+ * @module MapPage
+ */
 import React, { useState } from 'react'
 import { View, StyleSheet } from 'react-native'
 import { useTheme } from '../ThemeContext'

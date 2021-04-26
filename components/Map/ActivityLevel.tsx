@@ -1,3 +1,7 @@
+/**
+ * @category Map
+ * @module ActivityLevel
+ */
 import React from 'react'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'

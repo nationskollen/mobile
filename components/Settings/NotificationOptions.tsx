@@ -1,3 +1,7 @@
+/**
+ * @category Settings
+ * @module NotificationOptions
+ */
 import React, { useState } from 'react'
 import { useTheme } from '../ThemeContext'
 import { View, StyleSheet, Text } from 'react-native'
