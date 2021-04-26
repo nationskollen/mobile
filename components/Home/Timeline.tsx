@@ -28,6 +28,8 @@ const Timeline = ({ oid }: Props) => {
         pagination,
     } = useEvents(oid, { date, amount: 15 })
 
+    const shouldRenderFooter = pagination && pagination.total > 0
+
     return (
         <FlatList
             data={data}
@@ -36,7 +38,7 @@ const Timeline = ({ oid }: Props) => {
             refreshControl={<LoadingCircle validating={isValidating} mutate={mutate} />}
             onEndReachedThreshold={1}
             onEndReached={() => pagination && pagination.last_page !== size && setSize(size + 1)}
-            ListFooterComponent={() => pagination ? <ListFooter hasMore={isValidating || pagination.last_page !== size} /> : null}
+            ListFooterComponent={() => shouldRenderFooter ? <ListFooter hasMore={isValidating || pagination.last_page !== size} /> : null}
             ListEmptyComponent={() =>
                 ListEmpty({
                     error,
