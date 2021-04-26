@@ -8,14 +8,17 @@ import { useTheme } from '../ThemeContext'
 import { FontAwesome } from '@expo/vector-icons'
 import ToggleSwitch from 'toggle-switch-react-native'
 
+import { useTranslation } from '../../translate/LanguageContext';
 function SettingsPage({ navigation }) {
     const { colors, setDarkMode, isDarkMode } = useTheme()
+    const {settings} = useTranslation();
+    console.log(settings.header)
 
     return (
         <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
             <View style={[styles.darkMode, { backgroundColor: colors.backgroundExtra }]}>
                 <View style={styles.dmText}>
-                    <Text style={[styles.dmTitle, { color: colors.text }]}>Mörkt läge</Text>
+                    <Text style={[styles.dmTitle, { color: colors.text }]}>{settings.header}</Text>
                     <Text style={{ color: colors.text }}>
                         Ställ in detta för att förhindra ansträngda ögon
                     </Text>
@@ -48,6 +51,21 @@ function SettingsPage({ navigation }) {
                 <View style={[styles.settingsOption, { borderBottomColor: colors.border }]}>
                     <Text style={[styles.optionsText, { color: colors.text }]}>
                         Anpassa notifikationer
+                    </Text>
+                    <FontAwesome
+                        style={[styles.arrow, { color: colors.text }]}
+                        name="long-arrow-right"
+                        size={24}
+                    />
+                </View>
+            </TouchableHighlight>
+            <TouchableHighlight
+                onPress={() => navigation.push('LanguageSettings')}
+                underlayColor={colors.backgroundHighlight}
+            >
+                <View style={[styles.settingsOption, { borderBottomColor: colors.border }]}>
+                    <Text style={[styles.optionsText, { color: colors.text }]}>
+                       Språk 
                     </Text>
                     <FontAwesome
                         style={[styles.arrow, { color: colors.text }]}
