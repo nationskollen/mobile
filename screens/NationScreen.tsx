@@ -6,6 +6,7 @@ import 'react-native-gesture-handler'
 import { HeaderOptions } from './NavigationHeader'
 import { useTheme } from '../components/ThemeContext'
 import { createStackNavigator } from '@react-navigation/stack'
+import { useTranslation } from '../translate/LanguageContext';
 
 /// Pages to move to and from
 import ChooseNation from '../components/Nations/ChooseNation'
@@ -23,6 +24,7 @@ const Stack = createStackNavigator()
 /// Put screens relating to nations here
 function NationScreen({ navigation }) {
     const { colors } = useTheme()
+    const { translate } = useTranslation();
 
     return (
         <Stack.Navigator
@@ -33,7 +35,7 @@ function NationScreen({ navigation }) {
                 name="ChooseNation"
                 component={ChooseNation}
                 options={{
-                    title: 'Nationer',
+                    title: translate.nations.header,
                     headerShown: true,
                     ...HeaderOptions(colors),
                 }}

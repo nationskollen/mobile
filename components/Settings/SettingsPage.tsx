@@ -11,16 +11,15 @@ import ToggleSwitch from 'toggle-switch-react-native'
 import { useTranslation } from '../../translate/LanguageContext';
 function SettingsPage({ navigation }) {
     const { colors, setDarkMode, isDarkMode } = useTheme()
-    const {settings} = useTranslation();
-    console.log(settings.header)
+    const {translate} = useTranslation();
 
     return (
         <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
             <View style={[styles.darkMode, { backgroundColor: colors.backgroundExtra }]}>
                 <View style={styles.dmText}>
-                    <Text style={[styles.dmTitle, { color: colors.text }]}>{settings.header}</Text>
+                    <Text style={[styles.dmTitle, { color: colors.text }]}>{translate.settings.darkmodeheader}</Text>
                     <Text style={{ color: colors.text }}>
-                        Ställ in detta för att förhindra ansträngda ögon
+			{translate.settings.darkmodedescription}
                     </Text>
                 </View>
                 <ToggleSwitch
@@ -36,7 +35,7 @@ function SettingsPage({ navigation }) {
                 underlayColor={colors.backgroundHighlight}
             >
                 <View style={[styles.settingsOption, { borderBottomColor: colors.border }]}>
-                    <Text style={[styles.optionsText, { color: colors.text }]}>Logga in</Text>
+                    <Text style={[styles.optionsText, { color: colors.text }]}>{translate.settings.login}</Text>
                     <FontAwesome
                         style={[styles.arrow, { color: colors.text }]}
                         name="long-arrow-right"
@@ -50,7 +49,7 @@ function SettingsPage({ navigation }) {
             >
                 <View style={[styles.settingsOption, { borderBottomColor: colors.border }]}>
                     <Text style={[styles.optionsText, { color: colors.text }]}>
-                        Anpassa notifikationer
+			{translate.settings.notifications}
                     </Text>
                     <FontAwesome
                         style={[styles.arrow, { color: colors.text }]}
@@ -65,7 +64,7 @@ function SettingsPage({ navigation }) {
             >
                 <View style={[styles.settingsOption, { borderBottomColor: colors.border }]}>
                     <Text style={[styles.optionsText, { color: colors.text }]}>
-                       Språk 
+			{translate.settings.language}
                     </Text>
                     <FontAwesome
                         style={[styles.arrow, { color: colors.text }]}

@@ -31,11 +31,13 @@
 	"darkmodedescription" : "Ställ in detta för att förhindra ansträngda ögon",
 	"login" : "Logga in",
 	"notifications" : "Anpassa notifikationer",
+	"language" : "Språk",
 	"loginsetting" : {
 	    "header" : "Nationskollen",
 	    "username" : "Användarnamn",
 	    "password" : "Lösenord",
 	    "loginbutton" : "Login"	
+
 
 	},
 	
@@ -43,4 +45,4 @@
 	    "header" : "Anpassa Notifikationer"
 	}
     }
-}
+} 

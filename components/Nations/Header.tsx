@@ -13,7 +13,7 @@ const Header: React.FC<Props> = ({ logo }) => {
 
     return (
         <SafeAreaView style={styles.header}>
-            {/*left arrow for going back*/}
+            {/*Left Arrow for going back*/}
             <View style={styles.arrowBack}>
                 <Ionicons
                     name="arrow-back"

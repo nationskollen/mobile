@@ -6,18 +6,20 @@ import { Ionicons } from '@expo/vector-icons'
 
 import LogoCircle from '../Nations/LogoCircle'
 import NotificationOptions from './NotificationOptions'
+import { useTranslation } from '../../translate/LanguageContext';
 
-const Nation = ({ data }) => {
+
+export const Language = ({ data, onLanguageClicked}) => {
     const { colors } = useTheme()
-    const [expand, setExpand] = useState(false)
+    const {setSelectedLanguage } = useTranslation();
+
+    const onPressedLanguage= (clickedLanguage: any) => {
+	setSelectedLanguage(clickedLanguage)	
+    }
 
     return (
-        <View>
-            <TouchableHighlight
-                onPress={() => setExpand(!expand)}
-                underlayColor={colors.backgroundHighlight}
-            >
-                <View
+	<View> 
+               <View
                     key={data.id}
                     style={[
                         styles.nationWrapper,
@@ -27,27 +29,17 @@ const Nation = ({ data }) => {
                         },
                     ]}
                 >
-                    {/*Logo of nation*/}
-                    <LogoCircle src={data.icon_img_src} size={50} />
+		    <Text style={[styles.nationName, { color: colors.text }]}
 
-                    {/*Name of nation*/}
-                    <Text style={[styles.nationName, { color: colors.text }]}>{data.name}</Text>
-
-                    {/*Button for choosing nation*/}
-                    <Ionicons
-                        name={expand ? 'md-chevron-up' : 'md-chevron-down'}
-                        size={24}
-                        color={colors.text}
-                    />
-                </View>
-            </TouchableHighlight>
-            {expand && <NotificationOptions />}
+              onPress={() => onPressedLanguage(onLanguageClicked)}
+		    >{data}
+		    </Text>
+               </View>
         </View>
     )
 }
 
-export const Cock  = ['English', 'Swedish']
-
+export const AvailableLanguages = ['English', 'Svenska']
 const styles = StyleSheet.create({
     nationWrapper: {
         flexWrap: 'wrap',
@@ -85,4 +77,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default Nation
+

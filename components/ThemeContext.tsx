@@ -84,7 +84,7 @@ export const ThemeProvider = ({ children }) => {
 
     return (
         <ThemeContext.Provider
-            value={{ isDarkMode, setDarkMode: updateTheme, colors: theme.colors }}
+            value={{ isDarkMode, setDarkMode: updateTheme, colors: theme.colors}}
         >
             <NavigationContainer theme={theme}>
                 <StatusBar

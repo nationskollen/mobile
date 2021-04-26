@@ -8,17 +8,19 @@ import HomeScreen from '../screens/HomeScreen'
 import SettingsScreen from '../screens/SettingsScreen'
 import NotificationScreen from '../screens/NotificationScreen'
 import NationScreen from '../screens/NationScreen'
-
+import { LanguageContextProvider } from '../translate/LanguageContext';
 /// Icons
 import { Ionicons } from '@expo/vector-icons'
-
+import { useTranslation} from '../translate/LanguageContext';
 const Tab = createBottomTabNavigator()
 
 /// The footer with each main screen
 const Footer: React.FC = () => {
     const { colors } = useTheme()
+    const { translate } = useTranslation()
 
     return (
+	<LanguageContextProvider>
         <Tab.Navigator
             screenOptions={({ route }) => ({
                 tabBarIcon: ({ focused, color }) => {
@@ -54,13 +56,13 @@ const Footer: React.FC = () => {
                 keyboardHidesTabBar: true,
             }}
         >
-            <Tab.Screen name="Notifikationer" component={NotificationScreen} />
-            <Tab.Screen name="Nationer" component={NationScreen} />
-            <Tab.Screen name="Hem" component={HomeScreen} />
-            <Tab.Screen name="Karta" component={MapScreen} />
-            <Tab.Screen name="Inställningar" component={SettingsScreen} />
+            <Tab.Screen name={translate.notifications.header}  component={NotificationScreen} />
+            <Tab.Screen name={translate.nations.header} component={NationScreen} />
+            <Tab.Screen name={translate.home.header}component={HomeScreen} />
+            <Tab.Screen name={translate.map.header} component={MapScreen} />
+            <Tab.Screen name={translate.settings.header}component={SettingsScreen} />
         </Tab.Navigator>
-    )
+    </LanguageContextProvider>)
 }
 
 export default Footer

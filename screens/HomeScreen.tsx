@@ -10,6 +10,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import HomePage from '../components/Home/HomePage'
 import NationContent from '../components/Nations/NationContent'
 import RenderBackArrow from '../assets/Icons/backArrow.js'
+import { useTranslation } from '../translate/LanguageContext';
 
 const Stack = createStackNavigator()
 /// TODO: Create a local stack
@@ -17,10 +18,11 @@ const Stack = createStackNavigator()
 
 function HomeScreen({ navigation }) {
     const { colors } = useTheme()
+    const { translate } = useTranslation ()
 
     return (
         <Stack.Navigator initialRouteName="Home" screenOptions={HeaderOptions(colors)}>
-            <Stack.Screen name="Home" component={HomePage} options={{ title: 'Hem' }} />
+            <Stack.Screen name="Home" component={HomePage} options={{ title: translate.home.header}} />
             <Stack.Screen
                 name="NationContent"
                 component={NationContent}

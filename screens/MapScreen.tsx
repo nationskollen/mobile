@@ -9,15 +9,16 @@ import { createStackNavigator } from '@react-navigation/stack'
 
 import Map from '../components/Map/MapPage'
 import NationContent from '../components/Nations/NationContent'
-
+import { useTranslation } from '../translate/LanguageContext'
 const Stack = createStackNavigator()
 
 const MapScreen = ({ navigation }) => {
     const { colors } = useTheme()
+    const { translate } = useTranslation()
 
     return (
         <Stack.Navigator initialRouteName="Map" screenOptions={HeaderOptions(colors)}>
-            <Stack.Screen name="Map" options={{ title: 'Karta' }}>
+            <Stack.Screen name="Map" options={{ title: translate.map.header}}>
                 {(props) => <Map {...props} data={nationInfo} />}
             </Stack.Screen>
             <Stack.Screen

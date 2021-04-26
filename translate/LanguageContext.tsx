@@ -5,30 +5,33 @@ import App from '../App'
 import { LanguageContextType } from './LanguageContextType';
 
 import { NavigationContainer } from '@react-navigation/native'
-const LanguageContext = React.createContext<LanguageContextType>({} as LanguageContextType);
 
+export interface LanguageContextContract {
+    setSelectedLanguage: React.Dispatch<React.SetStateAction<LanguageContextType>>
+    translate: LanguageContextType 
+
+}
+const LanguageContext = React.createContext<LanguageContextContract>({} as LanguageContextContract);
+
+export interface Languages {
+    english : string,
+    swedish : string
+}
 
 const languageObj = {
-    "en" : en,
-    "swe" : swe,
+    "Svenska" : swe,
+    "English" : en 
 };
 
+export const useTranslation = () => useContext(LanguageContext);
 
 export const LanguageContextProvider: React.FC = ({children}) => {
-    console.log('cock' + LanguageContext)
-    const [selectedLanguage, setSelectedLanguage] = useState("swe");
-
-        const value = {
-	...languageObj[selectedLanguage as "swe" | "en"],
-    };
-
-	console.log(selectedLanguage)
+    const [selectedLanguage, setSelectedLanguage] = useState(swe );
     return (
-	<LanguageContext.Provider value ={value}>
+	<LanguageContext.Provider value ={{setSelectedLanguage, translate: selectedLanguage}}>
 	    {children}
 	</LanguageContext.Provider>
     );
 };
 
 
-export const useTranslation = () => useContext(LanguageContext);

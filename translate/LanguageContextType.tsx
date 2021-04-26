@@ -33,6 +33,7 @@ export type LanguageContextType = {
 	 darkmodedescription  :  string,
 	 login  :  string,
 	 notifications  :  string,
+	language : string,
 	 loginsetting  : {
 	     header  :  string,
 	     username  :  string,
@@ -45,4 +46,4 @@ export type LanguageContextType = {
 	     header  : string 
 	}
     }
-}
+}  

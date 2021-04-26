@@ -71,8 +71,7 @@ const mapLocations = [
         latitude: 59.85929959538165,
         longitude: 17.63123586514085,
         nickname: 'Smålands Nation',
-        logo: require('../../img/png/smalands/smalandslogga.png'),
-    },
+        logo: require('../../img/png/smalands/smalandslogga.png'), },
     {
         id: 'stockholms',
         latitude: 59.856731614930446,
