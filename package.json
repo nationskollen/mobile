@@ -25,7 +25,6 @@
     "expo": "~40.0.0",
     "expo-status-bar": "~1.0.3",
     "i18n-js": "^3.8.0",
-    "lodash.memoize": "^4.1.2",
     "pretty-format": "^26.6.2",
     "react": "16.13.1",
     "react-async-hook": "^3.6.2",
