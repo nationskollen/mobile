@@ -33,9 +33,9 @@ const HomeScreen = () => {
 
     return (
         <Stack.Navigator initialRouteName="Home" screenOptions={HeaderOptions(colors)}>
-            <Stack.Screen name='Home' component={HomePage} options={{ title: 'Nationskollen' }} />
+            <Stack.Screen name="Home" component={HomePage} options={{ title: 'Nationskollen' }} />
             <Stack.Screen
-                name='NationContent'
+                name="NationContent"
                 component={NationContent}
                 options={{
                     title: 'Nation',
@@ -43,7 +43,7 @@ const HomeScreen = () => {
                 }}
             />
             <Stack.Screen
-                name='Events'
+                name="Events"
                 component={HomePage}
                 options={{
                     title: 'Evenemang',
@@ -51,7 +51,7 @@ const HomeScreen = () => {
                 }}
             />
             <Stack.Screen
-                name='Event'
+                name="Event"
                 component={EventPage}
                 options={{
                     title: 'Event',

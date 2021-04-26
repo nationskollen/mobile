@@ -3,7 +3,7 @@
  * @module EventPage
  */
 import React from 'react'
-import { ScrollView, View, Text, Image, StyleSheet } from 'react-native'
+import { ScrollView, View, Text, StyleSheet } from 'react-native'
 
 import { useTheme } from '../ThemeContext'
 import { TabStackParamList } from '../Footer'
@@ -11,6 +11,7 @@ import { useEventDescription } from '@dsp-krabby/sdk'
 import { RouteProp } from '@react-navigation/native'
 
 import EventCover from '../Events/Cover'
+import EventDates from '../Events/Dates'
 
 export interface Props {
     route: RouteProp<TabStackParamList, 'Event'>
@@ -32,22 +33,7 @@ const EventPage = ({ route }: Props) => {
                 {data && (
                     <View style={styles.contentContainer}>
                         <Text style={{ color: colors.text }}>{data.long_description}</Text>
-                        <View style={[styles.datesContainer, { borderColor: colors.border }]}>
-                            <View style={styles.dateContainer}>
-                                <Text style={[styles.dates, { color: colors.text }]}>Skapad:</Text>
-                                <Text style={[styles.dates, { color: colors.text }]}>
-                                    {new Date(data.created_at).toLocaleString('se')}
-                                </Text>
-                            </View>
-                            <View style={styles.dateContainer}>
-                                <Text style={[styles.dates, { color: colors.text }]}>
-                                    Senast uppdaterad:
-                                </Text>
-                                <Text style={[styles.dates, { color: colors.text }]}>
-                                    {new Date(data.updated_at).toLocaleString('se')}
-                                </Text>
-                            </View>
-                        </View>
+                        <EventDates created={data.created_at} updated={data.updated_at} />
                     </View>
                 )}
                 {error && <Text style={{ color: colors.text }}>Kunde inte ladda event</Text>}
@@ -79,22 +65,6 @@ const styles = StyleSheet.create({
 
     contentContainer: {
         marginTop: 10,
-    },
-
-    datesContainer: {
-        borderTopWidth: 1,
-        marginTop: 50,
-        paddingTop: 10,
-    },
-
-    dateContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-    },
-
-    dates: {
-        fontSize: 12,
-        fontWeight: 'bold',
     },
 })
 

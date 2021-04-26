@@ -3,84 +3,88 @@
  * @module Event
  */
 import React from 'react'
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
+import {
+    View,
+    Text,
+    Image,
+    StyleSheet,
+    TouchableWithoutFeedback,
+    TouchableOpacity,
+} from 'react-native'
 
 import { useTheme } from '../ThemeContext'
-import { Ionicons } from '@expo/vector-icons'
-import { useNation, Event as EventResponse } from '@dsp-krabby/sdk'
+import { useNation, Nation, Event as EventResponse } from '@dsp-krabby/sdk'
 import { useNavigation } from '@react-navigation/native'
 
-import NationLogo from '../Nations/NationLogo'
+import EventCover from './Cover'
 import ReminderButton from './ReminderButton'
+import NationLogo from '../Nations/NationLogo'
 
 export interface EventProps {
     event: EventResponse
 }
 
 export interface HeaderProps {
-    oid: number
+    nation: Nation
 }
 
 const Event = ({ event }: EventProps) => {
+    const navigation = useNavigation()
+    const { data: nation } = useNation(event.nation_id)
     const { colors, isDarkMode } = useTheme()
 
     return (
-        <View
-            style={[
-                styles.eventContainer,
-                { backgroundColor: isDarkMode ? colors.backgroundExtra : colors.background },
-            ]}
-        >
-            {event.cover_img_src && (
-                <View style={styles.coverImgWrapper}>
-                    <Image source={{ uri: event.cover_img_src }} style={styles.coverImg} />
-                </View>
-            )}
+        <TouchableWithoutFeedback onPress={() => navigation.navigate('Event', { event, nation })}>
+            <View
+                style={[
+                    styles.eventContainer,
+                    { backgroundColor: isDarkMode ? colors.backgroundExtra : colors.background },
+                ]}
+            >
+                <EventCover src={event.cover_img_src} height={200} />
+                <Header nation={nation} />
 
-            <Header oid={event.nation_id} />
+                {/*Container for title and description*/}
+                <View style={styles.textContainer}>
+                    {/*Title of event*/}
+                    <View>
+                        <Text style={[styles.title, { color: colors.textHighlight }]}>
+                            {event.name}
+                        </Text>
+                    </View>
 
-            {/*Container for title and description*/}
-            <View style={styles.textContainer}>
-                {/*Title of event*/}
-                <View>
-                    <Text style={[styles.title, { color: colors.textHighlight }]}>
-                        {event.name}
-                    </Text>
-                </View>
+                    {/*Time of event*/}
+                    <View>
+                        <Text style={[styles.time, { color: colors.text }]}>{event.occurs_at}</Text>
+                    </View>
 
-                {/*Time of event*/}
-                <View>
-                    <Text style={[styles.time, { color: colors.text }]}>{event.occurs_at}</Text>
-                </View>
-
-                {/*Description of event*/}
-                <View style={styles.descriptionContainer}>
-                    <Text style={[styles.description, { color: colors.text }]}>
-                        {event.description}
-                    </Text>
+                    {/*Description of event*/}
+                    <View style={styles.descriptionContainer}>
+                        <Text style={[styles.description, { color: colors.text }]}>
+                            {event.short_description}
+                        </Text>
+                    </View>
                 </View>
             </View>
-        </View>
+        </TouchableWithoutFeedback>
     )
 }
 
-const Header = ({ oid }: HeaderProps) => {
-    // TODO: Use types from SDK
+const Header = ({ nation }: HeaderProps) => {
     const { colors } = useTheme()
-    const { data } = useNation(oid)
     const navigation = useNavigation()
 
     return (
         <View style={styles.header}>
             <TouchableOpacity
                 style={nationStyles.container}
-                onPress={() => navigation.navigate('NationContent', { nation: data })}
+                onPress={() => navigation.navigate('NationContent', { nation })}
             >
-                {data && (
+                {nation && (
                     <View style={styles.headerContent}>
-                        <NationLogo src={data.icon_img_src} size={40} />
+                        <NationLogo src={nation.icon_img_src} size={40} />
                         <Text style={[nationStyles.name, { color: colors.primaryText }]}>
-                            {data.name}
+                            {nation.name}
                         </Text>
                     </View>
                 )}
@@ -109,23 +113,12 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
 
-    coverImgWrapper: {
-        borderTopLeftRadius: 10,
-        borderTopRightRadius: 10,
-        overflow: 'hidden',
-    },
-
-    coverImg: {
-        height: 200,
-        width: '100%',
-        resizeMode: 'cover',
-    },
-
     eventContainer: {
         flex: 1,
         marginBottom: 10,
         paddingBottom: 20,
         marginHorizontal: 10,
+        overflow: 'hidden',
 
         borderRadius: 10,
         elevation: 5,
