@@ -9,16 +9,21 @@
 import React from 'react'
 
 import 'react-native-gesture-handler'
+import { Nation } from '@dsp-krabby/sdk'
 import { HeaderOptions } from './NavigationHeader'
 import { useTheme } from '../components/ThemeContext'
-import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack'
+import { createStackNavigator } from '@react-navigation/stack'
 
 import HomePage from '../components/Home/HomePage'
+import EventPage from '../components/Home/EventPage'
 import NationContent from '../components/Nations/NationContent'
 import NavigationBackArrow from '../components/NavigationBackArrow'
 
-export interface Props {
-    navigation: StackNavigationProp<any, any>
+/**
+ * Defines the available route params for each screen
+ */
+export type HomeStackParamList = {
+    NationContent: { nation: Nation }
 }
 
 const Stack = createStackNavigator()
@@ -28,9 +33,9 @@ const HomeScreen = () => {
 
     return (
         <Stack.Navigator initialRouteName="Home" screenOptions={HeaderOptions(colors)}>
-            <Stack.Screen name="Home" component={HomePage} options={{ title: 'Nationskollen' }} />
+            <Stack.Screen name='Home' component={HomePage} options={{ title: 'Nationskollen' }} />
             <Stack.Screen
-                name="NationContent"
+                name='NationContent'
                 component={NationContent}
                 options={{
                     title: 'Nation',
@@ -38,10 +43,18 @@ const HomeScreen = () => {
                 }}
             />
             <Stack.Screen
-                name="Events"
+                name='Events'
                 component={HomePage}
                 options={{
                     title: 'Evenemang',
+                    headerLeft: () => <NavigationBackArrow />,
+                }}
+            />
+            <Stack.Screen
+                name='Event'
+                component={EventPage}
+                options={{
+                    title: 'Event',
                     headerLeft: () => <NavigationBackArrow />,
                 }}
             />

@@ -6,7 +6,9 @@ import React from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import { ScrollView, View } from 'react-native'
 import { useTheme } from '@react-navigation/native'
+import { RouteProp } from '@react-navigation/native'
 import { useNavigation } from '@react-navigation/core'
+import { TabStackParamList } from '../Footer'
 
 import Menu from './Menu'
 import NationInfo from './NationInfo'
@@ -14,7 +16,7 @@ import ListButton from '../ListButton'
 import ActivityLevel from '../Map/ActivityLevel'
 
 export interface Props {
-    [key: string]: any
+    route: RouteProp<TabStackParamList, 'NationContent'>
 }
 
 const NationContent = ({ route }: Props) => {
