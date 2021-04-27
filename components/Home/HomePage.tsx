@@ -32,7 +32,6 @@ const Home = ({ route }: Props) => {
                 <FilterBar hideNationFilter={route.params?.hideNationFilter} />
                 <Calendar />
                 <Timeline oid={route.params?.oid} />
-                
             </View>
         </DatePickerProvider>
     )

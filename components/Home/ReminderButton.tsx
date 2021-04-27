@@ -7,38 +7,38 @@ import { View, Text, Image, StyleSheet, TouchableOpacity, ViewPropTypes } from '
 
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
+import { useTranslation } from '../../translate/LanguageContext'
 
-import OptionsMenu from "react-native-option-menu";
+import OptionsMenu from 'react-native-option-menu'
 
-export interface Props {
+export interface Props {}
 
-}
-
-const ReminderButton = ({}:Props) => {
+const ReminderButton = ({}: Props) => {
     return (
         <OptionsMenu
-            customButton={<Button/>}
+            customButton={<Button />}
             destructiveIndex={2}
-            options={["Lägg till i kalender", "Push-notis", "Avbryt"]}
+            options={['Lägg till i kalender', 'Push-notis', 'Avbryt']}
             actions={[
-                ()=>console.log('add to calendar pressed'),
-                ()=>console.log('push notification pressed')]}
+                () => console.log('add to calendar pressed'),
+                () => console.log('push notification pressed'),
+            ]}
         />
     )
 }
 
 const Button = () => {
     const { colors, isDarkMode } = useTheme()
+    const { translate } = useTranslation()
     return (
-        <View
-            style={[styles.container, { backgroundColor: colors.backgroundHighlight }]}
-        >
+        <View style={[styles.container, { backgroundColor: colors.backgroundHighlight }]}>
             <Ionicons name="md-notifications-outline" size={20} color={colors.text} />
-            <Text style={[styles.text, { color: colors.text }]}>Påminn mig</Text>
+            <Text style={[styles.text, { color: colors.text }]}>
+                {translate.home.reminderbutton}
+            </Text>
         </View>
     )
 }
-
 
 const styles = StyleSheet.create({
     container: {
@@ -57,6 +57,5 @@ const styles = StyleSheet.create({
         marginLeft: 5,
     },
 })
-
 
 export default ReminderButton
