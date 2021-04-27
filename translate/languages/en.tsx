@@ -15,7 +15,16 @@ export const English: LanguageContextType = {
     },
 
     "nations": {
-        "header": "Nations"
+        "header": "Nations",
+	"menu" : "Menu",
+	"events" : "Events",
+	"activitylevel" : {
+	    "header" : "Activity level",
+	    "closed" : "Closed",
+	    "low" : "Low",
+	    "medium" : "Medium",
+	    "high" : "High"
+	}
     },
 
     "home": {
@@ -45,7 +54,8 @@ export const English: LanguageContextType = {
 		"header" : "Activity level",
 		"low" : "Low",
 		"medium" : "Medium",
-		"high" : "High"
+		"high" : "High",
+		"closed" : "Closed"
 	    }
 	}
     },

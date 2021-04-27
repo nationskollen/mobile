@@ -13,7 +13,17 @@ export const Swedish : LanguageContextType = {
     },
 
     "nations": {
-        "header": "Nationer"
+        "header": "Nationer",
+	"menu" : "Meny",
+	"events" : "Evenemang",
+	"activitylevel" : {
+	    "header" : "Aktivitetsnivå",
+	    "closed" : "Stängt",
+	    "low" : "Låg",
+	    "medium" : "Medel",
+	    "high" : "Hög"
+	}
+
     },
 
     "home": {
@@ -45,7 +55,8 @@ export const Swedish : LanguageContextType = {
 		"header" : "Aktivitetsnivå",
 		"low" : "Låg",
 		"medium" : "Medel",
-		"high" : "Hög"
+		"high" : "Hög",
+		"closed" :  "Stängt",
 	    }
 	}
     },

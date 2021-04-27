@@ -13,6 +13,14 @@ export type LanguageContextType = {
 
     nations: {
         header: string
+	menu : string
+	activitylevel : {
+	    header : string
+	    low : string
+	    medium : string
+	    high : string
+	    closed : string
+	}
     }
 
     home: {
@@ -43,6 +51,7 @@ export type LanguageContextType = {
 		low : string
 		medium : string
 		high : string
+		closed : string
 	    }
 	}
     }

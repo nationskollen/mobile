@@ -6,6 +6,7 @@ import React from 'react'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 import { View, Text, StyleSheet } from 'react-native'
+import { useTranslation } from '../../translate/LanguageContext'
 
 export interface IndicatorProps {
     level: number
@@ -15,12 +16,13 @@ export interface IndicatorProps {
 // TODO: Take in a location as prop
 const ActivityLevel = () => {
     const { colors } = useTheme()
+    const { translate } = useTranslation()
 
     return (
         <View style={[styles.container, { backgroundColor: colors.backgroundHighlight }]}>
             <View style={styles.left}>
                 <Ionicons name="md-people-outline" size={24} color={colors.text} />
-                <Text style={[styles.title, { color: colors.text }]}>Aktivitet</Text>
+                <Text style={[styles.title, { color: colors.text }]}>{translate.nations.activitylevel.header}</Text>
             </View>
 
             <ActivityIndicator level={0} />
@@ -31,6 +33,7 @@ const ActivityLevel = () => {
 //function that returns a component with a colored circle and text - determined by the activity level
 const ActivityIndicator = ({ level }: IndicatorProps) => {
     const { colors } = useTheme()
+    const { translate } = useTranslation()
 
     let color: string
     let title: string
@@ -38,25 +41,25 @@ const ActivityIndicator = ({ level }: IndicatorProps) => {
     switch (level) {
         case 0:
             {
-                title = 'Stängt'
+		title = translate.nations.activitylevel.closed 
                 color = 'black'
             }
             break
         case 1:
             {
-                title = 'Låg'
+                title = translate.nations.activitylevel.low 
                 color = 'green'
             }
             break
         case 2:
             {
-                title = 'Medel'
+                title = translate.nations.activitylevel.medium
                 color = 'yellow'
             }
             break
         case 3:
             {
-                title = 'Hög'
+                title = translate.nations.activitylevel.high
                 color = 'red'
             }
             break
