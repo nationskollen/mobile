@@ -2,6 +2,7 @@ export default interface LanguageContextType {
     general: {
         ok: string
         cancel: string
+        loading: string
     }
 
     footer: {

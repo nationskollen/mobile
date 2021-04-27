@@ -4,6 +4,7 @@ const English: LanguageContextType = {
     general: {
         ok: 'OK',
         cancel: 'Cancel',
+        loading: 'Loading',
     },
 
     footer: {

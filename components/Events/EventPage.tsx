@@ -3,12 +3,13 @@
  * @module EventPage
  */
 import React from 'react'
-import { ScrollView, View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { ScrollView, View, Text, StyleSheet } from 'react-native'
 
 import { useTheme } from '../ThemeContext'
 import { TabStackParamList } from '../Footer'
-import { useEventDescription } from '@dsp-krabby/sdk'
 import { RouteProp } from '@react-navigation/native'
+import { useEventDescription } from '@dsp-krabby/sdk'
+import SkeletonContent from 'react-native-skeleton-content'
 
 import EventCover from '../Events/Cover'
 import EventDates from '../Events/Dates'
@@ -22,18 +23,6 @@ const EventPage = ({ route }: Props) => {
     const { event, nation } = route.params
     const { data, error } = useEventDescription(event.id)
 
-    if (error) {
-        return (
-            <Text style={{ color: colors.text }}>Kunde inte ladda event</Text>
-        )
-    }
-
-    if (!data) {
-        return (
-            <Text>Laddar...</Text>
-        )
-    }
-
     return (
         <View style={{ flex: 1 }}>
             <ScrollView style={styles.scrollView}>
@@ -43,12 +32,13 @@ const EventPage = ({ route }: Props) => {
                         {nation.name}
                     </Text>
                     <Text style={[styles.title, { color: colors.textHighlight }]}>{event.name}</Text>
-                    <View style={styles.contentContainer}>
-                        <Text style={{ color: colors.text }}>{data.long_description}</Text>
-                        <Text style={{ color: colors.text }}>{data.long_description}</Text>
-                        <Text style={{ color: colors.text }}>{data.long_description}</Text>
-                        <EventDates created={data.created_at} updated={data.updated_at} />
-                    </View>
+                    {error && <Text style={{ color: colors.text }}>Kunde inte ladda event</Text>}
+                    {data && (
+                        <View>
+                            <Text style={{ color: colors.text }}>{data.long_description}</Text>
+                            <EventDates created={data.created_at} updated={data.updated_at} />
+                        </View>
+                    )}
                 </View>
             </ScrollView>
             <View style={styles.footer}></View>

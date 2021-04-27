@@ -4,6 +4,7 @@ const Swedish: LanguageContextType = {
     general: {
         ok: 'OK',
         cancel: 'Avbryt',
+        loading: 'Laddar',
     },
 
     footer: {
