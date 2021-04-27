@@ -1,20 +1,24 @@
 import React from 'react'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
+import { Event as EventResponse } from '@dsp-krabby/sdk'
 import { View, Image, StyleSheet } from 'react-native'
 
+import EventCategory from './Category'
+
 export interface Props {
-    src: string
+    event: EventResponse
     height: number
 }
 
-const EventCover = ({ src, height }: Props) => {
+const EventCover = ({ event, height }: Props) => {
     const { colors } = useTheme()
 
     return (
         <View style={[styles.container, { height, backgroundColor: colors.backgroundHighlight }]}>
-            {src ? (
-                <Image source={{ uri: src }} style={styles.img} />
+            <EventCategory name={event.category && event.category.name} />
+            {event.cover_img_src ? (
+                <Image source={{ uri: event.cover_img_src }} style={styles.img} />
             ) : (
                 <Ionicons name="calendar" size={100} color={colors.borderDark} />
             )}

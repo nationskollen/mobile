@@ -37,7 +37,7 @@ const EventPage = ({ route }: Props) => {
     return (
         <View style={{ flex: 1 }}>
             <ScrollView style={styles.scrollView}>
-                <EventCover src={event.cover_img_src} height={200} />
+                <EventCover event={event} height={250} />
                 <View style={styles.container}>
                     <Text style={[styles.nationName, { color: colors.primaryText }]}>
                         {nation.name}

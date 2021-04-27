@@ -41,7 +41,7 @@ const Event = ({ event }: EventProps) => {
                     { backgroundColor: isDarkMode ? colors.backgroundExtra : colors.background },
                 ]}
             >
-                <EventCover src={event.cover_img_src} height={200} />
+                <EventCover event={event} height={200} />
                 <Header nation={nation} />
 
                 {/*Container for title and description*/}
