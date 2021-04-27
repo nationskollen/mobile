@@ -3,13 +3,12 @@
  * @module EventPage
  */
 import React from 'react'
-import { ScrollView, View, Text, StyleSheet } from 'react-native'
+import { ScrollView, View, Text, StyleSheet, ActivityIndicator } from 'react-native'
 
 import { useTheme } from '../ThemeContext'
 import { TabStackParamList } from '../Footer'
 import { RouteProp } from '@react-navigation/native'
 import { useEventDescription } from '@dsp-krabby/sdk'
-import SkeletonContent from 'react-native-skeleton-content'
 
 import EventCover from '../Events/Cover'
 import EventDates from '../Events/Dates'
@@ -33,10 +32,14 @@ const EventPage = ({ route }: Props) => {
                     </Text>
                     <Text style={[styles.title, { color: colors.textHighlight }]}>{event.name}</Text>
                     {error && <Text style={{ color: colors.text }}>Kunde inte ladda event</Text>}
-                    {data && (
+                    {data ? (
                         <View>
                             <Text style={{ color: colors.text }}>{data.long_description}</Text>
                             <EventDates created={data.created_at} updated={data.updated_at} />
+                        </View>
+                    ) : (
+                        <View style={styles.loading}>
+                            <ActivityIndicator size="small" color={colors.primaryText} />
                         </View>
                     )}
                 </View>
@@ -72,8 +75,10 @@ const styles = StyleSheet.create({
         marginTop: 10,
     },
 
-    footer: {
-
+    loading: {
+        marginTop: 25,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 })
 
