@@ -1,4 +1,5 @@
-{
+import LanguageContextType from '../LanguageContextType'
+export const Swedish : LanguageContextType = {
     "footer": {
         "notifications": "Notifikationer",
         "nations": "Nationer",
@@ -22,7 +23,31 @@
     },
 
     "map": {
-        "header": "Karta"
+        "header": "Karta",
+	"popup" : {
+	    "openingtimes" : "Öppettider",
+	    "montofri" : "Mån-Fri ",
+	    "sattosun" : "Lör-Sön ",
+	    "shownation": "Visa nation",
+	    "closed" : "Stängt",
+	    "alerts" : {
+		"openinmaps" : "Öppna i kartor?",
+		"presstoopen" : "Tryck OK för att öppna i kartor",
+		"decline" : "Avbryt",
+		"accept" : "Ok",
+	    }
+
+
+	},
+
+	"marker" : {
+	    "activitylevel" : {
+		"header" : "Aktivitetsnivå",
+		"low" : "Låg",
+		"medium" : "Medel",
+		"high" : "Hög"
+	    }
+	}
     },
 
     "settings": {
@@ -44,3 +69,5 @@
         }
     }
 }
+
+export default Swedish;

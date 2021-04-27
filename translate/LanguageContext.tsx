@@ -1,17 +1,12 @@
-import swe from './languages/swe.json'
+import swe from './languages/swe'
 import React, { useState, useContext } from 'react'
-import { LanguageContextType } from './LanguageContextType'
+import LanguageContextType from './LanguageContextType'
 
 export interface LanguageContextContract {
     setSelectedLanguage: React.Dispatch<React.SetStateAction<LanguageContextType>>
     translate: LanguageContextType
 }
 const LanguageContext = React.createContext<LanguageContextContract>({} as LanguageContextContract)
-
-export interface Languages {
-    english: string
-    swedish: string
-}
 
 export const useTranslation = () => useContext(LanguageContext)
 

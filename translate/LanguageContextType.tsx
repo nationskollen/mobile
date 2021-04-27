@@ -23,6 +23,28 @@ export type LanguageContextType = {
 
     map: {
         header: string
+	popup : {
+	    openingtimes : string
+	    montofri : string
+	    sattosun : string
+	    shownation : string
+	    closed : string
+	    alerts : {
+		openinmaps : string
+		presstoopen : string
+		decline : string
+		accept : string
+	    }
+
+	}
+	marker : {
+	    activitylevel : {
+		header : string
+		low : string
+		medium : string
+		high : string
+	    }
+	}
     }
     settings: {
         header: string
@@ -43,3 +65,5 @@ export type LanguageContextType = {
         }
     }
 }
+
+export default LanguageContextType;

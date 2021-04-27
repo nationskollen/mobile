@@ -9,6 +9,7 @@ import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps'
 
 import Popup from './Popup'
 import MapDarkTheme from './MapDarkTheme.json'
+import { useTranslation } from '../../translate/LanguageContext'
 
 export interface Props {
     data: Array<Record<string, any>>
@@ -130,6 +131,8 @@ const Map = () => {
     // Empty array renders standard light map
     const theme = isDarkMode ? MapDarkTheme : []
 
+    const { translate } = useTranslation()
+
     const onMarkerPressed = (location: any) => {
         setShowPopup(true)
         setSelectedNation(location)
@@ -169,7 +172,7 @@ const Map = () => {
                             longitude: marker.longitude,
                         }}
                         title={marker.name}
-                        description="Aktivitetsnivå: Låg"
+                        description= {translate.map.marker.activitylevel.header + ': ' + translate.map.marker.activitylevel.low}
                         image={require('../../img/png/vdala/vdalalogga.png')}
                         onPress={() => onMarkerPressed(marker)}
                         stopPropagation={true}

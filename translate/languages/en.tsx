@@ -1,4 +1,7 @@
-{
+import LanguageContextType from '../LanguageContextType'
+
+export const English: LanguageContextType = {
+ 
     "footer": {
         "notifications": "Notifications",
         "nations": "Nations",
@@ -22,7 +25,29 @@
     },
 
     "map": {
-        "header": "Map"
+        "header": "Map",
+	"popup" : {
+	    "openingtimes" : "Opening hours",
+	    "montofri" : "Mon-Fri ",
+	    "sattosun" : "Sat-Sun ",
+	    "shownation": "View nation",
+	    "closed" : "Closed",
+	    "alerts" : {
+		"openinmaps" : "Open in maps?",
+		"presstoopen" : "Press OK to open in maps",
+		"decline" : "Decline",
+		"accept" : "Ok",
+	    }
+
+	},
+	"marker" : {
+	    "activitylevel" : {
+		"header" : "Activity level",
+		"low" : "Low",
+		"medium" : "Medium",
+		"high" : "High"
+	    }
+	}
     },
 
     "settings": {
@@ -44,3 +69,5 @@
         }
     }
 }
+ 
+export default English;

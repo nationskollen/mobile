@@ -11,6 +11,7 @@ import { Ionicons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 
 import NationInfo from '../Nations/NationInfo'
+import { useTranslation } from '../../translate/LanguageContext'
 
 export interface Props {
     nation: Nation
@@ -20,6 +21,7 @@ export interface Props {
 
 const Popup = ({ nation, show, setShow }: Props) => {
     const { colors } = useTheme()
+    const { translate } = useTranslation()
     const navigation = useNavigation()
     const popupHeight = 300
     const popupAnimation = useRef(new Animated.Value(popupHeight)).current
@@ -67,7 +69,7 @@ const Popup = ({ nation, show, setShow }: Props) => {
                         onPress={() => navigation.navigate('NationContent', { nation })}
                         style={[styles.nationOpenButton, { backgroundColor: colors.primary }]}
                     >
-                        <Text style={styles.nationOpenButtonText}>Visa nation</Text>
+                        <Text style={styles.nationOpenButtonText}>{translate.map.popup.shownation}</Text>
                         <Ionicons name="arrow-forward-sharp" size={20} color="white" />
                     </TouchableOpacity>
                 </View>

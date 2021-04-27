@@ -5,8 +5,8 @@ import { View, Text, StyleSheet } from 'react-native'
 import { useTranslation } from '../../translate/LanguageContext'
 
 import ListButton from '../ListButton'
-import en from '../../translate/languages/en.json'
-import swe from '../../translate/languages/swe.json'
+import en from '../../translate/languages/en'
+import swe from '../../translate/languages/swe'
 
 const LanguagePage = () => {
     const { colors } = useTheme()
