@@ -29,6 +29,7 @@ export const Swedish: LanguageContextType = {
         header: 'Hem',
         headline: 'Nationskollen',
         nationbutton: 'Nation',
+	reminderbutton : "Påminn mig",
     },
 
     map: {

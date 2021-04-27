@@ -30,6 +30,7 @@ export const English: LanguageContextType = {
         header: 'Home',
         headline: 'Nationskollen',
         nationbutton: 'Nation',
+	reminderbutton : 'Remind me',
     },
 
     map: {
