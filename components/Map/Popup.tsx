@@ -3,13 +3,14 @@
  * @module Popup
  */
 import React, { useRef, useEffect } from 'react'
-import { Animated, View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { Animated, View, StyleSheet, TouchableOpacity } from 'react-native'
 
 import { Nation } from '@dsp-krabby/sdk'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 
+import PrimaryButton from '../PrimaryButton'
 import NationInfo from '../Nations/NationInfo'
 
 export interface Props {
@@ -63,13 +64,12 @@ const Popup = ({ nation, show, setShow }: Props) => {
                         backgroundColor={colors.background}
                         paddingTop={15}
                     />
-                    <TouchableOpacity
+                    <PrimaryButton
                         onPress={() => navigation.navigate('NationContent', { nation })}
-                        style={[styles.nationOpenButton, { backgroundColor: colors.primary }]}
-                    >
-                        <Text style={styles.nationOpenButtonText}>Visa nation</Text>
-                        <Ionicons name="arrow-forward-sharp" size={20} color="white" />
-                    </TouchableOpacity>
+                        label="Visa nation"
+                        icon="chevron-forward"
+                        style={styles.nationOpenButton}
+                    />
                 </View>
             )}
         </Animated.View>
@@ -105,20 +105,7 @@ const styles = StyleSheet.create({
     nationOpenButton: {
         marginHorizontal: 20,
         marginBottom: 20,
-        paddingVertical: 12,
         flex: 1,
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 10,
-    },
-
-    nationOpenButtonText: {
-        fontWeight: 'bold',
-        fontSize: 14,
-        color: 'white',
-        marginRight: 5,
     },
 })
 
