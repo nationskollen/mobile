@@ -1,4 +1,9 @@
-export type LanguageContextType = {
+export default interface LanguageContextType {
+    general: {
+        ok: string
+        cancel: string
+    }
+
     footer: {
         notifications: string
         nations: string
@@ -13,49 +18,53 @@ export type LanguageContextType = {
 
     nations: {
         header: string
-	menu : string
-	events : string
-	activitylevel : {
-	    header : string
-	    low : string
-	    medium : string
-	    high : string
-	    closed : string
-	}
+        menu: string
+        events: string
+        activitylevel: {
+            header: string
+            low: string
+            medium: string
+            high: string
+            closed: string
+        }
+        alerts: {
+            mapTitle: string
+            mapDescription: string
+        }
     }
 
     home: {
         header: string
         headline: string
         nationbutton: string
-	reminderbutton : string
+        reminderbutton: string
+        todaysEvents: string
     }
 
     map: {
         header: string
-	popup : {
-	    openingtimes : string
-	    montofri : string
-	    sattosun : string
-	    shownation : string
-	    closed : string
-	    alerts : {
-		openinmaps : string
-		presstoopen : string
-		decline : string
-		accept : string
-	    }
-
-	}
-	marker : {
-	    activitylevel : {
-		header : string
-		low : string
-		medium : string
-		high : string
-		closed : string
-	    }
-	}
+        popup: {
+            openingtimes: string
+            montofri: string
+            sattosun: string
+            shownation: string
+            closed: string
+            alerts: {
+                openinmaps: string
+                presstoopen: string
+                decline: string
+                accept: string
+            }
+        }
+        marker: {
+            activitylevel: {
+                header: string
+                low: string
+                medium: string
+                high: string
+                closed: string
+            }
+        }
     }
     settings: {
         header: string
@@ -76,5 +85,3 @@ export type LanguageContextType = {
         }
     }
 }
-
-export default LanguageContextType;

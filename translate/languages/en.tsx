@@ -1,6 +1,11 @@
 import LanguageContextType from '../LanguageContextType'
 
-export const English: LanguageContextType = {
+const English: LanguageContextType = {
+    general: {
+        ok: 'OK',
+        cancel: 'Cancel',
+    },
+
     footer: {
         notifications: 'Notifications',
         nations: 'Nations',
@@ -24,13 +29,18 @@ export const English: LanguageContextType = {
             medium: 'Medium',
             high: 'High',
         },
+        alerts: {
+            mapTitle: 'Open in maps?',
+            mapDescription: 'Click Ok to open the address in maps',
+        },
     },
 
     home: {
         header: 'Home',
         headline: 'Nationskollen',
         nationbutton: 'Nation',
-	reminderbutton : 'Remind me',
+        reminderbutton: 'Remind me',
+        todaysEvents: "Today's events",
     },
 
     map: {

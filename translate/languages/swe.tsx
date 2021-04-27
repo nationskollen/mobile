@@ -1,5 +1,11 @@
 import LanguageContextType from '../LanguageContextType'
-export const Swedish: LanguageContextType = {
+
+const Swedish: LanguageContextType = {
+    general: {
+        ok: 'OK',
+        cancel: 'Avbryt',
+    },
+
     footer: {
         notifications: 'Notifikationer',
         nations: 'Nationer',
@@ -23,13 +29,18 @@ export const Swedish: LanguageContextType = {
             medium: 'Medel',
             high: 'Hög',
         },
+        alerts: {
+            mapTitle: 'Öppna i kartor?',
+            mapDescription: 'Tryck OK för att öppna addressen i kartor',
+        },
     },
 
     home: {
         header: 'Hem',
         headline: 'Nationskollen',
         nationbutton: 'Nation',
-	reminderbutton : "Påminn mig",
+        reminderbutton: 'Påminn mig',
+        todaysEvents: 'Dagens händelser',
     },
 
     map: {

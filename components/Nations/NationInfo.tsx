@@ -71,22 +71,21 @@ const NationInfo = ({ nation, backgroundColor, paddingTop }: Props) => {
                     <Text
                         style={[styles.mapAddress, { color: colors.textHighlight }]}
                         onPress={() =>
-                            // Seems like translate doesn't work on alert due to wrong type
                             Alert.alert(
-                                'Öppna i kartor?',
-                                'Tryck OK för att öppna addressen i kartor',
+                                translate.nations.alerts.mapTitle,
+                                translate.nations.alerts.mapDescription,
                                 [
                                     {
-                                        text: 'Avbryt',
+                                        text: translate.general.cancel,
                                         onPress: () => console.log('Pressed'),
                                     },
                                     {
-                                        text: 'OK',
+                                        text: translate.general.ok,
                                         onPress: () => console.log('OK Pressed'),
                                     },
                                 ],
                                 {
-                                    cancelable: false,
+                                    cancelable: true,
                                 }
                             )
                         }

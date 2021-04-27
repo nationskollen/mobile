@@ -29,11 +29,13 @@ const ReminderButton = ({}: Props) => {
 
 const Button = () => {
     const { colors, isDarkMode } = useTheme()
-    const { translate } = useTranslation() 
+    const { translate } = useTranslation()
     return (
         <View style={[styles.container, { backgroundColor: colors.backgroundHighlight }]}>
             <Ionicons name="md-notifications-outline" size={20} color={colors.text} />
-            <Text style={[styles.text, { color: colors.text }]}>{translate.home.reminderbutton}</Text>
+            <Text style={[styles.text, { color: colors.text }]}>
+                {translate.home.reminderbutton}
+            </Text>
         </View>
     )
 }

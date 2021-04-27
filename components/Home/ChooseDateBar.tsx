@@ -3,13 +3,15 @@
  * @module ChoosedDateBar
  */
 import React, { useRef } from 'react'
+import { Ionicons } from '@expo/vector-icons'
 import { View, TouchableOpacity, StyleSheet, Text } from 'react-native'
 
-import { Ionicons } from '@expo/vector-icons'
 import { useTheme } from '../ThemeContext'
 import { useDatePicker } from './DatePickerContext'
+import { useTranslation } from '../../translate/LanguageContext'
 
 const ChooseDateBar = () => {
+    const { translate } = useTranslation()
     const { colors, isDarkMode } = useTheme()
     const { date, setDate, visible, setVisible } = useDatePicker()
     const currentDate = useRef(new Date().toLocaleDateString()).current
@@ -38,7 +40,7 @@ const ChooseDateBar = () => {
 
             <TouchableOpacity style={styles.dateTextWrapper} onPress={() => setVisible(!visible)}>
                 <Text style={[styles.dateText, { color: colors.textHighlight }]}>
-                    {currentDate === dateString ? 'Dagens händelser' : dateString}
+                    {currentDate === dateString ? translate.home.todaysEvents : dateString}
                 </Text>
             </TouchableOpacity>
 
