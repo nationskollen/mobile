@@ -44,7 +44,6 @@ const EventPage = ({ route }: Props) => {
                     )}
                 </View>
             </ScrollView>
-            <View style={styles.footer}></View>
         </View>
     )
 }
