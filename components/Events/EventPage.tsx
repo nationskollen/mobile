@@ -30,7 +30,9 @@ const EventPage = ({ route }: Props) => {
                     <Text style={[styles.nationName, { color: colors.primaryText }]}>
                         {nation.name}
                     </Text>
-                    <Text style={[styles.title, { color: colors.textHighlight }]}>{event.name}</Text>
+                    <Text style={[styles.title, { color: colors.textHighlight }]}>
+                        {event.name}
+                    </Text>
                     {error && <Text style={{ color: colors.text }}>Kunde inte ladda event</Text>}
                     {data ? (
                         <View>

@@ -13,12 +13,16 @@ const EventDates = ({ created, updated }: Props) => {
     const { colors, isDarkMode } = useTheme()
 
     return (
-        <View style={[
-            styles.container,
-            {
-                backgroundColor: isDarkMode ? colors.backgroundHighlight : colors.backgroundExtra
-            }
-        ]}>
+        <View
+            style={[
+                styles.container,
+                {
+                    backgroundColor: isDarkMode
+                        ? colors.backgroundHighlight
+                        : colors.backgroundExtra,
+                },
+            ]}
+        >
             <View style={styles.date}>
                 <Text style={[styles.text, { color: colors.text }]}>
                     {translate.events.createdAt}:

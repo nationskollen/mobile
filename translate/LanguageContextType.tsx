@@ -84,10 +84,10 @@ export default interface LanguageContextType {
         notificationsetting: {
             header: string
         }
-    },
+    }
 
     events: {
         createdAt: string
         updatedAt: string
-    },
+    }
 }

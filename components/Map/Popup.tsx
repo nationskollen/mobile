@@ -26,21 +26,36 @@ const Popup = ({ nation, show, setShow }: Props) => {
     const navigation = useNavigation()
     const popupHeight = 300
     const popupAnimation = useRef(new Animated.Value(popupHeight)).current
+    const popupAnimationOpacity = useRef(new Animated.Value(0)).current
 
     const popin = () => {
-        Animated.timing(popupAnimation, {
-            toValue: 0,
-            duration: 100,
-            useNativeDriver: true,
-        }).start()
+        Animated.parallel([
+            Animated.timing(popupAnimation, {
+                toValue: 0,
+                duration: 200,
+                useNativeDriver: true,
+            }),
+            Animated.timing(popupAnimationOpacity, {
+                toValue: 1,
+                duration: 200,
+                useNativeDriver: true,
+            }),
+        ]).start()
     }
 
     const popout = () => {
-        Animated.timing(popupAnimation, {
-            toValue: popupHeight,
-            duration: 100,
-            useNativeDriver: true,
-        }).start()
+        Animated.parallel([
+            Animated.timing(popupAnimation, {
+                toValue: popupHeight,
+                duration: 200,
+                useNativeDriver: true,
+            }),
+            Animated.timing(popupAnimationOpacity, {
+                toValue: 0,
+                duration: 200,
+                useNativeDriver: true,
+            }),
+        ]).start()
     }
 
     // Re-render on prop change
@@ -53,7 +68,11 @@ const Popup = ({ nation, show, setShow }: Props) => {
         <Animated.View
             style={[
                 styles.popup,
-                { backgroundColor: colors.background, transform: [{ translateY: popupAnimation }] },
+                {
+                    backgroundColor: colors.background,
+                    opacity: popupAnimationOpacity,
+                    transform: [{ translateY: popupAnimation }],
+                },
             ]}
         >
             <TouchableOpacity style={styles.closeButton} onPress={() => setShow(false)}>
