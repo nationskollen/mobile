@@ -9,7 +9,6 @@
 import React from 'react'
 
 import 'react-native-gesture-handler'
-import { Nation } from '@dsp-krabby/sdk'
 import { HeaderOptions } from './NavigationHeader'
 import { useTheme } from '../components/ThemeContext'
 import { createStackNavigator } from '@react-navigation/stack'
@@ -17,19 +16,14 @@ import { createStackNavigator } from '@react-navigation/stack'
 import HomePage from '../components/Home/HomePage'
 import EventPage from '../components/Events/EventPage'
 import NationContent from '../components/Nations/NationContent'
+import { useTranslation } from '../translate/LanguageContext'
 import NavigationBackArrow from '../components/NavigationBackArrow'
-
-/**
- * Defines the available route params for each screen
- */
-export type HomeStackParamList = {
-    NationContent: { nation: Nation }
-}
 
 const Stack = createStackNavigator()
 
 const HomeScreen = () => {
     const { colors } = useTheme()
+    const { translate } = useTranslation()
 
     return (
         <Stack.Navigator initialRouteName="Home" screenOptions={HeaderOptions(colors)}>

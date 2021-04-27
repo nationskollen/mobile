@@ -12,6 +12,7 @@ import { useNavigation } from '@react-navigation/native'
 
 import PrimaryButton from '../PrimaryButton'
 import NationInfo from '../Nations/NationInfo'
+import { useTranslation } from '../../translate/LanguageContext'
 
 export interface Props {
     nation: Nation
@@ -21,6 +22,7 @@ export interface Props {
 
 const Popup = ({ nation, show, setShow }: Props) => {
     const { colors } = useTheme()
+    const { translate } = useTranslation()
     const navigation = useNavigation()
     const popupHeight = 300
     const popupAnimation = useRef(new Animated.Value(popupHeight)).current
@@ -66,7 +68,7 @@ const Popup = ({ nation, show, setShow }: Props) => {
                     />
                     <PrimaryButton
                         onPress={() => navigation.navigate('NationContent', { nation })}
-                        label="Visa nation"
+                        label={translate.map.popup.shownation}
                         icon="chevron-forward"
                         style={styles.nationOpenButton}
                     />

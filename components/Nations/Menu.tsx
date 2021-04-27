@@ -8,6 +8,7 @@ import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
+import { useTranslation } from '../../translate/LanguageContext'
 
 import Dropdown from '../Dropdown'
 
@@ -71,11 +72,12 @@ const menu = {
 //@ts-ignore
 const Menu = ({ oid }: Props) => {
     const { colors } = useTheme()
+    const { translate } = useTranslation()
 
     return (
         <View>
             <Dropdown
-                title={'Meny'}
+                title={translate.nations.menu}
                 expandComponent={<Categories />}
                 icon={<Ionicons name="md-fast-food-outline" size={24} color={colors.text} />}
             />

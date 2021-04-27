@@ -14,9 +14,9 @@ export interface ToggleProps {
 
 /// Renders the different notification options
 const NotificationOptions = () => {
+    // These will be dynamic, so no need to translate for now
     return (
         <View style={styles.options}>
-            <Toggle text="Push notifikationer" />
             <Toggle text="Events" />
             <Toggle text="Nyheter" />
         </View>

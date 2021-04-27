@@ -1,6 +1,7 @@
 import React from 'react'
 import { useTheme } from '../ThemeContext'
 import { View, Text, StyleSheet } from 'react-native'
+import { useTranslation } from '../../translate/LanguageContext'
 
 export interface Props {
     updated: string
@@ -8,6 +9,7 @@ export interface Props {
 }
 
 const EventDates = ({ created, updated }: Props) => {
+    const { translate } = useTranslation()
     const { colors, isDarkMode } = useTheme()
 
     return (
@@ -18,13 +20,17 @@ const EventDates = ({ created, updated }: Props) => {
             }
         ]}>
             <View style={styles.date}>
-                <Text style={[styles.text, { color: colors.text }]}>Skapad:</Text>
+                <Text style={[styles.text, { color: colors.text }]}>
+                    {translate.events.createdAt}:
+                </Text>
                 <Text style={[styles.text, styles.textValue, { color: colors.text }]}>
                     {new Date(created).toLocaleString('se')}
                 </Text>
             </View>
             <View style={styles.date}>
-                <Text style={[styles.text, { color: colors.text }]}>Senast uppdaterad:</Text>
+                <Text style={[styles.text, { color: colors.text }]}>
+                    {translate.events.updatedAt}:
+                </Text>
                 <Text style={[styles.text, styles.textValue, { color: colors.text }]}>
                     {new Date(updated).toLocaleString('se')}
                 </Text>

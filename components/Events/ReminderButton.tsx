@@ -7,6 +7,7 @@ import { View, Text, StyleSheet } from 'react-native'
 
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
+import { useTranslation } from '../../translate/LanguageContext'
 
 import OptionsMenu from 'react-native-option-menu'
 
@@ -28,11 +29,14 @@ const ReminderButton = ({}: Props) => {
 
 const Button = () => {
     const { colors } = useTheme()
+    const { translate } = useTranslation()
 
     return (
         <View style={[styles.container, { backgroundColor: colors.backgroundHighlight }]}>
             <Ionicons name="md-notifications-outline" size={20} color={colors.text} />
-            <Text style={[styles.text, { color: colors.text }]}>Påminn mig</Text>
+            <Text style={[styles.text, { color: colors.text }]}>
+                {translate.home.reminderbutton}
+            </Text>
         </View>
     )
 }

@@ -6,13 +6,14 @@ import React from 'react'
 import { useTheme } from './ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 import { Nation, Event } from '@dsp-krabby/sdk'
+import { useTranslation } from '../translate/LanguageContext'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 import MapScreen from '../screens/MapScreen'
 import HomeScreen from '../screens/HomeScreen'
+import NationScreen from '../screens/NationScreen'
 import SettingsScreen from '../screens/SettingsScreen'
 import NotificationScreen from '../screens/NotificationScreen'
-import NationScreen from '../screens/NationScreen'
 
 /**
  * Defines the available route params for each tab.
@@ -24,6 +25,7 @@ export type TabStackParamList = {
     Nationer: { nation?: Nation }
     Karta: undefined
     Event: { event?: Event; nation?: Nation }
+    NationContent: { nation?: Nation }
 }
 
 const Tab = createBottomTabNavigator()
@@ -35,6 +37,7 @@ const Tab = createBottomTabNavigator()
  */
 const Footer = () => {
     const { colors } = useTheme()
+    const { translate } = useTranslation()
 
     return (
         <Tab.Navigator
@@ -72,11 +75,31 @@ const Footer = () => {
                 keyboardHidesTabBar: true,
             }}
         >
-            <Tab.Screen name="Notifikationer" component={NotificationScreen} />
-            <Tab.Screen name="Nationer" component={NationScreen} />
-            <Tab.Screen name="Hem" component={HomeScreen} />
-            <Tab.Screen name="Karta" component={MapScreen} />
-            <Tab.Screen name="Inställningar" component={SettingsScreen} />
+            <Tab.Screen
+                name="Notifikationer"
+                component={NotificationScreen}
+                options={{ title: translate.footer.notifications }}
+            />
+            <Tab.Screen
+                name="Nationer"
+                component={NationScreen}
+                options={{ title: translate.footer.nations }}
+            />
+            <Tab.Screen
+                name="Hem"
+                component={HomeScreen}
+                options={{ title: translate.footer.home }}
+            />
+            <Tab.Screen
+                name="Karta"
+                component={MapScreen}
+                options={{ title: translate.footer.map }}
+            />
+            <Tab.Screen
+                name="Inställningar"
+                component={SettingsScreen}
+                options={{ title: translate.footer.settings }}
+            />
         </Tab.Navigator>
     )
 }

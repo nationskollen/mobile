@@ -7,7 +7,7 @@ import { View, StyleSheet, Text, TextInput, TouchableHighlight, ScrollView } fro
 
 import { useTheme } from '../ThemeContext'
 
-const Login = () => {
+const LoginPage = () => {
     const { colors } = useTheme()
     const [text, onChangeText] = useState(null)
     const [password, onChangePassword] = useState(null)
@@ -105,4 +105,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default Login
+export default LoginPage

@@ -9,6 +9,7 @@ import { useTheme } from '@react-navigation/native'
 import { RouteProp } from '@react-navigation/native'
 import { useNavigation } from '@react-navigation/core'
 import { TabStackParamList } from '../Footer'
+import { useTranslation } from '../../translate/LanguageContext'
 
 import Menu from './Menu'
 import NationInfo from './NationInfo'
@@ -37,10 +38,11 @@ const NationContent = ({ route }: Props) => {
 const EventButton = ({ oid }) => {
     const navigation = useNavigation()
     const { colors } = useTheme()
+    const { translate } = useTranslation()
 
     return (
         <ListButton
-            title={'Evenemang'}
+            title={translate.nations.events}
             onPress={() => navigation.navigate('Events', { oid, hideNationFilter: true })}
             leftIcon={<Ionicons name="calendar-outline" size={24} color={colors.text} />}
         />
