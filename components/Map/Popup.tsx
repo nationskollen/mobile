@@ -69,7 +69,9 @@ const Popup = ({ nation, show, setShow }: Props) => {
                         onPress={() => navigation.navigate('NationContent', { nation })}
                         style={[styles.nationOpenButton, { backgroundColor: colors.primary }]}
                     >
-                        <Text style={styles.nationOpenButtonText}>{translate.map.popup.shownation}</Text>
+                        <Text style={styles.nationOpenButtonText}>
+                            {translate.map.popup.shownation}
+                        </Text>
                         <Ionicons name="arrow-forward-sharp" size={20} color="white" />
                     </TouchableOpacity>
                 </View>

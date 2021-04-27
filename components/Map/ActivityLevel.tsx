@@ -22,7 +22,9 @@ const ActivityLevel = () => {
         <View style={[styles.container, { backgroundColor: colors.backgroundHighlight }]}>
             <View style={styles.left}>
                 <Ionicons name="md-people-outline" size={24} color={colors.text} />
-                <Text style={[styles.title, { color: colors.text }]}>{translate.nations.activitylevel.header}</Text>
+                <Text style={[styles.title, { color: colors.text }]}>
+                    {translate.nations.activitylevel.header}
+                </Text>
             </View>
 
             <ActivityIndicator level={0} />
@@ -41,13 +43,13 @@ const ActivityIndicator = ({ level }: IndicatorProps) => {
     switch (level) {
         case 0:
             {
-		title = translate.nations.activitylevel.closed 
+                title = translate.nations.activitylevel.closed
                 color = 'black'
             }
             break
         case 1:
             {
-                title = translate.nations.activitylevel.low 
+                title = translate.nations.activitylevel.low
                 color = 'green'
             }
             break

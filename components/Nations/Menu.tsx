@@ -77,7 +77,7 @@ const Menu = ({ oid }: Props) => {
     return (
         <View>
             <Dropdown
-                title={translate.nations.menu }
+                title={translate.nations.menu}
                 expandComponent={<Categories />}
                 icon={<Ionicons name="md-fast-food-outline" size={24} color={colors.text} />}
             />

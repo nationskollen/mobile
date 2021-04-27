@@ -172,7 +172,11 @@ const Map = () => {
                             longitude: marker.longitude,
                         }}
                         title={marker.name}
-                        description= {translate.map.marker.activitylevel.header + ': ' + translate.map.marker.activitylevel.low}
+                        description={
+                            translate.map.marker.activitylevel.header +
+                            ': ' +
+                            translate.map.marker.activitylevel.low
+                        }
                         image={require('../../img/png/vdala/vdalalogga.png')}
                         onPress={() => onMarkerPressed(marker)}
                         stopPropagation={true}

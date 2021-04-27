@@ -50,7 +50,7 @@ const NationInfo = ({ nation, backgroundColor, paddingTop }: Props) => {
                 <View style={[styles.clockSymbolWrapper]}>
                     <Ionicons name="time-outline" size={20} color={colors.text} />
                     <Text style={[styles.openinghoursTitle, { color: colors.textHighlight }]}>
-			{translate.map.popup.openingtimes}
+                        {translate.map.popup.openingtimes}
                     </Text>
                 </View>
 
@@ -58,10 +58,10 @@ const NationInfo = ({ nation, backgroundColor, paddingTop }: Props) => {
                     <View style={[styles.lineSymbol, { backgroundColor: colors.text }]}></View>
                     <View style={styles.openinghoursTextWrapper}>
                         <Text style={[styles.openinghoursText, { color: colors.text }]}>
-			    {translate.map.popup.montofri +   "10:00-20:00"}
+                            {translate.map.popup.montofri + '10:00-20:00'}
                         </Text>
                         <Text style={[styles.openinghoursText, { color: colors.text }]}>
-			    {translate.map.popup.sattosun + translate.map.popup.closed}
+                            {translate.map.popup.sattosun + translate.map.popup.closed}
                         </Text>
                     </View>
                 </View>
@@ -71,7 +71,7 @@ const NationInfo = ({ nation, backgroundColor, paddingTop }: Props) => {
                     <Text
                         style={[styles.mapAddress, { color: colors.textHighlight }]}
                         onPress={() =>
-			    // Seems like translate doesn't work on alert due to wrong type
+                            // Seems like translate doesn't work on alert due to wrong type
                             Alert.alert(
                                 'Öppna i kartor?',
                                 'Tryck OK för att öppna addressen i kartor',

@@ -14,7 +14,6 @@ import NationInfo from './NationInfo'
 import ListButton from '../ListButton'
 import ActivityLevel from '../Map/ActivityLevel'
 
-
 export interface Props {
     [key: string]: any
 }
@@ -37,7 +36,7 @@ const NationContent = ({ route }: Props) => {
 const EventButton = ({ oid }) => {
     const navigation = useNavigation()
     const { colors } = useTheme()
-    const { translate } = useTranslation ()
+    const { translate } = useTranslation()
 
     return (
         <ListButton
