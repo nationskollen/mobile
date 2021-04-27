@@ -3,7 +3,7 @@
  * @module ReminderButton
  */
 import React from 'react'
-import { View, Text, Image, StyleSheet, TouchableOpacity, ViewPropTypes } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
@@ -27,7 +27,8 @@ const ReminderButton = ({}: Props) => {
 }
 
 const Button = () => {
-    const { colors, isDarkMode } = useTheme()
+    const { colors } = useTheme()
+
     return (
         <View style={[styles.container, { backgroundColor: colors.backgroundHighlight }]}>
             <Ionicons name="md-notifications-outline" size={20} color={colors.text} />

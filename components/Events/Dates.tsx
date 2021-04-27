@@ -19,13 +19,13 @@ const EventDates = ({ created, updated }: Props) => {
         ]}>
             <View style={styles.date}>
                 <Text style={[styles.text, { color: colors.text }]}>Skapad:</Text>
-                <Text style={[styles.text, { color: colors.text }]}>
+                <Text style={[styles.text, styles.textValue, { color: colors.text }]}>
                     {new Date(created).toLocaleString('se')}
                 </Text>
             </View>
             <View style={styles.date}>
                 <Text style={[styles.text, { color: colors.text }]}>Senast uppdaterad:</Text>
-                <Text style={[styles.text, { color: colors.text }]}>
+                <Text style={[styles.text, styles.textValue, { color: colors.text }]}>
                     {new Date(updated).toLocaleString('se')}
                 </Text>
             </View>
@@ -38,17 +38,23 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         paddingHorizontal: 15,
         paddingVertical: 15,
+        paddingBottom: 10,
         marginTop: 15,
     },
 
     date: {
         flexDirection: 'row',
         justifyContent: 'space-between',
+        marginBottom: 5,
     },
 
     text: {
         fontSize: 12,
         fontWeight: 'bold',
+    },
+
+    textValue: {
+        fontWeight: 'normal',
     },
 })
 
