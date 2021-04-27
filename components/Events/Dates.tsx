@@ -8,10 +8,15 @@ export interface Props {
 }
 
 const EventDates = ({ created, updated }: Props) => {
-    const { colors } = useTheme()
+    const { colors, isDarkMode } = useTheme()
 
     return (
-        <View style={[styles.container, { borderColor: colors.border }]}>
+        <View style={[
+            styles.container,
+            {
+                backgroundColor: isDarkMode ? colors.backgroundHighlight : colors.backgroundExtra
+            }
+        ]}>
             <View style={styles.date}>
                 <Text style={[styles.text, { color: colors.text }]}>Skapad:</Text>
                 <Text style={[styles.text, { color: colors.text }]}>
@@ -30,9 +35,10 @@ const EventDates = ({ created, updated }: Props) => {
 
 const styles = StyleSheet.create({
     container: {
-        borderTopWidth: 1,
-        marginTop: 15,
+        borderRadius: 10,
+        paddingHorizontal: 15,
         paddingVertical: 15,
+        marginTop: 15,
     },
 
     date: {

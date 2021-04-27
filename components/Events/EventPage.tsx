@@ -42,7 +42,7 @@ const EventPage = ({ route }: Props) => {
                     <Text style={[styles.nationName, { color: colors.primaryText }]}>
                         {nation.name}
                     </Text>
-                    <Text style={[styles.title, { color: colors.text }]}>{event.name}</Text>
+                    <Text style={[styles.title, { color: colors.textHighlight }]}>{event.name}</Text>
                     <View style={styles.contentContainer}>
                         <Text style={{ color: colors.text }}>{data.long_description}</Text>
                         <Text style={{ color: colors.text }}>{data.long_description}</Text>
