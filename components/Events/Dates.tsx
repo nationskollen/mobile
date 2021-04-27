@@ -1,3 +1,4 @@
+import React from 'react'
 import { useTheme } from '../ThemeContext'
 import { View, Text, StyleSheet } from 'react-native'
 
@@ -30,8 +31,8 @@ const EventDates = ({ created, updated }: Props) => {
 const styles = StyleSheet.create({
     container: {
         borderTopWidth: 1,
-        marginTop: 25,
-        paddingTop: 10,
+        marginTop: 15,
+        paddingVertical: 15,
     },
 
     date: {

@@ -15,7 +15,7 @@ import { useTheme } from '../components/ThemeContext'
 import { createStackNavigator } from '@react-navigation/stack'
 
 import HomePage from '../components/Home/HomePage'
-import EventPage from '../components/Home/EventPage'
+import EventPage from '../components/Events/EventPage'
 import NationContent from '../components/Nations/NationContent'
 import NavigationBackArrow from '../components/NavigationBackArrow'
 

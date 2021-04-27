@@ -3,7 +3,7 @@
  * @module EventPage
  */
 import React from 'react'
-import { ScrollView, View, Text, StyleSheet } from 'react-native'
+import { ScrollView, View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
 import { useTheme } from '../ThemeContext'
 import { TabStackParamList } from '../Footer'
@@ -22,23 +22,37 @@ const EventPage = ({ route }: Props) => {
     const { event, nation } = route.params
     const { data, error } = useEventDescription(event.id)
 
+    if (error) {
+        return (
+            <Text style={{ color: colors.text }}>Kunde inte ladda event</Text>
+        )
+    }
+
+    if (!data) {
+        return (
+            <Text>Laddar...</Text>
+        )
+    }
+
     return (
-        <ScrollView style={styles.scrollView}>
-            <EventCover src={event.cover_img_src} height={200} />
-            <View style={styles.container}>
-                <Text style={[styles.nationName, { color: colors.primaryText }]}>
-                    {nation.name}
-                </Text>
-                <Text style={[styles.title, { color: colors.text }]}>{event.name}</Text>
-                {data && (
+        <View style={{ flex: 1 }}>
+            <ScrollView style={styles.scrollView}>
+                <EventCover src={event.cover_img_src} height={200} />
+                <View style={styles.container}>
+                    <Text style={[styles.nationName, { color: colors.primaryText }]}>
+                        {nation.name}
+                    </Text>
+                    <Text style={[styles.title, { color: colors.text }]}>{event.name}</Text>
                     <View style={styles.contentContainer}>
+                        <Text style={{ color: colors.text }}>{data.long_description}</Text>
+                        <Text style={{ color: colors.text }}>{data.long_description}</Text>
                         <Text style={{ color: colors.text }}>{data.long_description}</Text>
                         <EventDates created={data.created_at} updated={data.updated_at} />
                     </View>
-                )}
-                {error && <Text style={{ color: colors.text }}>Kunde inte ladda event</Text>}
-            </View>
-        </ScrollView>
+                </View>
+            </ScrollView>
+            <View style={styles.footer}></View>
+        </View>
     )
 }
 
@@ -48,6 +62,7 @@ const styles = StyleSheet.create({
     },
 
     container: {
+        flex: 1,
         paddingHorizontal: 15,
         paddingVertical: 20,
         flexDirection: 'column',
@@ -65,6 +80,10 @@ const styles = StyleSheet.create({
 
     contentContainer: {
         marginTop: 10,
+    },
+
+    footer: {
+
     },
 })
 
