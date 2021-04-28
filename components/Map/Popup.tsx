@@ -86,7 +86,7 @@ const Popup = ({ nation, show, setShow }: Props) => {
                         paddingTop={15}
                     />
                     <PrimaryButton
-                        onPress={() => navigation.navigate('NationContent', { nation })}
+                        onPress={() => navigation.navigate('Nation', { nation })}
                         label={translate.map.popup.shownation}
                         icon="chevron-forward"
                         style={styles.nationOpenButton}

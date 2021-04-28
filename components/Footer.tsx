@@ -25,7 +25,7 @@ export type TabStackParamList = {
     Nationer: { nation?: Nation }
     Karta: undefined
     Event: { event?: Event; nation?: Nation }
-    NationContent: { nation?: Nation }
+    Nation: { nation?: Nation }
 }
 
 const Tab = createBottomTabNavigator()

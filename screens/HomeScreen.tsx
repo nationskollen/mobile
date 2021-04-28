@@ -15,7 +15,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 
 import HomePage from '../components/Home/HomePage'
 import EventPage from '../components/Events/EventPage'
-import NationContent from '../components/Nations/NationContent'
+import NationPage from '../components/Nations/NationPage'
 import { useTranslation } from '../translate/LanguageContext'
 import NavigationBackArrow from '../components/NavigationBackArrow'
 
@@ -29,18 +29,19 @@ const HomeScreen = () => {
         <Stack.Navigator initialRouteName="Home" screenOptions={HeaderOptions(colors)}>
             <Stack.Screen name="Home" component={HomePage} options={{ title: 'Nationskollen' }} />
             <Stack.Screen
-                name="NationContent"
-                component={NationContent}
-                options={{
-                    title: 'Nation',
-                    headerLeft: () => <NavigationBackArrow />,
-                }}
-            />
-            <Stack.Screen
                 name="Events"
                 component={HomePage}
                 options={{
                     title: 'Evenemang',
+                    headerLeft: () => <NavigationBackArrow />,
+                }}
+            />
+            <Stack.Screen
+                name="Nation"
+                component={NationPage}
+                options={{
+                    title: 'Nation',
+                    headerTransparent: true,
                     headerLeft: () => <NavigationBackArrow />,
                 }}
             />

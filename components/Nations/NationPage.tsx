@@ -14,7 +14,7 @@ import { useTranslation } from '../../translate/LanguageContext'
 import Menu from './Menu'
 import ListButton from '../ListButton'
 import NationHeader from './NationHeader'
-import ActivityLevel from '../Map/ActivityLevel'
+import ActivityLevel from './ActivityLevel'
 
 export interface Props {
     route: RouteProp<TabStackParamList, 'NationContent'>

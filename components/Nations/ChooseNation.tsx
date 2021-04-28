@@ -24,7 +24,7 @@ const ChooseNation = () => {
             renderItem={({ item }) => (
                 <ListButton
                     title={item.name}
-                    onPress={() => navigation.navigate('NationContent', { nation: item })}
+                    onPress={() => navigation.navigate('Nation', { nation: item })}
                     leftIcon={<NationLogo src={item.icon_img_src} />}
                 />
             )}

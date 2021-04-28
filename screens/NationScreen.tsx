@@ -13,8 +13,8 @@ import { useTranslation } from '../translate/LanguageContext'
 import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack'
 
 import HomePage from '../components/Home/HomePage'
+import NationPage from '../components/Nations/NationPage'
 import ChooseNation from '../components/Nations/ChooseNation'
-import NationContent from '../components/Nations/NationContent'
 import NavigationBackArrow from '../components/NavigationBackArrow'
 
 export interface Props {
@@ -37,15 +37,14 @@ const NationScreen = () => {
                 }}
             />
             <Stack.Screen
-                name="NationContent"
+                name="Nation"
+                component={NationPage}
                 options={{
                     title: null,
                     headerTransparent: true,
                     headerLeft: () => <NavigationBackArrow />,
                 }}
-            >
-                {(props) => <NationContent {...props} />}
-            </Stack.Screen>
+            />
             <Stack.Screen
                 name="Events"
                 component={HomePage}

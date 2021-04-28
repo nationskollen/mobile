@@ -12,7 +12,7 @@ import { createStackNavigator, StackNavigationProp } from '@react-navigation/sta
 
 import Map from '../components/Map/MapPage'
 import HomePage from '../components/Home/HomePage'
-import NationContent from '../components/Nations/NationContent'
+import NationPage from '../components/Nations/NationPage'
 import { useTranslation } from '../translate/LanguageContext'
 import NavigationBackArrow from '../components/NavigationBackArrow'
 
@@ -34,14 +34,14 @@ const MapScreen = () => {
                 options={{ headerShown: false, title: translate.map.header }}
             />
             <Stack.Screen
-                name="NationContent"
+                name="Nation"
                 options={{
                     title: null,
                     headerTransparent: true,
                     headerLeft: () => <NavigationBackArrow />,
                 }}
             >
-                {(props) => <NationContent {...props} />}
+                {(props) => <NationPage {...props} />}
             </Stack.Screen>
             <Stack.Screen
                 name="Events"
