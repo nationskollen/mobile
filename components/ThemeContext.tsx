@@ -29,6 +29,13 @@ export interface ThemeColors {
     primaryText: string
     focusedText: string
     unFocusedText: string
+    activityLevels: {
+        low: string
+        medium: string
+        high: string
+        veryHigh: string
+        max: string
+    }
 }
 
 export interface Theme {
@@ -55,6 +62,13 @@ export const LightTheme: Theme = {
         primaryText: '#71002E',
         focusedText: 'white',
         unFocusedText: '#555',
+        activityLevels: {
+            low: '#06e23d',
+            medium: '#ede215',
+            high: '#f7a000',
+            veryHigh: '#f74a00',
+            max: '#f71400',
+        }
     },
 }
 
@@ -77,6 +91,13 @@ export const DarkTheme: Theme = {
         primaryText: '#ef005f',
         focusedText: 'white',
         unFocusedText: '#9a95a5',
+        activityLevels: {
+            low: '#44fc37',
+            medium: '#fcd837',
+            high: '#f99661',
+            veryHigh: '#f96164',
+            max: '#fc2d30',
+        }
     },
 }
 

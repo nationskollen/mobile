@@ -3,9 +3,9 @@
  * @module ActivityLevel
  */
 import React from 'react'
-import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 import { View, Text, StyleSheet } from 'react-native'
+import { useTheme, ThemeColors } from '../ThemeContext'
 import { useActivityLevel, Location } from '@dsp-krabby/sdk'
 import { useTranslation } from '../../translate/LanguageContext'
 import LanguageContextType from '../../translate/LanguageContextType'
@@ -15,41 +15,40 @@ export interface Props {
 }
 
 const MAX_ACTIVITY_LEVEL = 5
-const MAPPED_ACTIVITY_DATA = (translate: LanguageContextType) => {
+const MAPPED_ACTIVITY_DATA = (colors: ThemeColors, translate: LanguageContextType) => {
     return [
         {
             title: translate.nations.activitylevel.closed,
-            color: 'black',
         },
         {
             title: translate.nations.activitylevel.low,
-            color: 'green',
+            color: colors.activityLevels.low,
         },
         {
             title: translate.nations.activitylevel.medium,
-            color: 'yellow',
+            color: colors.activityLevels.medium,
         },
         {
             title: translate.nations.activitylevel.high,
-            color: 'red',
+            color: colors.activityLevels.high,
         },
         {
             title: translate.nations.activitylevel.veryHigh,
-            color: 'red',
+            color: colors.activityLevels.veryHigh,
         },
         {
             title: translate.nations.activitylevel.max,
-            color: 'red',
+            color: colors.activityLevels.max,
         },
     ]
 }
 
-const getActivityData = (level: number, translate: LanguageContextType) => {
+const getActivityData = (level: number, colors: ThemeColors, translate: LanguageContextType) => {
     if (level < 0 || level > MAX_ACTIVITY_LEVEL) {
         return null
     }
 
-    return MAPPED_ACTIVITY_DATA(translate)[level]
+    return MAPPED_ACTIVITY_DATA(colors, translate)[level]
 }
 
 const ActivityLevel = ({ location }: Props) => {
@@ -60,7 +59,7 @@ const ActivityLevel = ({ location }: Props) => {
     const { translate } = useTranslation()
     const { colors, isDarkMode } = useTheme()
     const activityLevel = useActivityLevel(location.id, location.activity_level)
-    const activityData = getActivityData(activityLevel, translate)
+    const activityData = getActivityData(activityLevel, colors, translate)
 
     // If we receive invalid data we might as well hide the indicator
     if (!activityData) {
@@ -74,10 +73,12 @@ const ActivityLevel = ({ location }: Props) => {
                 { backgroundColor: isDarkMode ? colors.backgroundExtra : colors.background },
             ]}
         >
-            <Ionicons name="md-people-outline" size={24} color={colors.text} />
+            <Ionicons name="md-people-outline" size={24} color={colors.textHighlight} />
             <View style={styles.activityLevelWrapper}>
-                <View style={[styles.activityCircle, { backgroundColor: activityData.color }]} />
-                <Text style={[styles.activityLevelText, { color: colors.text }]}>
+                {activityLevel !== 0 && (
+                    <View style={[styles.activityCircle, { backgroundColor: activityData.color }]} />
+                )}
+                <Text style={[styles.activityLevelText, { color: colors.textHighlight }]}>
                     {activityData.title}
                 </Text>
             </View>
@@ -101,14 +102,14 @@ const styles = StyleSheet.create({
 
     activityLevelWrapper: {
         flexDirection: 'row',
-        marginLeft: 8,
     },
 
     activityCircle: {
-        width: 10,
-        height: 10,
+        width: 12,
+        height: 12,
         borderRadius: 50,
         alignSelf: 'center',
+        marginLeft: 8,
     },
 
     activityLevelText: {
