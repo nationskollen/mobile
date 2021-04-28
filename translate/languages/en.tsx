@@ -23,6 +23,8 @@ const English: LanguageContextType = {
         header: 'Nations',
         menu: 'Menu',
         events: 'Events',
+        openingHours: 'Opening hours',
+        locations: 'Locations',
         activitylevel: {
             header: 'Activity level',
             closed: 'Closed',

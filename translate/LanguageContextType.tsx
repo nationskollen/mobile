@@ -21,6 +21,8 @@ export default interface LanguageContextType {
         header: string
         menu: string
         events: string
+        openingHours: string
+        locations: string
         activitylevel: {
             header: string
             low: string

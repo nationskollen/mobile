@@ -23,6 +23,8 @@ const Swedish: LanguageContextType = {
         header: 'Nationer',
         menu: 'Meny',
         events: 'Evenemang',
+        openingHours: 'Öppettider',
+        locations: 'Platser',
         activitylevel: {
             header: 'Aktivitetsnivå',
             closed: 'Stängt',
