@@ -93,6 +93,7 @@ const Swedish: LanguageContextType = {
     events: {
         createdAt: 'Skapad',
         updatedAt: 'Senast uppdaterad',
+        failedToLoad: 'Kunde inte ladda event',
     },
 }
 

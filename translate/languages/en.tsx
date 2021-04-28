@@ -92,6 +92,7 @@ const English: LanguageContextType = {
     events: {
         createdAt: 'Created',
         updatedAt: 'Last updated',
+        failedToLoad: 'Could not load event',
     },
 }
 

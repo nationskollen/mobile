@@ -3,15 +3,17 @@
  * @module EventPage
  */
 import React from 'react'
-import { ScrollView, View, Text, StyleSheet, ActivityIndicator } from 'react-native'
+import { ScrollView, View, Text, StyleSheet } from 'react-native'
 
 import { useTheme } from '../ThemeContext'
 import { TabStackParamList } from '../Footer'
 import { RouteProp } from '@react-navigation/native'
 import { useEventDescription } from '@dsp-krabby/sdk'
+import { useTranslation } from '../../translate/LanguageContext'
 
 import EventCover from '../Events/Cover'
 import EventDates from '../Events/Dates'
+import EventPageSkeleton from '../Skeletons/EventPage'
 
 export interface Props {
     route: RouteProp<TabStackParamList, 'Event'>
@@ -20,6 +22,7 @@ export interface Props {
 const EventPage = ({ route }: Props) => {
     const { colors } = useTheme()
     const { event, nation } = route.params
+    const { translate } = useTranslation()
     const { data, error } = useEventDescription(event.id)
 
     return (
@@ -33,16 +36,16 @@ const EventPage = ({ route }: Props) => {
                     <Text style={[styles.title, { color: colors.textHighlight }]}>
                         {event.name}
                     </Text>
-                    {error && <Text style={{ color: colors.text }}>Kunde inte ladda event</Text>}
+                    {error && (
+                        <Text style={{ color: colors.text }}>{translate.events.failedToLoad}</Text>
+                    )}
                     {data ? (
                         <View>
                             <Text style={{ color: colors.text }}>{data.long_description}</Text>
                             <EventDates created={data.created_at} updated={data.updated_at} />
                         </View>
                     ) : (
-                        <View style={styles.loading}>
-                            <ActivityIndicator size="small" color={colors.primaryText} />
-                        </View>
+                        <EventPageSkeleton />
                     )}
                 </View>
             </ScrollView>
@@ -70,16 +73,7 @@ const styles = StyleSheet.create({
     title: {
         fontWeight: 'bold',
         fontSize: 18,
-    },
-
-    contentContainer: {
-        marginTop: 10,
-    },
-
-    loading: {
-        marginTop: 25,
-        justifyContent: 'center',
-        alignItems: 'center',
+        marginBottom: 10,
     },
 })
 

@@ -89,5 +89,6 @@ export default interface LanguageContextType {
     events: {
         createdAt: string
         updatedAt: string
+        failedToLoad: string
     }
 }

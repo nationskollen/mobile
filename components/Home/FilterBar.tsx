@@ -24,8 +24,8 @@ const FilterBar = ({ hideNationFilter }: Props) => {
 const styles = StyleSheet.create({
     mainWrapper: {
         width: '100%',
-        height: 70,
-        paddingVertical: 10,
+        height: 62,
+        paddingVertical: 8,
         paddingHorizontal: 10,
         flexDirection: 'row',
         alignItems: 'center',
