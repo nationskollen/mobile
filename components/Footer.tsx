@@ -3,17 +3,17 @@
  * @module Footer
  */
 import React from 'react'
-import { Nation } from '@dsp-krabby/sdk'
 import { useTheme } from './ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
+import { Nation, Event } from '@dsp-krabby/sdk'
 import { useTranslation } from '../translate/LanguageContext'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 import MapScreen from '../screens/MapScreen'
 import HomeScreen from '../screens/HomeScreen'
+import NationScreen from '../screens/NationScreen'
 import SettingsScreen from '../screens/SettingsScreen'
 import NotificationScreen from '../screens/NotificationScreen'
-import NationScreen from '../screens/NationScreen'
 
 /**
  * Defines the available route params for each tab.
@@ -24,6 +24,8 @@ export type TabStackParamList = {
     Notifikationer: undefined
     Nationer: { nation?: Nation }
     Karta: undefined
+    Event: { event?: Event; nation?: Nation }
+    NationContent: { nation?: Nation }
 }
 
 const Tab = createBottomTabNavigator()

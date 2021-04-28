@@ -12,7 +12,6 @@ import { RouteProp } from '@react-navigation/native'
 import Timeline from './Timeline'
 import Calendar from './Calendar'
 import FilterBar from './FilterBar'
-import ReminderButton from './ReminderButton'
 
 export interface Props {
     route: RouteProp<TabStackParamList, 'Hem'>

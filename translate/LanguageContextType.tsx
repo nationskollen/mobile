@@ -2,6 +2,7 @@ export default interface LanguageContextType {
     general: {
         ok: string
         cancel: string
+        loading: string
     }
 
     footer: {
@@ -83,5 +84,11 @@ export default interface LanguageContextType {
         notificationsetting: {
             header: string
         }
+    }
+
+    events: {
+        createdAt: string
+        updatedAt: string
+        failedToLoad: string
     }
 }

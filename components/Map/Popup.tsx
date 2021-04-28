@@ -3,13 +3,14 @@
  * @module Popup
  */
 import React, { useRef, useEffect } from 'react'
-import { Animated, View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { Animated, View, StyleSheet, TouchableOpacity } from 'react-native'
 
 import { Nation } from '@dsp-krabby/sdk'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 
+import PrimaryButton from '../PrimaryButton'
 import NationInfo from '../Nations/NationInfo'
 import { useTranslation } from '../../translate/LanguageContext'
 
@@ -25,21 +26,36 @@ const Popup = ({ nation, show, setShow }: Props) => {
     const navigation = useNavigation()
     const popupHeight = 300
     const popupAnimation = useRef(new Animated.Value(popupHeight)).current
+    const popupAnimationOpacity = useRef(new Animated.Value(0)).current
 
     const popin = () => {
-        Animated.timing(popupAnimation, {
-            toValue: 0,
-            duration: 100,
-            useNativeDriver: true,
-        }).start()
+        Animated.parallel([
+            Animated.timing(popupAnimation, {
+                toValue: 0,
+                duration: 200,
+                useNativeDriver: true,
+            }),
+            Animated.timing(popupAnimationOpacity, {
+                toValue: 1,
+                duration: 200,
+                useNativeDriver: true,
+            }),
+        ]).start()
     }
 
     const popout = () => {
-        Animated.timing(popupAnimation, {
-            toValue: popupHeight,
-            duration: 100,
-            useNativeDriver: true,
-        }).start()
+        Animated.parallel([
+            Animated.timing(popupAnimation, {
+                toValue: popupHeight,
+                duration: 200,
+                useNativeDriver: true,
+            }),
+            Animated.timing(popupAnimationOpacity, {
+                toValue: 0,
+                duration: 200,
+                useNativeDriver: true,
+            }),
+        ]).start()
     }
 
     // Re-render on prop change
@@ -52,7 +68,11 @@ const Popup = ({ nation, show, setShow }: Props) => {
         <Animated.View
             style={[
                 styles.popup,
-                { backgroundColor: colors.background, transform: [{ translateY: popupAnimation }] },
+                {
+                    backgroundColor: colors.background,
+                    opacity: popupAnimationOpacity,
+                    transform: [{ translateY: popupAnimation }],
+                },
             ]}
         >
             <TouchableOpacity style={styles.closeButton} onPress={() => setShow(false)}>
@@ -65,15 +85,12 @@ const Popup = ({ nation, show, setShow }: Props) => {
                         backgroundColor={colors.background}
                         paddingTop={15}
                     />
-                    <TouchableOpacity
+                    <PrimaryButton
                         onPress={() => navigation.navigate('NationContent', { nation })}
-                        style={[styles.nationOpenButton, { backgroundColor: colors.primary }]}
-                    >
-                        <Text style={styles.nationOpenButtonText}>
-                            {translate.map.popup.shownation}
-                        </Text>
-                        <Ionicons name="arrow-forward-sharp" size={20} color="white" />
-                    </TouchableOpacity>
+                        label={translate.map.popup.shownation}
+                        icon="chevron-forward"
+                        style={styles.nationOpenButton}
+                    />
                 </View>
             )}
         </Animated.View>
@@ -109,20 +126,7 @@ const styles = StyleSheet.create({
     nationOpenButton: {
         marginHorizontal: 20,
         marginBottom: 20,
-        paddingVertical: 12,
         flex: 1,
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 10,
-    },
-
-    nationOpenButtonText: {
-        fontWeight: 'bold',
-        fontSize: 14,
-        color: 'white',
-        marginRight: 5,
     },
 })
 

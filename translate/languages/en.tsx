@@ -4,6 +4,7 @@ const English: LanguageContextType = {
     general: {
         ok: 'OK',
         cancel: 'Cancel',
+        loading: 'Loading',
     },
 
     footer: {
@@ -86,6 +87,12 @@ const English: LanguageContextType = {
         notificationsetting: {
             header: 'Adjust notifications',
         },
+    },
+
+    events: {
+        createdAt: 'Created',
+        updatedAt: 'Last updated',
+        failedToLoad: 'Could not load event',
     },
 }
 

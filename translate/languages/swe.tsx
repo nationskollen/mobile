@@ -4,6 +4,7 @@ const Swedish: LanguageContextType = {
     general: {
         ok: 'OK',
         cancel: 'Avbryt',
+        loading: 'Laddar',
     },
 
     footer: {
@@ -87,6 +88,12 @@ const Swedish: LanguageContextType = {
         notificationsetting: {
             header: 'Anpassa Notifikationer',
         },
+    },
+
+    events: {
+        createdAt: 'Skapad',
+        updatedAt: 'Senast uppdaterad',
+        failedToLoad: 'Kunde inte ladda event',
     },
 }
 

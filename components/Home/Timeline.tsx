@@ -7,9 +7,9 @@ import { FlatList } from 'react-native'
 import { useEvents } from '@dsp-krabby/sdk'
 import { useDatePicker } from './DatePickerContext'
 
-import EventItem from './Event'
 import ListEmpty from '../ListEmpty'
 import ListFooter from '../ListFooter'
+import EventItem from '../Events/Event'
 import LoadingCircle from '../LoadingCircle'
 
 export interface Props {
