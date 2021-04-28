@@ -76,7 +76,9 @@ const ActivityLevel = ({ location }: Props) => {
             <Ionicons name="md-people-outline" size={24} color={colors.textHighlight} />
             <View style={styles.activityLevelWrapper}>
                 {activityLevel !== 0 && (
-                    <View style={[styles.activityCircle, { backgroundColor: activityData.color }]} />
+                    <View
+                        style={[styles.activityCircle, { backgroundColor: activityData.color }]}
+                    />
                 )}
                 <Text style={[styles.activityLevelText, { color: colors.textHighlight }]}>
                     {activityData.title}

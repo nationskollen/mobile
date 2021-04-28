@@ -18,7 +18,7 @@ export interface Props {
 }
 
 const NationHeader = ({ nation }: Props) => {
-    const { colors, isDarkMode } = useTheme()
+    const { colors } = useTheme()
 
     return (
         <View
@@ -51,9 +51,7 @@ const NationHeader = ({ nation }: Props) => {
                     style={[
                         styles.logoContainer,
                         {
-                            backgroundColor: isDarkMode
-                                ? colors.backgroundExtra
-                                : colors.background,
+                            backgroundColor: colors.background,
                         },
                     ]}
                 >
@@ -69,7 +67,7 @@ const NationHeader = ({ nation }: Props) => {
 
 const styles = StyleSheet.create({
     container: {
-        marginBottom: 70,
+        marginBottom: 80,
     },
 
     coverContainer: {
@@ -93,9 +91,8 @@ const styles = StyleSheet.create({
     },
 
     logoContainer: {
-        padding: 6,
-        borderRadius: 10,
-        elevation: 5,
+        padding: 8,
+        borderRadius: 15,
     },
 
     nameWrapper: {
@@ -104,14 +101,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute',
-        bottom: -60,
+        bottom: -65,
         zIndex: 3,
     },
 
     nationName: {
         fontWeight: 'bold',
         fontSize: 20,
-        marginTop: 10,
+        marginTop: 5,
     },
 })
 

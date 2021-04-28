@@ -7,6 +7,16 @@ const Swedish: LanguageContextType = {
         loading: 'Laddar',
     },
 
+    days: {
+        monday: 'Måndag',
+        tuesday: 'Tisday',
+        wednesday: 'Onsdag',
+        thursday: 'Torsdag',
+        friday: 'Fredag',
+        saturday: 'Lördag',
+        sunday: 'Söndag',
+    },
+
     footer: {
         notifications: 'Notifikationer',
         nations: 'Nationer',

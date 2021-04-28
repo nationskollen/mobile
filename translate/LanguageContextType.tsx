@@ -5,6 +5,16 @@ export default interface LanguageContextType {
         loading: string
     }
 
+    days: {
+        monday: string
+        tuesday: string
+        wednesday: string
+        thursday: string
+        friday: string
+        saturday: string
+        sunday: string
+    }
+
     footer: {
         notifications: string
         nations: string

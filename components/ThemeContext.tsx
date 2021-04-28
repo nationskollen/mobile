@@ -68,7 +68,7 @@ export const LightTheme: Theme = {
             high: '#f7a000',
             veryHigh: '#f74a00',
             max: '#f71400',
-        }
+        },
     },
 }
 
@@ -97,7 +97,7 @@ export const DarkTheme: Theme = {
             high: '#f99661',
             veryHigh: '#f96164',
             max: '#fc2d30',
-        }
+        },
     },
 }
 
