@@ -28,12 +28,7 @@ async function addToCalendar (event:Event) {
     }
 
     var details:Details = getDetails(event)
-    
-    const eventID = await createEvent(details)
-    
-    //console.log("calendar ID: " + await getCalendarID())
-    //console.log("new event ID: " + eventID)
-    //console.log("details of new event: " + details)
+    await createEvent(details)
 
     const calendars = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT)
     console.log('Titles of existing calendars on device: ')
