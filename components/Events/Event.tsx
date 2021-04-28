@@ -26,6 +26,7 @@ export interface EventProps {
 
 export interface HeaderProps {
     nation: Nation
+    event: EventResponse
 }
 
 const Event = ({ event }: EventProps) => {
@@ -42,7 +43,7 @@ const Event = ({ event }: EventProps) => {
                 ]}
             >
                 <EventCover event={event} height={200} />
-                <Header nation={nation} />
+                <Header nation={nation} event={event}/>
 
                 {/*Container for title and description*/}
                 <View style={styles.textContainer}>
@@ -70,7 +71,7 @@ const Event = ({ event }: EventProps) => {
     )
 }
 
-const Header = ({ nation }: HeaderProps) => {
+const Header = ({ nation, event}: HeaderProps) => {
     const { colors } = useTheme()
     const navigation = useNavigation()
 
@@ -89,7 +90,7 @@ const Header = ({ nation }: HeaderProps) => {
                     </View>
                 )}
             </TouchableOpacity>
-            <ReminderButton />
+            <ReminderButton event={event}/>
         </View>
     )
 }

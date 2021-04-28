@@ -4,23 +4,26 @@
  */
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
+import OptionsMenu from 'react-native-option-menu'
+import { useAsyncCallback } from 'react-async-hook';
 
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 import { useTranslation } from '../../translate/LanguageContext'
 
-import OptionsMenu from 'react-native-option-menu'
+import { EventProps} from './Event'
+import addToCalendar, { getPermission } from './AddToCalendar'
 
-export interface Props {}
+const ReminderButton = ({ event }: EventProps ) => {
+    const asyncOnPress = useAsyncCallback(()=>addToCalendar(event))
 
-const ReminderButton = ({}: Props) => {
     return (
         <OptionsMenu
             customButton={<Button />}
             destructiveIndex={2}
             options={['Lägg till i kalender', 'Push-notis', 'Avbryt']}
             actions={[
-                () => console.log('add to calendar pressed'),
+                asyncOnPress.execute,
                 () => console.log('push notification pressed'),
             ]}
         />
