@@ -29,6 +29,8 @@ export default interface LanguageContextType {
             medium: string
             high: string
             closed: string
+            veryHigh: string
+            max: string
         }
         alerts: {
             mapTitle: string

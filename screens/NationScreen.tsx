@@ -13,7 +13,6 @@ import { useTranslation } from '../translate/LanguageContext'
 import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack'
 
 import HomePage from '../components/Home/HomePage'
-import ActivityLevel from '../components/Map/ActivityLevel'
 import ChooseNation from '../components/Nations/ChooseNation'
 import NationContent from '../components/Nations/NationContent'
 import NavigationBackArrow from '../components/NavigationBackArrow'
@@ -43,7 +42,6 @@ const NationScreen = () => {
                     title: null,
                     headerTransparent: true,
                     headerLeft: () => <NavigationBackArrow />,
-                    headerRight: () => <ActivityLevel />,
                 }}
             >
                 {(props) => <NationContent {...props} />}

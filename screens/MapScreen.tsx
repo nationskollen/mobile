@@ -36,7 +36,8 @@ const MapScreen = () => {
             <Stack.Screen
                 name="NationContent"
                 options={{
-                    title: 'Nation',
+                    title: null,
+                    headerTransparent: true,
                     headerLeft: () => <NavigationBackArrow />,
                 }}
             >

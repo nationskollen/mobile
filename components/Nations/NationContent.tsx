@@ -2,7 +2,7 @@
  * @category Nations
  * @module NationContent
  */
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import { ScrollView, View, Text, StyleSheet } from 'react-native'
 import { useTheme } from '@react-navigation/native'
@@ -14,6 +14,7 @@ import { useTranslation } from '../../translate/LanguageContext'
 import Menu from './Menu'
 import ListButton from '../ListButton'
 import NationHeader from './NationHeader'
+import ActivityLevel from '../Map/ActivityLevel'
 
 export interface Props {
     route: RouteProp<TabStackParamList, 'NationContent'>
@@ -24,6 +25,14 @@ const NationContent = ({ route }: Props) => {
     const { colors } = useTheme()
     const { translate } = useTranslation()
     const navigation = useNavigation()
+
+    useEffect(() => {
+        if (nation.default_location) {
+            navigation.setOptions({
+                headerRight: () => <ActivityLevel location={nation.default_location} />,
+            })
+        }
+    }, [nation])
 
     return (
         <ScrollView style={{ flex: 1 }}>

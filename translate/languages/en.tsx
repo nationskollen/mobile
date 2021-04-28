@@ -31,6 +31,8 @@ const English: LanguageContextType = {
             low: 'Low',
             medium: 'Medium',
             high: 'High',
+            veryHigh: 'Very high',
+            max: 'Max',
         },
         alerts: {
             mapTitle: 'Open in maps?',

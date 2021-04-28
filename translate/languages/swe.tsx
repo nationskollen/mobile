@@ -31,6 +31,8 @@ const Swedish: LanguageContextType = {
             low: 'Låg',
             medium: 'Medel',
             high: 'Hög',
+            veryHigh: 'Väldigt hög',
+            max: 'Max',
         },
         alerts: {
             mapTitle: 'Öppna i kartor?',
