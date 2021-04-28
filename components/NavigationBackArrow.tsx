@@ -15,7 +15,7 @@ const NavigationBackArrow: React.FC = () => {
             size={28}
             color="white"
             onPress={navigation.goBack}
-            style={{ marginLeft: 5, paddingLeft: 10, paddingRight: 10 }}
+            style={{ marginLeft: 5, paddingLeft: 10, paddingRight: 40 }}
         />
     )
 }

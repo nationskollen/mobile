@@ -9,6 +9,7 @@ import 'react-native-gesture-handler'
 import Constants from 'expo-constants'
 import { Provider } from '@dsp-krabby/sdk'
 import { ThemeProvider } from './components/ThemeContext'
+import { LanguageContextProvider } from './translate/LanguageContext'
 
 import Footer from './components/Footer'
 
@@ -23,7 +24,9 @@ const App = () => {
             }}
         >
             <ThemeProvider>
-                <Footer />
+                <LanguageContextProvider>
+                    <Footer />
+                </LanguageContextProvider>
             </ThemeProvider>
         </Provider>
     )

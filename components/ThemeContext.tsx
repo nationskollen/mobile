@@ -14,6 +14,7 @@ export interface ThemeContextContract {
 
 export interface ThemeColors {
     primary: string
+    primaryHighlight: string
     background: string
     backgroundExtra: string
     backgroundHighlight: string
@@ -39,6 +40,7 @@ export const LightTheme: Theme = {
     dark: false,
     colors: {
         primary: '#71002E',
+        primaryHighlight: '#91053d',
         background: 'white',
         backgroundExtra: '#f1f1f1',
         backgroundHighlight: '#e2e2e2',
@@ -60,6 +62,7 @@ export const DarkTheme: Theme = {
     dark: true,
     colors: {
         primary: '#71002E',
+        primaryHighlight: '#91053d',
         background: '#0a090c',
         backgroundExtra: '#141319',
         backgroundHighlight: '#262430',

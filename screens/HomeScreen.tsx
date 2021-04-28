@@ -11,20 +11,19 @@ import React from 'react'
 import 'react-native-gesture-handler'
 import { HeaderOptions } from './NavigationHeader'
 import { useTheme } from '../components/ThemeContext'
-import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack'
+import { createStackNavigator } from '@react-navigation/stack'
 
 import HomePage from '../components/Home/HomePage'
+import EventPage from '../components/Events/EventPage'
 import NationContent from '../components/Nations/NationContent'
+import { useTranslation } from '../translate/LanguageContext'
 import NavigationBackArrow from '../components/NavigationBackArrow'
-
-export interface Props {
-    navigation: StackNavigationProp<any, any>
-}
 
 const Stack = createStackNavigator()
 
 const HomeScreen = () => {
     const { colors } = useTheme()
+    const { translate } = useTranslation()
 
     return (
         <Stack.Navigator initialRouteName="Home" screenOptions={HeaderOptions(colors)}>
@@ -42,6 +41,14 @@ const HomeScreen = () => {
                 component={HomePage}
                 options={{
                     title: 'Evenemang',
+                    headerLeft: () => <NavigationBackArrow />,
+                }}
+            />
+            <Stack.Screen
+                name="Event"
+                component={EventPage}
+                options={{
+                    title: 'Event',
                     headerLeft: () => <NavigationBackArrow />,
                 }}
             />
