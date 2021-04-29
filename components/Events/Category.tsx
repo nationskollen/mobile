@@ -7,15 +7,22 @@ export interface Props {
 }
 
 const Category = ({ name }: Props) => {
-    const { colors } = useTheme()
+    const { colors, isDarkMode } = useTheme()
 
     if (!name) {
         return null
     }
 
     return (
-        <View style={[styles.container, { backgroundColor: colors.primary }]}>
-            <Text style={[styles.text, { color: 'white' }]}>{name}</Text>
+        <View
+            style={[
+                styles.container,
+                {
+                    borderColor: colors.borderDark,
+                }
+            ]}
+        >
+            <Text style={[styles.text, { color: colors.text }]}>{name}</Text>
         </View>
     )
 }
@@ -28,13 +35,13 @@ const styles = StyleSheet.create({
         left: 10,
         paddingHorizontal: 10,
         paddingVertical: 5,
-        borderRadius: 10,
-        elevation: 2,
+        borderRadius: 8,
+        borderWidth: 2,
     },
 
     text: {
         fontWeight: 'bold',
-        fontSize: 12,
+        fontSize: 11,
         textTransform: 'uppercase',
     },
 })

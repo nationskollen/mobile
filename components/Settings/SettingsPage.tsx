@@ -42,17 +42,17 @@ const SettingsPage = ({ navigation }: Props) => {
                 />
             </View>
             <ListButton
-                title={translate.settings.login}
+                title={translate.titles.login}
                 onPress={() => navigation.push('Login')}
                 leftIcon={<Ionicons name="lock-closed-outline" size={24} color={colors.text} />}
             />
             <ListButton
-                title={translate.settings.notifications}
+                title={translate.titles.customizeNotificaitions}
                 onPress={() => navigation.push('NotificationSettings')}
                 leftIcon={<Ionicons name="filter" size={24} color={colors.text} />}
             />
             <ListButton
-                title={translate.settings.language}
+                title={translate.titles.language}
                 onPress={() => navigation.push('LanguageSettings')}
                 leftIcon={<Ionicons name="language" size={24} color={colors.text} />}
             />
