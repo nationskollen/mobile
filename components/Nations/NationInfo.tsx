@@ -10,11 +10,13 @@
 import React from 'react'
 import { View, Text, StyleSheet, Alert } from 'react-native'
 
-import { Nation } from '@dsp-krabby/sdk'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
-import NationLogo from './NationLogo'
 import { useTranslation } from '../../translate/LanguageContext'
+import { useOpeningHours, Nation } from '@dsp-krabby/sdk'
+
+import NationLogo from './NationLogo'
+import OpeningHours from './OpeningHours'
 
 export interface Props {
     nation: Nation
@@ -22,12 +24,11 @@ export interface Props {
     paddingTop?: number
 }
 
-//renders information and title of nation. Can be used in maps too!
 const NationInfo = ({ nation, backgroundColor, paddingTop }: Props) => {
-    //TODO: add openinghours and address to nation object
-    //TODO: add color theme to nation, so that icons can match
     const { colors } = useTheme()
     const { translate } = useTranslation()
+    const { id, address } = nation.default_location
+    const { data: openingHours } = useOpeningHours(id)
 
     return (
         <View
@@ -50,20 +51,13 @@ const NationInfo = ({ nation, backgroundColor, paddingTop }: Props) => {
                 <View style={[styles.clockSymbolWrapper]}>
                     <Ionicons name="time-outline" size={20} color={colors.text} />
                     <Text style={[styles.openinghoursTitle, { color: colors.textHighlight }]}>
-                        {translate.map.popup.openingtimes}
+                        {translate.titles.nationLocationAndHours}
                     </Text>
                 </View>
 
                 <View style={styles.openinghoursWrapper}>
                     <View style={[styles.lineSymbol, { backgroundColor: colors.text }]}></View>
-                    <View style={styles.openinghoursTextWrapper}>
-                        <Text style={[styles.openinghoursText, { color: colors.text }]}>
-                            {translate.map.popup.montofri + '10:00-20:00'}
-                        </Text>
-                        <Text style={[styles.openinghoursText, { color: colors.text }]}>
-                            {translate.map.popup.sattosun + translate.map.popup.closed}
-                        </Text>
-                    </View>
+                    <OpeningHours hours={openingHours} />
                 </View>
 
                 <View style={styles.mapWrapper}>
@@ -72,8 +66,8 @@ const NationInfo = ({ nation, backgroundColor, paddingTop }: Props) => {
                         style={[styles.mapAddress, { color: colors.textHighlight }]}
                         onPress={() =>
                             Alert.alert(
-                                translate.nations.alerts.mapTitle,
-                                translate.nations.alerts.mapDescription,
+                                translate.alerts.showOnMapTitle,
+                                translate.alerts.showOnMapDescription,
                                 [
                                     {
                                         text: translate.general.cancel,
@@ -90,7 +84,7 @@ const NationInfo = ({ nation, backgroundColor, paddingTop }: Props) => {
                             )
                         }
                     >
-                        S:t Larsgatan 13, Uppsala, 75311
+                        {address}
                     </Text>
                 </View>
             </View>
@@ -126,31 +120,21 @@ const styles = StyleSheet.create({
         marginTop: 6,
     },
 
-    clockSymbolWrapper: {
-        flexDirection: 'row',
-        marginTop: 15,
-        alignItems: 'center',
-    },
-
     openinghoursTitle: {
         fontWeight: 'bold',
         fontSize: 14,
         marginLeft: 10,
     },
 
-    openinghoursTextWrapper: {
-        justifyContent: 'space-evenly',
-        marginLeft: 20,
-    },
-
-    openinghoursText: {
-        fontSize: 14,
+    clockSymbolWrapper: {
+        flexDirection: 'row',
+        marginTop: 15,
+        alignItems: 'center',
     },
 
     lineSymbol: {
         marginLeft: 8,
         width: 1,
-        height: 50,
         borderRadius: 5,
         backgroundColor: 'black',
     },

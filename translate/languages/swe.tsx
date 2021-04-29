@@ -7,37 +7,49 @@ const Swedish: LanguageContextType = {
         loading: 'Laddar',
     },
 
-    footer: {
-        notifications: 'Notifikationer',
-        nations: 'Nationer',
+    titles: {
         home: 'Hem',
+        notifications: 'Notifikationer',
         map: 'Karta',
         settings: 'Inställningar',
-    },
-
-    notifications: {
-        header: 'Notifikationer',
-    },
-
-    nations: {
-        header: 'Nationer',
-        menu: 'Meny',
+        nation: 'Nation',
+        nations: 'Välj nation',
+        nationMenus: 'Menyer',
+        nationEvents: 'Evenemang',
+        nationLocationAndHours: 'Öppettider och platser',
         events: 'Evenemang',
-        activitylevel: {
-            header: 'Aktivitetsnivå',
-            closed: 'Stängt',
-            low: 'Låg',
-            medium: 'Medel',
-            high: 'Hög',
-        },
-        alerts: {
-            mapTitle: 'Öppna i kartor?',
-            mapDescription: 'Tryck OK för att öppna addressen i kartor',
-        },
+        event: 'Event',
+        login: 'Logga in',
+        customizeNotificaitions: 'Anpassa notifikationer',
+        language: 'Välj språk',
+    },
+
+    activityLevels: {
+        header: 'Aktivitetsnivå',
+        closed: 'Stängt',
+        low: 'Låg',
+        medium: 'Medel',
+        high: 'Hög',
+        veryHigh: 'Väldigt hög',
+        max: 'Max',
+    },
+
+    alerts: {
+        showOnMapTitle: 'Öppna i kartor?',
+        showOnMapDescription: 'Tryck OK för att öppna addressen i kartor',
+    },
+
+    days: {
+        monday: 'Måndag',
+        tuesday: 'Tisday',
+        wednesday: 'Onsdag',
+        thursday: 'Torsdag',
+        friday: 'Fredag',
+        saturday: 'Lördag',
+        sunday: 'Söndag',
     },
 
     home: {
-        header: 'Hem',
         headline: 'Nationskollen',
         nationbutton: 'Nation',
         reminderbutton: 'Påminn mig',
@@ -45,34 +57,14 @@ const Swedish: LanguageContextType = {
     },
 
     map: {
-        header: 'Karta',
+        currentActivityLevel: 'Aktivitetsnivå',
         popup: {
-            openingtimes: 'Öppettider',
-            montofri: 'Mån-Fri ',
-            sattosun: 'Lör-Sön ',
             shownation: 'Visa nation',
             closed: 'Stängt',
-            alerts: {
-                openinmaps: 'Öppna i kartor?',
-                presstoopen: 'Tryck OK för att öppna i kartor',
-                decline: 'Avbryt',
-                accept: 'Ok',
-            },
-        },
-
-        marker: {
-            activitylevel: {
-                header: 'Aktivitetsnivå',
-                low: 'Låg',
-                medium: 'Medel',
-                high: 'Hög',
-                closed: 'Stängt',
-            },
         },
     },
 
     settings: {
-        header: 'Inställningar',
         darkmodeheader: 'Mörkt läge',
         darkmodedescription: 'Ställ in detta för att förhindra ansträngda ögon',
         login: 'Logga in',
