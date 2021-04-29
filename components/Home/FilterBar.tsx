@@ -2,21 +2,28 @@
  * @category Home
  * @module FilterBar
  */
-import React from 'react'
+import React, { useState } from 'react'
 import { View, StyleSheet } from 'react-native'
 
 import ChooseDateBar from './ChooseDateBar'
 import ChooseNationButton from './ChooseNationButton'
+import FilterButtons from './FilterButtons'
 
 export interface Props {
     hideNationFilter?: boolean
 }
 
 const FilterBar = ({ hideNationFilter }: Props) => {
+    const [showFilters, setShowFilters] = useState(false)
     return (
         <View style={styles.mainWrapper}>
-            <ChooseDateBar />
-            {!hideNationFilter && <ChooseNationButton />}
+            <View style={{ flexDirection: 'row' }}>
+                <ChooseDateBar />
+                {!hideNationFilter && (
+                    <ChooseNationButton show={showFilters} setShow={setShowFilters} />
+                )}
+            </View>
+            {showFilters && <FilterButtons />}
         </View>
     )
 }
@@ -27,7 +34,6 @@ const styles = StyleSheet.create({
         height: 62,
         paddingVertical: 8,
         paddingHorizontal: 10,
-        flexDirection: 'row',
         alignItems: 'center',
     },
 })

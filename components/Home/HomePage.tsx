@@ -31,9 +31,15 @@ const Home = () => {
                     backgroundColor: isDarkMode ? colors.background : colors.backgroundExtra,
                 }}
             >
-                <FilterBar />
-                <Calendar />
-                <Timeline nation={selectedNation} />
+                <View>
+                    <View style={{ zIndex: 2, elevation: 2 }}>
+                        <FilterBar />
+                        <Calendar />
+                    </View>
+                    <View style={{ zIndex: 1, elevation: 1 }}>
+                        <Timeline nation={selectedNation} />
+                    </View>
+                </View>
             </View>
         </DatePickerProvider>
     )
