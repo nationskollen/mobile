@@ -6,7 +6,7 @@ import React from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 
-const NavigationBackArrow: React.FC = () => {
+const NavigationBackArrow = () => {
     const navigation = useNavigation()
 
     return (

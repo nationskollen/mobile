@@ -20,7 +20,7 @@ export interface Props {
 const NationLogo = ({ src, size, spacing }: Props) => {
     const { colors } = useTheme()
     const actualSize = size ?? 50
-    const actualImageSize = actualSize - (spacing ?? 6)
+    const actualImageSize = actualSize - (spacing ?? 12)
 
     return (
         <View

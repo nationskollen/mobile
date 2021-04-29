@@ -2,8 +2,9 @@
  * @category Home
  * @module HomePage
  */
-import React from 'react'
+import React, { useState } from 'react'
 import { View } from 'react-native'
+import { Nation } from '@dsp-krabby/sdk'
 import { useTheme } from '../ThemeContext'
 import { TabStackParamList } from '../Footer'
 import { DatePickerProvider } from './DatePickerContext'
@@ -14,11 +15,13 @@ import Calendar from './Calendar'
 import FilterBar from './FilterBar'
 
 export interface Props {
-    route: RouteProp<TabStackParamList, 'Hem'>
+    route: RouteProp<TabStackParamList, 'Home'>
 }
 
-const Home = ({ route }: Props) => {
+const Home = () => {
     const { colors, isDarkMode } = useTheme()
+    // TODO: Use setSelectedNation to filter by nation via FilterBar
+    const [selectedNation, setSelectedNation] = useState<Nation | null>(null)
 
     return (
         <DatePickerProvider>
@@ -28,10 +31,9 @@ const Home = ({ route }: Props) => {
                     backgroundColor: isDarkMode ? colors.background : colors.backgroundExtra,
                 }}
             >
-                <FilterBar hideNationFilter={route.params?.hideNationFilter} />
+                <FilterBar />
                 <Calendar />
-                <Timeline oid={route.params?.oid} />
-                
+                <Timeline nation={selectedNation} />
             </View>
         </DatePickerProvider>
     )

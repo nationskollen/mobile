@@ -76,7 +76,7 @@ const Header = ({ nation, event }: HeaderProps) => {
         <View style={styles.header}>
             <TouchableOpacity
                 style={nationStyles.container}
-                onPress={() => navigation.navigate('NationContent', { nation })}
+                onPress={() => navigation.navigate('NationHome', { nation })}
             >
                 {nation && (
                     <View style={styles.headerContent}>
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
 
     eventContainer: {
         flex: 1,
-        marginBottom: 10,
+        marginTop: 10,
         paddingBottom: 20,
         marginHorizontal: 10,
         overflow: 'hidden',

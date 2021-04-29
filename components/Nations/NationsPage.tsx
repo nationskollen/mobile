@@ -14,18 +14,18 @@ import NationLogo from './NationLogo'
 import ListButton from '../ListButton'
 import LoadingCircle from '../LoadingCircle'
 
-const ChooseNation = () => {
+const NationsPage = () => {
     const navigation = useNavigation()
     const { data, error, isValidating, mutate } = useNations()
 
     return (
         <FlatList
             data={data}
-            renderItem={({ item }) => (
+            renderItem={({ item: nation }) => (
                 <ListButton
-                    title={item.name}
-                    onPress={() => navigation.navigate('NationContent', { nation: item })}
-                    leftIcon={<NationLogo src={item.icon_img_src} />}
+                    title={nation.name}
+                    onPress={() => navigation.navigate('NationHome', { nation })}
+                    leftIcon={<NationLogo src={nation.icon_img_src} />}
                 />
             )}
             keyExtractor={(item) => item.oid.toString()}
@@ -41,4 +41,4 @@ const ChooseNation = () => {
     )
 }
 
-export default ChooseNation
+export default NationsPage
