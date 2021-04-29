@@ -13,8 +13,8 @@ import { View, Text, StyleSheet, Alert, ActivityIndicator } from 'react-native'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 import { useTranslation } from '../../translate/LanguageContext'
+import LanguageContextType from '../../translate/LanguageContextType'
 import { useOpeningHours, Nation, OpeningHour } from '@dsp-krabby/sdk'
-import { LanguageContextType } from '../../translate/LanguageContextType'
 
 import NationLogo from './NationLogo'
 
@@ -81,7 +81,7 @@ const NationInfo = ({ nation, backgroundColor, paddingTop }: Props) => {
                 <View style={[styles.clockSymbolWrapper]}>
                     <Ionicons name="time-outline" size={20} color={colors.text} />
                     <Text style={[styles.openinghoursTitle, { color: colors.textHighlight }]}>
-                        {translate.map.popup.openingtimes}
+                        {translate.titles.nationHours}
                     </Text>
                 </View>
 
@@ -112,8 +112,8 @@ const NationInfo = ({ nation, backgroundColor, paddingTop }: Props) => {
                         style={[styles.mapAddress, { color: colors.textHighlight }]}
                         onPress={() =>
                             Alert.alert(
-                                translate.nations.alerts.mapTitle,
-                                translate.nations.alerts.mapDescription,
+                                translate.alerts.showOnMapTitle,
+                                translate.alerts.showOnMapDescription,
                                 [
                                     {
                                         text: translate.general.cancel,

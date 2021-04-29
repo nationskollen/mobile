@@ -18,26 +18,26 @@ const MAX_ACTIVITY_LEVEL = 5
 const MAPPED_ACTIVITY_DATA = (colors: ThemeColors, translate: LanguageContextType) => {
     return [
         {
-            title: translate.nations.activitylevel.closed,
+            title: translate.activityLevels.closed,
         },
         {
-            title: translate.nations.activitylevel.low,
+            title: translate.activityLevels.low,
             color: colors.activityLevels.low,
         },
         {
-            title: translate.nations.activitylevel.medium,
+            title: translate.activityLevels.medium,
             color: colors.activityLevels.medium,
         },
         {
-            title: translate.nations.activitylevel.high,
+            title: translate.activityLevels.high,
             color: colors.activityLevels.high,
         },
         {
-            title: translate.nations.activitylevel.veryHigh,
+            title: translate.activityLevels.veryHigh,
             color: colors.activityLevels.veryHigh,
         },
         {
-            title: translate.nations.activitylevel.max,
+            title: translate.activityLevels.max,
             color: colors.activityLevels.max,
         },
     ]

@@ -4,7 +4,6 @@
  * @category Nation
  * @module NationScreen
  */
-
 import React from 'react'
 import 'react-native-gesture-handler'
 import { HeaderOptions } from './NavigationHeader'
@@ -12,10 +11,8 @@ import { useTheme } from '../components/ThemeContext'
 import { useTranslation } from '../translate/LanguageContext'
 import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack'
 
-import HomePage from '../components/Home/HomePage'
-import NationPage from '../components/Nations/NationPage'
-import ChooseNation from '../components/Nations/ChooseNation'
-import NavigationBackArrow from '../components/NavigationBackArrow'
+import SharedScreens from './SharedScreens'
+import NationsPage from '../components/Nations/NationsPage'
 
 export interface Props {
     navigation: StackNavigationProp<any, any>
@@ -26,33 +23,18 @@ const Stack = createStackNavigator()
 const NationScreen = () => {
     const { colors } = useTheme()
     const { translate } = useTranslation()
+    const sharedScreens = SharedScreens(Stack, translate)
 
     return (
-        <Stack.Navigator initialRouteName="ChooseNation" screenOptions={HeaderOptions(colors)}>
+        <Stack.Navigator initialRouteName="Nations" screenOptions={HeaderOptions(colors)}>
             <Stack.Screen
-                name="ChooseNation"
-                component={ChooseNation}
+                name="Nations"
+                component={NationsPage}
                 options={{
-                    title: translate.nations.header,
+                    title: translate.titles.nations,
                 }}
             />
-            <Stack.Screen
-                name="Nation"
-                component={NationPage}
-                options={{
-                    title: null,
-                    headerTransparent: true,
-                    headerLeft: () => <NavigationBackArrow />,
-                }}
-            />
-            <Stack.Screen
-                name="Events"
-                component={HomePage}
-                options={{
-                    title: 'Evenemang',
-                    headerLeft: () => <NavigationBackArrow />,
-                }}
-            />
+            {sharedScreens}
         </Stack.Navigator>
     )
 }

@@ -19,13 +19,17 @@ import NotificationScreen from '../screens/NotificationScreen'
  * Defines the available route params for each tab.
  */
 export type TabStackParamList = {
-    Hem: { oid?: number; hideNationFilter?: boolean }
-    Inställningar: undefined
-    Notifikationer: undefined
-    Nationer: { nation?: Nation }
-    Karta: undefined
+    Home: undefined
+    Map: undefined
+    Settings: undefined
+    Notifications: undefined
+    Nations: { nation?: Nation }
     Event: { event?: Event; nation?: Nation }
-    Nation: { nation?: Nation }
+    NationHome: { nation?: Nation }
+    NationHours: { nation?: Nation }
+    NationMenus: { nation?: Nation }
+    NationEvents: { nation?: Nation }
+    NationLocations: { nation?: Nation }
 }
 
 const Tab = createBottomTabNavigator()
@@ -45,21 +49,21 @@ const Footer = () => {
                 tabBarIcon: ({ focused, color }) => {
                     let iconName: any
 
-                    if (route.name === 'Hem') {
+                    if (route.name === 'Home') {
                         iconName = focused ? 'home' : 'home-outline'
-                    } else if (route.name === 'Inställningar') {
+                    } else if (route.name === 'Settings') {
                         iconName = focused ? 'settings-sharp' : 'settings-outline'
-                    } else if (route.name === 'Notifikationer') {
+                    } else if (route.name === 'Notifications') {
                         iconName = focused ? 'notifications' : 'notifications-outline'
-                    } else if (route.name === 'Nationer') {
+                    } else if (route.name === 'Nations') {
                         iconName = focused ? 'flag' : 'flag-outline'
-                    } else if (route.name === 'Karta') {
+                    } else if (route.name === 'Map') {
                         iconName = focused ? 'map' : 'map-outline'
                     }
                     return <Ionicons name={iconName} size={23} color={color} />
                 },
             })}
-            initialRouteName="Hem"
+            initialRouteName="Home"
             tabBarOptions={{
                 activeBackgroundColor: colors.background,
                 labelStyle: {
@@ -76,29 +80,31 @@ const Footer = () => {
             }}
         >
             <Tab.Screen
-                name="Notifikationer"
+                name="Notifications"
                 component={NotificationScreen}
-                options={{ title: translate.footer.notifications }}
+                options={{ title: translate.titles.notifications }}
             />
             <Tab.Screen
-                name="Nationer"
+                name="Nations"
                 component={NationScreen}
-                options={{ title: translate.footer.nations }}
+                options={{ title: translate.titles.nations }}
             />
             <Tab.Screen
-                name="Hem"
+                name="Home"
                 component={HomeScreen}
-                options={{ title: translate.footer.home }}
+                options={{ title: translate.titles.home }}
             />
             <Tab.Screen
-                name="Karta"
+                name="Map"
                 component={MapScreen}
-                options={{ title: translate.footer.map }}
+                options={{ title: translate.titles.map }}
             />
             <Tab.Screen
-                name="Inställningar"
+                name="Settings"
                 component={SettingsScreen}
-                options={{ title: translate.footer.settings }}
+                options={{
+                    title: translate.titles.settings
+                }}
             />
         </Tab.Navigator>
     )

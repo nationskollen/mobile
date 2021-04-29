@@ -37,10 +37,14 @@ const NationHeader = ({ nation }: Props) => {
             >
                 {nation.cover_img_src && (
                     <React.Fragment>
-                        <LinearGradient
-                            colors={[nation.accent_color, 'transparent']}
-                            start={{ x: 0, y: -0.8 }}
-                            style={styles.coverImageGradient}
+                        <View
+                            style={[
+                                styles.coverImageContainer,
+                                {
+                                    backgroundColor: nation.accent_color,
+                                    opacity: nation.cover_img_src ? 0.7 : 1,
+                                }
+                            ]}
                         />
                         <Image source={{ uri: nation.cover_img_src }} style={styles.coverImage} />
                     </React.Fragment>
@@ -75,8 +79,8 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
     },
 
-    coverImageGradient: {
-        height: 600,
+    coverImageContainer: {
+        height: '100%',
         position: 'absolute',
         zIndex: 2,
         top: 0,

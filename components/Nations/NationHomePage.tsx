@@ -1,6 +1,6 @@
 /**
  * @category Nations
- * @module NationContent
+ * @module NationHomePage
  */
 import React, { useEffect } from 'react'
 import { Ionicons } from '@expo/vector-icons'
@@ -11,16 +11,15 @@ import { useNavigation } from '@react-navigation/core'
 import { TabStackParamList } from '../Footer'
 import { useTranslation } from '../../translate/LanguageContext'
 
-import Menu from './Menu'
 import ListButton from '../ListButton'
 import NationHeader from './NationHeader'
 import ActivityLevel from './ActivityLevel'
 
 export interface Props {
-    route: RouteProp<TabStackParamList, 'NationContent'>
+    route: RouteProp<TabStackParamList, 'Nation'>
 }
 
-const NationContent = ({ route }: Props) => {
+const NationHomePage = ({ route }: Props) => {
     const { nation } = route.params
     const { colors } = useTheme()
     const { translate } = useTranslation()
@@ -40,23 +39,27 @@ const NationContent = ({ route }: Props) => {
             <Text style={[styles.description, { color: colors.text }]}>{nation.description}</Text>
             <View style={[styles.actions, { borderTopColor: colors.border }]}>
                 <ListButton
-                    title={translate.nations.openingHours}
+                    title={translate.titles.nationHours}
                     leftIcon={<Ionicons name="time-outline" size={24} color={colors.text} />}
-                    onPress={() => console.log('hello')}
+                    onPress={() => navigation.navigate('NationHours', { nation })}
                 />
                 <ListButton
-                    title={translate.nations.locations}
+                    title={translate.titles.nationLocations}
                     leftIcon={<Ionicons name="location-outline" size={24} color={colors.text} />}
-                    onPress={() => console.log('hello')}
+                    onPress={() => navigation.navigate('NationLocations', { nation })}
                 />
                 <ListButton
-                    title={translate.nations.events}
+                    title={translate.titles.events}
                     onPress={() =>
-                        navigation.navigate('Events', { oid: nation.oid, hideNationFilter: true })
+                        navigation.navigate('NationEvents', { nation })
                     }
                     leftIcon={<Ionicons name="calendar-outline" size={24} color={colors.text} />}
                 />
-                <Menu oid={nation.oid} />
+                <ListButton
+                    title={translate.titles.nationMenus}
+                    onPress={() => navigation.navigate('NationMenus', { nation })}
+                    leftIcon={<Ionicons name="md-fast-food-outline" size={24} color={colors.text} />}
+                />
             </View>
         </ScrollView>
     )
@@ -74,4 +77,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default NationContent
+export default NationHomePage

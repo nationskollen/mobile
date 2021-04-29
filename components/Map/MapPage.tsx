@@ -4,7 +4,7 @@
  */
 import React, { useState } from 'react'
 import { useTheme } from '../ThemeContext'
-import { View, StyleSheet, Image } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { useNations, Nation } from '@dsp-krabby/sdk'
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps'
 
@@ -70,11 +70,7 @@ const Map = () => {
                                 }}
                                 title={default_location.name}
                                 icon={{ uri: nation.icon_img_src }}
-                                description={
-                                    translate.map.marker.activitylevel.header +
-                                    ': ' +
-                                    translate.map.marker.activitylevel.low
-                                }
+                                description={`${translate.map.currentActivityLevel}: ${default_location.activity_level}`}
                                 onPress={() => onMarkerPressed(nation)}
                                 stopPropagation={true}
                                 tracksViewChanges={false}

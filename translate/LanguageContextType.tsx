@@ -5,6 +5,34 @@ export default interface LanguageContextType {
         loading: string
     }
 
+    titles: {
+        home: string
+        notifications: string
+        map: string
+        settings: string
+        nation: string
+        nations: string
+        nationHours: string
+        nationMenus: string
+        nationEvents: string
+        nationLocations: string
+        events: string
+        event: string
+        login: string
+        customizeNotificaitions: string
+        language: string
+    }
+
+    activityLevels: {
+        header: string
+        low: string
+        medium: string
+        high: string
+        closed: string
+        veryHigh: string
+        max: string
+    }
+
     days: {
         monday: string
         tuesday: string
@@ -15,41 +43,12 @@ export default interface LanguageContextType {
         sunday: string
     }
 
-    footer: {
-        notifications: string
-        nations: string
-        home: string
-        map: string
-        settings: string
-    }
-
-    notifications: {
-        header: string
-    }
-
-    nations: {
-        header: string
-        menu: string
-        events: string
-        openingHours: string
-        locations: string
-        activitylevel: {
-            header: string
-            low: string
-            medium: string
-            high: string
-            closed: string
-            veryHigh: string
-            max: string
-        }
-        alerts: {
-            mapTitle: string
-            mapDescription: string
-        }
+    alerts: {
+        showOnMapTitle: string
+        showOnMapDescription: string
     }
 
     home: {
-        header: string
         headline: string
         nationbutton: string
         reminderbutton: string
@@ -57,32 +56,14 @@ export default interface LanguageContextType {
     }
 
     map: {
-        header: string
+        currentActivityLevel: string
         popup: {
-            openingtimes: string
-            montofri: string
-            sattosun: string
             shownation: string
             closed: string
-            alerts: {
-                openinmaps: string
-                presstoopen: string
-                decline: string
-                accept: string
-            }
-        }
-        marker: {
-            activitylevel: {
-                header: string
-                low: string
-                medium: string
-                high: string
-                closed: string
-            }
         }
     }
+
     settings: {
-        header: string
         darkmodeheader: string
         darkmodedescription: string
         login: string

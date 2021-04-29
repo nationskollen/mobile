@@ -11,12 +11,12 @@ import React from 'react'
 import 'react-native-gesture-handler'
 import { HeaderOptions } from './NavigationHeader'
 import { useTheme } from '../components/ThemeContext'
+import { useTranslation } from '../translate/LanguageContext'
 import { createStackNavigator } from '@react-navigation/stack'
 
+import SharedScreens from './SharedScreens'
 import HomePage from '../components/Home/HomePage'
 import EventPage from '../components/Events/EventPage'
-import NationPage from '../components/Nations/NationPage'
-import { useTranslation } from '../translate/LanguageContext'
 import NavigationBackArrow from '../components/NavigationBackArrow'
 
 const Stack = createStackNavigator()
@@ -24,24 +24,22 @@ const Stack = createStackNavigator()
 const HomeScreen = () => {
     const { colors } = useTheme()
     const { translate } = useTranslation()
+    const sharedScreens = SharedScreens(Stack, translate)
 
     return (
         <Stack.Navigator initialRouteName="Home" screenOptions={HeaderOptions(colors)}>
-            <Stack.Screen name="Home" component={HomePage} options={{ title: 'Nationskollen' }} />
+            <Stack.Screen
+                name="Home"
+                component={HomePage}
+                options={{
+                    title: 'Nationskollen'
+                }}
+            />
             <Stack.Screen
                 name="Events"
                 component={HomePage}
                 options={{
-                    title: 'Evenemang',
-                    headerLeft: () => <NavigationBackArrow />,
-                }}
-            />
-            <Stack.Screen
-                name="Nation"
-                component={NationPage}
-                options={{
-                    title: 'Nation',
-                    headerTransparent: true,
+                    title: translate.titles.events,
                     headerLeft: () => <NavigationBackArrow />,
                 }}
             />
@@ -49,10 +47,11 @@ const HomeScreen = () => {
                 name="Event"
                 component={EventPage}
                 options={{
-                    title: 'Event',
+                    title: translate.titles.event,
                     headerLeft: () => <NavigationBackArrow />,
                 }}
             />
+            {sharedScreens}
         </Stack.Navigator>
     )
 }
