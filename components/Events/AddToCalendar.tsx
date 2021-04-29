@@ -8,6 +8,8 @@ import * as Calendar from 'expo-calendar'
 import { Event } from '@dsp-krabby/sdk'
 import { Details } from './AddToCalendarInterface'
 
+const CalendarTitle = 'Nationskollen Calendar'
+
 /**
  * Function used to export an event from the app to the native calendar on the used device
  * @param event event to be added to native calendar
@@ -102,7 +104,7 @@ async function createCalendar(): Promise<string | null> {
                       type: Calendar.SourceType.SUBSCRIBED,
                   } //Subscribed or Local calendar type?
         calendarID = await Calendar.createCalendarAsync({
-            title: 'Nationskollen Calendar',
+            title: CalendarTitle,
             color: '#71002E',
             entityType: Calendar.EntityTypes.EVENT,
             sourceId: defaultCalendarSource.id,
@@ -121,8 +123,8 @@ async function getCalendarID(): Promise<string | null> {
     const calendars = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT)
     for (let i in calendars) {
         if (
-            calendars[i].title === 'Nationskollen Calendar' ||
-            calendars[i].name === 'Expo Calendar'
+            calendars[i].title === CalendarTitle ||
+            calendars[i].name === 'Expo Calendar' //TODO: find better name
         )
             return calendars[i].id
     }
