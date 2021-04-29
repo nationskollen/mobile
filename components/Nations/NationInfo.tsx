@@ -8,50 +8,20 @@
  *
  */
 import React from 'react'
-import { View, Text, StyleSheet, Alert, ActivityIndicator } from 'react-native'
+import { View, Text, StyleSheet, Alert } from 'react-native'
 
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 import { useTranslation } from '../../translate/LanguageContext'
-import LanguageContextType from '../../translate/LanguageContextType'
-import { useOpeningHours, Nation, OpeningHour } from '@dsp-krabby/sdk'
+import { useOpeningHours, Nation } from '@dsp-krabby/sdk'
 
 import NationLogo from './NationLogo'
+import OpeningHours from './OpeningHours'
 
 export interface Props {
     nation: Nation
     backgroundColor?: string
     paddingTop?: number
-}
-
-const TYPES = {
-    DEFAULT: 0,
-    EXCEPTION: 1,
-}
-
-const toDayString = (hour: OpeningHour, translate: LanguageContextType) => {
-    if (hour.type === TYPES.EXCEPTION) {
-        return `${hour.day_special}, ${hour.day_special_date}`
-    }
-
-    switch (hour.day) {
-        case 0:
-            return translate.days.monday
-        case 1:
-            return translate.days.tuesday
-        case 2:
-            return translate.days.wednesday
-        case 3:
-            return translate.days.thursday
-        case 4:
-            return translate.days.friday
-        case 5:
-            return translate.days.saturday
-        case 6:
-            return translate.days.sunday
-        default:
-            return 'Unknown'
-    }
 }
 
 const NationInfo = ({ nation, backgroundColor, paddingTop }: Props) => {
@@ -81,29 +51,13 @@ const NationInfo = ({ nation, backgroundColor, paddingTop }: Props) => {
                 <View style={[styles.clockSymbolWrapper]}>
                     <Ionicons name="time-outline" size={20} color={colors.text} />
                     <Text style={[styles.openinghoursTitle, { color: colors.textHighlight }]}>
-                        {translate.titles.nationHours}
+                        {translate.titles.nationLocationAndHours}
                     </Text>
                 </View>
 
                 <View style={styles.openinghoursWrapper}>
                     <View style={[styles.lineSymbol, { backgroundColor: colors.text }]}></View>
-                    <View style={styles.openinghoursTextWrapper}>
-                        {openingHours ? (
-                            openingHours.map((hour) => (
-                                <Text
-                                    key={hour.id}
-                                    style={[styles.openinghoursText, { color: colors.text }]}
-                                >
-                                    {toDayString(hour, translate)}:{' '}
-                                    {hour.is_open
-                                        ? `${hour.open}-${hour.close}`
-                                        : translate.map.popup.closed}
-                                </Text>
-                            ))
-                        ) : (
-                            <ActivityIndicator size="small" color={colors.primaryText} />
-                        )}
-                    </View>
+                    <OpeningHours hours={openingHours} />
                 </View>
 
                 <View style={styles.mapWrapper}>
@@ -166,25 +120,16 @@ const styles = StyleSheet.create({
         marginTop: 6,
     },
 
-    clockSymbolWrapper: {
-        flexDirection: 'row',
-        marginTop: 15,
-        alignItems: 'center',
-    },
-
     openinghoursTitle: {
         fontWeight: 'bold',
         fontSize: 14,
         marginLeft: 10,
     },
 
-    openinghoursTextWrapper: {
-        justifyContent: 'space-evenly',
-        marginLeft: 20,
-    },
-
-    openinghoursText: {
-        fontSize: 14,
+    clockSymbolWrapper: {
+        flexDirection: 'row',
+        marginTop: 15,
+        alignItems: 'center',
     },
 
     lineSymbol: {
