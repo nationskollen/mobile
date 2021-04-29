@@ -37,7 +37,7 @@ const SettingsScreen = () => {
             <Stack.Screen
                 name="NotificationSettings"
                 options={{
-                    title: 'Anpassa notifikationer',
+                    title: translate.settings.notificationsetting.header, 
                     headerLeft: () => <NavigationBackArrow />,
                 }}
             >
@@ -47,7 +47,7 @@ const SettingsScreen = () => {
                 name="Login"
                 component={LoginPage}
                 options={{
-                    title: 'Logga in',
+                    title: translate.settings.login,
                     headerLeft: () => <NavigationBackArrow />,
                 }}
             />

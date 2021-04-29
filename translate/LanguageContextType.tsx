@@ -83,6 +83,8 @@ export default interface LanguageContextType {
 
         notificationsetting: {
             header: string
+	    events : string
+	    news : string	 
         }
     }
 
