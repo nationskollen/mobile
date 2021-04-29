@@ -6,12 +6,14 @@ import React, { useState } from 'react'
 import { View, StyleSheet, Text, TextInput, TouchableHighlight, ScrollView } from 'react-native'
 
 import { useTheme } from '../ThemeContext'
+import { useTranslation } from '../../translate/LanguageContext'
 
 const LoginPage = () => {
     const { colors } = useTheme()
     const [text, onChangeText] = useState(null)
     const [password, onChangePassword] = useState(null)
     const [pass, setPass] = useState(false)
+    const { translate } = useTranslation ()
 
     return (
         <ScrollView>
@@ -33,7 +35,7 @@ const LoginPage = () => {
                     ]}
                     onChangeText={onChangeText}
                     value={text}
-                    placeholder="Användarnamn"
+                    placeholder= {translate.settings.loginsetting.username}
                     placeholderTextColor={colors.unFocusedText}
                 />
                 <TextInput
@@ -47,7 +49,7 @@ const LoginPage = () => {
                     ]}
                     onChangeText={onChangePassword}
                     value={password}
-                    placeholder="Lösenord"
+                    placeholder={translate.settings.loginsetting.password}
                     placeholderTextColor={colors.unFocusedText}
                     secureTextEntry={true}
                 />
