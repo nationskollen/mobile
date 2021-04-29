@@ -41,7 +41,7 @@ const Swedish: LanguageContextType = {
 
     days: {
         monday: 'Måndag',
-        tuesday: 'Tisday',
+        tuesday: 'Tisdag',
         wednesday: 'Onsdag',
         thursday: 'Torsdag',
         friday: 'Fredag',
@@ -79,8 +79,8 @@ const Swedish: LanguageContextType = {
 
         notificationsetting: {
             header: 'Anpassa Notifikationer',
-	    events : 'Evenemang',
-	    news : 'Nyheter'
+            events: 'Evenemang',
+            news: 'Nyheter',
         },
     },
 
@@ -88,6 +88,12 @@ const Swedish: LanguageContextType = {
         createdAt: 'Skapad',
         updatedAt: 'Senast uppdaterad',
         failedToLoad: 'Kunde inte ladda event',
+    },
+
+    location: {
+        showOnMap: 'Visa på karta',
+        regularOpeningHours: 'Öppettider',
+        exceptionOpeningHours: 'Undantag',
     },
 }
 

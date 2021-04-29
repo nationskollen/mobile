@@ -3,10 +3,14 @@
  * @module NationLocationsAndHoursPage
  */
 import React from 'react'
-import { Text } from 'react-native'
-import { RouteProp } from '@react-navigation/native'
+import { FlatList, Text, StyleSheet } from 'react-native'
 import { TabStackParamList } from '../Footer'
+import { useLocations } from '@dsp-krabby/sdk'
+import { RouteProp } from '@react-navigation/native'
 
+import Location from './Location'
+import ListEmpty from '../ListEmpty'
+import LoadingCircle from '../LoadingCircle'
 import NationBasePage from './NationBasePage'
 
 export interface Props {
@@ -15,10 +19,23 @@ export interface Props {
 
 const NationLocationsAndHoursPage = ({ route }: Props) => {
     const { nation } = route.params
+    const { data, error, isValidating, mutate } = useLocations(nation.oid)
 
     return (
-        <NationBasePage nation={nation}>
-            <Text>Locations and hours</Text>
+        <NationBasePage nation={nation} style={{ paddingTop: 5 }}>
+            <FlatList
+                data={data}
+                renderItem={({ item }) => <Location location={item} />}
+                keyExtractor={(item) => item.name}
+                refreshControl={<LoadingCircle validating={isValidating} mutate={mutate} />}
+                ListEmptyComponent={() =>
+                    ListEmpty({
+                        error,
+                        loading: isValidating,
+                        message: 'Inga platser',
+                    })
+                }
+            />
         </NationBasePage>
     )
 }

@@ -11,7 +11,7 @@ import { Ionicons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 import { useTranslation } from '../../translate/LanguageContext'
 
-import PrimaryButton from '../PrimaryButton'
+import Button from '../Button'
 import NationInfo from '../Nations/NationInfo'
 
 export interface Props {
@@ -85,7 +85,8 @@ const Popup = ({ nation, show, setShow }: Props) => {
                         backgroundColor={colors.background}
                         paddingTop={15}
                     />
-                    <PrimaryButton
+                    <Button
+                        type="primary"
                         onPress={() => navigation.navigate('NationHome', { nation })}
                         label={translate.map.popup.shownation}
                         icon="chevron-forward"

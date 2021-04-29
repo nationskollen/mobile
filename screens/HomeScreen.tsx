@@ -16,7 +16,6 @@ import { createStackNavigator } from '@react-navigation/stack'
 
 import SharedScreens from './SharedScreens'
 import HomePage from '../components/Home/HomePage'
-import EventPage from '../components/Events/EventPage'
 import NavigationBackArrow from '../components/NavigationBackArrow'
 
 const Stack = createStackNavigator()
@@ -32,7 +31,7 @@ const HomeScreen = () => {
                 name="Home"
                 component={HomePage}
                 options={{
-                    title: 'Nationskollen'
+                    title: 'Nationskollen',
                 }}
             />
             <Stack.Screen
@@ -40,14 +39,6 @@ const HomeScreen = () => {
                 component={HomePage}
                 options={{
                     title: translate.titles.events,
-                    headerLeft: () => <NavigationBackArrow />,
-                }}
-            />
-            <Stack.Screen
-                name="Event"
-                component={EventPage}
-                options={{
-                    title: translate.titles.event,
                     headerLeft: () => <NavigationBackArrow />,
                 }}
             />

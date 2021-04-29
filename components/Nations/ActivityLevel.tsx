@@ -91,7 +91,6 @@ const ActivityLevel = ({ location }: Props) => {
 //styles for activitybar
 const styles = StyleSheet.create({
     container: {
-        bottom: 0,
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingVertical: 4,

@@ -5,15 +5,17 @@
 import { View, ViewStyle } from 'react-native'
 import React, { ReactElement, useLayoutEffect } from 'react'
 import { Nation } from '@dsp-krabby/sdk'
+import { useTheme } from '../ThemeContext'
 import { useNavigation } from '@react-navigation/core'
 
 export interface Props {
     nation: Nation
     style?: ViewStyle
-    children: ReactElement | ReactElement[]
+    children: Element | Element[]
 }
 
 const NationBasePage = ({ nation, style, children }: Props) => {
+    const { colors, isDarkMode } = useTheme()
     const navigation = useNavigation()
 
     useLayoutEffect(() => {
@@ -26,7 +28,15 @@ const NationBasePage = ({ nation, style, children }: Props) => {
     }, [nation])
 
     return (
-        <View style={style}>
+        <View
+            style={[
+                {
+                    flex: 1,
+                    backgroundColor: isDarkMode ? colors.background : colors.backgroundExtra,
+                },
+                style,
+            ]}
+        >
             {children}
         </View>
     )

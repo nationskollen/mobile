@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, StyleSheet, TextStyle } from 'react-native'
+import { View, Text, StyleSheet, ViewStyle, TextStyle } from 'react-native'
 import { useTheme } from '../ThemeContext'
 import { useTranslation } from '../../translate/LanguageContext'
 import { OpeningHour as OpeningHourResponse } from '@dsp-krabby/sdk'
@@ -7,7 +7,8 @@ import LanguageContextType from '../../translate/LanguageContextType'
 
 export interface Props {
     hour: OpeningHourResponse
-    style: TextStyle
+    style?: ViewStyle
+    textStyle?: TextStyle
 }
 
 const TYPES = {
@@ -40,24 +41,29 @@ const toDayString = (hour: OpeningHourResponse, translate: LanguageContextType) 
     }
 }
 
-const OpeningHour = ({ style, hour }: Props) => {
+const OpeningHour = ({ style, textStyle, hour }: Props) => {
     const { colors } = useTheme()
     const { translate } = useTranslation()
 
     return (
-        <Text
-            key={hour.id}
-            style={[styles.openinghoursText, { color: colors.text }, style]}
-        >
-            {toDayString(hour, translate)}:{' '}
-            {hour.is_open
-                ? `${hour.open}-${hour.close}`
-                : translate.map.popup.closed}
-        </Text>
+        <View style={[styles.container, style]}>
+            <Text style={[styles.openinghoursText, { color: colors.text }, textStyle]}>
+                {toDayString(hour, translate)}:{' '}
+            </Text>
+            <Text style={[styles.openinghoursText, { color: colors.text }, textStyle]}>
+                {hour.is_open ? `${hour.open}-${hour.close}` : translate.map.popup.closed}
+            </Text>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingVertical: 2,
+    },
+
     openinghoursText: {
         fontSize: 14,
     },

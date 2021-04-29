@@ -102,7 +102,7 @@ const Footer = () => {
                 name="Settings"
                 component={SettingsScreen}
                 options={{
-                    title: translate.titles.settings
+                    title: translate.titles.settings,
                 }}
             />
         </Tab.Navigator>

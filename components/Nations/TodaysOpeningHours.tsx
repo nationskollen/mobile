@@ -14,12 +14,21 @@ const TodaysOpeningHours = ({ date, hours }: Props) => {
     const { colors } = useTheme()
     const currentDay = useRef(date.getDay() - 1).current
     const currentDate = useRef(`${date.getDate()}/${date.getMonth()}`).current
-    const filteredHours = hours.filter((hour) => hour.day === currentDay || hour.day_special_date === currentDate)
+    const filteredHours = hours.filter(
+        (hour) => hour.day === currentDay || hour.day_special_date === currentDate
+    )
 
     return (
         <View style={styles.container}>
             {filteredHours ? (
-                filteredHours.map((hour) => <OpeningHour key={hour.id} hour={hour} style={styles.text} />)
+                filteredHours.map((hour) => (
+                    <OpeningHour
+                        key={hour.id}
+                        hour={hour}
+                        textStyle={styles.text}
+                        style={{ paddingVertical: 0 }}
+                    />
+                ))
             ) : (
                 <ActivityIndicator size="small" color={colors.primaryText} />
             )}

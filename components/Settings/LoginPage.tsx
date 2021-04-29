@@ -13,7 +13,7 @@ const LoginPage = () => {
     const [text, onChangeText] = useState(null)
     const [password, onChangePassword] = useState(null)
     const [pass, setPass] = useState(false)
-    const { translate } = useTranslation ()
+    const { translate } = useTranslation()
 
     return (
         <ScrollView>
@@ -35,7 +35,7 @@ const LoginPage = () => {
                     ]}
                     onChangeText={onChangeText}
                     value={text}
-                    placeholder= {translate.settings.loginsetting.username}
+                    placeholder={translate.settings.loginsetting.username}
                     placeholderTextColor={colors.unFocusedText}
                 />
                 <TextInput

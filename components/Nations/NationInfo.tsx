@@ -117,6 +117,7 @@ const styles = StyleSheet.create({
 
     openinghoursWrapper: {
         flexDirection: 'row',
+        width: '100%',
         marginTop: 6,
     },
 
@@ -134,6 +135,7 @@ const styles = StyleSheet.create({
 
     lineSymbol: {
         marginLeft: 8,
+        marginRight: 22,
         width: 1,
         borderRadius: 5,
         backgroundColor: 'black',

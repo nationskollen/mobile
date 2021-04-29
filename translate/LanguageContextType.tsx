@@ -77,8 +77,8 @@ export default interface LanguageContextType {
 
         notificationsetting: {
             header: string
-	    events : string
-	    news : string	 
+            events: string
+            news: string
         }
     }
 
@@ -86,5 +86,11 @@ export default interface LanguageContextType {
         createdAt: string
         updatedAt: string
         failedToLoad: string
+    }
+
+    location: {
+        showOnMap: string
+        regularOpeningHours: string
+        exceptionOpeningHours: string
     }
 }

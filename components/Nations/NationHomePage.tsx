@@ -50,15 +50,15 @@ const NationHomePage = ({ route }: Props) => {
                 />
                 <ListButton
                     title={translate.titles.events}
-                    onPress={() =>
-                        navigation.navigate('NationEvents', { nation })
-                    }
+                    onPress={() => navigation.navigate('NationEvents', { nation })}
                     leftIcon={<Ionicons name="calendar-outline" size={24} color={colors.text} />}
                 />
                 <ListButton
                     title={translate.titles.nationMenus}
                     onPress={() => navigation.navigate('NationMenus', { nation })}
-                    leftIcon={<Ionicons name="md-fast-food-outline" size={24} color={colors.text} />}
+                    leftIcon={
+                        <Ionicons name="md-fast-food-outline" size={24} color={colors.text} />
+                    }
                 />
             </View>
         </ScrollView>

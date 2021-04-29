@@ -19,8 +19,8 @@ const NotificationOptions = () => {
     // These will be dynamic, so no need to translate for now
     return (
         <View style={styles.options}>
-            <Toggle text={translate.settings.notificationsetting.events}/>
-            <Toggle text={translate.settings.notificationsetting.news}/>
+            <Toggle text={translate.settings.notificationsetting.events} />
+            <Toggle text={translate.settings.notificationsetting.news} />
         </View>
     )
 }

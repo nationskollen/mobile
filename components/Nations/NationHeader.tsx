@@ -43,7 +43,7 @@ const NationHeader = ({ nation }: Props) => {
                                 {
                                     backgroundColor: nation.accent_color,
                                     opacity: nation.cover_img_src ? 0.7 : 1,
-                                }
+                                },
                             ]}
                         />
                         <Image source={{ uri: nation.cover_img_src }} style={styles.coverImage} />
@@ -71,7 +71,7 @@ const NationHeader = ({ nation }: Props) => {
 
 const styles = StyleSheet.create({
     container: {
-        marginBottom: 80,
+        marginBottom: 75,
     },
 
     coverContainer: {
