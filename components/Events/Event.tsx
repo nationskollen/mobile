@@ -70,6 +70,7 @@ const Header = ({ nation, event }: HeaderProps) => {
     const navigation = useNavigation()
     const { data } = useLocation(event.location_id)
     const address = data && data.address
+    const nationName = nation && nation.short_name
 
     return (
         <View style={styles.header}>
@@ -88,11 +89,7 @@ const Header = ({ nation, event }: HeaderProps) => {
             </TouchableOpacity>
 
             {data && (
-                <ReminderButton
-                    event={event}
-                    eventAddress={address}
-                    nationName={nation.short_name}
-                />
+                <ReminderButton event={event} eventAddress={address} nationName={nationName} />
             )}
         </View>
     )

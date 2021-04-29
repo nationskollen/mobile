@@ -22,7 +22,10 @@ async function addToCalendar(event: Event, eventAddress: string, nationName: str
 
     //get details object for event
     var details: Details = getDetails(event, eventAddress, nationName)
-    await createEvent(details)
+    const eventID = await createEvent(details)
+
+    //tell user event is added to their calendar
+    eventID != null && Alert.alert('Event successfully added to your calendar')
 
     const calendars = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT)
     console.log('Titles of existing calendars on device: ')
