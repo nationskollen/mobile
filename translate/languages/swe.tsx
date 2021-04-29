@@ -79,6 +79,8 @@ const Swedish: LanguageContextType = {
 
         notificationsetting: {
             header: 'Anpassa Notifikationer',
+	    events : 'Evenemang',
+	    news : 'Nyheter'
         },
     },
 

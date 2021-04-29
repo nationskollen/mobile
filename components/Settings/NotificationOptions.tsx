@@ -6,6 +6,7 @@ import React, { useState } from 'react'
 import { useTheme } from '../ThemeContext'
 import { View, StyleSheet, Text } from 'react-native'
 import ToggleSwitch from 'toggle-switch-react-native'
+import { useTranslation } from '../../translate/LanguageContext'
 
 export interface ToggleProps {
     // `text` is the name/title of the toggle
@@ -14,11 +15,12 @@ export interface ToggleProps {
 
 /// Renders the different notification options
 const NotificationOptions = () => {
+    const { translate } = useTranslation()
     // These will be dynamic, so no need to translate for now
     return (
         <View style={styles.options}>
-            <Toggle text="Events" />
-            <Toggle text="Nyheter" />
+            <Toggle text={translate.settings.notificationsetting.events}/>
+            <Toggle text={translate.settings.notificationsetting.news}/>
         </View>
     )
 }

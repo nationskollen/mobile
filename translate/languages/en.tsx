@@ -79,6 +79,8 @@ const English: LanguageContextType = {
 
         notificationsetting: {
             header: 'Adjust notifications',
+	    events : 'Events',
+	    news : 'News',
         },
     },
 
