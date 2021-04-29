@@ -4,9 +4,8 @@ import LanguageContextType from '../translate/LanguageContextType'
 import NationHomePage from '../components/Nations/NationHomePage'
 import NavigationBackArrow from '../components/NavigationBackArrow'
 import NationMenusPage from '../components/Nations/NationMenusPage'
-import NationHoursPage from '../components/Nations/NationHoursPage'
 import NationEventsPage from '../components/Nations/NationEventsPage'
-import NationLocationsPage from '../components/Nations/NationLocationsPage'
+import NationLocationsAndHoursPage from '../components/Nations/NationLocationsAndHoursPage'
 
 // https://github.com/react-navigation/react-navigation/issues/3790
 const SharedScreens = (Stack: any, translate: LanguageContextType) => ([
@@ -21,22 +20,11 @@ const SharedScreens = (Stack: any, translate: LanguageContextType) => ([
         }}
     />,
     <Stack.Screen
-        key="NationHours"
-        name="NationHours"
-        component={NationHoursPage}
+        key="NationLocationsAndHours"
+        name="NationLocationsAndHours"
+        component={NationLocationsAndHoursPage}
         options={{
-            title: translate.titles.nationHours,
-            headerTransparent: true,
-            headerLeft: () => <NavigationBackArrow />,
-        }}
-    />,
-    <Stack.Screen
-        key="NationLocations"
-        name="NationLocations"
-        component={NationLocationsPage}
-        options={{
-            title: translate.titles.nationLocations,
-            headerTransparent: true,
+            title: translate.titles.nationLocationAndHours,
             headerLeft: () => <NavigationBackArrow />,
         }}
     />,

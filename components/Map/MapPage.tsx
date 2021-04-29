@@ -69,7 +69,7 @@ const Map = () => {
                                     longitude: default_location.longitude,
                                 }}
                                 title={default_location.name}
-                                icon={{ uri: nation.icon_img_src }}
+                                icon={{ uri: nation.pin_img_src }}
                                 description={`${translate.map.currentActivityLevel}: ${default_location.activity_level}`}
                                 onPress={() => onMarkerPressed(nation)}
                                 stopPropagation={true}

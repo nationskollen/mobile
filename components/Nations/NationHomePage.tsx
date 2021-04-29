@@ -16,7 +16,7 @@ import NationHeader from './NationHeader'
 import ActivityLevel from './ActivityLevel'
 
 export interface Props {
-    route: RouteProp<TabStackParamList, 'Nation'>
+    route: RouteProp<TabStackParamList, 'NationHome'>
 }
 
 const NationHomePage = ({ route }: Props) => {
@@ -39,14 +39,9 @@ const NationHomePage = ({ route }: Props) => {
             <Text style={[styles.description, { color: colors.text }]}>{nation.description}</Text>
             <View style={[styles.actions, { borderTopColor: colors.border }]}>
                 <ListButton
-                    title={translate.titles.nationHours}
+                    title={translate.titles.nationLocationAndHours}
                     leftIcon={<Ionicons name="time-outline" size={24} color={colors.text} />}
-                    onPress={() => navigation.navigate('NationHours', { nation })}
-                />
-                <ListButton
-                    title={translate.titles.nationLocations}
-                    leftIcon={<Ionicons name="location-outline" size={24} color={colors.text} />}
-                    onPress={() => navigation.navigate('NationLocations', { nation })}
+                    onPress={() => navigation.navigate('NationLocationsAndHours', { nation })}
                 />
                 <ListButton
                     title={translate.titles.events}

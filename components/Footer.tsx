@@ -26,10 +26,9 @@ export type TabStackParamList = {
     Nations: { nation?: Nation }
     Event: { event?: Event; nation?: Nation }
     NationHome: { nation?: Nation }
-    NationHours: { nation?: Nation }
     NationMenus: { nation?: Nation }
     NationEvents: { nation?: Nation }
-    NationLocations: { nation?: Nation }
+    NationLocationsAndHours: { nation?: Nation }
 }
 
 const Tab = createBottomTabNavigator()

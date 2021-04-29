@@ -12,10 +12,9 @@ export default interface LanguageContextType {
         settings: string
         nation: string
         nations: string
-        nationHours: string
         nationMenus: string
         nationEvents: string
-        nationLocations: string
+        nationLocationAndHours: string
         events: string
         event: string
         login: string
