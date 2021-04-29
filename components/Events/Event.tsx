@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
 
     eventContainer: {
         flex: 1,
-        marginBottom: 10,
+        marginTop: 10,
         paddingBottom: 20,
         marginHorizontal: 10,
         overflow: 'hidden',

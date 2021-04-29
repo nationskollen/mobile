@@ -2,16 +2,18 @@
  * @category Nations
  * @module NationBasePage
  */
-import { ReactElement, useLayoutEffect } from 'react'
+import { View, ViewStyle } from 'react-native'
+import React, { ReactElement, useLayoutEffect } from 'react'
 import { Nation } from '@dsp-krabby/sdk'
 import { useNavigation } from '@react-navigation/core'
 
 export interface Props {
     nation: Nation
-    children: ReactElement
+    style?: ViewStyle
+    children: ReactElement | ReactElement[]
 }
 
-const NationBasePage = ({ nation, children }: Props) => {
+const NationBasePage = ({ nation, style, children }: Props) => {
     const navigation = useNavigation()
 
     useLayoutEffect(() => {
@@ -23,7 +25,11 @@ const NationBasePage = ({ nation, children }: Props) => {
         })
     }, [nation])
 
-    return children
+    return (
+        <View style={style}>
+            {children}
+        </View>
+    )
 }
 
 export default NationBasePage
