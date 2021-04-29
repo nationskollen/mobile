@@ -11,11 +11,17 @@ import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 import { useTranslation } from '../../translate/LanguageContext'
 
-import { EventProps } from './Event'
+import { Event } from '@dsp-krabby/sdk'
 import addToCalendar from './AddToCalendar'
 
-const ReminderButton = ({ event }: EventProps) => {
-    const asyncOnPress = useAsyncCallback(() => addToCalendar(event))
+interface Props {
+    event: Event
+    eventAddress: string
+    nationName: string
+}
+
+const ReminderButton = ({ event, eventAddress, nationName }: Props) => {
+    const asyncOnPress = useAsyncCallback(() => addToCalendar(event, eventAddress, nationName))
 
     return (
         <OptionsMenu

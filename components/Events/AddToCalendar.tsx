@@ -6,20 +6,22 @@ import { Alert, Platform } from 'react-native'
 import * as Calendar from 'expo-calendar'
 
 import { Event } from '@dsp-krabby/sdk'
-import { RecurrenceRule, Alarm, Details } from './AddToCalendarInterface'
+import { Details } from './AddToCalendarInterface'
 
 /**
  * Function used to export an event from the app to the native calendar on the used device
  * @param event event to be added to native calendar
+ * @param eventAddress address of event
  */
-async function addToCalendar(event: Event) {
+async function addToCalendar(event: Event, eventAddress: string, nationName: string) {
     const status = await getPermission()
     if (status != 'granted') {
         console.log(`Permission to use calendar: ${status}`)
         return
     }
 
-    var details: Details = getDetails(event)
+    //get details object for event
+    var details: Details = getDetails(event, eventAddress, nationName)
     await createEvent(details)
 
     const calendars = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT)
@@ -31,30 +33,27 @@ async function addToCalendar(event: Event) {
  * Function used to check/ask user for calendar permission
  * @return permission status (granted | undetermined | denied)
  */
-export async function getPermission() {
+export async function getPermission(): Promise<string> {
     //add type
     const { status } = await Calendar.getCalendarPermissionsAsync()
     if (status != 'granted') {
         const { status } = await Calendar.requestCalendarPermissionsAsync()
-
-        if (status == 'granted') {
-            return status
-        } else {
+        status == 'denied' &&
             Alert.alert('Error', 'Please allow Calendar permissions to import event')
-        }
     }
+
     return status
 }
 
-const getDetails = (event: Event): Details => {
+const getDetails = (event: Event, eventAddress: string, nationName: string): Details => {
     return {
-        title: event.name,
+        title: nationName + ': ' + event.name,
         startDate: new Date(event.occurs_at),
         endDate: new Date(event.ends_at),
         notes: event.short_description,
-        //location: useLocation(event.location_id) //incompatible type at the moment, compare types
+        location: eventAddress,
 
-        //TODO: add more to event objects
+        //TODO: add more props
     }
 }
 
@@ -63,16 +62,21 @@ const getDetails = (event: Event): Details => {
  * @param details object containing event information
  * @return new event id
  */
-async function createEvent(details: Details) {
+async function createEvent(details: Details): Promise<string> {
     // TODO: add strict type for details
     const calendarID: string | null = await createCalendar()
 
     if (calendarID == null) {
-        console.log('could not find calendarID')
+        console.log('Could not find calendarID')
         return
     }
 
     const newEventID = await Calendar.createEventAsync(calendarID, details)
+
+    newEventID == null && console.log('could not create new event (eventID == null')
+
+    const newEvent = await Calendar.getEventAsync(newEventID)
+    console.log('newly created event info: ' + newEvent.title)
 
     return newEventID
 }
