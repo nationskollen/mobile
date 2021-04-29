@@ -3,17 +3,11 @@
  * @module Event
  */
 import React from 'react'
-import {
-    View,
-    Text,
-    Image,
-    StyleSheet,
-    TouchableWithoutFeedback,
-    TouchableOpacity,
-} from 'react-native'
+import { View, Text, StyleSheet, TouchableWithoutFeedback, TouchableOpacity } from 'react-native'
 
 import { useTheme } from '../ThemeContext'
 import { useNation, Nation, Event as EventResponse } from '@dsp-krabby/sdk'
+import { useLocation } from '@dsp-krabby/sdk'
 import { useNavigation } from '@react-navigation/native'
 
 import EventCover from './Cover'
@@ -26,6 +20,7 @@ export interface EventProps {
 
 export interface HeaderProps {
     nation: Nation
+    event: EventResponse
 }
 
 const Event = ({ event }: EventProps) => {
@@ -42,7 +37,7 @@ const Event = ({ event }: EventProps) => {
                 ]}
             >
                 <EventCover event={event} height={200} />
-                <Header nation={nation} />
+                <Header nation={nation} event={event} />
 
                 {/*Container for title and description*/}
                 <View style={styles.textContainer}>
@@ -70,9 +65,12 @@ const Event = ({ event }: EventProps) => {
     )
 }
 
-const Header = ({ nation }: HeaderProps) => {
+const Header = ({ nation, event }: HeaderProps) => {
     const { colors } = useTheme()
     const navigation = useNavigation()
+    const { data } = useLocation(event.location_id)
+    const address = data && data.address
+    const nationName = nation && nation.short_name
 
     return (
         <View style={styles.header}>
@@ -89,7 +87,10 @@ const Header = ({ nation }: HeaderProps) => {
                     </View>
                 )}
             </TouchableOpacity>
-            <ReminderButton />
+
+            {data && (
+                <ReminderButton event={event} eventAddress={address} nationName={nationName} />
+            )}
         </View>
     )
 }
