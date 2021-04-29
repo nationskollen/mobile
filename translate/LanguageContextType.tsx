@@ -5,37 +5,49 @@ export default interface LanguageContextType {
         loading: string
     }
 
-    footer: {
-        notifications: string
-        nations: string
+    titles: {
         home: string
+        notifications: string
         map: string
         settings: string
-    }
-
-    notifications: {
-        header: string
-    }
-
-    nations: {
-        header: string
-        menu: string
+        nation: string
+        nations: string
+        nationMenus: string
+        nationEvents: string
+        nationLocationAndHours: string
         events: string
-        activitylevel: {
-            header: string
-            low: string
-            medium: string
-            high: string
-            closed: string
-        }
-        alerts: {
-            mapTitle: string
-            mapDescription: string
-        }
+        event: string
+        login: string
+        customizeNotificaitions: string
+        language: string
+    }
+
+    activityLevels: {
+        header: string
+        low: string
+        medium: string
+        high: string
+        closed: string
+        veryHigh: string
+        max: string
+    }
+
+    days: {
+        monday: string
+        tuesday: string
+        wednesday: string
+        thursday: string
+        friday: string
+        saturday: string
+        sunday: string
+    }
+
+    alerts: {
+        showOnMapTitle: string
+        showOnMapDescription: string
     }
 
     home: {
-        header: string
         headline: string
         nationbutton: string
         reminderbutton: string
@@ -43,32 +55,14 @@ export default interface LanguageContextType {
     }
 
     map: {
-        header: string
+        currentActivityLevel: string
         popup: {
-            openingtimes: string
-            montofri: string
-            sattosun: string
             shownation: string
             closed: string
-            alerts: {
-                openinmaps: string
-                presstoopen: string
-                decline: string
-                accept: string
-            }
-        }
-        marker: {
-            activitylevel: {
-                header: string
-                low: string
-                medium: string
-                high: string
-                closed: string
-            }
         }
     }
+
     settings: {
-        header: string
         darkmodeheader: string
         darkmodedescription: string
         login: string

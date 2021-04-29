@@ -9,10 +9,10 @@ import { Nation } from '@dsp-krabby/sdk'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
+import { useTranslation } from '../../translate/LanguageContext'
 
 import PrimaryButton from '../PrimaryButton'
 import NationInfo from '../Nations/NationInfo'
-import { useTranslation } from '../../translate/LanguageContext'
 
 export interface Props {
     nation: Nation
@@ -86,7 +86,7 @@ const Popup = ({ nation, show, setShow }: Props) => {
                         paddingTop={15}
                     />
                     <PrimaryButton
-                        onPress={() => navigation.navigate('NationContent', { nation })}
+                        onPress={() => navigation.navigate('NationHome', { nation })}
                         label={translate.map.popup.shownation}
                         icon="chevron-forward"
                         style={styles.nationOpenButton}
