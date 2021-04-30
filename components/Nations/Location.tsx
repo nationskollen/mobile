@@ -45,7 +45,7 @@ const Location = ({ location, accentColor }: Props) => {
                         color={colors.textHighlight}
                         style={styles.locationIcon}
                     />
-                    <Title label={location.address} noMargin={true} />
+                    <Title size="medium" label={location.address} noMargin={true} />
                 </View>
                 <Text style={{ color: colors.text }}>{location.description}</Text>
                 <View style={[styles.openingHoursContainer, { borderColor: colors.border }]}>
