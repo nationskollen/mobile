@@ -18,8 +18,12 @@
             "supportsTablet": true,
 	    "config" : {
 		    "googleMapsApiKey" : "AIzaSyCBKL5amMlCxk95ltCuxmwMDw3d2dsQ2ug"
-        }
-    },
+            }
+        },
+        "androidStatusBar": {
+            "backgroundColor": "#71002E",
+            "translucent": false
+        },
         "android": {
             "package": "com.Krabby.Nationsguiden",
             "config": {

@@ -3,10 +3,11 @@
  * @module NationBasePage
  */
 import { View, ViewStyle } from 'react-native'
-import React, { ReactElement, useLayoutEffect } from 'react'
+import React, { useLayoutEffect } from 'react'
 import { Nation } from '@dsp-krabby/sdk'
 import { useTheme } from '../ThemeContext'
 import { useNavigation } from '@react-navigation/core'
+import FocusAwareStatusBar from '../FocusAwareStatusBar'
 
 export interface Props {
     nation: Nation
@@ -37,6 +38,7 @@ const NationBasePage = ({ nation, style, children }: Props) => {
                 style,
             ]}
         >
+            <FocusAwareStatusBar backgroundColor={nation.accent_color} />
             {children}
         </View>
     )

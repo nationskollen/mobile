@@ -14,6 +14,7 @@ import { useTranslation } from '../../translate/LanguageContext'
 import EventCover from '../Events/Cover'
 import EventDates from '../Events/Dates'
 import EventPageSkeleton from '../Skeletons/EventPage'
+import FocusAwareStatusBar from '../FocusAwareStatusBar'
 
 export interface Props {
     route: RouteProp<TabStackParamList, 'Event'>
@@ -27,6 +28,7 @@ const EventPage = ({ route }: Props) => {
 
     return (
         <View style={{ flex: 1 }}>
+            <FocusAwareStatusBar backgroundColor={colors.primary} />
             <ScrollView style={styles.scrollView}>
                 <EventCover event={event} height={250} />
                 <View style={styles.container}>

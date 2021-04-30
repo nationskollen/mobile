@@ -3,19 +3,19 @@
  * @module NationHomePage
  */
 import React, { useEffect, useRef } from 'react'
-import { Ionicons } from '@expo/vector-icons'
 import { ScrollView, View, Text, StyleSheet } from 'react-native'
-import { useTheme } from '@react-navigation/native'
-import { RouteProp } from '@react-navigation/native'
-import { useNavigation } from '@react-navigation/core'
-import { useOpeningHours } from '@dsp-krabby/sdk'
+import { Ionicons } from '@expo/vector-icons'
 import { TabStackParamList } from '../Footer'
+import { useOpeningHours } from '@dsp-krabby/sdk'
+import { useNavigation } from '@react-navigation/core'
+import { useTheme, RouteProp } from '@react-navigation/native'
 import { useTranslation } from '../../translate/LanguageContext'
 
 import ListButton from '../ListButton'
 import NationHeader from './NationHeader'
 import ActivityLevel from './ActivityLevel'
 import TodaysOpeningHours from './TodaysOpeningHours'
+import FocusAwareStatusBar from '../FocusAwareStatusBar'
 
 export interface Props {
     route: RouteProp<TabStackParamList, 'NationHome'>
@@ -39,6 +39,7 @@ const NationHomePage = ({ route }: Props) => {
 
     return (
         <ScrollView style={{ flex: 1 }}>
+            <FocusAwareStatusBar backgroundColor={nation.accent_color} />
             <NationHeader nation={nation} />
             {hours && <TodaysOpeningHours date={currentDate} hours={hours} />}
             <Text style={[styles.description, { color: colors.text }]}>{nation.description}</Text>

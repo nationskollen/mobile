@@ -4,15 +4,15 @@
  */
 import React from 'react'
 import 'react-native-gesture-handler'
+import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 import { StackNavigationProp } from '@react-navigation/stack'
-import { SafeAreaView, View, StyleSheet, Text } from 'react-native'
-
-import { useTheme } from '../ThemeContext'
 import { useTranslation } from '../../translate/LanguageContext'
+import { SafeAreaView, View, StyleSheet, Text } from 'react-native'
 
 import ListButton from '../ListButton'
 import ToggleSwitch from 'toggle-switch-react-native'
+import FocusAwareStatusBar from '../FocusAwareStatusBar'
 
 export interface Props {
     navigation: StackNavigationProp<any, any>
@@ -24,6 +24,7 @@ const SettingsPage = ({ navigation }: Props) => {
 
     return (
         <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
+            <FocusAwareStatusBar backgroundColor={colors.primary} />
             <View style={[styles.darkMode, { backgroundColor: colors.backgroundExtra }]}>
                 <View style={styles.dmText}>
                     <Text style={[styles.dmTitle, { color: colors.textHighlight }]}>

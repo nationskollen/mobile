@@ -7,6 +7,7 @@ import { useTranslation } from '../../translate/LanguageContext'
 import ListButton from '../ListButton'
 import en from '../../translate/languages/en'
 import swe from '../../translate/languages/swe'
+import FocusAwareStatusBar from '../FocusAwareStatusBar'
 
 const LanguagePage = () => {
     const { colors } = useTheme()
@@ -15,6 +16,7 @@ const LanguagePage = () => {
     // TODO: Update rightIcon of the list buttons to show a checkbox (?)
     return (
         <View>
+            <FocusAwareStatusBar backgroundColor={colors.primary} />
             <ListButton
                 title="English"
                 leftIcon={

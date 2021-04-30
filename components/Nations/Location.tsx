@@ -17,9 +17,10 @@ import ActivityLevel from './ActivityLevel'
 
 export interface Props {
     location: LocationReponse
+    accentColor: string
 }
 
-const Location = ({ location }: Props) => {
+const Location = ({ location, accentColor }: Props) => {
     const { colors } = useTheme()
     const { translate } = useTranslation()
 
@@ -34,13 +35,13 @@ const Location = ({ location }: Props) => {
                 <Text style={{ color: colors.text }}>{location.description}</Text>
                 <View style={[styles.openingHoursContainer, { borderColor: colors.border }]}>
                     <View style={{ marginBottom: 10 }}>
-                        <Text style={[styles.openingHourLabel, { color: colors.primaryText }]}>
+                        <Text style={[styles.openingHourLabel, { color: accentColor }]}>
                             {translate.location.regularOpeningHours}
                         </Text>
                         <OpeningHours hours={location.opening_hours} />
                     </View>
                     <View>
-                        <Text style={[styles.openingHourLabel, { color: colors.primaryText }]}>
+                        <Text style={[styles.openingHourLabel, { color: accentColor }]}>
                             {translate.location.exceptionOpeningHours}
                         </Text>
                         <OpeningHours hours={location.opening_hour_exceptions} />

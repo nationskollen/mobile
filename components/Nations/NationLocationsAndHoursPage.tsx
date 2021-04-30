@@ -3,7 +3,7 @@
  * @module NationLocationsAndHoursPage
  */
 import React from 'react'
-import { FlatList, Text, StyleSheet } from 'react-native'
+import { FlatList } from 'react-native'
 import { TabStackParamList } from '../Footer'
 import { useLocations } from '@dsp-krabby/sdk'
 import { RouteProp } from '@react-navigation/native'
@@ -25,7 +25,9 @@ const NationLocationsAndHoursPage = ({ route }: Props) => {
         <NationBasePage nation={nation} style={{ paddingTop: 5 }}>
             <FlatList
                 data={data}
-                renderItem={({ item }) => <Location location={item} />}
+                renderItem={({ item }) => (
+                    <Location location={item} accentColor={nation.accent_color} />
+                )}
                 keyExtractor={(item) => item.name}
                 refreshControl={<LoadingCircle validating={isValidating} mutate={mutate} />}
                 ListEmptyComponent={() =>

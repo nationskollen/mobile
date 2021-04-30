@@ -4,9 +4,10 @@
  */
 import React, { useState } from 'react'
 import { View, StyleSheet, Text, TextInput, TouchableHighlight, ScrollView } from 'react-native'
-
 import { useTheme } from '../ThemeContext'
 import { useTranslation } from '../../translate/LanguageContext'
+
+import FocusAwareStatusBar from '../FocusAwareStatusBar'
 
 const LoginPage = () => {
     const { colors } = useTheme()
@@ -17,6 +18,7 @@ const LoginPage = () => {
 
     return (
         <ScrollView>
+            <FocusAwareStatusBar backgroundColor={colors.primary} />
             <View style={styles.container}>
                 <Text style={[styles.titleText, { color: colors.text }]}>NATIONSKOLLEN</Text>
                 {pass && (
