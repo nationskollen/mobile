@@ -8,12 +8,13 @@
  *
  */
 import React from 'react'
-import { View, Text, StyleSheet, Alert } from 'react-native'
+import { TouchableOpacity, View, Text, StyleSheet, Alert } from 'react-native'
 
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
-import { useTranslation } from '../../translate/LanguageContext'
+import { useNavigation } from '@react-navigation/core'
 import { useOpeningHours, Nation } from '@dsp-krabby/sdk'
+import { useTranslation } from '../../translate/LanguageContext'
 
 import NationLogo from './NationLogo'
 import OpeningHours from './OpeningHours'
@@ -26,6 +27,7 @@ export interface Props {
 
 const NationInfo = ({ nation, backgroundColor, paddingTop }: Props) => {
     const { colors } = useTheme()
+    const navigation = useNavigation()
     const { translate } = useTranslation()
     const { id, address } = nation.default_location
     const { data: openingHours } = useOpeningHours(id)
@@ -40,12 +42,15 @@ const NationInfo = ({ nation, backgroundColor, paddingTop }: Props) => {
                 },
             ]}
         >
-            <View style={styles.nationNameWrapper}>
+            <TouchableOpacity
+                style={styles.nationNameWrapper}
+                onPress={() => navigation.navigate('NationHome', { nation })}
+            >
                 <NationLogo src={nation.icon_img_src} size={50} />
                 <Text style={[styles.nationName, { color: colors.textHighlight }]}>
                     {nation.name}
                 </Text>
-            </View>
+            </TouchableOpacity>
 
             <View style={styles.descriptionWrapper}>
                 <View style={[styles.clockSymbolWrapper]}>

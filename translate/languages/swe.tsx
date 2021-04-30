@@ -49,6 +49,10 @@ const Swedish: LanguageContextType = {
         sunday: 'Söndag',
     },
 
+    openingHours: {
+        missing: 'Inga öppettider',
+    },
+
     home: {
         headline: 'Nationskollen',
         nationbutton: 'Nation',
@@ -59,7 +63,7 @@ const Swedish: LanguageContextType = {
     map: {
         currentActivityLevel: 'Aktivitetsnivå',
         popup: {
-            shownation: 'Visa nation',
+            navigateTo: 'Vägbeskrivning',
             closed: 'Stängt',
         },
     },

@@ -1,7 +1,8 @@
 import React from 'react'
-import { View, ViewStyle, ActivityIndicator } from 'react-native'
+import { Text, View, ViewStyle, ActivityIndicator } from 'react-native'
 import { useTheme } from '../ThemeContext'
 import { OpeningHourCollection } from '@dsp-krabby/sdk'
+import { useTranslation } from '../../translate/LanguageContext'
 
 import OpeningHour from './OpeningHour'
 
@@ -12,11 +13,16 @@ export interface Props {
 
 const OpeningHours = ({ hours, style }: Props) => {
     const { colors } = useTheme()
+    const { translate } = useTranslation()
 
     return (
         <View style={[style]}>
             {hours ? (
-                hours.map((hour) => <OpeningHour key={hour.id} hour={hour} />)
+                hours.length > 0 ? (
+                    hours.map((hour) => <OpeningHour key={hour.id} hour={hour} />)
+                ) : (
+                    <Text>{translate.openingHours.missing}</Text>
+                )
             ) : (
                 <ActivityIndicator size="small" color={colors.primaryText} />
             )}

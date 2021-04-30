@@ -87,8 +87,8 @@ const Popup = ({ nation, show, setShow }: Props) => {
                     />
                     <Button
                         type="primary"
-                        onPress={() => navigation.navigate('NationHome', { nation })}
-                        label={translate.map.popup.shownation}
+                        onPress={() => console.log('navigate')}
+                        label={translate.map.popup.navigateTo}
                         icon="chevron-forward"
                         style={styles.nationOpenButton}
                     />

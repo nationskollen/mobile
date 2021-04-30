@@ -57,10 +57,14 @@ export default interface LanguageContextType {
     map: {
         currentActivityLevel: string
         popup: {
-            shownation: string
+            navigateTo: string
             closed: string
         }
     }
+
+    openingHours: {
+        missing: string
+    },
 
     settings: {
         darkmodeheader: string

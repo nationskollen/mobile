@@ -49,6 +49,10 @@ const English: LanguageContextType = {
         sunday: 'Sunday',
     },
 
+    openingHours: {
+        missing: 'No opening hours',
+    },
+
     home: {
         headline: 'Nationskollen',
         nationbutton: 'Nation',
@@ -59,7 +63,7 @@ const English: LanguageContextType = {
     map: {
         currentActivityLevel: 'Activity level',
         popup: {
-            shownation: 'View nation',
+            navigateTo: 'Directions',
             closed: 'Closed',
         },
     },

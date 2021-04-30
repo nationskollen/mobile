@@ -6,7 +6,8 @@ import React from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
-import { Location as LocationReponse } from '@dsp-krabby/sdk'
+import { useNavigation } from '@react-navigation/core'
+import { Nation, Location as LocationReponse } from '@dsp-krabby/sdk'
 import { useTranslation } from '../../translate/LanguageContext'
 
 import Card from '../Card'
@@ -17,12 +18,14 @@ import OpeningHours from './OpeningHours'
 import ActivityLevel from './ActivityLevel'
 
 export interface Props {
+    nation: Nation,
     location: LocationReponse
     accentColor: string
 }
 
-const Location = ({ location, accentColor }: Props) => {
+const Location = ({ nation, location, accentColor }: Props) => {
     const { colors } = useTheme()
+    const navigation = useNavigation()
     const { translate } = useTranslation()
 
     return (
@@ -70,12 +73,24 @@ const Location = ({ location, accentColor }: Props) => {
                         <OpeningHours hours={location.opening_hour_exceptions} />
                     </View>
                 </View>
-                <Button
-                    type="light"
-                    label={translate.location.showOnMap}
-                    icon="chevron-forward"
-                    onPress={() => console.log('Not implemented')}
-                />
+                {location.latitude && location.longitude && (
+                    <View style={[styles.navigationContainer, { borderColor: colors.border }]}>
+                        <Button
+                            type="light"
+                            label={translate.location.showOnMap}
+                            icon="chevron-forward"
+                            onPress={() => navigation.navigate('Map', {
+                                screen: 'Map',
+                                params: {
+                                    customMarker: {
+                                        nation,
+                                        location,
+                                    },
+                                }
+                            })}
+                        />
+                    </View>
+                )}
             </View>
         </Card>
     )
@@ -96,9 +111,8 @@ const styles = StyleSheet.create({
 
     openingHoursContainer: {
         borderTopWidth: 1,
-        borderBottomWidth: 1,
-        paddingVertical: 15,
-        marginVertical: 15,
+        paddingTop: 15,
+        marginTop: 15,
     },
 
     openingHourLabel: {
@@ -113,6 +127,12 @@ const styles = StyleSheet.create({
 
     labelIcon: {
         marginRight: 5,
+    },
+
+    navigationContainer: {
+        marginTop: 15,
+        paddingTop: 15,
+        borderTopWidth: 1,
     },
 })
 

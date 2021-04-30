@@ -5,7 +5,7 @@
 import React from 'react'
 import { useTheme } from './ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
-import { Nation, Event } from '@dsp-krabby/sdk'
+import { Nation, Event, Location } from '@dsp-krabby/sdk'
 import { useTranslation } from '../translate/LanguageContext'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
@@ -20,15 +20,33 @@ import NotificationScreen from '../screens/NotificationScreen'
  */
 export type TabStackParamList = {
     Home: undefined
-    Map: undefined
     Settings: undefined
     Notifications: undefined
-    Nations: { nation?: Nation }
-    Event: { event?: Event; nation?: Nation }
-    NationHome: { nation?: Nation }
-    NationMenus: { nation?: Nation }
-    NationEvents: { nation?: Nation }
-    NationLocationsAndHours: { nation?: Nation }
+    Map: {
+        customMarker?: {
+            nation: Nation,
+            location: Location,
+        },
+    },
+    Nations: {
+        nation?: Nation,
+    },
+    Event: {
+        event?: Event,
+        nation?: Nation,
+    },
+    NationHome: {
+        nation?: Nation,
+    },
+    NationMenus: {
+        nation?: Nation,
+    },
+    NationEvents: {
+        nation?: Nation,
+    },
+    NationLocationsAndHours: {
+        nation?: Nation,
+    },
 }
 
 const Tab = createBottomTabNavigator()
