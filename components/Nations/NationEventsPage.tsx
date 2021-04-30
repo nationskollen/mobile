@@ -1,6 +1,9 @@
 /**
+ * Renders all events for the selected nation.
+ * Uses the Timeline component, as on the Home page, with nation colors.
+ *
  * @category Nations
- * @module NationHoursPage
+ * @module NationEventsPage
  */
 import React from 'react'
 import { RouteProp } from '@react-navigation/native'

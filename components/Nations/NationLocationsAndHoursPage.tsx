@@ -1,4 +1,8 @@
 /**
+ * Renders the location and opening hours page.
+ * Fetches all available locations for the nations
+ * and displays all available information.
+ *
  * @category Nations
  * @module NationLocationsAndHoursPage
  */

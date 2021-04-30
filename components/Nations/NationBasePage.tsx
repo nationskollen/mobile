@@ -1,4 +1,9 @@
 /**
+ * Creates a base page that automatically sets the navigation
+ * header background to the nation accent color.
+ *
+ * It also sets the status bar to a matching accent color.
+ *
  * @category Nations
  * @module NationBasePage
  */

@@ -1,11 +1,9 @@
 /**
- * This component renders information about a nation
+ * Renders a short description of a nation and its default location.
+ * Mainly used in the map popup.
+ *
  * @category Nation
  * @module NationInfo
- * @param nation The nation whose information is to be rendered
- * @param backgroundColor Optional background color
- * @param paddingTop Optional padding on the top
- *
  */
 import React from 'react'
 import { TouchableOpacity, View, Text, StyleSheet, Alert } from 'react-native'

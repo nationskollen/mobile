@@ -1,8 +1,9 @@
 /**
- * This component renders the nations in a scrollable list.
+ * Renders all the available nations in a list that
+ * allows you to see more information about each nation.
+ *
  * @category Nation
- * @module ListOfNations
- * @returns A scrollable list of all nations
+ * @module NationsPage
  */
 import React from 'react'
 import { FlatList } from 'react-native'

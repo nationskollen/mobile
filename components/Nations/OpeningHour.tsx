@@ -1,3 +1,9 @@
+/**
+ * Renders a single opening hour for a location.
+ *
+ * @category Nation
+ * @module OpeningHours
+ */
 import React from 'react'
 import { View, Text, StyleSheet, ViewStyle, TextStyle } from 'react-native'
 import { useTheme } from '../ThemeContext'

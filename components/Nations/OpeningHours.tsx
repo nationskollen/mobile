@@ -1,3 +1,9 @@
+/**
+ * Renders a list of opening hours for a location.
+ *
+ * @category Nation
+ * @module OpeningHours
+ */
 import React from 'react'
 import { Text, View, ViewStyle, ActivityIndicator } from 'react-native'
 import { useTheme } from '../ThemeContext'

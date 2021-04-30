@@ -1,4 +1,8 @@
 /**
+ * Renders the home page of a nation with a header
+ * and links to pages containing more information, e.g.
+ * locations, menus and events.
+ *
  * @category Nations
  * @module NationHomePage
  */

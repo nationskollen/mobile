@@ -1,3 +1,9 @@
+/**
+ * Renders the current days opening hour(s) (if defined).
+ *
+ * @category Nation
+ * @module TodaysOpeningHours
+ */
 import React, { useRef } from 'react'
 import { View, StyleSheet, ActivityIndicator } from 'react-native'
 import { useTheme } from '../ThemeContext'
@@ -14,6 +20,8 @@ const TodaysOpeningHours = ({ date, hours }: Props) => {
     const { colors } = useTheme()
     const currentDay = useRef(date.getDay() - 1).current
     const currentDate = useRef(`${date.getDate()}/${date.getMonth()}`).current
+
+    // TODO: Make sure to skip regular opening hours if there is a matching exception
     const filteredHours = hours.filter(
         (hour) => hour.day === currentDay || hour.day_special_date === currentDate
     )

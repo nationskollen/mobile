@@ -1,11 +1,12 @@
 /**
- * This component renders information about a nation
- * @category Nation
+ * Renders the cover image, title and icon of a nation.
+ * Uses the accent color to provide a personalized view.
  *
+ * @category Nation
  * @module NationHeader
  */
 import React from 'react'
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import { Nation } from '@dsp-krabby/sdk'
 import { useTheme } from '../ThemeContext'
 
