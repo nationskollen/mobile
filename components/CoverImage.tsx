@@ -10,29 +10,51 @@ export interface Props {
     fallback?: Element
     fallbackIcon?: IconName
     fallbackIconSize?: number
+    hideFallbackIcon?: boolean
+    overlayColor?: string
+    backgroundColor?: string
     children?: Element | Element[]
 }
 
-const EventCover = ({ src, fallback, fallbackIcon, fallbackIconSize, children, height }: Props) => {
+const EventCover = ({
+    src,
+    fallback,
+    fallbackIcon,
+    fallbackIconSize,
+    hideFallbackIcon,
+    children,
+    height,
+    backgroundColor,
+    overlayColor,
+}: Props) => {
     const { colors } = useTheme()
 
     return (
         <View
             style={[
                 styles.container,
-                { height: height ?? 200, backgroundColor: colors.backgroundHighlight },
+                {
+                    height: height ?? 200,
+                    backgroundColor: backgroundColor ?? colors.backgroundHighlight,
+                },
             ]}
         >
             {src ? (
-                <Image source={{ uri: src }} style={styles.img} />
+                <>
+                    {overlayColor && (
+                        <View style={[styles.overlay, { backgroundColor: overlayColor }]} />
+                    )}
+                    <Image source={{ uri: src }} style={styles.img} />
+                </>
             ) : (
-                fallback ?? (
+                !hideFallbackIcon &&
+                (fallback ?? (
                     <Ionicons
                         name={fallbackIcon ?? 'calendar'}
                         size={fallbackIconSize ?? 100}
                         color={colors.borderDark}
                     />
-                )
+                ))
             )}
             {children}
         </View>
@@ -49,6 +71,17 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         resizeMode: 'cover',
+        zIndex: 2,
+    },
+
+    overlay: {
+        opacity: 0.5,
+        width: '100%',
+        height: '100%',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        zIndex: 3,
     },
 })
 

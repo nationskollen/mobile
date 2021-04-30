@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     container: {
         marginTop: 5,
         paddingBottom: 20,
-        marginBottom: 5,
+        marginBottom: 10,
         marginHorizontal: 10,
         overflow: 'hidden',
 

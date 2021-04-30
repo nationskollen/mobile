@@ -5,6 +5,7 @@
 import React from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 import { useTheme } from '../ThemeContext'
+import { Ionicons } from '@expo/vector-icons'
 import { Location as LocationReponse } from '@dsp-krabby/sdk'
 import { useTranslation } from '../../translate/LanguageContext'
 
@@ -29,21 +30,43 @@ const Location = ({ location, accentColor }: Props) => {
             <View style={styles.activityContainer}>
                 <ActivityLevel location={location} />
             </View>
-            <CoverImage src={location.cover_img_src} fallbackIcon="location" />
+            <CoverImage
+                src={location.cover_img_src}
+                height={175}
+                fallbackIcon="location"
+                overlayColor={accentColor}
+            />
             <View style={styles.contentContainer}>
                 <Title size="large" label={location.name} />
+                <Title size="medium" label={location.address} />
                 <Text style={{ color: colors.text }}>{location.description}</Text>
                 <View style={[styles.openingHoursContainer, { borderColor: colors.border }]}>
-                    <View style={{ marginBottom: 10 }}>
-                        <Text style={[styles.openingHourLabel, { color: accentColor }]}>
-                            {translate.location.regularOpeningHours}
-                        </Text>
+                    <View style={{ marginBottom: 15 }}>
+                        <View style={styles.labelContainer}>
+                            <Ionicons
+                                name="time-outline"
+                                size={20}
+                                color={colors.text}
+                                style={styles.labelIcon}
+                            />
+                            <Text style={[styles.openingHourLabel, { color: colors.text }]}>
+                                {translate.location.regularOpeningHours}
+                            </Text>
+                        </View>
                         <OpeningHours hours={location.opening_hours} />
                     </View>
                     <View>
-                        <Text style={[styles.openingHourLabel, { color: accentColor }]}>
-                            {translate.location.exceptionOpeningHours}
-                        </Text>
+                        <View style={styles.labelContainer}>
+                            <Ionicons
+                                name="information-circle-outline"
+                                size={20}
+                                color={colors.text}
+                                style={styles.labelIcon}
+                            />
+                            <Text style={[styles.openingHourLabel, { color: colors.text }]}>
+                                {translate.location.exceptionOpeningHours}
+                            </Text>
+                        </View>
                         <OpeningHours hours={location.opening_hour_exceptions} />
                     </View>
                 </View>
@@ -81,6 +104,14 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: 'bold',
         textTransform: 'uppercase',
+    },
+
+    labelContainer: {
+        flexDirection: 'row',
+    },
+
+    labelIcon: {
+        marginRight: 5,
     },
 })
 

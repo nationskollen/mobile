@@ -6,12 +6,11 @@
  */
 import React from 'react'
 import { View, Text, StyleSheet, Image } from 'react-native'
-import { LinearGradient } from 'expo-linear-gradient'
-
 import { Nation } from '@dsp-krabby/sdk'
 import { useTheme } from '../ThemeContext'
 
 import NationLogo from './NationLogo'
+import CoverImage from '../CoverImage'
 
 export interface Props {
     nation: Nation
@@ -29,27 +28,13 @@ const NationHeader = ({ nation }: Props) => {
                 },
             ]}
         >
-            <View
-                style={[
-                    styles.coverContainer,
-                    { backgroundColor: !nation.cover_img_src && nation.accent_color },
-                ]}
-            >
-                {nation.cover_img_src && (
-                    <React.Fragment>
-                        <View
-                            style={[
-                                styles.coverImageContainer,
-                                {
-                                    backgroundColor: nation.accent_color,
-                                    opacity: nation.cover_img_src ? 0.7 : 1,
-                                },
-                            ]}
-                        />
-                        <Image source={{ uri: nation.cover_img_src }} style={styles.coverImage} />
-                    </React.Fragment>
-                )}
-            </View>
+            <CoverImage
+                src={nation.cover_img_src}
+                height={225}
+                hideFallbackIcon={true}
+                backgroundColor={nation.accent_color}
+                overlayColor={nation.accent_color}
+            />
             <View style={styles.nameWrapper}>
                 <View
                     style={[
@@ -72,26 +57,6 @@ const NationHeader = ({ nation }: Props) => {
 const styles = StyleSheet.create({
     container: {
         marginBottom: 75,
-    },
-
-    coverContainer: {
-        height: 225,
-        overflow: 'hidden',
-    },
-
-    coverImageContainer: {
-        height: '100%',
-        position: 'absolute',
-        zIndex: 2,
-        top: 0,
-        left: 0,
-        right: 0,
-    },
-
-    coverImage: {
-        flex: 1,
-        zIndex: 1,
-        resizeMode: 'cover',
     },
 
     logoContainer: {
