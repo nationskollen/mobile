@@ -4,10 +4,11 @@ import { Text, StyleSheet } from 'react-native'
 
 export interface Props {
     label: string
+    noMargin?: boolean
     size?: 'small' | 'medium' | 'large'
 }
 
-const Title = ({ label, size }: Props) => {
+const Title = ({ label, size, noMargin }: Props) => {
     const { colors } = useTheme()
     let fontSize = 16
 
@@ -19,7 +20,14 @@ const Title = ({ label, size }: Props) => {
         fontSize = 18
     }
 
-    return <Text style={[styles.text, { fontSize, color: colors.textHighlight }]}>{label}</Text>
+    return (
+        <Text style={[
+            styles.text,
+            { fontSize, color: colors.textHighlight, marginBottom: noMargin ? 0 : 5 }
+        ]}>
+            {label}
+        </Text>
+    )
 }
 
 const styles = StyleSheet.create({

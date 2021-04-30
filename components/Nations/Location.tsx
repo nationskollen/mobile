@@ -45,7 +45,7 @@ const Location = ({ location, accentColor }: Props) => {
                         color={colors.textHighlight}
                         style={styles.locationIcon}
                     />
-                    <Title size="medium" label={location.address} />
+                    <Title label={location.address} noMargin={true} />
                 </View>
                 <Text style={{ color: colors.text }}>{location.description}</Text>
                 <View style={[styles.openingHoursContainer, { borderColor: colors.border }]}>
@@ -123,6 +123,7 @@ const styles = StyleSheet.create({
 
     labelContainer: {
         flexDirection: 'row',
+        alignItems: 'center',
     },
 
     labelIcon: {
@@ -137,7 +138,8 @@ const styles = StyleSheet.create({
 
     locationContainer: {
         flexDirection: 'row',
-        marginBottom: 5,
+        alignItems: 'center',
+        marginBottom: 10,
     },
 
     locationIcon: {
