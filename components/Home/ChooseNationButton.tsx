@@ -3,7 +3,7 @@
  * @module ChooseNationButton
  */
 import React from 'react'
-import PrimaryButton from '../PrimaryButton'
+import Button from '../Button'
 
 // Renders button that should show choose-nation content when pressed
 const ChooseNationButton = () => {
@@ -12,7 +12,8 @@ const ChooseNationButton = () => {
     }
 
     return (
-        <PrimaryButton
+        <Button
+            type="primary"
             label="Nation"
             icon="md-chevron-down"
             onPress={handleNationButtonPress}

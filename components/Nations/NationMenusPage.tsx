@@ -1,6 +1,8 @@
 /**
+ * Renders the available menus for the nation.
+ *
  * @category Nations
- * @module NationLocationsPage
+ * @module NationMenusPage
  */
 import React from 'react'
 import { Text } from 'react-native'

@@ -57,9 +57,13 @@ export default interface LanguageContextType {
     map: {
         currentActivityLevel: string
         popup: {
-            shownation: string
+            navigateTo: string
             closed: string
         }
+    }
+
+    openingHours: {
+        missing: string
     }
 
     settings: {
@@ -77,8 +81,8 @@ export default interface LanguageContextType {
 
         notificationsetting: {
             header: string
-	    events : string
-	    news : string	 
+            events: string
+            news: string
         }
     }
 
@@ -86,5 +90,11 @@ export default interface LanguageContextType {
         createdAt: string
         updatedAt: string
         failedToLoad: string
+    }
+
+    location: {
+        showOnMap: string
+        regularOpeningHours: string
+        exceptionOpeningHours: string
     }
 }

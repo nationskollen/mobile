@@ -1,9 +1,7 @@
 import React from 'react'
-import { useTheme } from '../ThemeContext'
-import { Ionicons } from '@expo/vector-icons'
 import { Event as EventResponse } from '@dsp-krabby/sdk'
-import { View, Image, StyleSheet } from 'react-native'
 
+import CoverImage from '../CoverImage'
 import EventCategory from './Category'
 
 export interface Props {
@@ -11,33 +9,12 @@ export interface Props {
     height: number
 }
 
-const EventCover = ({ event, height }: Props) => {
-    const { colors } = useTheme()
-
+const EventCover = ({ event }: Props) => {
     return (
-        <View style={[styles.container, { height, backgroundColor: colors.backgroundHighlight }]}>
+        <CoverImage src={event.cover_img_src}>
             <EventCategory name={event.category && event.category.name} />
-            {event.cover_img_src ? (
-                <Image source={{ uri: event.cover_img_src }} style={styles.img} />
-            ) : (
-                <Ionicons name="calendar" size={100} color={colors.borderDark} />
-            )}
-        </View>
+        </CoverImage>
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        height: 200,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-
-    img: {
-        width: '100%',
-        height: '100%',
-        resizeMode: 'cover',
-    },
-})
 
 export default EventCover

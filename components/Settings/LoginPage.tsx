@@ -4,19 +4,21 @@
  */
 import React, { useState } from 'react'
 import { View, StyleSheet, Text, TextInput, TouchableHighlight, ScrollView } from 'react-native'
-
 import { useTheme } from '../ThemeContext'
 import { useTranslation } from '../../translate/LanguageContext'
+
+import FocusAwareStatusBar from '../FocusAwareStatusBar'
 
 const LoginPage = () => {
     const { colors } = useTheme()
     const [text, onChangeText] = useState(null)
     const [password, onChangePassword] = useState(null)
     const [pass, setPass] = useState(false)
-    const { translate } = useTranslation ()
+    const { translate } = useTranslation()
 
     return (
         <ScrollView>
+            <FocusAwareStatusBar backgroundColor={colors.primary} />
             <View style={styles.container}>
                 <Text style={[styles.titleText, { color: colors.text }]}>NATIONSKOLLEN</Text>
                 {pass && (
@@ -35,7 +37,7 @@ const LoginPage = () => {
                     ]}
                     onChangeText={onChangeText}
                     value={text}
-                    placeholder= {translate.settings.loginsetting.username}
+                    placeholder={translate.settings.loginsetting.username}
                     placeholderTextColor={colors.unFocusedText}
                 />
                 <TextInput
