@@ -32,7 +32,7 @@
         },
         "androidStatusBar": {
             "backgroundColor": "#71002E",
-            "translucent": false
+            "translucent": true
         },
         "android": {
             "package": "com.krabby.nationskollen",
