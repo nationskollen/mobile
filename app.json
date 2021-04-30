@@ -15,9 +15,19 @@
         },
         "assetBundlePatterns": ["**/*"],
         "ios": {
+            "bundleIdentifier": "com.krabby.nationskollen",
             "supportsTablet": true,
-	    "config" : {
-		    "googleMapsApiKey" : "AIzaSyCBKL5amMlCxk95ltCuxmwMDw3d2dsQ2ug"
+            "config" : {
+                "googleMapsApiKey" : "AIzaSyCBKL5amMlCxk95ltCuxmwMDw3d2dsQ2ug"
+            },
+            "infoPlist": {
+                "LSApplicationQueriesSchemes": [
+                    "comgooglemaps",
+                    "citymapper",
+                    "uber",
+                    "lyft",
+                    "waze"
+                ]
             }
         },
         "androidStatusBar": {
@@ -25,7 +35,7 @@
             "translucent": false
         },
         "android": {
-            "package": "com.Krabby.Nationsguiden",
+            "package": "com.krabby.nationskollen",
             "config": {
                 "googleMaps": {
                     "apiKey": "AIzaSyCBKL5amMlCxk95ltCuxmwMDw3d2dsQ2ug"

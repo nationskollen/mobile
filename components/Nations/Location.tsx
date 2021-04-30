@@ -6,16 +6,15 @@ import React from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
-import { useNavigation } from '@react-navigation/core'
-import { Nation, Location as LocationReponse } from '@dsp-krabby/sdk'
+import { Location as LocationReponse } from '@dsp-krabby/sdk'
 import { useTranslation } from '../../translate/LanguageContext'
 
 import Card from '../Card'
 import Title from '../Title'
-import Button from '../Button'
 import CoverImage from '../CoverImage'
 import OpeningHours from './OpeningHours'
 import ActivityLevel from './ActivityLevel'
+import ShowLocationButton from '../Map/ShowLocationButton'
 
 export interface Props {
     location: LocationReponse
@@ -75,12 +74,7 @@ const Location = ({ location, accentColor }: Props) => {
                 </View>
                 {location.latitude && location.longitude && (
                     <View style={[styles.navigationContainer, { borderColor: colors.border }]}>
-                        <Button
-                            type="light"
-                            label={translate.map.popup.navigateTo}
-                            icon="chevron-forward"
-                            onPress={() => console.log('open in maps')}
-                        />
+                        <ShowLocationButton type="light" location={location} />
                     </View>
                 )}
             </View>
