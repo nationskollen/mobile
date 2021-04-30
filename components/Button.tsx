@@ -22,7 +22,7 @@ export interface Props {
 const Button = ({ onPress, size, label, type, icon, fontSize, style }: Props) => {
     const { colors, isDarkMode } = useTheme()
     const actualFontSize = fontSize ?? (size === 'small' ? 14 : 16)
-    const color = type === 'primary' ? 'white' : colors.text
+    const color = type === 'primary' ? 'white' : colors.textHighlight
     const padding = size === 'small' ? 10 : 15
     const backgroundColor =
         type === 'primary'

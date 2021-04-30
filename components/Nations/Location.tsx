@@ -38,7 +38,15 @@ const Location = ({ location, accentColor }: Props) => {
             />
             <View style={styles.contentContainer}>
                 <Title size="large" label={location.name} />
-                <Title size="medium" label={location.address} />
+                <View style={styles.locationContainer}>
+                    <Ionicons
+                        name="location-outline"
+                        size={20}
+                        color={colors.textHighlight}
+                        style={styles.locationIcon}
+                    />
+                    <Title size="medium" label={location.address} />
+                </View>
                 <Text style={{ color: colors.text }}>{location.description}</Text>
                 <View style={[styles.openingHoursContainer, { borderColor: colors.border }]}>
                     <View>
@@ -46,10 +54,12 @@ const Location = ({ location, accentColor }: Props) => {
                             <Ionicons
                                 name="time-outline"
                                 size={20}
-                                color={colors.text}
+                                color={colors.textHighlight}
                                 style={styles.labelIcon}
                             />
-                            <Text style={[styles.openingHourLabel, { color: colors.text }]}>
+                            <Text
+                                style={[styles.openingHourLabel, { color: colors.textHighlight }]}
+                            >
                                 {translate.location.regularOpeningHours}
                             </Text>
                         </View>
@@ -61,10 +71,15 @@ const Location = ({ location, accentColor }: Props) => {
                                 <Ionicons
                                     name="information-circle-outline"
                                     size={20}
-                                    color={colors.text}
+                                    color={colors.textHighlight}
                                     style={styles.labelIcon}
                                 />
-                                <Text style={[styles.openingHourLabel, { color: colors.text }]}>
+                                <Text
+                                    style={[
+                                        styles.openingHourLabel,
+                                        { color: colors.textHighlight },
+                                    ]}
+                                >
                                     {translate.location.exceptionOpeningHours}
                                 </Text>
                             </View>
@@ -104,7 +119,6 @@ const styles = StyleSheet.create({
     openingHourLabel: {
         fontSize: 14,
         fontWeight: 'bold',
-        textTransform: 'uppercase',
     },
 
     labelContainer: {
@@ -119,6 +133,15 @@ const styles = StyleSheet.create({
         marginTop: 15,
         paddingTop: 15,
         borderTopWidth: 1,
+    },
+
+    locationContainer: {
+        flexDirection: 'row',
+        marginBottom: 5,
+    },
+
+    locationIcon: {
+        marginRight: 5,
     },
 })
 

@@ -29,7 +29,13 @@ const NationLocationsAndHoursPage = ({ route }: Props) => {
                     <Location location={item} accentColor={nation.accent_color} />
                 )}
                 keyExtractor={(item) => item.name}
-                refreshControl={<LoadingCircle validating={isValidating} mutate={mutate} />}
+                refreshControl={
+                    <LoadingCircle
+                        validating={isValidating}
+                        mutate={mutate}
+                        accent={nation.accent_color}
+                    />
+                }
                 ListEmptyComponent={() =>
                     ListEmpty({
                         error,

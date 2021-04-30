@@ -9,19 +9,21 @@ import { useTheme } from './ThemeContext'
 export interface Props {
     validating: boolean
     mutate: (...args: any) => void
+    accent?: string
     [key: string]: any
 }
 
-const LoadingCircle = ({ validating, mutate, ...rest }: Props) => {
+const LoadingCircle = ({ validating, mutate, accent, ...rest }: Props) => {
     /**
      * This component renders a loading circle
      */
     const { colors, isDarkMode } = useTheme()
+    const color = accent ?? colors.primaryText
 
     return (
         <RefreshControl
-            colors={[colors.primaryText]}
-            tintColor={colors.primaryText}
+            colors={[color]}
+            tintColor={color}
             progressBackgroundColor={isDarkMode ? colors.backgroundHighlight : colors.background}
             refreshing={validating}
             onRefresh={mutate}
