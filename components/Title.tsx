@@ -1,3 +1,10 @@
+/**
+ * Renders a simple title text component with basic styling
+ * and correct colors based on the current theme.
+ *
+ * @category Common
+ * @module Title
+ */
 import React from 'react'
 import { useTheme } from './ThemeContext'
 import { Text, StyleSheet } from 'react-native'

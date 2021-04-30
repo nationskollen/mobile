@@ -1,4 +1,7 @@
 /**
+ * Renders a simple button with two available styles,
+ * primary and light.
+ *
  * @category Common
  * @module Button
  */

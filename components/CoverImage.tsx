@@ -1,3 +1,12 @@
+/**
+ * Renders the cover image of a nation or event.
+ * Allows for a fallback icon/component if no image is available.
+ * You can also specify an overlay color that will be rendered on top
+ * of the image to provide a personalized image.
+ *
+ * @category Common
+ * @module Card
+ */
 import React from 'react'
 import { useTheme } from './ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
@@ -16,7 +25,7 @@ export interface Props {
     children?: Element | Element[]
 }
 
-const EventCover = ({
+const CoverImage = ({
     src,
     fallback,
     fallbackIcon,
@@ -85,4 +94,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default EventCover
+export default CoverImage

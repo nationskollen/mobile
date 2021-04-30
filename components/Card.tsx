@@ -1,3 +1,9 @@
+/**
+ * Renders a simple card with a dropshadow/elevation.
+ *
+ * @category Common
+ * @module Card
+ */
 import React from 'react'
 import { View, TouchableWithoutFeedback, StyleSheet } from 'react-native'
 import { useTheme } from './ThemeContext'
