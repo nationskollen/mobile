@@ -20,33 +20,28 @@ import NotificationScreen from '../screens/NotificationScreen'
  */
 export type TabStackParamList = {
     Home: undefined
+    Map: undefined
     Settings: undefined
     Notifications: undefined
-    Map: {
-        customMarker?: {
-            nation: Nation,
-            location: Location,
-        },
-    },
     Nations: {
-        nation?: Nation,
-    },
+        nation?: Nation
+    }
     Event: {
-        event?: Event,
-        nation?: Nation,
-    },
+        event?: Event
+        nation?: Nation
+    }
     NationHome: {
-        nation?: Nation,
-    },
+        nation?: Nation
+    }
     NationMenus: {
-        nation?: Nation,
-    },
+        nation?: Nation
+    }
     NationEvents: {
-        nation?: Nation,
-    },
+        nation?: Nation
+    }
     NationLocationsAndHours: {
-        nation?: Nation,
-    },
+        nation?: Nation
+    }
 }
 
 const Tab = createBottomTabNavigator()

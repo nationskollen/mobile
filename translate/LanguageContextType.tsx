@@ -64,7 +64,7 @@ export default interface LanguageContextType {
 
     openingHours: {
         missing: string
-    },
+    }
 
     settings: {
         darkmodeheader: string

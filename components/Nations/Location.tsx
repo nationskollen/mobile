@@ -18,14 +18,12 @@ import OpeningHours from './OpeningHours'
 import ActivityLevel from './ActivityLevel'
 
 export interface Props {
-    nation: Nation,
     location: LocationReponse
     accentColor: string
 }
 
-const Location = ({ nation, location, accentColor }: Props) => {
+const Location = ({ location, accentColor }: Props) => {
     const { colors } = useTheme()
-    const navigation = useNavigation()
     const { translate } = useTranslation()
 
     return (
@@ -44,7 +42,7 @@ const Location = ({ nation, location, accentColor }: Props) => {
                 <Title size="medium" label={location.address} />
                 <Text style={{ color: colors.text }}>{location.description}</Text>
                 <View style={[styles.openingHoursContainer, { borderColor: colors.border }]}>
-                    <View style={{ marginBottom: 15 }}>
+                    <View>
                         <View style={styles.labelContainer}>
                             <Ionicons
                                 name="time-outline"
@@ -58,36 +56,30 @@ const Location = ({ nation, location, accentColor }: Props) => {
                         </View>
                         <OpeningHours hours={location.opening_hours} />
                     </View>
-                    <View>
-                        <View style={styles.labelContainer}>
-                            <Ionicons
-                                name="information-circle-outline"
-                                size={20}
-                                color={colors.text}
-                                style={styles.labelIcon}
-                            />
-                            <Text style={[styles.openingHourLabel, { color: colors.text }]}>
-                                {translate.location.exceptionOpeningHours}
-                            </Text>
+                    {location.opening_hour_exceptions.length > 0 && (
+                        <View style={{ marginTop: 15 }}>
+                            <View style={styles.labelContainer}>
+                                <Ionicons
+                                    name="information-circle-outline"
+                                    size={20}
+                                    color={colors.text}
+                                    style={styles.labelIcon}
+                                />
+                                <Text style={[styles.openingHourLabel, { color: colors.text }]}>
+                                    {translate.location.exceptionOpeningHours}
+                                </Text>
+                            </View>
+                            <OpeningHours hours={location.opening_hour_exceptions} />
                         </View>
-                        <OpeningHours hours={location.opening_hour_exceptions} />
-                    </View>
+                    )}
                 </View>
                 {location.latitude && location.longitude && (
                     <View style={[styles.navigationContainer, { borderColor: colors.border }]}>
                         <Button
                             type="light"
-                            label={translate.location.showOnMap}
+                            label={translate.map.popup.navigateTo}
                             icon="chevron-forward"
-                            onPress={() => navigation.navigate('Map', {
-                                screen: 'Map',
-                                params: {
-                                    customMarker: {
-                                        nation,
-                                        location,
-                                    },
-                                }
-                            })}
+                            onPress={() => console.log('open in maps')}
                         />
                     </View>
                 )}

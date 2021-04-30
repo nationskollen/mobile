@@ -26,7 +26,7 @@ const NationLocationsAndHoursPage = ({ route }: Props) => {
             <FlatList
                 data={data}
                 renderItem={({ item }) => (
-                    <Location nation={nation} location={item} accentColor={nation.accent_color} />
+                    <Location location={item} accentColor={nation.accent_color} />
                 )}
                 keyExtractor={(item) => item.name}
                 refreshControl={<LoadingCircle validating={isValidating} mutate={mutate} />}

@@ -4,9 +4,7 @@
  */
 import React, { useState } from 'react'
 import { useTheme } from '../ThemeContext'
-import { TabStackParamList } from '../Footer'
 import { View, StyleSheet } from 'react-native'
-import { RouteProp } from '@react-navigation/native'
 import { useNations, Nation } from '@dsp-krabby/sdk'
 import { useTranslation } from '../../translate/LanguageContext'
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps'
@@ -15,11 +13,7 @@ import Popup from './Popup'
 import MapDarkTheme from './MapDarkTheme.json'
 import FocusAwareStatusBar from '../FocusAwareStatusBar'
 
-export interface Props {
-    route: RouteProp<TabStackParamList, 'Map'>
-}
-
-const Map = ({ route }: Props) => {
+const Map = () => {
     const { data: nations } = useNations()
     const { translate } = useTranslation()
     const { colors, isDarkMode } = useTheme()
@@ -28,7 +22,6 @@ const Map = ({ route }: Props) => {
 
     // Empty array renders standard light map
     const theme = isDarkMode ? MapDarkTheme : []
-    const customMarker = route.params?.customMarker
 
     const onMarkerPressed = (nation: Nation) => {
         setShowPopup(true)
@@ -49,8 +42,8 @@ const Map = ({ route }: Props) => {
             <MapView
                 style={styles.map}
                 initialRegion={{
-                    latitude: customMarker ? customMarker.location.latitude : 59.858644,
-                    longitude: customMarker ? customMarker.location.longitude : 17.634732,
+                    latitude: 59.858644,
+                    longitude: 17.634732,
                     latitudeDelta: 0.0322, // Zoom level
                     longitudeDelta: 0.0321, // Zoom level
                 }}
@@ -85,22 +78,7 @@ const Map = ({ route }: Props) => {
                                 tracksViewChanges={false}
                             />
                         )
-                })}
-                {customMarker && (
-                    <Marker
-                        key={customMarker.location.id}
-                        coordinate={{
-                            latitude: customMarker.location.latitude,
-                            longitude: customMarker.location.longitude,
-                        }}
-                        pinColor={customMarker.nation.accent_color}
-                        title={customMarker.location.name}
-                        description={`${translate.map.currentActivityLevel}: ${customMarker.location.activity_level}`}
-                        onPress={() => onMarkerPressed(customMarker.nation)}
-                        stopPropagation={true}
-                        tracksViewChanges={false}
-                    />
-                )}
+                    })}
             </MapView>
             <Popup nation={selectedNation} show={showPopup} setShow={setShowPopup} />
         </View>
