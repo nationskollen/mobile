@@ -21,7 +21,7 @@ const OpeningHours = ({ hours, style }: Props) => {
                 hours.length > 0 ? (
                     hours.map((hour) => <OpeningHour key={hour.id} hour={hour} />)
                 ) : (
-                    <Text>{translate.openingHours.missing}</Text>
+                    <Text style={{ color: colors.text }}>{translate.openingHours.missing}</Text>
                 )
             ) : (
                 <ActivityIndicator size="small" color={colors.primaryText} />
