@@ -20,7 +20,7 @@ const ShowLocationButton = ({ type, style, location }: Props) => {
             latitude: location.latitude,
             longitude: location.longitude,
             title: location.name,
-            googleForceLatLon: false,
+            googleForceLatLon: true,
             naverCallerName: applicationId,
         })
 
