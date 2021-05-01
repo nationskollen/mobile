@@ -13,14 +13,14 @@ import ListButton from './ListButton'
 
 interface Props {
     title: string
-    expandComponent: Element
     icon: Element
+    children: Element
 }
 
 /**
  * This component renders an expandable dropdown menu header
  */
-export const Dropdown: React.FC<Props> = ({ title, expandComponent, icon }) => {
+export const Dropdown = ({ title, children, icon }: Props) => {
     const { colors } = useTheme()
     const [expand, setExpand] = useState(false)
 
@@ -41,7 +41,7 @@ export const Dropdown: React.FC<Props> = ({ title, expandComponent, icon }) => {
             />
 
             {/*If menu is expanded, show expandComponent*/}
-            {expand && expandComponent}
+            {expand && children}
         </View>
     )
 }

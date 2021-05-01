@@ -40,7 +40,7 @@ const NationLocationsAndHoursPage = ({ route }: Props) => {
                         accent={nation.accent_color}
                     />
                 }
-                ListHeaderComponent={<View style={{height: 5}} />}
+                ListHeaderComponent={<View style={{ height: 5 }} />}
                 ListEmptyComponent={() =>
                     ListEmpty({
                         error,

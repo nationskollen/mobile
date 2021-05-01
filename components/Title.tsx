@@ -7,15 +7,16 @@
  */
 import React from 'react'
 import { useTheme } from './ThemeContext'
-import { Text, StyleSheet } from 'react-native'
+import { Text, TextStyle, StyleSheet } from 'react-native'
 
 export interface Props {
     label: string
     noMargin?: boolean
     size?: 'small' | 'medium' | 'large'
+    style?: TextStyle
 }
 
-const Title = ({ label, size, noMargin }: Props) => {
+const Title = ({ label, size, noMargin, style }: Props) => {
     const { colors } = useTheme()
     let fontSize = 16
 
@@ -28,10 +29,13 @@ const Title = ({ label, size, noMargin }: Props) => {
     }
 
     return (
-        <Text style={[
-            styles.text,
-            { fontSize, color: colors.textHighlight, marginBottom: noMargin ? 0 : 5 }
-        ]}>
+        <Text
+            style={[
+                styles.text,
+                { fontSize, color: colors.textHighlight, marginBottom: noMargin ? 0 : 5 },
+                style,
+            ]}
+        >
             {label}
         </Text>
     )

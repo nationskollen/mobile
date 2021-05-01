@@ -17,7 +17,8 @@ const NavigationBackArrow = () => {
             style={{
                 width: 50,
                 height: 50,
-                borderRadius: 50,
+                borderRadius: 20,
+                marginLeft: 5,
                 justifyContent: 'center',
                 alignItems: 'center',
             }}

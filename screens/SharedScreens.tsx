@@ -1,4 +1,5 @@
 import React from 'react'
+import TitleOffsetOptions from './TitleOffsetOptions'
 import LanguageContextType from '../translate/LanguageContextType'
 
 import EventPage from '../components/Events/EventPage'
@@ -18,6 +19,7 @@ const SharedScreens = (Stack: any, translate: LanguageContextType) => [
             title: null,
             headerTransparent: true,
             headerLeft: () => <NavigationBackArrow />,
+            ...TitleOffsetOptions,
         }}
     />,
     <Stack.Screen
@@ -27,6 +29,7 @@ const SharedScreens = (Stack: any, translate: LanguageContextType) => [
         options={{
             title: translate.titles.nationLocationAndHours,
             headerLeft: () => <NavigationBackArrow />,
+            ...TitleOffsetOptions,
         }}
     />,
     <Stack.Screen
@@ -36,6 +39,7 @@ const SharedScreens = (Stack: any, translate: LanguageContextType) => [
         options={{
             title: translate.titles.nationEvents,
             headerLeft: () => <NavigationBackArrow />,
+            ...TitleOffsetOptions,
         }}
     />,
     <Stack.Screen
@@ -45,6 +49,7 @@ const SharedScreens = (Stack: any, translate: LanguageContextType) => [
         options={{
             title: translate.titles.nationMenus,
             headerLeft: () => <NavigationBackArrow />,
+            ...TitleOffsetOptions,
         }}
     />,
     <Stack.Screen
@@ -54,6 +59,7 @@ const SharedScreens = (Stack: any, translate: LanguageContextType) => [
         options={{
             title: translate.titles.event,
             headerLeft: () => <NavigationBackArrow />,
+            ...TitleOffsetOptions,
         }}
     />,
 ]
