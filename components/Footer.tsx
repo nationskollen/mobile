@@ -5,7 +5,7 @@
 import React from 'react'
 import { useTheme } from './ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
-import { Nation, Event, Location } from '@dsp-krabby/sdk'
+import { Nation, Event } from '@dsp-krabby/sdk'
 import { useTranslation } from '../translate/LanguageContext'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
@@ -31,7 +31,7 @@ export type TabStackParamList = {
         nation?: Nation
     }
     NationHome: {
-        nation?: Nation
+        oid: number
     }
     NationMenus: {
         nation?: Nation

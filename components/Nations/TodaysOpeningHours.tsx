@@ -7,19 +7,25 @@
 import React, { useRef } from 'react'
 import { View, StyleSheet, ActivityIndicator } from 'react-native'
 import { useTheme } from '../ThemeContext'
-import { OpeningHourCollection } from '@dsp-krabby/sdk'
+import { Location, useOpeningHours  } from '@dsp-krabby/sdk'
 
 import OpeningHour from './OpeningHour'
 
 export interface Props {
-    hours: OpeningHourCollection
     date: Date
+    location: Location
 }
 
-const TodaysOpeningHours = ({ date, hours }: Props) => {
+const TodaysOpeningHours = ({ date, location }: Props) => {
     const { colors } = useTheme()
+    const { data: hours } = useOpeningHours(location.id)
     const currentDay = useRef(date.getDay() - 1).current
     const currentDate = useRef(`${date.getDate()}/${date.getMonth()}`).current
+
+    // Only render if we have available opening hours
+    if (!hours) {
+        return null
+    }
 
     // TODO: Make sure to skip regular opening hours if there is a matching exception
     const filteredHours = hours.filter(

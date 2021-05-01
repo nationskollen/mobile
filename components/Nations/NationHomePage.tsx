@@ -7,10 +7,10 @@
  * @module NationHomePage
  */
 import React, { useEffect, useRef } from 'react'
-import { ScrollView, View, Text, StyleSheet } from 'react-native'
-import { Ionicons } from '@expo/vector-icons'
+import { Platform, ScrollView, View, Text, StyleSheet } from 'react-native'
+import { useNation } from '@dsp-krabby/sdk'
 import { TabStackParamList } from '../Footer'
-import { useOpeningHours } from '@dsp-krabby/sdk'
+import { Ionicons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/core'
 import { useTheme, RouteProp } from '@react-navigation/native'
 import { useTranslation } from '../../translate/LanguageContext'
@@ -18,6 +18,7 @@ import { useTranslation } from '../../translate/LanguageContext'
 import ListButton from '../ListButton'
 import NationHeader from './NationHeader'
 import ActivityLevel from './ActivityLevel'
+import LoadingCircle from '../LoadingCircle'
 import TodaysOpeningHours from './TodaysOpeningHours'
 import FocusAwareStatusBar from '../FocusAwareStatusBar'
 
@@ -26,26 +27,44 @@ export interface Props {
 }
 
 const NationHomePage = ({ route }: Props) => {
-    const { nation } = route.params
+    const { oid } = route.params
     const { colors } = useTheme()
     const { translate } = useTranslation()
-    const { data: hours } = useOpeningHours(nation.default_location.id)
+    const { data: nation, isValidating, mutate } = useNation(oid)
     const navigation = useNavigation()
     const currentDate = useRef(new Date()).current
 
     useEffect(() => {
-        if (nation.default_location) {
+        if (nation?.default_location) {
             navigation.setOptions({
                 headerRight: () => <ActivityLevel location={nation.default_location} />,
             })
         }
-    }, [nation])
+    }, [nation?.default_location])
+
+    if (!nation) {
+        return null
+    }
 
     return (
-        <ScrollView style={{ flex: 1 }}>
+        <ScrollView
+            refreshControl={
+                <LoadingCircle
+                    validating={isValidating}
+                    mutate={mutate}
+                    accent={nation.accent_color}
+                    tint="white"
+                    offsetTop={10}
+                />
+            }
+            style={{ flex: 1, backgroundColor: nation.accent_color }}
+            contentContainerStyle={{ backgroundColor: colors.background, flex: Platform.OS === 'ios' ? 1 : 0 }}
+            stickyHeaderIndices={[0]}
+        >
+            <View style={{ width: '100%', height: 70, backgroundColor: nation.accent_color, position: 'absolute' }} />
             <FocusAwareStatusBar backgroundColor={nation.accent_color} />
             <NationHeader nation={nation} />
-            {hours && <TodaysOpeningHours date={currentDate} hours={hours} />}
+            <TodaysOpeningHours date={currentDate} location={nation.default_location} />
             <Text style={[styles.description, { color: colors.text }]}>{nation.description}</Text>
             <View style={[styles.actions, { borderTopColor: colors.border }]}>
                 <ListButton

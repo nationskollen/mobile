@@ -58,6 +58,7 @@ const NationHeader = ({ nation }: Props) => {
 const styles = StyleSheet.create({
     container: {
         marginBottom: 75,
+        zIndex: 50,
     },
 
     logoContainer: {
