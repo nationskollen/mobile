@@ -40,6 +40,7 @@ const Swedish: LanguageContextType = {
     },
 
     days: {
+        today: 'Idag',
         monday: 'Måndag',
         tuesday: 'Tisdag',
         wednesday: 'Onsdag',
@@ -50,6 +51,8 @@ const Swedish: LanguageContextType = {
     },
 
     openingHours: {
+        openToday: 'Öppet idag',
+        closedToday: 'Stängt idag',
         missing: 'Inga öppettider',
     },
 

@@ -5,11 +5,10 @@
  * @module TodaysOpeningHours
  */
 import React, { useRef } from 'react'
-import { View, ViewStyle, StyleSheet, ActivityIndicator } from 'react-native'
+import { Text, View, ViewStyle, StyleSheet, ActivityIndicator } from 'react-native'
 import { useTheme } from '../ThemeContext'
-import { Location, useOpeningHours } from '@dsp-krabby/sdk'
-
-import OpeningHour from './OpeningHour'
+import { Location, useOpeningHours  } from '@dsp-krabby/sdk'
+import { useTranslation } from '../../translate/LanguageContext'
 
 export interface Props {
     date: Date
@@ -19,6 +18,7 @@ export interface Props {
 
 const TodaysOpeningHours = ({ date, location, style }: Props) => {
     const { colors } = useTheme()
+    const { translate } = useTranslation()
     const { data: hours } = useOpeningHours(location.id)
     const currentDay = useRef(date.getDay() - 1).current
     const currentDate = useRef(`${date.getDate()}/${date.getMonth()}`).current
@@ -41,12 +41,13 @@ const TodaysOpeningHours = ({ date, location, style }: Props) => {
         <View style={[styles.container, { backgroundColor: colors.backgroundExtra }, style]}>
             {filteredHours ? (
                 filteredHours.map((hour) => (
-                    <OpeningHour
-                        key={hour.id}
-                        hour={hour}
-                        textStyle={styles.text}
-                        style={{ paddingVertical: 0 }}
-                    />
+                    <Text key={hour.id} style={styles.text}>
+                        {
+                            hour.is_open ?
+                                `${translate.openingHours.openToday}: ${hour.open}-${hour.close}` :
+                                `${translate.openingHours.closedToday}`
+                        }
+                    </Text>
                 ))
             ) : (
                 <ActivityIndicator size="small" color={colors.primaryText} />
@@ -58,10 +59,10 @@ const TodaysOpeningHours = ({ date, location, style }: Props) => {
 const styles = StyleSheet.create({
     container: {
         width: '100%',
+        height: 45,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'red',
-        paddingVertical: 15,
     },
 
     text: {

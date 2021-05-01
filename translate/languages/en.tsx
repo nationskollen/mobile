@@ -40,6 +40,7 @@ const English: LanguageContextType = {
     },
 
     days: {
+        today: 'Today',
         monday: 'Monday',
         tuesday: 'Tuesday',
         wednesday: 'Wednesday',
@@ -50,6 +51,8 @@ const English: LanguageContextType = {
     },
 
     openingHours: {
+        openToday: 'Open today',
+        closedToday: 'Closed today',
         missing: 'No opening hours',
     },
 

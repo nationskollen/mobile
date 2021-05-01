@@ -33,6 +33,7 @@ export default interface LanguageContextType {
     }
 
     days: {
+        today: string
         monday: string
         tuesday: string
         wednesday: string
@@ -63,6 +64,8 @@ export default interface LanguageContextType {
     }
 
     openingHours: {
+        openToday: string
+        closedToday: string
         missing: string
     }
 
