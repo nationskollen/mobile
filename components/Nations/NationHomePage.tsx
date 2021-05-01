@@ -14,7 +14,10 @@ import { Ionicons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/core'
 import { useTheme, RouteProp } from '@react-navigation/native'
 import { useTranslation } from '../../translate/LanguageContext'
+import ParallaxScrollView from 'react-native-parallax-scroll-view'
 
+import Title from '../Title'
+import CoverImage from '../CoverImage'
 import ListButton from '../ListButton'
 import NationHeader from './NationHeader'
 import ActivityLevel from './ActivityLevel'
@@ -33,6 +36,7 @@ const NationHomePage = ({ route }: Props) => {
     const { data: nation, isValidating, mutate } = useNation(oid)
     const navigation = useNavigation()
     const currentDate = useRef(new Date()).current
+    const headerHeight = Platform.OS === 'ios' ? 64 : 82
 
     useEffect(() => {
         if (nation?.default_location) {
@@ -47,7 +51,7 @@ const NationHomePage = ({ route }: Props) => {
     }
 
     return (
-        <ScrollView
+        <ParallaxScrollView
             refreshControl={
                 <LoadingCircle
                     validating={isValidating}
@@ -57,35 +61,56 @@ const NationHomePage = ({ route }: Props) => {
                     offsetTop={10}
                 />
             }
-            style={{ flex: 1, backgroundColor: nation.accent_color }}
-            contentContainerStyle={{ backgroundColor: colors.background, flex: Platform.OS === 'ios' ? 1 : 0 }}
-            stickyHeaderIndices={[0]}
+            backgroundColor={nation.accent_color}
+            renderBackground={() => (
+                <CoverImage
+                    src={nation.cover_img_src}
+                    height={225}
+                    hideFallbackIcon={true}
+                    backgroundColor={nation.accent_color}
+                    overlayColor={nation.accent_color}
+                />
+            )}
+            backgroundScrollSpeed={1}
+            renderStickyHeader={() => (
+                <View style={{ marginTop: 10, paddingLeft: 60, width: '100%', backgroundColor: nation.accent_color, height: headerHeight, flexDirection: 'row', alignItems: 'center' }}>
+                    <Text style={{ fontWeight: 'bold', fontSize: 20, color: 'white' }}>{nation.name}</Text>
+                </View>
+            )}
+            outputScaleValue={4}
+            stickyHeaderHeight={headerHeight}
+            contentBackgroundColor={colors.background}
+            parallaxHeaderHeight={225}
         >
-            <View style={{ width: '100%', height: 70, backgroundColor: nation.accent_color, position: 'absolute' }} />
             <FocusAwareStatusBar backgroundColor={nation.accent_color} />
             <NationHeader nation={nation} />
-            <TodaysOpeningHours date={currentDate} location={nation.default_location} />
-            <Text style={[styles.description, { color: colors.text }]}>{nation.description}</Text>
-            <View style={[styles.actions, { borderTopColor: colors.border }]}>
-                <ListButton
-                    title={translate.titles.nationLocationAndHours}
-                    leftIcon={<Ionicons name="time-outline" size={24} color={colors.text} />}
-                    onPress={() => navigation.navigate('NationLocationsAndHours', { nation })}
-                />
-                <ListButton
-                    title={translate.titles.events}
-                    onPress={() => navigation.navigate('NationEvents', { nation })}
-                    leftIcon={<Ionicons name="calendar-outline" size={24} color={colors.text} />}
-                />
-                <ListButton
-                    title={translate.titles.nationMenus}
-                    onPress={() => navigation.navigate('NationMenus', { nation })}
-                    leftIcon={
-                        <Ionicons name="md-fast-food-outline" size={24} color={colors.text} />
-                    }
-                />
+            <View style={{ marginTop: 65 }}>
+                <TodaysOpeningHours date={currentDate} location={nation.default_location} />
+                <View style={[styles.actions, { borderTopColor: colors.border }]}>
+                    <ListButton
+                        title={translate.titles.nationLocationAndHours}
+                        leftIcon={<Ionicons name="time-outline" size={24} color={colors.text} />}
+                        onPress={() => navigation.navigate('NationLocationsAndHours', { nation })}
+                    />
+                    <ListButton
+                        title={translate.titles.events}
+                        onPress={() => navigation.navigate('NationEvents', { nation })}
+                        leftIcon={<Ionicons name="calendar-outline" size={24} color={colors.text} />}
+                    />
+                    <ListButton
+                        title={translate.titles.nationMenus}
+                        onPress={() => navigation.navigate('NationMenus', { nation })}
+                        leftIcon={
+                            <Ionicons name="md-fast-food-outline" size={24} color={colors.text} />
+                        }
+                    />
+                </View>
+                <View style={{ paddingHorizontal: 15, marginTop: 15 }}>
+                    <Title size="medium" label="Beskrivning" />
+                    <Text style={{ color: colors.text }}>{nation.description}</Text>
+                </View>
             </View>
-        </ScrollView>
+        </ParallaxScrollView>
     )
 }
 

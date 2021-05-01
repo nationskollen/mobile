@@ -11,7 +11,6 @@ import { Nation } from '@dsp-krabby/sdk'
 import { useTheme } from '../ThemeContext'
 
 import NationLogo from './NationLogo'
-import CoverImage from '../CoverImage'
 
 export interface Props {
     nation: Nation
@@ -21,36 +20,21 @@ const NationHeader = ({ nation }: Props) => {
     const { colors } = useTheme()
 
     return (
-        <View
-            style={[
-                styles.container,
-                {
-                    backgroundColor: colors.backgroundExtra,
-                },
-            ]}
-        >
-            <CoverImage
-                src={nation.cover_img_src}
-                height={225}
-                hideFallbackIcon={true}
-                backgroundColor={nation.accent_color}
-                overlayColor={nation.accent_color}
-            />
-            <View style={styles.nameWrapper}>
-                <View
-                    style={[
-                        styles.logoContainer,
-                        {
-                            backgroundColor: colors.background,
-                        },
-                    ]}
-                >
-                    <NationLogo src={nation.icon_img_src} size={60} />
-                </View>
-                <Text style={[styles.nationName, { color: colors.textHighlight }]}>
-                    {nation.name}
-                </Text>
+        <View style={styles.nameWrapper}>
+            <View style={{ width: '100%', height: 60, backgroundColor: colors.background, position: 'absolute', bottom: 0 }} />
+            <View
+                style={[
+                    styles.logoContainer,
+                    {
+                        backgroundColor: colors.background,
+                    },
+                ]}
+            >
+                <NationLogo src={nation.icon_img_src} size={60} />
             </View>
+            <Text style={[styles.nationName, { color: colors.textHighlight }]}>
+                {nation.name}
+            </Text>
         </View>
     )
 }
@@ -72,7 +56,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute',
-        bottom: -65,
+        top: -50,
         zIndex: 3,
     },
 
