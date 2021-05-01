@@ -108,7 +108,7 @@ const NationHomePage = ({ route }: Props) => {
                 />
             </View>
             <View style={styles.descriptionContainer}>
-                <Title size="medium" label="Beskrivning" />
+                <Title size="medium" label={translate.nation.description} />
                 <Text style={{ color: colors.text }}>{nation.description}</Text>
             </View>
         </ParallaxScrollView>

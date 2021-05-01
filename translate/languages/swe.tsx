@@ -13,7 +13,8 @@ const Swedish: LanguageContextType = {
         map: 'Karta',
         settings: 'Inställningar',
         nation: 'Nation',
-        nations: 'Välj nation',
+        chooseNation: 'Välj nation',
+        nations: 'Nations',
         nationMenus: 'Menyer',
         nationEvents: 'Evenemang',
         nationLocationAndHours: 'Öppettider och platser',
@@ -95,12 +96,17 @@ const Swedish: LanguageContextType = {
         createdAt: 'Skapad',
         updatedAt: 'Senast uppdaterad',
         failedToLoad: 'Kunde inte ladda event',
+        empty: 'Inga händelser',
     },
 
     location: {
         showOnMap: 'Visa på karta',
         regularOpeningHours: 'Öppettider',
         exceptionOpeningHours: 'Undantag',
+    },
+
+    nation: {
+        description: 'Beskrivning',
     },
 }
 

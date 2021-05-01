@@ -7,7 +7,7 @@
 import React, { useRef } from 'react'
 import { Text, View, ViewStyle, StyleSheet, ActivityIndicator } from 'react-native'
 import { useTheme } from '../ThemeContext'
-import { Location, useOpeningHours  } from '@dsp-krabby/sdk'
+import { Location, useOpeningHours } from '@dsp-krabby/sdk'
 import { useTranslation } from '../../translate/LanguageContext'
 
 export interface Props {
@@ -41,12 +41,10 @@ const TodaysOpeningHours = ({ date, location, style }: Props) => {
         <View style={[styles.container, { backgroundColor: colors.backgroundExtra }, style]}>
             {filteredHours ? (
                 filteredHours.map((hour) => (
-                    <Text key={hour.id} style={styles.text}>
-                        {
-                            hour.is_open ?
-                                `${translate.openingHours.openToday}: ${hour.open}-${hour.close}` :
-                                `${translate.openingHours.closedToday}`
-                        }
+                    <Text key={hour.id} style={[styles.text, { color: colors.text }]}>
+                        {hour.is_open
+                            ? `${translate.openingHours.openToday}: ${hour.open}-${hour.close}`
+                            : `${translate.openingHours.closedToday}`}
                     </Text>
                 ))
             ) : (

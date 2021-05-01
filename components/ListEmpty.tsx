@@ -31,7 +31,6 @@ const ListEmpty = ({ error, loading, message }: Props) => {
 const styles = StyleSheet.create({
     default: {
         fontSize: 16,
-        paddingVertical: 15,
         marginLeft: 15,
     },
 })

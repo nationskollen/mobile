@@ -95,12 +95,17 @@ const English: LanguageContextType = {
         createdAt: 'Created',
         updatedAt: 'Last updated',
         failedToLoad: 'Could not load event',
+        empty: 'No events',
     },
 
     location: {
         showOnMap: 'Show on map',
         regularOpeningHours: 'Opening hours',
         exceptionOpeningHours: 'Exceptions',
+    },
+
+    nation: {
+        description: 'Description',
     },
 }
 

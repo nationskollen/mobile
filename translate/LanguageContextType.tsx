@@ -12,6 +12,7 @@ export default interface LanguageContextType {
         settings: string
         nation: string
         nations: string
+        chooseNation: string
         nationMenus: string
         nationEvents: string
         nationLocationAndHours: string
@@ -93,11 +94,16 @@ export default interface LanguageContextType {
         createdAt: string
         updatedAt: string
         failedToLoad: string
+        empty: string
     }
 
     location: {
         showOnMap: string
         regularOpeningHours: string
         exceptionOpeningHours: string
+    }
+
+    nation: {
+        description: string
     }
 }
