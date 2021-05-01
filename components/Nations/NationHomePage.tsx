@@ -29,6 +29,9 @@ export interface Props {
     route: RouteProp<TabStackParamList, 'NationHome'>
 }
 
+// TODO: These values should probably be set dynamically?
+const STICKY_HEADER_HEIGHT = Platform.OS === 'ios' ? 64 : 82
+
 const NationHomePage = ({ route }: Props) => {
     const { oid } = route.params
     const { colors } = useTheme()
@@ -36,7 +39,6 @@ const NationHomePage = ({ route }: Props) => {
     const { data: nation, isValidating, mutate } = useNation(oid)
     const navigation = useNavigation()
     const currentDate = useRef(new Date()).current
-    const headerHeight = Platform.OS === 'ios' ? 64 : 82
 
     useEffect(() => {
         if (nation?.default_location) {
@@ -52,6 +54,28 @@ const NationHomePage = ({ route }: Props) => {
 
     return (
         <ParallaxScrollView
+            fadeOutForeground={false}
+            backgroundScrollSpeed={1}
+            parallaxHeaderHeight={295}
+            style={{ marginBottom: -48 }}
+            backgroundColor={nation.accent_color}
+            stickyHeaderHeight={STICKY_HEADER_HEIGHT}
+            contentBackgroundColor={colors.background}
+            renderForeground={() => <NationHeader nation={nation} />}
+            renderBackground={() => (
+                <CoverImage
+                    src={nation.cover_img_src}
+                    height={295}
+                    hideFallbackIcon={true}
+                    backgroundColor={nation.accent_color}
+                    overlayColor={nation.accent_color}
+                />
+            )}
+            renderStickyHeader={() => (
+                <View style={styles.stickyHeaderContainer}>
+                    <Text style={styles.stickyHeaderTitle}>{nation.short_name}</Text>
+                </View>
+            )}
             refreshControl={
                 <LoadingCircle
                     validating={isValidating}
@@ -61,54 +85,31 @@ const NationHomePage = ({ route }: Props) => {
                     offsetTop={10}
                 />
             }
-            backgroundColor={nation.accent_color}
-            renderBackground={() => (
-                <CoverImage
-                    src={nation.cover_img_src}
-                    height={225}
-                    hideFallbackIcon={true}
-                    backgroundColor={nation.accent_color}
-                    overlayColor={nation.accent_color}
-                />
-            )}
-            backgroundScrollSpeed={1}
-            renderStickyHeader={() => (
-                <View style={{ marginTop: 10, paddingLeft: 60, width: '100%', backgroundColor: nation.accent_color, height: headerHeight, flexDirection: 'row', alignItems: 'center' }}>
-                    <Text style={{ fontWeight: 'bold', fontSize: 20, color: 'white' }}>{nation.name}</Text>
-                </View>
-            )}
-            outputScaleValue={4}
-            stickyHeaderHeight={headerHeight}
-            contentBackgroundColor={colors.background}
-            parallaxHeaderHeight={225}
         >
             <FocusAwareStatusBar backgroundColor={nation.accent_color} />
-            <NationHeader nation={nation} />
-            <View style={{ marginTop: 65 }}>
-                <TodaysOpeningHours date={currentDate} location={nation.default_location} />
-                <View style={[styles.actions, { borderTopColor: colors.border }]}>
-                    <ListButton
-                        title={translate.titles.nationLocationAndHours}
-                        leftIcon={<Ionicons name="time-outline" size={24} color={colors.text} />}
-                        onPress={() => navigation.navigate('NationLocationsAndHours', { nation })}
-                    />
-                    <ListButton
-                        title={translate.titles.events}
-                        onPress={() => navigation.navigate('NationEvents', { nation })}
-                        leftIcon={<Ionicons name="calendar-outline" size={24} color={colors.text} />}
-                    />
-                    <ListButton
-                        title={translate.titles.nationMenus}
-                        onPress={() => navigation.navigate('NationMenus', { nation })}
-                        leftIcon={
-                            <Ionicons name="md-fast-food-outline" size={24} color={colors.text} />
-                        }
-                    />
-                </View>
-                <View style={{ paddingHorizontal: 15, marginTop: 15 }}>
-                    <Title size="medium" label="Beskrivning" />
-                    <Text style={{ color: colors.text }}>{nation.description}</Text>
-                </View>
+            <TodaysOpeningHours date={currentDate} location={nation.default_location} />
+            <View style={[styles.actions, { borderTopColor: colors.border }]}>
+                <ListButton
+                    title={translate.titles.nationLocationAndHours}
+                    leftIcon={<Ionicons name="time-outline" size={24} color={colors.text} />}
+                    onPress={() => navigation.navigate('NationLocationsAndHours', { nation })}
+                />
+                <ListButton
+                    title={translate.titles.events}
+                    onPress={() => navigation.navigate('NationEvents', { nation })}
+                    leftIcon={<Ionicons name="calendar-outline" size={24} color={colors.text} />}
+                />
+                <ListButton
+                    title={translate.titles.nationMenus}
+                    onPress={() => navigation.navigate('NationMenus', { nation })}
+                    leftIcon={
+                        <Ionicons name="md-fast-food-outline" size={24} color={colors.text} />
+                    }
+                />
+            </View>
+            <View style={styles.descriptionContainer}>
+                <Title size="medium" label="Beskrivning" />
+                <Text style={{ color: colors.text }}>{nation.description}</Text>
             </View>
         </ParallaxScrollView>
     )
@@ -122,7 +123,26 @@ const styles = StyleSheet.create({
 
     actions: {
         borderTopWidth: 1,
-        marginTop: 20,
+    },
+
+    stickyHeaderContainer: {
+        marginTop: 10,
+        paddingLeft: 60,
+        width: '100%',
+        height: STICKY_HEADER_HEIGHT,
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+
+    stickyHeaderTitle: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        color: 'white',
+    },
+
+    descriptionContainer: {
+        paddingHorizontal: 15,
+        marginTop: 15,
     },
 })
 

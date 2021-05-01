@@ -21,7 +21,15 @@ const NationHeader = ({ nation }: Props) => {
 
     return (
         <View style={styles.nameWrapper}>
-            <View style={{ width: '100%', height: 60, backgroundColor: colors.background, position: 'absolute', bottom: 0 }} />
+            <View
+                style={{
+                    width: '100%',
+                    height: 87,
+                    backgroundColor: colors.background,
+                    position: 'absolute',
+                    bottom: 0,
+                }}
+            />
             <View
                 style={[
                     styles.logoContainer,
@@ -32,19 +40,12 @@ const NationHeader = ({ nation }: Props) => {
             >
                 <NationLogo src={nation.icon_img_src} size={60} />
             </View>
-            <Text style={[styles.nationName, { color: colors.textHighlight }]}>
-                {nation.name}
-            </Text>
+            <Text style={[styles.nationName, { color: colors.textHighlight }]}>{nation.name}</Text>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    container: {
-        marginBottom: 75,
-        zIndex: 50,
-    },
-
     logoContainer: {
         padding: 8,
         borderRadius: 15,
@@ -52,12 +53,12 @@ const styles = StyleSheet.create({
 
     nameWrapper: {
         width: '100%',
+        paddingBottom: 15,
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute',
-        top: -50,
-        zIndex: 3,
+        bottom: 0,
     },
 
     nationName: {

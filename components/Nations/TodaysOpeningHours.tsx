@@ -5,18 +5,19 @@
  * @module TodaysOpeningHours
  */
 import React, { useRef } from 'react'
-import { View, StyleSheet, ActivityIndicator } from 'react-native'
+import { View, ViewStyle, StyleSheet, ActivityIndicator } from 'react-native'
 import { useTheme } from '../ThemeContext'
-import { Location, useOpeningHours  } from '@dsp-krabby/sdk'
+import { Location, useOpeningHours } from '@dsp-krabby/sdk'
 
 import OpeningHour from './OpeningHour'
 
 export interface Props {
     date: Date
     location: Location
+    style?: ViewStyle
 }
 
-const TodaysOpeningHours = ({ date, location }: Props) => {
+const TodaysOpeningHours = ({ date, location, style }: Props) => {
     const { colors } = useTheme()
     const { data: hours } = useOpeningHours(location.id)
     const currentDay = useRef(date.getDay() - 1).current
@@ -32,8 +33,12 @@ const TodaysOpeningHours = ({ date, location }: Props) => {
         (hour) => hour.day === currentDay || hour.day_special_date === currentDate
     )
 
+    if (filteredHours.length === 0) {
+        return null
+    }
+
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, { backgroundColor: colors.backgroundExtra }, style]}>
             {filteredHours ? (
                 filteredHours.map((hour) => (
                     <OpeningHour
@@ -55,11 +60,12 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: 'red',
+        paddingVertical: 15,
     },
 
     text: {
         fontWeight: 'bold',
-        marginBottom: 10,
     },
 })
 
