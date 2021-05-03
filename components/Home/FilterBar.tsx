@@ -16,15 +16,18 @@ export interface Props {
 const FilterBar = ({ hideNationFilter }: Props) => {
     const [showFilters, setShowFilters] = useState(false)
     return (
-        <View style={styles.mainWrapper}>
-            <View style={{ flexDirection: 'row' }}>
-                <ChooseDateBar />
-                {!hideNationFilter && (
-                    <ChooseNationButton show={showFilters} setShow={setShowFilters} />
-                )}
+        <>
+            <View style={styles.mainWrapper}>
+                <View style={{ flexDirection: 'row' }}>
+                    <ChooseDateBar />
+                    {!hideNationFilter && (
+                        <ChooseNationButton show={showFilters} setShow={setShowFilters} />
+                    )}
+                </View>
             </View>
+
             {showFilters && <FilterButtons />}
-        </View>
+        </>
     )
 }
 

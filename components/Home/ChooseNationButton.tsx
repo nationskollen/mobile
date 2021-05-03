@@ -10,8 +10,7 @@ const ChooseNationButton = ({ show, setShow }) => {
     return (
         <Button
             type="primary"
-            label="Nation"
-            icon="md-chevron-down"
+            icon="filter-outline"
             onPress={() => setShow(!show)}
             style={{ marginLeft: 10 }}
         />

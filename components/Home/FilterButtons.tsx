@@ -70,19 +70,19 @@ const FilterButtons = () => {
                     onPress={() => setFilterTab('nations')}
                     type={'primary'}
                     label={'Nation'}
-                    style={{ width: '30%', height: 70 }}
+                    style={{ width: '30%', height: 60 }}
                 />
                 <Button
                     onPress={() => setFilterTab('categories')}
                     type={'primary'}
                     label={'Kategori'}
-                    style={{ width: '30%', height: 70 }}
+                    style={{ width: '30%', height: 60 }}
                 />
                 <Button
                     onPress={() => setFilterTab('student')}
                     type={'primary'}
                     label={'Student'}
-                    style={{ width: '30%', height: 70 }}
+                    style={{ width: '30%', height: 60 }}
                 />
             </View>
 
@@ -101,16 +101,15 @@ const FilterButtons = () => {
 const styles = StyleSheet.create({
     container: {
         width: '100%',
-        minHeight: 400, //TODO: make dynamic (%-based is too small, not sure why atm)
+        maxHeight: '60%',
         justifyContent: 'space-between',
-        marginTop: '5%',
-        elevation: 100,
+        elevation: 4,
         zIndex: 4,
     },
 
     buttonsContainer: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'space-evenly',
     },
 })
 

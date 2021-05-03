@@ -14,7 +14,7 @@ import { IconName } from '@expo/vector-icons/Ionicons'
 
 export interface Props {
     type: 'primary' | 'light'
-    label: string
+    label?: string
     size?: 'large' | 'small'
     onPress?: () => void
     icon?: IconName
@@ -42,7 +42,9 @@ const Button = ({ onPress, size, label, type, icon, fontSize, style }: Props) =>
             style={[styles.container, { backgroundColor, padding }, style]}
         >
             <View style={styles.wrapper}>
-                <Text style={[styles.text, { fontSize: actualFontSize, color }]}>{label}</Text>
+                {label && (
+                    <Text style={[styles.text, { fontSize: actualFontSize, color }]}>{label}</Text>
+                )}
                 {icon && <Ionicons name={icon} size={actualFontSize + 4} color={color} />}
             </View>
         </TouchableHighlight>
