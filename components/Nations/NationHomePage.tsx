@@ -216,7 +216,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingLeft: 70,
+        paddingLeft: 65,
     },
 
     stickyHeaderTitle: {
