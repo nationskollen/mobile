@@ -8,37 +8,89 @@ import { View, StyleSheet } from 'react-native'
 
 import FilterList from './FilterList'
 import PrimaryButton from '../PrimaryButton'
+import { useNations } from '@dsp-krabby/sdk'
+
+//used until hook for categories is available
+const categoriesTmp = [
+    {
+        name: 'Frukost',
+    },
+    {
+        name: 'Brunch',
+    },
+    {
+        name: 'Lunch',
+    },
+    {
+        name: 'Fika',
+    },
+    {
+        name: 'Sport',
+    },
+    {
+        name: 'Restaurang',
+    },
+    {
+        name: 'Pub',
+    },
+    {
+        name: 'Kultur',
+    },
+    {
+        name: 'Gasque',
+    },
+    {
+        name: 'Släpp',
+    },
+    {
+        name: 'Klubb',
+    },
+    {
+        name: 'Konsert',
+    },
+    {
+        name: 'Övrigt',
+    },
+]
+
+const student = [{ name: 'Nationskort krävs' }, { name: 'Medlemskap krävs' }]
 
 /**
- * @return component with pressable buttons
+ * This component is used to create pressable filter category buttons
  */
 const FilterButtons = () => {
     const [filterTab, setFilterTab] = useState('')
+    const { data: nations } = useNations()
+    const categories = categoriesTmp // replace with useCategories() when avaliable
 
     return (
         <View style={styles.container}>
             <View style={styles.buttonsContainer}>
                 <PrimaryButton
-                    onPress={() => setFilterTab('nation')}
+                    onPress={() => setFilterTab('nations')}
                     label={'Nation'}
-                    //icon={}
                     style={{ width: '30%', height: 70 }}
                 />
                 <PrimaryButton
-                    onPress={() => setFilterTab('category')}
+                    onPress={() => setFilterTab('categories')}
                     label={'Kategori'}
-                    //icon={}
                     style={{ width: '30%', height: 70 }}
                 />
                 <PrimaryButton
                     onPress={() => setFilterTab('student')}
-                    label={'Student'} // better idea for this long word?
-                    //icon={}
+                    label={'Student'}
                     style={{ width: '30%', height: 70 }}
                 />
             </View>
 
-            {filterTab != '' && <FilterList filterTab={filterTab} />}
+            {filterTab != '' && (
+                <FilterList
+                    filterTab={filterTab}
+                    nations={nations}
+                    categories={categories}
+                    student={student}
+                />
+            )}
         </View>
     )
 }
