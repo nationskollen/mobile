@@ -35,7 +35,6 @@
     "react-dom": "16.13.1",
     "react-headroom": "^3.1.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
-    "react-native-bouncy-checkbox": "^2.1.0",
     "react-native-calendar": "^0.13.1",
     "react-native-draggable-view": "^0.0.6",
     "react-native-elements": "^3.4.1",
