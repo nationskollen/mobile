@@ -33,7 +33,7 @@ const SettingsScreen = () => {
                 name="Settings"
                 component={SettingsPage}
                 options={{
-                    title: translate.titles.settings
+                    title: translate.titles.settings,
                 }}
             />
             <Stack.Screen

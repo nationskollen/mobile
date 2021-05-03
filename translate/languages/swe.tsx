@@ -41,12 +41,16 @@ const Swedish: LanguageContextType = {
 
     days: {
         monday: 'Måndag',
-        tuesday: 'Tisday',
+        tuesday: 'Tisdag',
         wednesday: 'Onsdag',
         thursday: 'Torsdag',
         friday: 'Fredag',
         saturday: 'Lördag',
         sunday: 'Söndag',
+    },
+
+    openingHours: {
+        missing: 'Inga öppettider',
     },
 
     home: {
@@ -59,7 +63,7 @@ const Swedish: LanguageContextType = {
     map: {
         currentActivityLevel: 'Aktivitetsnivå',
         popup: {
-            shownation: 'Visa nation',
+            navigateTo: 'Vägbeskrivning',
             closed: 'Stängt',
         },
     },
@@ -79,8 +83,8 @@ const Swedish: LanguageContextType = {
 
         notificationsetting: {
             header: 'Anpassa Notifikationer',
-	    events : 'Evenemang',
-	    news : 'Nyheter'
+            events: 'Evenemang',
+            news: 'Nyheter',
         },
     },
 
@@ -88,6 +92,12 @@ const Swedish: LanguageContextType = {
         createdAt: 'Skapad',
         updatedAt: 'Senast uppdaterad',
         failedToLoad: 'Kunde inte ladda event',
+    },
+
+    location: {
+        showOnMap: 'Visa på karta',
+        regularOpeningHours: 'Öppettider',
+        exceptionOpeningHours: 'Undantag',
     },
 }
 

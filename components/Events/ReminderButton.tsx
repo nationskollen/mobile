@@ -14,7 +14,7 @@ import { useTranslation } from '../../translate/LanguageContext'
 import { Event } from '@dsp-krabby/sdk'
 import addToCalendar from './AddToCalendar'
 
-interface Props {
+export interface Props {
     event: Event
     eventAddress: string
     nationName: string
@@ -38,7 +38,7 @@ const Button = () => {
     const { translate } = useTranslation()
 
     return (
-        <View style={[styles.container, { backgroundColor: colors.backgroundHighlight }]}>
+        <View style={[styles.container, { backgroundColor: colors.backgroundExtra }]}>
             <Ionicons name="md-notifications-outline" size={20} color={colors.text} />
             <Text style={[styles.text, { color: colors.text }]}>
                 {translate.home.reminderbutton}

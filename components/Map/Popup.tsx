@@ -8,11 +8,9 @@ import { Animated, View, StyleSheet, TouchableOpacity } from 'react-native'
 import { Nation } from '@dsp-krabby/sdk'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
-import { useNavigation } from '@react-navigation/native'
-import { useTranslation } from '../../translate/LanguageContext'
 
-import PrimaryButton from '../PrimaryButton'
 import NationInfo from '../Nations/NationInfo'
+import ShowLocationButton from './ShowLocationButton'
 
 export interface Props {
     nation: Nation
@@ -22,8 +20,6 @@ export interface Props {
 
 const Popup = ({ nation, show, setShow }: Props) => {
     const { colors } = useTheme()
-    const { translate } = useTranslation()
-    const navigation = useNavigation()
     const popupHeight = 300
     const popupAnimation = useRef(new Animated.Value(popupHeight)).current
     const popupAnimationOpacity = useRef(new Animated.Value(0)).current
@@ -85,10 +81,9 @@ const Popup = ({ nation, show, setShow }: Props) => {
                         backgroundColor={colors.background}
                         paddingTop={15}
                     />
-                    <PrimaryButton
-                        onPress={() => navigation.navigate('NationHome', { nation })}
-                        label={translate.map.popup.shownation}
-                        icon="chevron-forward"
+                    <ShowLocationButton
+                        type="primary"
+                        location={nation.default_location}
                         style={styles.nationOpenButton}
                     />
                 </View>

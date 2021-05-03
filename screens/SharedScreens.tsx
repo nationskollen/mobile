@@ -1,6 +1,7 @@
 import React from 'react'
 import LanguageContextType from '../translate/LanguageContextType'
 
+import EventPage from '../components/Events/EventPage'
 import NationHomePage from '../components/Nations/NationHomePage'
 import NavigationBackArrow from '../components/NavigationBackArrow'
 import NationMenusPage from '../components/Nations/NationMenusPage'
@@ -8,7 +9,7 @@ import NationEventsPage from '../components/Nations/NationEventsPage'
 import NationLocationsAndHoursPage from '../components/Nations/NationLocationsAndHoursPage'
 
 // https://github.com/react-navigation/react-navigation/issues/3790
-const SharedScreens = (Stack: any, translate: LanguageContextType) => ([
+const SharedScreens = (Stack: any, translate: LanguageContextType) => [
     <Stack.Screen
         key="NationHome"
         name="NationHome"
@@ -46,6 +47,15 @@ const SharedScreens = (Stack: any, translate: LanguageContextType) => ([
             headerLeft: () => <NavigationBackArrow />,
         }}
     />,
-])
+    <Stack.Screen
+        key="Event"
+        name="Event"
+        component={EventPage}
+        options={{
+            title: translate.titles.event,
+            headerLeft: () => <NavigationBackArrow />,
+        }}
+    />,
+]
 
 export default SharedScreens

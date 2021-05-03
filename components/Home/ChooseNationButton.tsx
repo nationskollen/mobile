@@ -2,13 +2,14 @@
  * @category Home
  * @module ChooseNationButton
  */
-import React, { useState } from 'react'
-import PrimaryButton from '../PrimaryButton'
+import React from 'react'
+import Button from '../Button'
 
 // Renders button that should show choose-nation content when pressed
 const ChooseNationButton = ({ show, setShow }) => {
     return (
-        <PrimaryButton
+        <Button
+            type="primary"
             label="Nation"
             icon="md-chevron-down"
             onPress={() => setShow(!show)}

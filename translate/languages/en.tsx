@@ -49,6 +49,10 @@ const English: LanguageContextType = {
         sunday: 'Sunday',
     },
 
+    openingHours: {
+        missing: 'No opening hours',
+    },
+
     home: {
         headline: 'Nationskollen',
         nationbutton: 'Nation',
@@ -59,7 +63,7 @@ const English: LanguageContextType = {
     map: {
         currentActivityLevel: 'Activity level',
         popup: {
-            shownation: 'View nation',
+            navigateTo: 'Directions',
             closed: 'Closed',
         },
     },
@@ -79,8 +83,8 @@ const English: LanguageContextType = {
 
         notificationsetting: {
             header: 'Adjust notifications',
-	    events : 'Events',
-	    news : 'News',
+            events: 'Events',
+            news: 'News',
         },
     },
 
@@ -88,6 +92,12 @@ const English: LanguageContextType = {
         createdAt: 'Created',
         updatedAt: 'Last updated',
         failedToLoad: 'Could not load event',
+    },
+
+    location: {
+        showOnMap: 'Show on map',
+        regularOpeningHours: 'Opening hours',
+        exceptionOpeningHours: 'Exceptions',
     },
 }
 

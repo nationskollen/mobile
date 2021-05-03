@@ -19,7 +19,7 @@ const Category = ({ name }: Props) => {
                 styles.container,
                 {
                     borderColor: colors.borderDark,
-                }
+                },
             ]}
         >
             <Text style={[styles.text, { color: colors.text }]}>{name}</Text>
