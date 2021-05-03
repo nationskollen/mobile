@@ -1,10 +1,12 @@
 import React from 'react'
+import TitleOffsetOptions from './TitleOffsetOptions'
 import LanguageContextType from '../translate/LanguageContextType'
 
 import EventPage from '../components/Events/EventPage'
 import NationHomePage from '../components/Nations/NationHomePage'
-import NavigationBackArrow from '../components/NavigationBackArrow'
+import NationMenuPage from '../components/Nations/NationMenuPage'
 import NationMenusPage from '../components/Nations/NationMenusPage'
+import NavigationBackArrow from '../components/NavigationBackArrow'
 import NationEventsPage from '../components/Nations/NationEventsPage'
 import NationLocationsAndHoursPage from '../components/Nations/NationLocationsAndHoursPage'
 
@@ -17,7 +19,7 @@ const SharedScreens = (Stack: any, translate: LanguageContextType) => [
         options={{
             title: null,
             headerTransparent: true,
-            headerLeft: () => <NavigationBackArrow />,
+            ...TitleOffsetOptions,
         }}
     />,
     <Stack.Screen
@@ -26,7 +28,7 @@ const SharedScreens = (Stack: any, translate: LanguageContextType) => [
         component={NationLocationsAndHoursPage}
         options={{
             title: translate.titles.nationLocationAndHours,
-            headerLeft: () => <NavigationBackArrow />,
+            ...TitleOffsetOptions,
         }}
     />,
     <Stack.Screen
@@ -35,7 +37,7 @@ const SharedScreens = (Stack: any, translate: LanguageContextType) => [
         component={NationEventsPage}
         options={{
             title: translate.titles.nationEvents,
-            headerLeft: () => <NavigationBackArrow />,
+            ...TitleOffsetOptions,
         }}
     />,
     <Stack.Screen
@@ -44,7 +46,16 @@ const SharedScreens = (Stack: any, translate: LanguageContextType) => [
         component={NationMenusPage}
         options={{
             title: translate.titles.nationMenus,
-            headerLeft: () => <NavigationBackArrow />,
+            ...TitleOffsetOptions,
+        }}
+    />,
+    <Stack.Screen
+        key="NationMenu"
+        name="NationMenu"
+        component={NationMenuPage}
+        options={{
+            title: null,
+            ...TitleOffsetOptions,
         }}
     />,
     <Stack.Screen
@@ -53,7 +64,7 @@ const SharedScreens = (Stack: any, translate: LanguageContextType) => [
         component={EventPage}
         options={{
             title: translate.titles.event,
-            headerLeft: () => <NavigationBackArrow />,
+            ...TitleOffsetOptions,
         }}
     />,
 ]

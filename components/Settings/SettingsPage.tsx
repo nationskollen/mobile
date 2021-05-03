@@ -50,12 +50,12 @@ const SettingsPage = ({ navigation }: Props) => {
             <ListButton
                 title={translate.titles.customizeNotificaitions}
                 onPress={() => navigation.push('NotificationSettings')}
-                leftIcon={<Ionicons name="filter" size={24} color={colors.text} />}
+                leftIcon={<Ionicons name="filter-outline" size={24} color={colors.text} />}
             />
             <ListButton
                 title={translate.titles.language}
                 onPress={() => navigation.push('LanguageSettings')}
-                leftIcon={<Ionicons name="language" size={24} color={colors.text} />}
+                leftIcon={<Ionicons name="language-outline" size={24} color={colors.text} />}
             />
         </SafeAreaView>
     )

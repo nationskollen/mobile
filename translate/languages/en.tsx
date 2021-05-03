@@ -13,7 +13,8 @@ const English: LanguageContextType = {
         map: 'Map',
         settings: 'Settings',
         nation: 'Nation',
-        nations: 'Choose nation',
+        nations: 'Nations',
+        chooseNation: 'Choose nation',
         nationMenus: 'Menus',
         nationEvents: 'Events',
         nationLocationAndHours: 'Opening hours and locations',
@@ -40,6 +41,7 @@ const English: LanguageContextType = {
     },
 
     days: {
+        today: 'Today',
         monday: 'Monday',
         tuesday: 'Tuesday',
         wednesday: 'Wednesday',
@@ -50,6 +52,8 @@ const English: LanguageContextType = {
     },
 
     openingHours: {
+        openToday: 'Open today',
+        closedToday: 'Closed today',
         missing: 'No opening hours',
     },
 
@@ -92,12 +96,25 @@ const English: LanguageContextType = {
         createdAt: 'Created',
         updatedAt: 'Last updated',
         failedToLoad: 'Could not load event',
+        empty: 'No events',
     },
 
     location: {
         showOnMap: 'Show on map',
         regularOpeningHours: 'Opening hours',
         exceptionOpeningHours: 'Exceptions',
+    },
+
+    nation: {
+        description: 'Description',
+    },
+
+    menus: {
+        empty: 'No available menus',
+    },
+
+    menu: {
+        empty: 'Menu is empty',
     },
 }
 

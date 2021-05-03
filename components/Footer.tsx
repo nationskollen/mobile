@@ -5,7 +5,7 @@
 import React from 'react'
 import { useTheme } from './ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
-import { Nation, Event, Location } from '@dsp-krabby/sdk'
+import { Nation, Event } from '@dsp-krabby/sdk'
 import { useTranslation } from '../translate/LanguageContext'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
@@ -23,25 +23,13 @@ export type TabStackParamList = {
     Map: undefined
     Settings: undefined
     Notifications: undefined
-    Nations: {
-        nation?: Nation
-    }
-    Event: {
-        event?: Event
-        nation?: Nation
-    }
-    NationHome: {
-        nation?: Nation
-    }
-    NationMenus: {
-        nation?: Nation
-    }
-    NationEvents: {
-        nation?: Nation
-    }
-    NationLocationsAndHours: {
-        nation?: Nation
-    }
+    Nations: { nation?: Nation }
+    Event: { event: Event; nation: Nation }
+    NationHome: { oid: number }
+    NationMenus: { nation: Nation }
+    NationMenu: { nation: Nation; menuId: number }
+    NationEvents: { nation: Nation }
+    NationLocationsAndHours: { nation: Nation }
 }
 
 const Tab = createBottomTabNavigator()

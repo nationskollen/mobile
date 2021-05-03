@@ -6,6 +6,7 @@ import React from 'react'
 import { FlatList } from 'react-native'
 import { useEvents, Nation } from '@dsp-krabby/sdk'
 import { useDatePicker } from './DatePickerContext'
+import { useTranslation } from '../../translate/LanguageContext'
 
 import ListEmpty from '../ListEmpty'
 import ListFooter from '../ListFooter'
@@ -18,6 +19,7 @@ export interface Props {
 
 const Timeline = ({ nation }: Props) => {
     const { date } = useDatePicker()
+    const { translate } = useTranslation()
     const { data, error, isValidating, mutate, size, setSize, pagination } = useEvents(
         nation?.oid,
         {
@@ -45,7 +47,7 @@ const Timeline = ({ nation }: Props) => {
                 ListEmpty({
                     error,
                     loading: isValidating,
-                    message: 'Inga events denna dag',
+                    message: translate.events.empty,
                 })
             }
         />

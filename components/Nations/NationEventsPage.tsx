@@ -8,6 +8,7 @@
 import React from 'react'
 import { RouteProp } from '@react-navigation/native'
 import { TabStackParamList } from '../Footer'
+import { useTranslation } from '../../translate/LanguageContext'
 
 import Timeline from '../Home/Timeline'
 import FilterBar from '../Home/FilterBar'
@@ -18,11 +19,12 @@ export interface Props {
     route: RouteProp<TabStackParamList, 'NationEvents'>
 }
 
-const NationHoursPage = ({ route }: Props) => {
+const NationEventsPage = ({ route }: Props) => {
     const { nation } = route.params
+    const { translate } = useTranslation()
 
     return (
-        <NationBasePage nation={nation}>
+        <NationBasePage title={translate.titles.nationEvents} nation={nation} cardBackground={true}>
             <DatePickerProvider>
                 <FilterBar hideNationFilter={true} />
                 <Timeline nation={nation} />
@@ -31,4 +33,4 @@ const NationHoursPage = ({ route }: Props) => {
     )
 }
 
-export default NationHoursPage
+export default NationEventsPage

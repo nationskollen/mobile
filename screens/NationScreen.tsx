@@ -31,7 +31,7 @@ const NationScreen = () => {
                 name="Nations"
                 component={NationsPage}
                 options={{
-                    title: translate.titles.nations,
+                    title: translate.titles.chooseNation,
                 }}
             />
             {sharedScreens}

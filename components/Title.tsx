@@ -7,15 +7,20 @@
  */
 import React from 'react'
 import { useTheme } from './ThemeContext'
-import { Text, StyleSheet } from 'react-native'
+import { Text, TextStyle, View, ViewStyle, StyleSheet } from 'react-native'
+import { Ionicons } from '@expo/vector-icons'
+import { IconName } from '@expo/vector-icons/Ionicons'
 
 export interface Props {
     label: string
     noMargin?: boolean
     size?: 'small' | 'medium' | 'large'
+    icon?: IconName
+    style?: TextStyle
+    containerStyle?: ViewStyle
 }
 
-const Title = ({ label, size, noMargin }: Props) => {
+const Title = ({ label, size, noMargin, icon, style, containerStyle }: Props) => {
     const { colors } = useTheme()
     let fontSize = 16
 
@@ -28,19 +33,35 @@ const Title = ({ label, size, noMargin }: Props) => {
     }
 
     return (
-        <Text style={[
-            styles.text,
-            { fontSize, color: colors.textHighlight, marginBottom: noMargin ? 0 : 5 }
-        ]}>
-            {label}
-        </Text>
+        <View style={[styles.container, { marginBottom: noMargin ? 0 : 5 }, containerStyle]}>
+            {icon && (
+                <Ionicons
+                    name={icon}
+                    size={fontSize + 2}
+                    color={colors.textHighlight}
+                    style={styles.icon}
+                />
+            )}
+            <Text style={[styles.text, { fontSize, color: colors.textHighlight }, style]}>
+                {label}
+            </Text>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 5,
+    },
+
     text: {
         fontWeight: 'bold',
-        marginBottom: 5,
+    },
+
+    icon: {
+        marginRight: 5,
     },
 })
 
