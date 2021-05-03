@@ -12,10 +12,11 @@ import React, { useLayoutEffect } from 'react'
 import { Nation } from '@dsp-krabby/sdk'
 import { useTheme } from '../ThemeContext'
 import { useNavigation } from '@react-navigation/core'
-import FocusAwareStatusBar from '../FocusAwareStatusBar'
 
 import Title from '../Title'
 import NationLogo from './NationLogo'
+import FocusAwareStatusBar from '../FocusAwareStatusBar'
+import NavigationBackArrow from '../NavigationBackArrow'
 
 export interface Props {
     nation: Nation
@@ -43,6 +44,7 @@ const NationBasePage = ({ nation, title, cardBackground, style, children }: Prop
                     <Title size="large" label={title} noMargin={true} style={{ marginLeft: 10 }} />
                 </View>
             ),
+            headerLeft: () => <NavigationBackArrow color={colors.textHighlight} />,
             headerStyle: {
                 backgroundColor: colors.background,
                 borderBottomWidth: 1,

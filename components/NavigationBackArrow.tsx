@@ -4,7 +4,6 @@
  */
 import React from 'react'
 import { Animated } from 'react-native'
-import { useTheme } from './ThemeContext'
 import { useNavigation } from '@react-navigation/native'
 
 import HeaderButton from './HeaderButton'
@@ -14,7 +13,6 @@ export interface Props {
 }
 
 const NavigationBackArrow = ({ color }: Props) => {
-    const { colors } = useTheme()
     const navigation = useNavigation()
 
     return (

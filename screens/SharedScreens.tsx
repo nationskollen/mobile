@@ -28,7 +28,6 @@ const SharedScreens = (Stack: any, translate: LanguageContextType) => [
         component={NationLocationsAndHoursPage}
         options={{
             title: translate.titles.nationLocationAndHours,
-            headerLeft: () => <NavigationBackArrow />,
             ...TitleOffsetOptions,
         }}
     />,
@@ -38,7 +37,6 @@ const SharedScreens = (Stack: any, translate: LanguageContextType) => [
         component={NationEventsPage}
         options={{
             title: translate.titles.nationEvents,
-            headerLeft: () => <NavigationBackArrow />,
             ...TitleOffsetOptions,
         }}
     />,
@@ -48,7 +46,6 @@ const SharedScreens = (Stack: any, translate: LanguageContextType) => [
         component={NationMenusPage}
         options={{
             title: translate.titles.nationMenus,
-            headerLeft: () => <NavigationBackArrow />,
             ...TitleOffsetOptions,
         }}
     />,
@@ -58,7 +55,6 @@ const SharedScreens = (Stack: any, translate: LanguageContextType) => [
         component={NationMenuPage}
         options={{
             title: null,
-            headerLeft: () => <NavigationBackArrow />,
             ...TitleOffsetOptions,
         }}
     />,
@@ -68,7 +64,6 @@ const SharedScreens = (Stack: any, translate: LanguageContextType) => [
         component={EventPage}
         options={{
             title: translate.titles.event,
-            headerLeft: () => <NavigationBackArrow />,
             ...TitleOffsetOptions,
         }}
     />,
