@@ -40,7 +40,7 @@ const LanguagePage = () => {
                 <CheckBox
                     center
                     size={24}
-                    checkedColor="#71002E"
+                    checkedColor={colors.primaryText}
                     title={
                         <Text
                             style={{
