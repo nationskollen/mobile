@@ -36,7 +36,7 @@ const LanguagePage = () => {
     return (
         <View>
             <FocusAwareStatusBar backgroundColor={colors.primary} />
-            {checkedStates.map((option) => (
+            {checkedStates.map((option, index) => (
                 <CheckBox
                     center
                     size={24}
