@@ -38,6 +38,7 @@ const LanguagePage = () => {
             <FocusAwareStatusBar backgroundColor={colors.primary} />
             {checkedStates.map((option, index) => (
                 <CheckBox
+                    key={index}
                     center
                     size={24}
                     checkedColor={colors.primaryText}
