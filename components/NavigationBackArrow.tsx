@@ -3,28 +3,20 @@
  * @module NavigationBackArrow
  */
 import React from 'react'
-import { Ionicons } from '@expo/vector-icons'
-import { TouchableHighlight } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
+
+import HeaderButton from './HeaderButton'
 
 const NavigationBackArrow = () => {
     const navigation = useNavigation()
 
     return (
-        <TouchableHighlight
+        <HeaderButton
             onPress={navigation.goBack}
-            underlayColor="rgba(255, 255, 255, 0.15)"
-            style={{
-                width: 50,
-                height: 50,
-                borderRadius: 20,
-                marginLeft: 5,
-                justifyContent: 'center',
-                alignItems: 'center',
-            }}
-        >
-            <Ionicons name="arrow-back" size={28} color="white" />
-        </TouchableHighlight>
+            icon="arrow-back"
+            iconSize={26}
+            isLeft={true}
+        />
     )
 }
 
