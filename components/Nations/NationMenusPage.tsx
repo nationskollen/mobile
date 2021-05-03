@@ -30,7 +30,7 @@ const NationMenusPage = ({ route }: Props) => {
     // for the entire nation? Currently, rendering a message if there are no
     // menus is super complicated.
     return (
-        <NationBasePage nation={nation} cardBackground={true}>
+        <NationBasePage title={translate.titles.nationMenus} nation={nation} cardBackground={true}>
             <FlatList
                 data={data}
                 renderItem={({ item }) => <Menus location={item} nation={nation} />}

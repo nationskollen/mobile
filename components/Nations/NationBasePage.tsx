@@ -19,19 +19,10 @@ import NationLogo from './NationLogo'
 
 export interface Props {
     nation: Nation
-    title?: string
+    title: string
     cardBackground?: boolean
     style?: ViewStyle
     children: Element | Element[]
-}
-
-export interface ScreenOptions {
-    title?: string
-    headerTitle: () => Element
-    headerTransparent: boolean
-    headerStyle: {
-        backgroundColor: string
-    }
 }
 
 const NationBasePage = ({ nation, title, cardBackground, style, children }: Props) => {
@@ -44,28 +35,27 @@ const NationBasePage = ({ nation, title, cardBackground, style, children }: Prop
         : colors.background
 
     useLayoutEffect(() => {
-        const options: ScreenOptions = {
-            headerTransparent: true,
+        const options: any = {
             headerTitle: () => (
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <NationLogo src={nation.icon_img_src} size={35} spacing={6} />
-                    <Title size="large" label="hello" noMargin={true} style={{ marginLeft: 10 }} />
+                    <Title size="large" label={title} noMargin={true} style={{ marginLeft: 10 }} />
                 </View>
             ),
             headerStyle: {
-                backgroundColor: nation.accent_color,
+                backgroundColor: colors.background,
+                borderBottomWidth: 1,
+                borderBottomColor: colors.border,
+                elevation: 0,
+                shadowOpacity: 0,
             },
         }
 
-        if (title) {
-            options.title = title
-        }
-
         navigation.setOptions(options)
-    }, [nation, title])
+    }, [nation, title, isDarkMode])
 
     return (
-        <View style={[{ flex: 1, backgroundColor, paddingTop: 80 }, style]}>
+        <View style={[{ flex: 1, backgroundColor }, style]}>
             <FocusAwareStatusBar backgroundColor={nation.accent_color} />
             {children}
         </View>
