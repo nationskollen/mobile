@@ -4,8 +4,9 @@ import LanguageContextType from '../translate/LanguageContextType'
 
 import EventPage from '../components/Events/EventPage'
 import NationHomePage from '../components/Nations/NationHomePage'
-import NavigationBackArrow from '../components/NavigationBackArrow'
+import NationMenuPage from '../components/Nations/NationMenuPage'
 import NationMenusPage from '../components/Nations/NationMenusPage'
+import NavigationBackArrow from '../components/NavigationBackArrow'
 import NationEventsPage from '../components/Nations/NationEventsPage'
 import NationLocationsAndHoursPage from '../components/Nations/NationLocationsAndHoursPage'
 
@@ -48,6 +49,16 @@ const SharedScreens = (Stack: any, translate: LanguageContextType) => [
         component={NationMenusPage}
         options={{
             title: translate.titles.nationMenus,
+            headerLeft: () => <NavigationBackArrow />,
+            ...TitleOffsetOptions,
+        }}
+    />,
+    <Stack.Screen
+        key="NationMenu"
+        name="NationMenu"
+        component={NationMenuPage}
+        options={{
+            title: null,
             headerLeft: () => <NavigationBackArrow />,
             ...TitleOffsetOptions,
         }}

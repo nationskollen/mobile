@@ -22,7 +22,7 @@ const NationHoursPage = ({ route }: Props) => {
     const { nation } = route.params
 
     return (
-        <NationBasePage nation={nation}>
+        <NationBasePage nation={nation} cardBackground={true}>
             <DatePickerProvider>
                 <FilterBar hideNationFilter={true} />
                 <Timeline nation={nation} />

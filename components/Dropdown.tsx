@@ -1,4 +1,7 @@
 /**
+ * Renders an expandable dropdown menu header.
+ * Child elements will be rendered when the dropdown is clicked.
+ *
  * @category Misc
  * @module Dropdown
  */
@@ -11,18 +14,16 @@ import { Ionicons } from '@expo/vector-icons'
 
 import ListButton from './ListButton'
 
-interface Props {
+export interface Props {
     title: string
     icon: Element
     children: Element
+    expandedOnMount?: boolean
 }
 
-/**
- * This component renders an expandable dropdown menu header
- */
-export const Dropdown = ({ title, children, icon }: Props) => {
+export const Dropdown = ({ title, children, icon, expandedOnMount }: Props) => {
     const { colors } = useTheme()
-    const [expand, setExpand] = useState(false)
+    const [expand, setExpand] = useState(expandedOnMount)
 
     return (
         <View>
@@ -39,8 +40,6 @@ export const Dropdown = ({ title, children, icon }: Props) => {
                     />
                 }
             />
-
-            {/*If menu is expanded, show expandComponent*/}
             {expand && children}
         </View>
     )

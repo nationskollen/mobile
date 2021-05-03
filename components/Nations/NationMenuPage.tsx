@@ -1,37 +1,35 @@
 /**
- * Renders the available menus for the nation.
+ * Renders a single menu and all of its contents.
  *
  * @category Nations
- * @module NationMenusPage
+ * @module NationMenuPage
  */
 import React from 'react'
 import { FlatList } from 'react-native'
-import { useTheme } from '../ThemeContext'
+import { useMenu } from '@dsp-krabby/sdk'
 import { TabStackParamList } from '../Footer'
-import { useLocations } from '@dsp-krabby/sdk'
-import { RouteProp } from '@react-navigation/native'
+import { RouteProp } from '@react-navigation/core'
 import { useTranslation } from '../../translate/LanguageContext'
 
-import Menus from './Menus'
+import MenuItem from './MenuItem'
 import ListEmpty from '../ListEmpty'
 import LoadingCircle from '../LoadingCircle'
 import NationBasePage from './NationBasePage'
 
 export interface Props {
-    route: RouteProp<TabStackParamList, 'NationMenus'>
+    route: RouteProp<TabStackParamList, 'NationMenu'>
 }
 
-const NationMenusPage = ({ route }: Props) => {
-    const { colors } = useTheme()
-    const { nation } = route.params
+const NationMenuPage = ({ route }: Props) => {
+    const { nation, menuId } = route.params
     const { translate } = useTranslation()
-    const { data, error, isValidating, mutate } = useLocations(nation.oid)
+    const { data, error, isValidating, mutate } = useMenu(menuId)
 
     return (
-        <NationBasePage nation={nation} style={{ backgroundColor: colors.background }}>
+        <NationBasePage nation={nation} title={data?.name}>
             <FlatList
-                data={data}
-                renderItem={({ item }) => <Menus location={item} nation={nation} />}
+                data={data ? data.items : []}
+                renderItem={({ item }) => <MenuItem item={item} />}
                 keyExtractor={(item) => item.id.toString()}
                 refreshControl={
                     <LoadingCircle
@@ -44,7 +42,7 @@ const NationMenusPage = ({ route }: Props) => {
                     ListEmpty({
                         error,
                         loading: isValidating,
-                        message: translate.menus.empty,
+                        message: translate.menu.empty,
                     })
                 }
             />
@@ -52,4 +50,4 @@ const NationMenusPage = ({ route }: Props) => {
     )
 }
 
-export default NationMenusPage
+export default NationMenuPage

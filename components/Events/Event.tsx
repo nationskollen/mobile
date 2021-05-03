@@ -3,17 +3,18 @@
  * @module Event
  */
 import React from 'react'
-import { View, Text, StyleSheet, TouchableWithoutFeedback, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
 import { useTheme } from '../ThemeContext'
-import { useNation, Nation, Event as EventResponse } from '@dsp-krabby/sdk'
 import { useLocation } from '@dsp-krabby/sdk'
 import { useNavigation } from '@react-navigation/native'
+import { useNation, Nation, Event as EventResponse } from '@dsp-krabby/sdk'
 
 import Card from '../Card'
 import EventCover from './Cover'
 import ReminderButton from './ReminderButton'
 import NationLogo from '../Nations/NationLogo'
+import ContentContainer from '../ContentContainer'
 
 export interface EventProps {
     event: EventResponse
@@ -32,29 +33,22 @@ const Event = ({ event }: EventProps) => {
     return (
         <Card onPress={() => navigation.navigate('Event', { event, nation })}>
             <EventCover event={event} height={200} />
-            <Header nation={nation} event={event} />
+            <ContentContainer>
+                <Header nation={nation} event={event} />
 
-            {/*Container for title and description*/}
-            <View style={styles.textContainer}>
                 {/*Title of event*/}
-                <View>
-                    <Text style={[styles.title, { color: colors.textHighlight }]}>
-                        {event.name}
-                    </Text>
-                </View>
+                <Text style={[styles.title, { color: colors.textHighlight }]}>
+                    {event.name}
+                </Text>
 
                 {/*Time of event*/}
-                <View>
-                    <Text style={[styles.time, { color: colors.text }]}>{event.occurs_at}</Text>
-                </View>
+                <Text style={[styles.time, { color: colors.text }]}>{event.occurs_at}</Text>
 
                 {/*Description of event*/}
-                <View style={styles.descriptionContainer}>
-                    <Text style={[styles.description, { color: colors.text }]}>
-                        {event.short_description}
-                    </Text>
-                </View>
-            </View>
+                <Text style={[styles.description, { color: colors.text }]}>
+                    {event.short_description}
+                </Text>
+            </ContentContainer>
         </Card>
     )
 }
@@ -69,13 +63,13 @@ const Header = ({ nation, event }: HeaderProps) => {
     return (
         <View style={styles.header}>
             <TouchableOpacity
-                style={nationStyles.container}
+                style={styles.nationContainer}
                 onPress={() => navigation.navigate('NationHome', { nation })}
             >
                 {nation && (
                     <View style={styles.headerContent}>
                         <NationLogo src={nation.icon_img_src} size={40} />
-                        <Text style={[nationStyles.name, { color: colors.primaryText }]}>
+                        <Text style={[styles.nationName, { color: colors.primaryText }]}>
                             {nation.name}
                         </Text>
                     </View>
@@ -96,8 +90,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'flex-start',
         width: '100%',
-        paddingHorizontal: 15,
-        paddingTop: 15,
     },
 
     headerContent: {
@@ -122,29 +114,16 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
 
-    descriptionContainer: {
-        marginTop: '1%',
-        width: '100%',
-    },
-
     description: {
         color: '#808080',
     },
-})
 
-const nationStyles = StyleSheet.create({
-    container: {
+    nationContainer: {
         flexDirection: 'row',
         alignItems: 'center',
     },
 
-    logo: {
-        width: 40,
-        height: 40,
-        borderRadius: 40,
-    },
-
-    name: {
+    nationName: {
         fontSize: 14,
         fontWeight: 'bold',
         marginLeft: 10,

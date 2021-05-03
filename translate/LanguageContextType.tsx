@@ -106,4 +106,12 @@ export default interface LanguageContextType {
     nation: {
         description: string
     }
+
+    menus: {
+        empty: string
+    }
+
+    menu: {
+        empty: string
+    }
 }

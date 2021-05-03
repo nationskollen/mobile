@@ -35,9 +35,8 @@ const Card = ({ children, onPress }: Props) => {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 5,
-        paddingBottom: 20,
-        marginBottom: 10,
+        marginTop: 10,
+        marginBottom: 5,
         marginHorizontal: 10,
         overflow: 'hidden',
 

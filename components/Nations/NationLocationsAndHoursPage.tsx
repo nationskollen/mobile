@@ -26,7 +26,7 @@ const NationLocationsAndHoursPage = ({ route }: Props) => {
     const { data, error, isValidating, mutate } = useLocations(nation.oid)
 
     return (
-        <NationBasePage nation={nation}>
+        <NationBasePage nation={nation} cardBackground={true}>
             <FlatList
                 data={data}
                 renderItem={({ item }) => (

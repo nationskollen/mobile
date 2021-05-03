@@ -16,33 +16,46 @@ import FocusAwareStatusBar from '../FocusAwareStatusBar'
 
 export interface Props {
     nation: Nation
+    title?: string
+    cardBackground?: boolean
     style?: ViewStyle
     children: Element | Element[]
 }
 
-const NationBasePage = ({ nation, style, children }: Props) => {
+export interface ScreenOptions {
+    title?: string
+    headerTransparent: boolean
+    headerStyle: {
+        backgroundColor: string
+    }
+}
+
+const NationBasePage = ({ nation, title, cardBackground, style, children }: Props) => {
     const { colors, isDarkMode } = useTheme()
     const navigation = useNavigation()
+    const backgroundColor = cardBackground
+        ? isDarkMode
+            ? colors.background
+            : colors.backgroundExtra
+        : colors.background
 
     useLayoutEffect(() => {
-        navigation.setOptions({
+        const options: ScreenOptions = {
             headerTransparent: false,
             headerStyle: {
                 backgroundColor: nation.accent_color,
             },
-        })
-    }, [nation])
+        }
+
+        if (title) {
+            options.title = title
+        }
+
+        navigation.setOptions(options)
+    }, [nation, title])
 
     return (
-        <View
-            style={[
-                {
-                    flex: 1,
-                    backgroundColor: isDarkMode ? colors.background : colors.backgroundExtra,
-                },
-                style,
-            ]}
-        >
+        <View style={[{ flex: 1, backgroundColor }, style]}>
             <FocusAwareStatusBar backgroundColor={nation.accent_color} />
             {children}
         </View>

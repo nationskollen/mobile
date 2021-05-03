@@ -14,7 +14,7 @@ const Swedish: LanguageContextType = {
         settings: 'Inställningar',
         nation: 'Nation',
         chooseNation: 'Välj nation',
-        nations: 'Nations',
+        nations: 'Nationer',
         nationMenus: 'Menyer',
         nationEvents: 'Evenemang',
         nationLocationAndHours: 'Öppettider och platser',
@@ -107,6 +107,14 @@ const Swedish: LanguageContextType = {
 
     nation: {
         description: 'Beskrivning',
+    },
+
+    menus: {
+        empty: 'Inga tillgängliga menyer',
+    },
+
+    menu: {
+        empty: 'Menyn är tom',
     },
 }
 

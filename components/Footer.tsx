@@ -23,25 +23,13 @@ export type TabStackParamList = {
     Map: undefined
     Settings: undefined
     Notifications: undefined
-    Nations: {
-        nation?: Nation
-    }
-    Event: {
-        event?: Event
-        nation?: Nation
-    }
-    NationHome: {
-        oid: number
-    }
-    NationMenus: {
-        nation?: Nation
-    }
-    NationEvents: {
-        nation?: Nation
-    }
-    NationLocationsAndHours: {
-        nation?: Nation
-    }
+    Nations: { nation?: Nation }
+    Event: { event: Event; nation: Nation }
+    NationHome: { oid: number }
+    NationMenus: { nation: Nation }
+    NationMenu: { nation: Nation; menuId: number }
+    NationEvents: { nation: Nation }
+    NationLocationsAndHours: { nation: Nation }
 }
 
 const Tab = createBottomTabNavigator()

@@ -13,7 +13,8 @@ const English: LanguageContextType = {
         map: 'Map',
         settings: 'Settings',
         nation: 'Nation',
-        nations: 'Choose nation',
+        nations: 'Nations',
+        chooseNation: 'Choose nation',
         nationMenus: 'Menus',
         nationEvents: 'Events',
         nationLocationAndHours: 'Opening hours and locations',
@@ -106,6 +107,14 @@ const English: LanguageContextType = {
 
     nation: {
         description: 'Description',
+    },
+
+    menus: {
+        empty: 'No available menus',
+    },
+
+    menu: {
+        empty: 'Menu is empty',
     },
 }
 
