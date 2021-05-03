@@ -7,7 +7,7 @@
  * @category Nations
  * @module NationBasePage
  */
-import { View, ViewStyle } from 'react-native'
+import { Platform, View, ViewStyle } from 'react-native'
 import React, { useLayoutEffect } from 'react'
 import { Nation } from '@dsp-krabby/sdk'
 import { useTheme } from '../ThemeContext'
@@ -28,6 +28,7 @@ export interface Props {
 const NationBasePage = ({ nation, title, cardBackground, style, children }: Props) => {
     const { colors, isDarkMode } = useTheme()
     const navigation = useNavigation()
+    const statusBarColor = Platform.OS === 'ios' ? (isDarkMode ? 'light' : 'dark') : 'light'
     const backgroundColor = cardBackground
         ? isDarkMode
             ? colors.background
@@ -56,7 +57,7 @@ const NationBasePage = ({ nation, title, cardBackground, style, children }: Prop
 
     return (
         <View style={[{ flex: 1, backgroundColor }, style]}>
-            <FocusAwareStatusBar backgroundColor={nation.accent_color} />
+            <FocusAwareStatusBar color={statusBarColor} backgroundColor={nation.accent_color} />
             {children}
         </View>
     )
