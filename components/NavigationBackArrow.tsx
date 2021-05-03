@@ -22,7 +22,7 @@ const NavigationBackArrow = ({ color }: Props) => {
             onPress={navigation.goBack}
             icon="arrow-back"
             iconSize={26}
-            color={color ?? colors.textHighlight}
+            color={color ?? 'white'}
             isLeft={true}
         />
     )
