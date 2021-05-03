@@ -7,7 +7,7 @@ import React, { useState } from 'react'
 import { View, StyleSheet } from 'react-native'
 
 import FilterList from './FilterList'
-import PrimaryButton from '../PrimaryButton'
+import Button from '../Button'
 import { useNations } from '@dsp-krabby/sdk'
 
 //used until hook for categories is available
@@ -66,18 +66,21 @@ const FilterButtons = () => {
     return (
         <View style={styles.container}>
             <View style={styles.buttonsContainer}>
-                <PrimaryButton
+                <Button
                     onPress={() => setFilterTab('nations')}
+                    type={'primary'}
                     label={'Nation'}
                     style={{ width: '30%', height: 70 }}
                 />
-                <PrimaryButton
+                <Button
                     onPress={() => setFilterTab('categories')}
+                    type={'primary'}
                     label={'Kategori'}
                     style={{ width: '30%', height: 70 }}
                 />
-                <PrimaryButton
+                <Button
                     onPress={() => setFilterTab('student')}
+                    type={'primary'}
                     label={'Student'}
                     style={{ width: '30%', height: 70 }}
                 />
@@ -101,6 +104,8 @@ const styles = StyleSheet.create({
         minHeight: 400, //TODO: make dynamic (%-based is too small, not sure why atm)
         justifyContent: 'space-between',
         marginTop: '5%',
+        elevation: 100,
+        zIndex: 4,
     },
 
     buttonsContainer: {
