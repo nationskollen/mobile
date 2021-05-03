@@ -1,4 +1,9 @@
 /**
+ * Renders a single location of a nation.
+ * Displays the address, description, opening hours and subscribes
+ * to activity level changes. It also provides a button that allows
+ * you to navigate to the location using your map app of choice.
+ *
  * @category Nations
  * @module Location
  */
@@ -14,6 +19,7 @@ import Title from '../Title'
 import CoverImage from '../CoverImage'
 import OpeningHours from './OpeningHours'
 import ActivityLevel from './ActivityLevel'
+import ContentContainer from '../ContentContainer'
 import ShowLocationButton from '../Map/ShowLocationButton'
 
 export interface Props {
@@ -36,53 +42,19 @@ const Location = ({ location, accentColor }: Props) => {
                 fallbackIcon="location"
                 overlayColor={accentColor}
             />
-            <View style={styles.contentContainer}>
+            <ContentContainer>
                 <Title size="large" label={location.name} />
-                <View style={styles.locationContainer}>
-                    <Ionicons
-                        name="location-outline"
-                        size={20}
-                        color={colors.textHighlight}
-                        style={styles.locationIcon}
-                    />
-                    <Title size="medium" label={location.address} noMargin={true} />
-                </View>
+                <Title size="medium" label={location.address} icon="location-outline" />
                 <Text style={{ color: colors.text }}>{location.description}</Text>
                 <View style={[styles.openingHoursContainer, { borderColor: colors.border }]}>
-                    <View>
-                        <View style={styles.labelContainer}>
-                            <Ionicons
-                                name="time-outline"
-                                size={20}
-                                color={colors.textHighlight}
-                                style={styles.labelIcon}
-                            />
-                            <Text
-                                style={[styles.openingHourLabel, { color: colors.textHighlight }]}
-                            >
-                                {translate.location.regularOpeningHours}
-                            </Text>
-                        </View>
-                        <OpeningHours hours={location.opening_hours} />
-                    </View>
+                    <Title label={translate.location.regularOpeningHours} icon="time-outline" />
+                    <OpeningHours hours={location.opening_hours} />
                     {location.opening_hour_exceptions.length > 0 && (
                         <View style={{ marginTop: 15 }}>
-                            <View style={styles.labelContainer}>
-                                <Ionicons
-                                    name="information-circle-outline"
-                                    size={20}
-                                    color={colors.textHighlight}
-                                    style={styles.labelIcon}
-                                />
-                                <Text
-                                    style={[
-                                        styles.openingHourLabel,
-                                        { color: colors.textHighlight },
-                                    ]}
-                                >
-                                    {translate.location.exceptionOpeningHours}
-                                </Text>
-                            </View>
+                            <Title
+                                label={translate.location.exceptionOpeningHours}
+                                icon="information-circle-outline"
+                            />
                             <OpeningHours hours={location.opening_hour_exceptions} />
                         </View>
                     )}
@@ -92,7 +64,7 @@ const Location = ({ location, accentColor }: Props) => {
                         <ShowLocationButton type="light" location={location} />
                     </View>
                 )}
-            </View>
+            </ContentContainer>
         </Card>
     )
 }
@@ -116,34 +88,10 @@ const styles = StyleSheet.create({
         marginTop: 15,
     },
 
-    openingHourLabel: {
-        fontSize: 14,
-        fontWeight: 'bold',
-    },
-
-    labelContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-
-    labelIcon: {
-        marginRight: 5,
-    },
-
     navigationContainer: {
         marginTop: 15,
         paddingTop: 15,
         borderTopWidth: 1,
-    },
-
-    locationContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 10,
-    },
-
-    locationIcon: {
-        marginRight: 5,
     },
 })
 

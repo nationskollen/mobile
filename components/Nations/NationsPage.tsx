@@ -30,7 +30,7 @@ const NationsPage = () => {
                 renderItem={({ item: nation }) => (
                     <ListButton
                         title={nation.name}
-                        onPress={() => navigation.navigate('NationHome', { nation })}
+                        onPress={() => navigation.navigate('NationHome', { oid: nation.oid })}
                         leftIcon={<NationLogo src={nation.icon_img_src} />}
                     />
                 )}

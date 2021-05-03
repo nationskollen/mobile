@@ -5,48 +5,55 @@
  * @module Card
  */
 import React from 'react'
-import { View, TouchableWithoutFeedback, StyleSheet } from 'react-native'
+import { View, ViewStyle, TouchableHighlight, StyleSheet } from 'react-native'
 import { useTheme } from './ThemeContext'
 
 export interface Props {
-    onPress?: () => void
     children: Element | Element[]
+    onPress?: () => void
+    style?: ViewStyle
 }
 
-const Card = ({ children, onPress }: Props) => {
+const Card = ({ children, onPress, style }: Props) => {
     const { colors, isDarkMode } = useTheme()
-    const content = (
-        <View
-            style={[
-                styles.container,
-                { backgroundColor: isDarkMode ? colors.backgroundExtra : colors.background },
-            ]}
-        >
-            {children}
-        </View>
-    )
+    const containerStyles = [
+        styles.container,
+        {
+            backgroundColor: isDarkMode ? colors.backgroundExtra : colors.background,
+            borderColor: colors.border,
+        },
+        style,
+    ]
 
     if (onPress) {
-        return <TouchableWithoutFeedback onPress={onPress}>{content}</TouchableWithoutFeedback>
+        return (
+            <TouchableHighlight
+                style={containerStyles}
+                onPress={onPress}
+                underlayColor="rgba(255, 255, 255, 0.05)"
+            >
+                <View>{children}</View>
+            </TouchableHighlight>
+        )
     }
 
-    return content
+    return <View style={containerStyles}>{children}</View>
 }
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 5,
-        paddingBottom: 20,
-        marginBottom: 10,
+        marginTop: 10,
+        marginBottom: 5,
         marginHorizontal: 10,
         overflow: 'hidden',
 
         borderRadius: 10,
-        elevation: 5,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.3,
-        shadowRadius: 3,
+        borderWidth: 1,
+        // elevation: 5,
+        // shadowColor: '#000',
+        // shadowOffset: { width: 0, height: 2 },
+        // shadowOpacity: 0.3,
+        // shadowRadius: 3,
     },
 })
 

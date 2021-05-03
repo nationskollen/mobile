@@ -12,11 +12,14 @@ import { useIsFocused } from '@react-navigation/native'
 
 export interface Props {
     backgroundColor: string
+    color?: 'light' | 'dark'
 }
 
-const FocusAwareStatusBar = ({ backgroundColor }: Props) => {
+const FocusAwareStatusBar = ({ color, backgroundColor }: Props) => {
     const isFocused = useIsFocused()
-    return isFocused ? <StatusBar style="light" backgroundColor={backgroundColor} /> : null
+    return isFocused ? (
+        <StatusBar style={color ?? 'light'} backgroundColor={backgroundColor} />
+    ) : null
 }
 
 export default FocusAwareStatusBar

@@ -16,6 +16,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 
 import SharedScreens from './SharedScreens'
 import HomePage from '../components/Home/HomePage'
+import TitleOffsetOptions from './TitleOffsetOptions'
 import NavigationBackArrow from '../components/NavigationBackArrow'
 
 const Stack = createStackNavigator()
@@ -40,6 +41,7 @@ const HomeScreen = () => {
                 options={{
                     title: translate.titles.events,
                     headerLeft: () => <NavigationBackArrow />,
+                    ...TitleOffsetOptions,
                 }}
             />
             {sharedScreens}

@@ -14,6 +14,7 @@ import LanguageContextType from '../../translate/LanguageContextType'
 export interface Props {
     hour: OpeningHourResponse
     style?: ViewStyle
+    isToday?: boolean
     textStyle?: TextStyle
 }
 
@@ -47,14 +48,14 @@ const toDayString = (hour: OpeningHourResponse, translate: LanguageContextType) 
     }
 }
 
-const OpeningHour = ({ style, textStyle, hour }: Props) => {
+const OpeningHour = ({ style, textStyle, hour, isToday }: Props) => {
     const { colors } = useTheme()
     const { translate } = useTranslation()
 
     return (
         <View style={[styles.container, style]}>
             <Text style={[styles.openinghoursText, { color: colors.text }, textStyle]}>
-                {toDayString(hour, translate)}:{' '}
+                {isToday ? translate.days.today : toDayString(hour, translate)}:{' '}
             </Text>
             <Text style={[styles.openinghoursText, { color: colors.text }, textStyle]}>
                 {hour.is_open ? `${hour.open}-${hour.close}` : translate.map.popup.closed}

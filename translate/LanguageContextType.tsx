@@ -12,6 +12,7 @@ export default interface LanguageContextType {
         settings: string
         nation: string
         nations: string
+        chooseNation: string
         nationMenus: string
         nationEvents: string
         nationLocationAndHours: string
@@ -33,6 +34,7 @@ export default interface LanguageContextType {
     }
 
     days: {
+        today: string
         monday: string
         tuesday: string
         wednesday: string
@@ -63,6 +65,8 @@ export default interface LanguageContextType {
     }
 
     openingHours: {
+        openToday: string
+        closedToday: string
         missing: string
     }
 
@@ -90,11 +94,24 @@ export default interface LanguageContextType {
         createdAt: string
         updatedAt: string
         failedToLoad: string
+        empty: string
     }
 
     location: {
         showOnMap: string
         regularOpeningHours: string
         exceptionOpeningHours: string
+    }
+
+    nation: {
+        description: string
+    }
+
+    menus: {
+        empty: string
+    }
+
+    menu: {
+        empty: string
     }
 }
