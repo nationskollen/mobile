@@ -22,11 +22,13 @@ export interface Props {
 }
 
 const NationMenusPage = ({ route }: Props) => {
-    const { colors } = useTheme()
     const { nation } = route.params
     const { translate } = useTranslation()
     const { data, error, isValidating, mutate } = useLocations(nation.oid)
 
+    // TODO: Add an endpoint for checking if there are any available menus
+    // for the entire nation? Currently, rendering a message if there are no
+    // menus is super complicated.
     return (
         <NationBasePage nation={nation} cardBackground={true}>
             <FlatList
