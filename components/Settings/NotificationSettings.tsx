@@ -19,11 +19,9 @@ const NotificationSettings = () => {
         <FlatList
             data={data}
             renderItem={({ item }) => (
-                <Dropdown
-                    title={item.name}
-                    expandComponent={<NotificationOptions />}
-                    icon={<NationLogo src={item.icon_img_src} />}
-                />
+                <Dropdown title={item.name} icon={<NationLogo src={item.icon_img_src} />}>
+                    <NotificationOptions />
+                </Dropdown>
             )}
             keyExtractor={(item) => item.oid.toString()}
             refreshControl={<LoadingCircle validating={isValidating} mutate={mutate} />}

@@ -4,11 +4,10 @@
  */
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-import OptionsMenu from 'react-native-option-menu'
-import { useAsyncCallback } from 'react-async-hook'
-
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
+import OptionsMenu from 'react-native-option-menu'
+import { useAsyncCallback } from 'react-async-hook'
 import { useTranslation } from '../../translate/LanguageContext'
 
 import { Event } from '@dsp-krabby/sdk'
@@ -34,11 +33,20 @@ const ReminderButton = ({ event, eventAddress, nationName }: Props) => {
 }
 
 const Button = () => {
-    const { colors } = useTheme()
+    const { colors, isDarkMode } = useTheme()
     const { translate } = useTranslation()
 
     return (
-        <View style={[styles.container, { backgroundColor: colors.backgroundExtra }]}>
+        <View
+            style={[
+                styles.container,
+                {
+                    backgroundColor: isDarkMode
+                        ? colors.backgroundHighlight
+                        : colors.backgroundExtra,
+                },
+            ]}
+        >
             <Ionicons name="md-notifications-outline" size={20} color={colors.text} />
             <Text style={[styles.text, { color: colors.text }]}>
                 {translate.home.reminderbutton}

@@ -16,6 +16,7 @@ import { IconName } from '@expo/vector-icons/Ionicons'
 export interface Props {
     src: string
     height?: number
+    width?: number
     fallback?: Element
     fallbackIcon?: IconName
     fallbackIconSize?: number
@@ -33,6 +34,7 @@ const CoverImage = ({
     hideFallbackIcon,
     children,
     height,
+    width,
     backgroundColor,
     overlayColor,
 }: Props) => {
@@ -44,6 +46,7 @@ const CoverImage = ({
                 styles.container,
                 {
                     height: height ?? 200,
+                    width: width ?? '100%',
                     backgroundColor: backgroundColor ?? colors.backgroundHighlight,
                 },
             ]}

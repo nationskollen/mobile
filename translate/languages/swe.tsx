@@ -13,7 +13,8 @@ const Swedish: LanguageContextType = {
         map: 'Karta',
         settings: 'Inställningar',
         nation: 'Nation',
-        nations: 'Välj nation',
+        chooseNation: 'Välj nation',
+        nations: 'Nationer',
         nationMenus: 'Menyer',
         nationEvents: 'Evenemang',
         nationLocationAndHours: 'Öppettider och platser',
@@ -40,6 +41,7 @@ const Swedish: LanguageContextType = {
     },
 
     days: {
+        today: 'Idag',
         monday: 'Måndag',
         tuesday: 'Tisdag',
         wednesday: 'Onsdag',
@@ -50,6 +52,8 @@ const Swedish: LanguageContextType = {
     },
 
     openingHours: {
+        openToday: 'Öppet idag',
+        closedToday: 'Stängt idag',
         missing: 'Inga öppettider',
     },
 
@@ -92,12 +96,25 @@ const Swedish: LanguageContextType = {
         createdAt: 'Skapad',
         updatedAt: 'Senast uppdaterad',
         failedToLoad: 'Kunde inte ladda event',
+        empty: 'Inga händelser',
     },
 
     location: {
         showOnMap: 'Visa på karta',
         regularOpeningHours: 'Öppettider',
         exceptionOpeningHours: 'Undantag',
+    },
+
+    nation: {
+        description: 'Beskrivning',
+    },
+
+    menus: {
+        empty: 'Inga tillgängliga menyer',
+    },
+
+    menu: {
+        empty: 'Menyn är tom',
     },
 }
 

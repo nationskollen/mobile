@@ -42,7 +42,7 @@ const NationInfo = ({ nation, backgroundColor, paddingTop }: Props) => {
         >
             <TouchableOpacity
                 style={styles.nationNameWrapper}
-                onPress={() => navigation.navigate('NationHome', { nation })}
+                onPress={() => navigation.navigate('NationHome', { oid: nation.oid })}
             >
                 <NationLogo src={nation.icon_img_src} size={50} />
                 <Text style={[styles.nationName, { color: colors.textHighlight }]}>

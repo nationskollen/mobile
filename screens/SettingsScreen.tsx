@@ -8,6 +8,7 @@ import React from 'react'
 import 'react-native-gesture-handler'
 import { HeaderOptions } from './NavigationHeader'
 import { useTheme } from '../components/ThemeContext'
+import TitleOffsetOptions from './TitleOffsetOptions'
 import { useTranslation } from '../translate/LanguageContext'
 import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack'
 
@@ -42,6 +43,7 @@ const SettingsScreen = () => {
                 options={{
                     title: translate.titles.customizeNotificaitions,
                     headerLeft: () => <NavigationBackArrow />,
+                    ...TitleOffsetOptions,
                 }}
             />
             <Stack.Screen
@@ -50,6 +52,7 @@ const SettingsScreen = () => {
                 options={{
                     title: translate.titles.login,
                     headerLeft: () => <NavigationBackArrow />,
+                    ...TitleOffsetOptions,
                 }}
             />
             <Stack.Screen
@@ -58,6 +61,7 @@ const SettingsScreen = () => {
                 options={{
                     title: translate.titles.language,
                     headerLeft: () => <NavigationBackArrow />,
+                    ...TitleOffsetOptions,
                 }}
             />
         </Stack.Navigator>

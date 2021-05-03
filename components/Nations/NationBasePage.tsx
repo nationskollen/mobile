@@ -7,43 +7,59 @@
  * @category Nations
  * @module NationBasePage
  */
-import { View, ViewStyle } from 'react-native'
+import { Platform, View, ViewStyle } from 'react-native'
 import React, { useLayoutEffect } from 'react'
 import { Nation } from '@dsp-krabby/sdk'
 import { useTheme } from '../ThemeContext'
 import { useNavigation } from '@react-navigation/core'
+
+import Title from '../Title'
+import NationLogo from './NationLogo'
 import FocusAwareStatusBar from '../FocusAwareStatusBar'
+import NavigationBackArrow from '../NavigationBackArrow'
 
 export interface Props {
     nation: Nation
+    title: string
+    cardBackground?: boolean
     style?: ViewStyle
     children: Element | Element[]
 }
 
-const NationBasePage = ({ nation, style, children }: Props) => {
+const NationBasePage = ({ nation, title, cardBackground, style, children }: Props) => {
     const { colors, isDarkMode } = useTheme()
     const navigation = useNavigation()
+    const statusBarColor = Platform.OS === 'ios' ? (isDarkMode ? 'light' : 'dark') : 'light'
+    const backgroundColor = cardBackground
+        ? isDarkMode
+            ? colors.background
+            : colors.backgroundExtra
+        : colors.background
 
     useLayoutEffect(() => {
-        navigation.setOptions({
-            headerTransparent: false,
+        const options: any = {
+            headerTitle: () => (
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <NationLogo src={nation.icon_img_src} size={35} spacing={6} />
+                    <Title size="large" label={title} noMargin={true} style={{ marginLeft: 10 }} />
+                </View>
+            ),
+            headerLeft: () => <NavigationBackArrow color={colors.textHighlight} />,
             headerStyle: {
-                backgroundColor: nation.accent_color,
+                backgroundColor: colors.background,
+                borderBottomWidth: 1,
+                borderBottomColor: colors.border,
+                elevation: 0,
+                shadowOpacity: 0,
             },
-        })
-    }, [nation])
+        }
+
+        navigation.setOptions(options)
+    }, [nation, title, isDarkMode])
 
     return (
-        <View
-            style={[
-                {
-                    flex: 1,
-                    backgroundColor: isDarkMode ? colors.background : colors.backgroundExtra,
-                },
-                style,
-            ]}
-        >
-            <FocusAwareStatusBar backgroundColor={nation.accent_color} />
+        <View style={[{ flex: 1, backgroundColor }, style]}>
+            <FocusAwareStatusBar color={statusBarColor} backgroundColor={nation.accent_color} />
             {children}
         </View>
     )
