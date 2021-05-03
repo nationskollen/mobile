@@ -1,57 +1,71 @@
-import React from 'react'
+import React, { useState } from 'react'
 import 'react-native-gesture-handler'
 import { useTheme } from '../ThemeContext'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text } from 'react-native'
 import { useTranslation } from '../../translate/LanguageContext'
-
-import ListButton from '../ListButton'
 import en from '../../translate/languages/en'
 import swe from '../../translate/languages/swe'
 import FocusAwareStatusBar from '../FocusAwareStatusBar'
+import { CheckBox } from 'react-native-elements'
+
+import LanguageContextType from '../../translate/LanguageContextType'
+
+var checkedStates = [
+    { key: 0, name: 'English', checked: false, value: en },
+    { key: 1, name: 'Svenska', checked: true, value: swe },
+]
+var initialState = 1
 
 const LanguagePage = () => {
     const { colors } = useTheme()
     const { setSelectedLanguage } = useTranslation()
+    const [currentlyChecked, setCurrentlyChecked] = useState(initialState)
 
-    // TODO: Update rightIcon of the list buttons to show a checkbox (?)
+    const uncheckPreviousCheckbox = (key: number) => {
+        checkedStates[key].checked = false
+    }
+
+    const checkSelectedCheckbox = (selectedLanguage: LanguageContextType, key: number) => {
+        setSelectedLanguage(selectedLanguage)
+        checkedStates[key].checked = true
+        uncheckPreviousCheckbox(currentlyChecked)
+        setCurrentlyChecked(key)
+        initialState = key
+    }
+
     return (
         <View>
             <FocusAwareStatusBar backgroundColor={colors.primary} />
-            <ListButton
-                title="English"
-                leftIcon={
-                    <View style={[styles.icon, { backgroundColor: colors.backgroundHighlight }]}>
-                        <Text style={[styles.text, { color: colors.text }]}>ENG</Text>
-                    </View>
-                }
-                onPress={() => setSelectedLanguage(en)}
-            />
-            <ListButton
-                title="Svenska"
-                leftIcon={
-                    <View style={[styles.icon, { backgroundColor: colors.backgroundHighlight }]}>
-                        <Text style={[styles.text, { color: colors.text }]}>SWE</Text>
-                    </View>
-                }
-                onPress={() => setSelectedLanguage(swe)}
-            />
+            {checkedStates.map((option, index) => (
+                <CheckBox
+                    key={index}
+                    center
+                    size={24}
+                    checkedColor={colors.primaryText}
+                    title={
+                        <Text
+                            style={{
+                                flex: 1,
+                                color: colors.text,
+                                fontSize: 16,
+                                fontWeight: 'bold',
+                            }}
+                        >
+                            {option.name}
+                        </Text>
+                    }
+                    fontFamily="Roboto"
+                    checked={option.checked}
+                    iconRight
+                    onPress={() => checkSelectedCheckbox(option.value, option.key)}
+                    containerStyle={{
+                        backgroundColor: colors.background,
+                        borderColor: colors.border,
+                    }}
+                />
+            ))}
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    icon: {
-        borderRadius: 10,
-        width: 50,
-        height: 50,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-
-    text: {
-        fontWeight: 'bold',
-    },
-})
 
 export default LanguagePage
