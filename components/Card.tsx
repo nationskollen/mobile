@@ -5,21 +5,23 @@
  * @module Card
  */
 import React from 'react'
-import { View, TouchableWithoutFeedback, StyleSheet } from 'react-native'
+import { View, ViewStyle, TouchableWithoutFeedback, StyleSheet } from 'react-native'
 import { useTheme } from './ThemeContext'
 
 export interface Props {
-    onPress?: () => void
     children: Element | Element[]
+    onPress?: () => void
+    style?: ViewStyle
 }
 
-const Card = ({ children, onPress }: Props) => {
+const Card = ({ children, onPress, style }: Props) => {
     const { colors, isDarkMode } = useTheme()
     const content = (
         <View
             style={[
                 styles.container,
                 { backgroundColor: isDarkMode ? colors.backgroundExtra : colors.background },
+                style,
             ]}
         >
             {children}

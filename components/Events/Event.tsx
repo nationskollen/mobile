@@ -37,9 +37,7 @@ const Event = ({ event }: EventProps) => {
                 <Header nation={nation} event={event} />
 
                 {/*Title of event*/}
-                <Text style={[styles.title, { color: colors.textHighlight }]}>
-                    {event.name}
-                </Text>
+                <Text style={[styles.title, { color: colors.textHighlight }]}>{event.name}</Text>
 
                 {/*Time of event*/}
                 <Text style={[styles.time, { color: colors.text }]}>{event.occurs_at}</Text>
