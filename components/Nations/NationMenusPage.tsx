@@ -28,7 +28,7 @@ const NationMenusPage = ({ route }: Props) => {
     const { data, error, isValidating, mutate } = useLocations(nation.oid)
 
     return (
-        <NationBasePage nation={nation} style={{ backgroundColor: colors.background }}>
+        <NationBasePage nation={nation} cardBackground={true}>
             <FlatList
                 data={data}
                 renderItem={({ item }) => <Menus location={item} nation={nation} />}

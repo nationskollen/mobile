@@ -99,7 +99,11 @@ const NationHomePage = ({ route }: Props) => {
             }
         >
             <FocusAwareStatusBar backgroundColor={nation.accent_color} />
-            <TodaysOpeningHours date={currentDate} location={nation.default_location} />
+            <TodaysOpeningHours
+                date={currentDate}
+                location={nation.default_location}
+                isValidating={isValidating}
+            />
             <View style={[styles.actions, { borderTopColor: colors.border }]}>
                 <ListButton
                     title={translate.titles.nationLocationAndHours}

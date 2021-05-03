@@ -5,13 +5,16 @@
  * @module Menus
  */
 import React from 'react'
+import { View, Text, StyleSheet } from 'react-native'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/core'
 import { useMenus, Location, Nation } from '@dsp-krabby/sdk'
 
-import Dropdown from '../Dropdown'
-import ListButton from '../ListButton'
+import Card from '../Card'
+import Title from '../Title'
+import CoverImage from '../CoverImage'
+import ContentContainer from '../ContentContainer'
 
 export interface Props {
     nation: Nation
@@ -19,17 +22,27 @@ export interface Props {
 }
 
 const Menus = ({ nation, location }: Props) => {
-    const { colors } = useTheme()
+    const { colors, isDarkMode } = useTheme()
     const navigation = useNavigation()
     const { data: menus } = useMenus(location.id)
+    const hasItems = menus && menus.length > 0
+
+    if (!menus || menus.length === 0) {
+        return null
+    }
 
     return (
-        <Dropdown
-            title={location.name}
-            icon={<Ionicons name="location-outline" size={24} color={colors.text} />}
-            expandedOnMount={true}
-        >
-            {menus &&
+        <View style={{ marginTop: 15, marginBottom: 15 }}>
+            <View style={{ paddingHorizontal: 15 }}>
+                <View style={styles.headerContainer}>
+                    <Title label={location.name} noMargin={true} />
+                    <Text style={{ color: colors.text }}>{menus.length + ' st'}</Text>
+                </View>
+                {!hasItems && (
+                    <Text style={{ color: colors.text }}>Inga menyer</Text>
+                )}
+            </View>
+            {hasItems &&
                 menus.map((menu) => {
                     // Skip rendering of menu if it is marked as hidden on the server
                     if (menu.hidden) {
@@ -37,24 +50,57 @@ const Menus = ({ nation, location }: Props) => {
                     }
 
                     return (
-                        <ListButton
+                        <Card
                             key={menu.id}
-                            title={menu.name}
-                            leftIcon={
-                                <Ionicons
-                                    name="md-fast-food-outline"
-                                    size={24}
-                                    color={colors.text}
-                                />
-                            }
                             onPress={() =>
                                 navigation.navigate('NationMenu', { nation, menuId: menu.id })
                             }
-                        />
+                        >
+                            <CoverImage
+                                src={null}
+                                height={175}
+                                hideFallbackIcon={true}
+                                overlayColor={nation.accent_color}
+                                backgroundColor={isDarkMode ? colors.backgroundHighlight : colors.background}
+                            />
+                            <View style={styles.iconContainer}>
+                                <Ionicons
+                                    name="chevron-forward"
+                                    color={colors.textHighlight}
+                                    size={20}
+                                />
+                            </View>
+                            <ContentContainer style={styles.overlay}>
+                                <Title size="large" label={menu.name} noMargin={true}/>
+                            </ContentContainer>
+                        </Card>
                     )
-                })}
-        </Dropdown>
+                })
+            }
+        </View>
     )
 }
+
+const styles = StyleSheet.create({
+    headerContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+
+    overlay: {
+        position: 'absolute',
+        bottom: 3,
+        left: 3,
+    },
+
+    iconContainer: {
+        position: 'absolute',
+        right: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100%',
+    },
+})
 
 export default Menus

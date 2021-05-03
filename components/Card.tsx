@@ -5,7 +5,7 @@
  * @module Card
  */
 import React from 'react'
-import { View, ViewStyle, TouchableWithoutFeedback, StyleSheet } from 'react-native'
+import { View, ViewStyle, TouchableHighlight, StyleSheet } from 'react-native'
 import { useTheme } from './ThemeContext'
 
 export interface Props {
@@ -16,23 +16,27 @@ export interface Props {
 
 const Card = ({ children, onPress, style }: Props) => {
     const { colors, isDarkMode } = useTheme()
-    const content = (
-        <View
-            style={[
-                styles.container,
-                { backgroundColor: isDarkMode ? colors.backgroundExtra : colors.background },
-                style,
-            ]}
-        >
+    const containerStyles = [styles.container, { backgroundColor: isDarkMode ? colors.backgroundExtra : colors.background, borderColor: colors.border }, style]
+
+    if (onPress) {
+        return (
+            <TouchableHighlight
+                style={containerStyles}
+                onPress={onPress}
+                underlayColor="rgba(255, 255, 255, 0.05)"
+            >
+                <View>
+                    {children}
+                </View>
+            </TouchableHighlight>
+        )
+    }
+
+    return (
+        <View style={containerStyles}>
             {children}
         </View>
     )
-
-    if (onPress) {
-        return <TouchableWithoutFeedback onPress={onPress}>{content}</TouchableWithoutFeedback>
-    }
-
-    return content
 }
 
 const styles = StyleSheet.create({
@@ -43,11 +47,12 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
 
         borderRadius: 10,
-        elevation: 5,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.3,
-        shadowRadius: 3,
+        borderWidth: 1,
+        // elevation: 5,
+        // shadowColor: '#000',
+        // shadowOffset: { width: 0, height: 2 },
+        // shadowOpacity: 0.3,
+        // shadowRadius: 3,
     },
 })
 

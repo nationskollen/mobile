@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     default: {
         fontSize: 16,
         marginLeft: 15,
+        marginTop: 10,
     },
 })
 

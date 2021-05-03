@@ -4,7 +4,7 @@
  * @category Nation
  * @module TodaysOpeningHours
  */
-import React, { useRef } from 'react'
+import React, { useRef, useMemo } from 'react'
 import { Text, View, ViewStyle, StyleSheet, ActivityIndicator } from 'react-native'
 import { useTheme } from '../ThemeContext'
 import { Location, useOpeningHours } from '@dsp-krabby/sdk'
@@ -13,33 +13,37 @@ import { useTranslation } from '../../translate/LanguageContext'
 export interface Props {
     date: Date
     location: Location
+    isValidating: boolean
     style?: ViewStyle
 }
 
-const TodaysOpeningHours = ({ date, location, style }: Props) => {
+const TodaysOpeningHours = ({ date, location, isValidating, style }: Props) => {
     const { colors } = useTheme()
     const { translate } = useTranslation()
     const { data: hours } = useOpeningHours(location.id)
     const currentDay = useRef(date.getDay() - 1).current
     const currentDate = useRef(`${date.getDate()}/${date.getMonth()}`).current
 
-    // Only render if we have available opening hours
-    if (!hours) {
-        return null
-    }
+    // Only compute filtered hours list whenever hours is updated
+    const filteredHours = useMemo(() => {
+        if (!hours) {
+            return []
+        }
 
-    // TODO: Make sure to skip regular opening hours if there is a matching exception
-    const filteredHours = hours.filter(
-        (hour) => hour.day === currentDay || hour.day_special_date === currentDate
-    )
+        return hours.filter(
+            (hour) => hour.day === currentDay || hour.day_special_date === currentDate
+        )
+    }, [hours])
 
-    if (filteredHours.length === 0) {
+    // Only render if the opening hours has loaded and there exists
+    // opening hours for today
+    if (filteredHours.length === 0 && !isValidating) {
         return null
     }
 
     return (
         <View style={[styles.container, { backgroundColor: colors.backgroundExtra }, style]}>
-            {filteredHours ? (
+            {filteredHours.length > 0 ? (
                 filteredHours.map((hour) => (
                     <Text key={hour.id} style={[styles.text, { color: colors.text }]}>
                         {hour.is_open
