@@ -30,12 +30,7 @@ const NationMenuPage = ({ route }: Props) => {
 
     useLayoutEffect(() => {
         navigation.setOptions({
-            headerRight: () => (
-                <HeaderButton
-                    icon="search"
-                    onPress={() => console.log('hello')}
-                />
-            ),
+            headerRight: () => <HeaderButton icon="search" onPress={() => console.log('hello')} />,
         })
     }, [navigation])
 

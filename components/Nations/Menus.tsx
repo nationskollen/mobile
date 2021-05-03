@@ -38,9 +38,7 @@ const Menus = ({ nation, location }: Props) => {
                     <Title label={location.name} noMargin={true} />
                     <Text style={{ color: colors.text }}>{menus.length + ' st'}</Text>
                 </View>
-                {!hasItems && (
-                    <Text style={{ color: colors.text }}>Inga menyer</Text>
-                )}
+                {!hasItems && <Text style={{ color: colors.text }}>Inga menyer</Text>}
             </View>
             {hasItems &&
                 menus.map((menu) => {
@@ -61,7 +59,9 @@ const Menus = ({ nation, location }: Props) => {
                                 height={175}
                                 hideFallbackIcon={true}
                                 overlayColor={nation.accent_color}
-                                backgroundColor={isDarkMode ? colors.backgroundHighlight : colors.background}
+                                backgroundColor={
+                                    isDarkMode ? colors.backgroundHighlight : colors.background
+                                }
                             />
                             <View style={styles.iconContainer}>
                                 <Ionicons
@@ -71,12 +71,11 @@ const Menus = ({ nation, location }: Props) => {
                                 />
                             </View>
                             <ContentContainer style={styles.overlay}>
-                                <Title size="large" label={menu.name} noMargin={true}/>
+                                <Title size="large" label={menu.name} noMargin={true} />
                             </ContentContainer>
                         </Card>
                     )
-                })
-            }
+                })}
         </View>
     )
 }

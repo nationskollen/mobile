@@ -19,7 +19,6 @@ const SharedScreens = (Stack: any, translate: LanguageContextType) => [
         options={{
             title: null,
             headerTransparent: true,
-            headerLeft: () => <NavigationBackArrow />,
             ...TitleOffsetOptions,
         }}
     />,

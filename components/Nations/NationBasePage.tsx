@@ -14,6 +14,9 @@ import { useTheme } from '../ThemeContext'
 import { useNavigation } from '@react-navigation/core'
 import FocusAwareStatusBar from '../FocusAwareStatusBar'
 
+import Title from '../Title'
+import NationLogo from './NationLogo'
+
 export interface Props {
     nation: Nation
     title?: string
@@ -24,6 +27,7 @@ export interface Props {
 
 export interface ScreenOptions {
     title?: string
+    headerTitle: () => Element
     headerTransparent: boolean
     headerStyle: {
         backgroundColor: string
@@ -41,7 +45,13 @@ const NationBasePage = ({ nation, title, cardBackground, style, children }: Prop
 
     useLayoutEffect(() => {
         const options: ScreenOptions = {
-            headerTransparent: false,
+            headerTransparent: true,
+            headerTitle: () => (
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <NationLogo src={nation.icon_img_src} size={35} spacing={6} />
+                    <Title size="large" label="hello" noMargin={true} style={{ marginLeft: 10 }} />
+                </View>
+            ),
             headerStyle: {
                 backgroundColor: nation.accent_color,
             },
@@ -55,7 +65,7 @@ const NationBasePage = ({ nation, title, cardBackground, style, children }: Prop
     }, [nation, title])
 
     return (
-        <View style={[{ flex: 1, backgroundColor }, style]}>
+        <View style={[{ flex: 1, backgroundColor, paddingTop: 80 }, style]}>
             <FocusAwareStatusBar backgroundColor={nation.accent_color} />
             {children}
         </View>

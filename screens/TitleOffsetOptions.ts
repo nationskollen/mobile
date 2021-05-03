@@ -11,7 +11,7 @@
  */
 const TitleOffsetOptions = {
     headerTitleContainerStyle: {
-        left: 60,
+        left: 65,
     },
 }
 

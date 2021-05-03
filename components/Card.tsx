@@ -16,7 +16,14 @@ export interface Props {
 
 const Card = ({ children, onPress, style }: Props) => {
     const { colors, isDarkMode } = useTheme()
-    const containerStyles = [styles.container, { backgroundColor: isDarkMode ? colors.backgroundExtra : colors.background, borderColor: colors.border }, style]
+    const containerStyles = [
+        styles.container,
+        {
+            backgroundColor: isDarkMode ? colors.backgroundExtra : colors.background,
+            borderColor: colors.border,
+        },
+        style,
+    ]
 
     if (onPress) {
         return (
@@ -25,18 +32,12 @@ const Card = ({ children, onPress, style }: Props) => {
                 onPress={onPress}
                 underlayColor="rgba(255, 255, 255, 0.05)"
             >
-                <View>
-                    {children}
-                </View>
+                <View>{children}</View>
             </TouchableHighlight>
         )
     }
 
-    return (
-        <View style={containerStyles}>
-            {children}
-        </View>
-    )
+    return <View style={containerStyles}>{children}</View>
 }
 
 const styles = StyleSheet.create({

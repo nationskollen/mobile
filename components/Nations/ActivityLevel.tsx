@@ -56,8 +56,8 @@ const ActivityLevel = ({ location }: Props) => {
         return null
     }
 
+    const { colors } = useTheme()
     const { translate } = useTranslation()
-    const { colors, isDarkMode } = useTheme()
     const activityLevel = useActivityLevel(location.id, location.activity_level)
     const activityData = getActivityData(activityLevel, colors, translate)
 
@@ -67,12 +67,7 @@ const ActivityLevel = ({ location }: Props) => {
     }
 
     return (
-        <View
-            style={[
-                styles.container,
-                { backgroundColor: isDarkMode ? colors.backgroundExtra : colors.background },
-            ]}
-        >
+        <View style={[styles.container, { backgroundColor: colors.backgroundExtra }]}>
             <Ionicons name="md-people-outline" size={24} color={colors.textHighlight} />
             <View style={styles.activityLevelWrapper}>
                 {activityLevel !== 0 && (
@@ -98,7 +93,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 10,
         marginRight: 15,
-        elevation: 10,
+        elevation: 0,
     },
 
     activityLevelWrapper: {
