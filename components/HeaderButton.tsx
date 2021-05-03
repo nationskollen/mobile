@@ -23,7 +23,11 @@ const HeaderButton = ({ icon, iconSize, onPress, color, isLeft }: Props) => {
             underlayColor={isDarkMode ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)'}
             style={[styles.button, { marginLeft: isLeft ? 5 : 0, marginRight: isLeft ? 0 : 5 }]}
         >
-            <AnimatedIcon size={iconSize ?? 24} name={icon} style={{ color: color ?? colors.textHighlight }} />
+            <AnimatedIcon
+                size={iconSize ?? 24}
+                name={icon}
+                style={{ color: color ?? colors.textHighlight }}
+            />
         </TouchableHighlight>
     )
 }

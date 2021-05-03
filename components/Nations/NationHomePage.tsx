@@ -6,7 +6,7 @@
  * @category Nations
  * @module NationHomePage
  */
-import React, { useEffect, useRef, useCallback } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { Animated, Platform, View, Text, StyleSheet, StatusBar } from 'react-native'
 import { useNation } from '@dsp-krabby/sdk'
 import { useTheme } from '../ThemeContext'
@@ -34,17 +34,19 @@ export interface Props {
     route: RouteProp<TabStackParamList, 'NationHome'>
 }
 
+// Height of the parallax header containing the nation cover image
 const PARALLAX_HEADER_HEIGHT = 295
 
 const NationHomePage = ({ route }: Props) => {
     const { oid } = route.params
-    const { colors, isDarkMode } = useTheme()
     const insets = useSafeAreaInsets()
     const navigation = useNavigation()
     const { translate } = useTranslation()
     const headerHeight = useHeaderHeight()
-    const arrowColor = useRef(new Animated.Value(0)).current
+    const { colors, isDarkMode } = useTheme()
     const currentDate = useRef(new Date()).current
+    const arrowColor = useRef(new Animated.Value(0)).current
+    const [darkStatusBar, setDarkStatusBar] = useState(false)
     const { data: nation, isValidating, mutate } = useNation(oid)
 
     // To make sure that the content is scrollable to the point where the
@@ -58,6 +60,20 @@ const NationHomePage = ({ route }: Props) => {
         (Platform.OS === 'android' ? 16 : 0)
     )
 
+    const updateStatusBar = useCallback((hidden: boolean) => {
+        // Android will have a static bar at the top that is the
+        // same color as the nation accent color. There is no need
+        // change the text color here.
+        if (Platform.OS === 'android') {
+            return
+        }
+
+        // Use dark status bar if the sticky header is visible
+        setDarkStatusBar(isDarkMode ? false : !hidden)
+    }, [])
+
+    // Update the activity level subscription dynamically based on the
+    // selected nation.
     useEffect(() => {
         if (nation?.default_location) {
             navigation.setOptions({
@@ -66,6 +82,9 @@ const NationHomePage = ({ route }: Props) => {
         }
     }, [nation?.default_location])
 
+    // Update the navigation back arrow based on the currently selected theme.
+    // If the user uses light mode, the navigation arrow must be animated
+    // to a darker color when scrolling down. On dark mode, this can be skipped.
     useEffect(() => {
         if (isDarkMode) {
             navigation.setOptions({
@@ -85,88 +104,107 @@ const NationHomePage = ({ route }: Props) => {
         }
     }, [isDarkMode])
 
+    // TODO: Should we render a loader here?
     if (!nation) {
         return null
     }
 
     return (
-        <ParallaxScrollView
-            fadeOutForeground={false}
-            backgroundScrollSpeed={1}
-            parallaxHeaderHeight={PARALLAX_HEADER_HEIGHT}
-            style={{ marginBottom: contentHeightModifier }}
-            backgroundColor={colors.background}
-            stickyHeaderHeight={headerHeight}
-            contentBackgroundColor={colors.background}
-            renderForeground={() => <NationHeader nation={nation} />}
-            renderBackground={() => (
-                <CoverImage
-                    src={nation.cover_img_src}
-                    height={PARALLAX_HEADER_HEIGHT}
-                    hideFallbackIcon={true}
+        <>
+            <FocusAwareStatusBar
+                color={darkStatusBar ? 'dark' : 'light'}
+                backgroundColor={nation.accent_color}
+            />
+            <ParallaxScrollView
+                fadeOutForeground={false}
+                backgroundScrollSpeed={1}
+                parallaxHeaderHeight={PARALLAX_HEADER_HEIGHT}
+                style={{ marginBottom: contentHeightModifier }}
+                backgroundColor={colors.background}
+                stickyHeaderHeight={headerHeight}
+                contentBackgroundColor={colors.background}
+                renderForeground={() => <NationHeader nation={nation} />}
+                renderBackground={() => (
+                    <CoverImage
+                        src={nation.cover_img_src}
+                        height={PARALLAX_HEADER_HEIGHT}
+                        hideFallbackIcon={true}
+                        backgroundColor={nation.accent_color}
+                        overlayColor={nation.accent_color}
+                    />
+                )}
+                renderStickyHeader={() => (
+                    <View
+                        style={[
+                            styles.stickyHeaderContainer,
+                            {
+                                height: headerHeight + StatusBar.currentHeight,
+                                marginTop: Platform.OS === 'ios' ? insets.top / 2 : 0,
+                            },
+                        ]}
+                    >
+                        <NationLogo src={nation.icon_img_src} size={35} spacing={6} />
+                        <Title
+                            size="large"
+                            label={nation.short_name}
+                            noMargin={true}
+                            style={{ marginLeft: 10 }}
+                        />
+                    </View>
+                )}
+                refreshControl={
+                    <LoadingCircle
+                        validating={isValidating}
+                        mutate={mutate}
+                        accent={nation.accent_color}
+                        tint="white"
+                        offsetTop={10}
+                    />
+                }
+                onChangeHeaderVisibility={updateStatusBar}
+                scrollEvent={Animated.event(
+                    [{ nativeEvent: { contentOffset: { y: arrowColor } } }],
+                    {
+                        useNativeDriver: false,
+                    }
+                )}
+            >
+                <FocusAwareStatusBar
+                    color={darkStatusBar ? 'dark' : 'light'}
                     backgroundColor={nation.accent_color}
-                    overlayColor={nation.accent_color}
                 />
-            )}
-            renderStickyHeader={() => (
-                <View
-                    style={[
-                        styles.stickyHeaderContainer,
-                        { height: headerHeight + StatusBar.currentHeight },
-                    ]}
-                >
-                    <NationLogo src={nation.icon_img_src} size={35} spacing={6} />
-                    <Title
-                        size="large"
-                        label={nation.short_name}
-                        noMargin={true}
-                        style={{ marginLeft: 10 }}
+                <TodaysOpeningHours
+                    date={currentDate}
+                    location={nation.default_location}
+                    isValidating={isValidating}
+                />
+                <View style={[styles.actions, { borderTopColor: colors.border }]}>
+                    <ListButton
+                        title={translate.titles.nationLocationAndHours}
+                        leftIcon={<Ionicons name="time-outline" size={24} color={colors.text} />}
+                        onPress={() => navigation.navigate('NationLocationsAndHours', { nation })}
+                    />
+                    <ListButton
+                        title={translate.titles.events}
+                        onPress={() => navigation.navigate('NationEvents', { nation })}
+                        leftIcon={
+                            <Ionicons name="calendar-outline" size={24} color={colors.text} />
+                        }
+                    />
+                    <ListButton
+                        title={translate.titles.nationMenus}
+                        onPress={() => navigation.navigate('NationMenus', { nation })}
+                        leftIcon={
+                            <Ionicons name="md-fast-food-outline" size={24} color={colors.text} />
+                        }
                     />
                 </View>
-            )}
-            refreshControl={
-                <LoadingCircle
-                    validating={isValidating}
-                    mutate={mutate}
-                    accent={nation.accent_color}
-                    tint="white"
-                    offsetTop={10}
-                />
-            }
-            scrollEvent={Animated.event([{ nativeEvent: { contentOffset: { y: arrowColor } } }], {
-                useNativeDriver: false,
-            })}
-        >
-            <FocusAwareStatusBar backgroundColor={nation.accent_color} />
-            <TodaysOpeningHours
-                date={currentDate}
-                location={nation.default_location}
-                isValidating={isValidating}
-            />
-            <View style={[styles.actions, { borderTopColor: colors.border }]}>
-                <ListButton
-                    title={translate.titles.nationLocationAndHours}
-                    leftIcon={<Ionicons name="time-outline" size={24} color={colors.text} />}
-                    onPress={() => navigation.navigate('NationLocationsAndHours', { nation })}
-                />
-                <ListButton
-                    title={translate.titles.events}
-                    onPress={() => navigation.navigate('NationEvents', { nation })}
-                    leftIcon={<Ionicons name="calendar-outline" size={24} color={colors.text} />}
-                />
-                <ListButton
-                    title={translate.titles.nationMenus}
-                    onPress={() => navigation.navigate('NationMenus', { nation })}
-                    leftIcon={
-                        <Ionicons name="md-fast-food-outline" size={24} color={colors.text} />
-                    }
-                />
-            </View>
-            <View style={styles.descriptionContainer}>
-                <Title label={translate.nation.description} />
-                <Text style={{ color: colors.text }}>{nation.description}</Text>
-            </View>
-        </ParallaxScrollView>
+                <View style={styles.descriptionContainer}>
+                    <Title label={translate.nation.description} />
+                    <Text style={{ color: colors.text }}>{nation.description}</Text>
+                </View>
+            </ParallaxScrollView>
+        </>
     )
 }
 
@@ -185,7 +223,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingLeft: 65,
+        paddingLeft: 70,
     },
 
     stickyHeaderTitle: {
