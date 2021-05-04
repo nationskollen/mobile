@@ -5,7 +5,7 @@ import { applicationId } from 'expo-application'
 import { showLocation } from 'react-native-map-link'
 import { useTranslation } from '../../translate/LanguageContext'
 
-import Button from '../Assets/Button'
+import Button from '../Common/Button'
 
 export interface Props {
     type: 'primary' | 'light'

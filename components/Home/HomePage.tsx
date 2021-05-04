@@ -13,7 +13,7 @@ import { RouteProp } from '@react-navigation/native'
 import Timeline from './Timeline'
 import Calendar from './Calendar'
 import FilterBar from './FilterBar'
-import FocusAwareStatusBar from '../Assets/FocusAwareStatusBar'
+import FocusAwareStatusBar from '../Common/FocusAwareStatusBar'
 
 export interface Props {
     route: RouteProp<TabStackParamList, 'Home'>

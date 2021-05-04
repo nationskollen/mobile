@@ -12,7 +12,7 @@ import { SafeAreaView, View, StyleSheet, Text } from 'react-native'
 
 import ListButton from '../List/ListButton'
 import ToggleSwitch from 'toggle-switch-react-native'
-import FocusAwareStatusBar from '../Assets/FocusAwareStatusBar'
+import FocusAwareStatusBar from '../Common/FocusAwareStatusBar'
 
 export interface Props {
     navigation: StackNavigationProp<any, any>

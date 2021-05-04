@@ -9,8 +9,8 @@ import { useNations } from '@dsp-krabby/sdk'
 
 import Post from './Post'
 import ListEmpty from '../List/ListEmpty'
-import LoadingCircle from '../Assets/LoadingCircle'
-import FocusAwareStatusBar from '../Assets/FocusAwareStatusBar'
+import LoadingCircle from '../Common/LoadingCircle'
+import FocusAwareStatusBar from '../Common/FocusAwareStatusBar'
 
 // TODO: Currently, this renders nations as notifications since we
 //       do not have implemented notifications on the server yet.

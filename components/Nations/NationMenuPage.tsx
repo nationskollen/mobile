@@ -13,10 +13,10 @@ import { useNavigation } from '@react-navigation/native'
 import { useTranslation } from '../../translate/LanguageContext'
 
 import MenuItem from './MenuItem'
-import SearchBar from '../Assets/SearchBar'
+import SearchBar from '../Common/SearchBar'
 import ListEmpty from '../List/ListEmpty'
 import HeaderButton from '../Header/HeaderButton'
-import LoadingCircle from '../Assets/LoadingCircle'
+import LoadingCircle from '../Common/LoadingCircle'
 import NationBasePage from './NationBasePage'
 
 export interface Props {

@@ -14,8 +14,8 @@ import { useNavigation } from '@react-navigation/native'
 import ListEmpty from '../List/ListEmpty'
 import NationLogo from './NationLogo'
 import ListButton from '../List/ListButton'
-import LoadingCircle from '../Assets/LoadingCircle'
-import FocusAwareStatusBar from '../Assets/FocusAwareStatusBar'
+import LoadingCircle from '../Common/LoadingCircle'
+import FocusAwareStatusBar from '../Common/FocusAwareStatusBar'
 
 const NationsPage = () => {
     const navigation = useNavigation()

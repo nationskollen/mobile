@@ -11,7 +11,7 @@ import { useTranslation } from '../../translate/LanguageContext'
 import ListEmpty from '../List/ListEmpty'
 import ListFooter from '../List/ListFooter'
 import EventItem from '../Events/Event'
-import LoadingCircle from '../Assets/LoadingCircle'
+import LoadingCircle from '../Common/LoadingCircle'
 
 export interface Props {
     nation?: Nation

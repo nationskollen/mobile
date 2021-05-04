@@ -6,10 +6,10 @@ import { LinearGradient } from 'expo-linear-gradient'
 import { useNavigation } from '@react-navigation/core'
 import { useTranslation } from '../../translate/LanguageContext'
 
-import Card from '../Assets/Card'
-import Title from '../Assets/Title'
+import Card from '../Common/Card'
+import Title from '../Common/Title'
 import CoverImage from './CoverImage'
-import ContentSection from '../Assets/ContentSection'
+import ContentSection from '../Common/ContentSection'
 
 export interface Props {
     nation: Nation

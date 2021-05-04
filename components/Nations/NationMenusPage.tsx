@@ -14,7 +14,7 @@ import { useTranslation } from '../../translate/LanguageContext'
 
 import Menus from './Menus'
 import ListEmpty from '../List/ListEmpty'
-import LoadingCircle from '../Assets/LoadingCircle'
+import LoadingCircle from '../Common/LoadingCircle'
 import NationBasePage from './NationBasePage'
 
 export interface Props {

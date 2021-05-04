@@ -16,15 +16,15 @@ import { useNavigation } from '@react-navigation/core'
 import { RouteProp } from '@react-navigation/native'
 import { useTranslation } from '../../translate/LanguageContext'
 
-import Title from '../Assets/Title'
+import Title from '../Common/Title'
 import ListButton from '../List/ListButton'
 import NationHeader from './NationHeader'
 import ActivityLevel from './ActivityLevel'
-import PersonCarousel from '../Assets/PersonCarousel'
+import PersonCarousel from '../Common/PersonCarousel'
 import ParallaxHeader from '../Header/ParallaxHeader'
-import ContentSection from '../Assets/ContentSection'
+import ContentSection from '../Common/ContentSection'
 import TodaysOpeningHours from './TodaysOpeningHours'
-import ContactInformation from '../Assets/ContactInformation'
+import ContactInformation from '../Common/ContactInformation'
 
 export interface Props {
     route: RouteProp<TabStackParamList, 'NationHome'>

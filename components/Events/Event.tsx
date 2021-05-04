@@ -10,11 +10,11 @@ import { useLocation } from '@dsp-krabby/sdk'
 import { useNavigation } from '@react-navigation/native'
 import { useNation, Nation, Event as EventResponse } from '@dsp-krabby/sdk'
 
-import Card from '../Assets/Card'
+import Card from '../Common/Card'
 import EventCover from './Cover'
 import ReminderButton from './ReminderButton'
 import NationLogo from '../Nations/NationLogo'
-import ContentContainer from '../Assets/ContentContainer'
+import ContentContainer from '../Common/ContentContainer'
 
 export interface EventProps {
     event: EventResponse

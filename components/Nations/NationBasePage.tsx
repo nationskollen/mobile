@@ -13,9 +13,9 @@ import { Nation } from '@dsp-krabby/sdk'
 import { useTheme } from '../ThemeContext'
 import { useNavigation } from '@react-navigation/core'
 
-import Title from '../Assets/Title'
+import Title from '../Common/Title'
 import NationLogo from './NationLogo'
-import FocusAwareStatusBar from '../Assets/FocusAwareStatusBar'
+import FocusAwareStatusBar from '../Common/FocusAwareStatusBar'
 import NavigationBackArrow from '../Header/NavigationBackArrow'
 
 export interface Props {

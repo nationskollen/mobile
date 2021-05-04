@@ -14,12 +14,12 @@ import { Ionicons } from '@expo/vector-icons'
 import { Location as LocationReponse } from '@dsp-krabby/sdk'
 import { useTranslation } from '../../translate/LanguageContext'
 
-import Card from '../Assets/Card'
-import Title from '../Assets/Title'
-import CoverImage from '../Assets/CoverImage'
+import Card from '../Common/Card'
+import Title from '../Common/Title'
+import CoverImage from '../Common/CoverImage'
 import OpeningHours from './OpeningHours'
 import ActivityLevel from './ActivityLevel'
-import ContentContainer from '../Assets/ContentContainer'
+import ContentContainer from '../Common/ContentContainer'
 import ShowLocationButton from '../Map/ShowLocationButton'
 
 export interface Props {
