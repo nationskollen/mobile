@@ -2,12 +2,12 @@ import React from 'react'
 import { ScrollView, Image, View, Text, StyleSheet } from 'react-native'
 import Constants from 'expo-constants'
 import { useTheme } from '../ThemeContext'
-import { Ionicons } from '@expo/vector-icons'
 import { useTranslation } from '../../translate/LanguageContext'
 
 import Title from '../Title'
 import PersonCarousel from '../PersonCarousel'
-import ContactInformation from './ContactInformation'
+import ContentSection from '../ContentSection'
+import ContactInformation from '../ContactInformation'
 import FocusAwareStatusBar from '../FocusAwareStatusBar'
 
 // TODO: Load from server?
@@ -58,7 +58,7 @@ const AboutUsPage = () => {
             <FocusAwareStatusBar backgroundColor={colors.primary} />
             <ScrollView style={{ backgroundColor: colors.background }}>
                 <View>
-                    <View style={[styles.section, { borderBottomColor: colors.border }]}>
+                    <ContentSection>
                         <Image
                             source={require('../../assets/nationskollen_logo-do_not_change.png')}
                             style={styles.logo}
@@ -73,8 +73,8 @@ const AboutUsPage = () => {
                             odio, non pretium ipsum mauris vitae nulla. Nam ut auctor velit, sit
                             amet tempor erat. Vestibulum luctus blandit nulla nec congue.
                         </Text>
-                    </View>
-                    <View style={[styles.section, { borderBottomColor: colors.border }]}>
+                    </ContentSection>
+                    <ContentSection>
                         <Title size="large" label={translate.aboutUs.contactInformation} />
                         <ContactInformation
                             title={translate.aboutUs.email}
@@ -86,7 +86,7 @@ const AboutUsPage = () => {
                             value="070-000 00 00"
                             icon="call-outline"
                         />
-                    </View>
+                    </ContentSection>
                 </View>
                 <PersonCarousel
                     height={350}
@@ -97,7 +97,7 @@ const AboutUsPage = () => {
                     paddingBottom={100}
                     renderContent={(item) => (
                         <>
-                            <Title label={item.name} style={{ color: 'white' }} />
+                            <Title label={item.name} style={{ color: 'white' }} noMargin={true} />
                             <Text style={{ color: '#ccc' }}>{item.description}</Text>
                         </>
                     )}
@@ -117,13 +117,6 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
         alignSelf: 'center',
         marginBottom: 15,
-    },
-
-    section: {
-        marginTop: 15,
-        borderBottomWidth: 1,
-        paddingHorizontal: 15,
-        paddingBottom: 15,
     },
 
     footer: {

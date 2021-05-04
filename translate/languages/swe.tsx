@@ -108,6 +108,8 @@ const Swedish: LanguageContextType = {
 
     nation: {
         description: 'Beskrivning',
+        contactInformation: 'Kontaktinformation',
+        people: 'Personer',
     },
 
     menus: {
