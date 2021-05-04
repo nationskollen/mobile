@@ -23,6 +23,7 @@ const English: LanguageContextType = {
         login: 'Login',
         customizeNotificaitions: 'Customize notifications',
         language: 'Choose language',
+        aboutUs: 'About Nationskollen',
     },
 
     activityLevels: {
@@ -115,6 +116,14 @@ const English: LanguageContextType = {
 
     menu: {
         empty: 'Menu is empty',
+    },
+
+    aboutUs: {
+        whatIsNationskollen: 'What is Nationskollen?',
+        contactInformation: 'Contact information',
+        whoAreWe: 'Who are we?',
+        telephone: 'Telephone',
+        email: 'Email',
     },
 }
 

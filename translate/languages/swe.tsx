@@ -23,6 +23,7 @@ const Swedish: LanguageContextType = {
         login: 'Logga in',
         customizeNotificaitions: 'Anpassa notifikationer',
         language: 'Välj språk',
+        aboutUs: 'Om Nationskollen',
     },
 
     activityLevels: {
@@ -115,6 +116,14 @@ const Swedish: LanguageContextType = {
 
     menu: {
         empty: 'Menyn är tom',
+    },
+
+    aboutUs: {
+        whatIsNationskollen: 'Vad är Nationskollen?',
+        contactInformation: 'Kontaktinformation',
+        whoAreWe: 'Vilka är vi?',
+        telephone: 'Telefon',
+        email: 'Email',
     },
 }
 

@@ -21,6 +21,7 @@ export default interface LanguageContextType {
         login: string
         customizeNotificaitions: string
         language: string
+        aboutUs: string
     }
 
     activityLevels: {
@@ -113,5 +114,13 @@ export default interface LanguageContextType {
 
     menu: {
         empty: string
+    }
+
+    aboutUs: {
+        whatIsNationskollen: string
+        contactInformation: string
+        whoAreWe: string
+        telephone: string
+        email: string
     }
 }
