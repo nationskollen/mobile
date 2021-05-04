@@ -9,7 +9,6 @@ import { View, StyleSheet } from 'react-native'
 import FilterList from './FilterList'
 import Button from '../Button'
 import { useNations } from '@dsp-krabby/sdk'
-
 //used until hook for categories is available
 const categoriesTmp = [
     {
@@ -101,7 +100,7 @@ const FilterButtons = () => {
 const styles = StyleSheet.create({
     container: {
         width: '100%',
-        maxHeight: '60%',
+        height: '70%',
         justifyContent: 'space-between',
         elevation: 4,
         zIndex: 4,

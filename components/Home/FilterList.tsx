@@ -4,11 +4,13 @@
  * @module FilterList
  */
 import React from 'react'
-import { View, StyleSheet, FlatList } from 'react-native'
+import { View, StyleSheet, FlatList, Text } from 'react-native'
+import { CheckBox } from 'react-native-elements'
 
 import ListButton from '../ListButton'
 import NationLogo from '../Nations/NationLogo'
 import { NationCollection } from '@dsp-krabby/sdk'
+import ContentContainer from '../ContentContainer'
 
 interface Props {
     filterTab: string
@@ -36,11 +38,16 @@ const FilterList = ({ filterTab, nations, categories, student }: Props) => {
                 <FlatList
                     data={data}
                     renderItem={({ item }) => (
-                        <ListButton
-                            title={item.name}
-                            onPress={() => console.log('item in filter was pressed')}
-                            leftIcon={<NationLogo src={item?.icon_img_src} />}
-                        />
+                        <ContentContainer direction={'row'} style={{paddingVertical:3}}>
+                            <NationLogo src={item?.icon_img_src} />
+                            <CheckBox
+                            center
+                            size = {24}
+                            title = {<Text style = {{flex : 1}}>{item.name}</Text>}
+                            containerStyle={{width:'90%'}}
+                            iconRight
+                            />
+                        </ContentContainer>
                     )}
                     keyExtractor={(item) => (item?.oid ? item.oid.toString() : item.name)}
                 />
@@ -52,10 +59,15 @@ const FilterList = ({ filterTab, nations, categories, student }: Props) => {
 const styles = StyleSheet.create({
     container: {
         width: '100%',
+        height: '100%',
         backgroundColor: 'white',
         borderRadius: 10,
         marginTop: 5,
     },
+
+    itemContainer: {
+        flexDirection:'row',
+    }
 })
 
 export default FilterList
