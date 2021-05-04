@@ -17,6 +17,14 @@ const ChooseDateBar = () => {
     const currentDate = useRef(new Date().toLocaleDateString()).current
     const dateString = date.toLocaleDateString()
 
+    const incrementDate = () => {
+	setDate(new Date(date.setDate(date.getDate() + 1)))
+    }
+
+    const decrementDate = () => {
+	setDate(new Date(date.setDate(date.getDate() - 1)))
+    }
+
     return (
         <View
             style={[
@@ -27,7 +35,7 @@ const ChooseDateBar = () => {
                 },
             ]}
         >
-            <TouchableOpacity onPress={() => console.log('Should call setDate')}>
+            <TouchableOpacity onPress={() => decrementDate()}>
                 <View
                     style={[
                         styles.arrowWrapper,
@@ -44,7 +52,7 @@ const ChooseDateBar = () => {
                 </Text>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => console.log('Should call setDate')}>
+            <TouchableOpacity onPress={() => incrementDate()}>
                 <View
                     style={[
                         styles.arrowWrapper,
