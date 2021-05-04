@@ -98,6 +98,11 @@ export default interface LanguageContextType {
         empty: string
     }
 
+    event: {
+        location: string
+        description: string
+    }
+
     location: {
         showOnMap: string
         regularOpeningHours: string

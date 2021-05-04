@@ -100,6 +100,11 @@ const English: LanguageContextType = {
         empty: 'No events',
     },
 
+    event: {
+        location: 'Location',
+        description: 'Description',
+    },
+
     location: {
         showOnMap: 'Show on map',
         regularOpeningHours: 'Opening hours',

@@ -1,10 +1,10 @@
 import React from 'react'
 import { View, Text, StyleSheet, ActivityIndicator } from 'react-native'
-import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 import { useLocation, Nation } from '@dsp-krabby/sdk'
 import { LinearGradient } from 'expo-linear-gradient'
 import { useNavigation } from '@react-navigation/core'
+import { useTranslation } from '../../translate/LanguageContext'
 
 import Card from '../Card'
 import Title from '../Title'
@@ -23,11 +23,12 @@ const EventLocation = ({ nation, locationId }: Props) => {
     }
 
     const navigation = useNavigation()
+    const { translate } = useTranslation()
     const { data } = useLocation(locationId)
 
     return (
         <ContentSection noHorizontalPadding={true}>
-            <Title label="Location" size="large" style={{ marginLeft: 15 }} />
+            <Title label={translate.event.location} size="large" style={{ marginLeft: 15 }} />
             <Card
                 onPress={() => data && navigation.navigate('NationLocationsAndHours', { nation })}
             >

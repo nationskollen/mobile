@@ -72,7 +72,7 @@ const EventPage = ({ route }: Props) => {
             {data ? (
                 <View style={{ paddingBottom: 45 }}>
                     <ContentSection>
-                        <Title label="Description" size="large" />
+                        <Title label={translate.event.description} size="large" />
                         <Text style={{ color: colors.text }}>{data.long_description}</Text>
                     </ContentSection>
                     <EventLocation nation={nation} locationId={event.location_id} />

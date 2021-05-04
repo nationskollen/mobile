@@ -100,6 +100,11 @@ const Swedish: LanguageContextType = {
         empty: 'Inga händelser',
     },
 
+    event: {
+        location: 'Plats',
+        description: 'Beskrivning',
+    },
+
     location: {
         showOnMap: 'Visa på karta',
         regularOpeningHours: 'Öppettider',
