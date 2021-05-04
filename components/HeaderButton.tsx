@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, ViewStyle, Animated, TouchableHighlight, StyleSheet } from 'react-native'
+import { Platform, ViewStyle, Animated, TouchableHighlight, StyleSheet } from 'react-native'
 import { useTheme } from './ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 import { IconName } from '@expo/vector-icons/Ionicons'
@@ -13,6 +13,8 @@ export interface Props {
     backgroundColor?: string
     style?: ViewStyle
 }
+
+export const HEADER_BUTTON_WIDTH = Platform.OS === 'ios' ? 40 : 45
 
 const AnimatedIcon = Animated.createAnimatedComponent(Ionicons)
 
@@ -33,36 +35,31 @@ const HeaderButton = ({
             underlayColor={isDarkMode ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)'}
             style={[
                 styles.button,
-                { marginLeft: isLeft ? 5 : 0, marginRight: isLeft ? 0 : 5 },
+                {
+                    marginLeft: isLeft ? 5 : 0,
+                    marginRight: isLeft ? 0 : 5,
+                    backgroundColor: backgroundColor ?? 'transparent',
+                },
                 style,
             ]}
         >
-            <View style={[styles.innerContainer, { backgroundColor }]}>
-                <AnimatedIcon
-                    size={iconSize ?? 24}
-                    name={icon}
-                    style={{ color: color ?? colors.textHighlight }}
-                />
-            </View>
+            <AnimatedIcon
+                size={iconSize ?? 24}
+                name={icon}
+                style={{ color: color ?? colors.textHighlight }}
+            />
         </TouchableHighlight>
     )
 }
 
 const styles = StyleSheet.create({
-    innerContainer: {
-        width: 40,
-        height: 40,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 10,
-    },
-
     button: {
-        width: 50,
-        height: 50,
-        borderRadius: 20,
+        width: HEADER_BUTTON_WIDTH,
+        height: HEADER_BUTTON_WIDTH,
+        borderRadius: 15,
         justifyContent: 'center',
         alignItems: 'center',
+        marginLeft: 5,
     },
 })
 

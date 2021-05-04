@@ -6,7 +6,7 @@
  * @module ParallaxHeader
  */
 import React, { useCallback, useState, useRef, useEffect } from 'react'
-import { Animated, Platform, View, StyleSheet, StatusBar } from 'react-native'
+import { Dimensions, Animated, Platform, View, StyleSheet, StatusBar } from 'react-native'
 
 import { useTheme } from './ThemeContext'
 import { useNavigation } from '@react-navigation/core'
@@ -20,6 +20,7 @@ import LoadingCircle from './LoadingCircle'
 import NationLogo from './Nations/NationLogo'
 import FocusAwareStatusBar from './FocusAwareStatusBar'
 import NavigationBackArrow from './NavigationBackArrow'
+import { TITLE_LEFT_OFFSET } from '../screens/TitleOffsetOptions'
 
 export interface Props {
     height: number
@@ -30,8 +31,11 @@ export interface Props {
     src?: string | null
     renderForeground?: () => Element
     iconSrc?: string | null
+    rightTitleOffset?: number
     children?: Element | Element[]
 }
+
+const HEADER_LOGO_SIZE = 35
 
 const ParallaxHeader = ({
     height,
@@ -42,6 +46,7 @@ const ParallaxHeader = ({
     isValidating,
     mutate,
     renderForeground,
+    rightTitleOffset,
     children,
 }: Props) => {
     const insets = useSafeAreaInsets()
@@ -50,6 +55,15 @@ const ParallaxHeader = ({
     const { colors, isDarkMode } = useTheme()
     const arrowColor = useRef(new Animated.Value(0)).current
     const [darkStatusBar, setDarkStatusBar] = useState(false)
+    const headerOffset = Platform.OS === 'ios' ? insets.top / 2 : StatusBar.currentHeight / 2
+
+    // Calculate the width of the title text based on the screen width and any right-side header buttons
+    const titleWidth =
+        Dimensions.get('window').width -
+        (rightTitleOffset ?? 0) -
+        TITLE_LEFT_OFFSET -
+        (iconSrc !== 'undefined' ? HEADER_LOGO_SIZE : 0) -
+        50
 
     // To make sure that the content is scrollable to the point where the
     // header and initial page content touch. For some reason, Android had
@@ -120,25 +134,39 @@ const ParallaxHeader = ({
                 />
             )}
             renderStickyHeader={() => (
-                <View
-                    style={[
-                        styles.stickyHeaderContainer,
-                        {
-                            height: headerHeight + StatusBar.currentHeight,
-                            marginTop: Platform.OS === 'ios' ? insets.top / 2 : 0,
-                        },
-                    ]}
-                >
-                    {iconSrc !== undefined && <NationLogo src={iconSrc} size={35} spacing={6} />}
-                    {title && (
-                        <Title
-                            size="large"
-                            label={title}
-                            noMargin={true}
-                            style={{ marginLeft: iconSrc !== undefined ? 10 : 0 }}
-                        />
-                    )}
-                </View>
+                <>
+                    <View
+                        style={[
+                            styles.stickyHeaderContainer,
+                            {
+                                height: headerHeight,
+                                marginTop: headerOffset,
+                            },
+                        ]}
+                    >
+                        {iconSrc !== undefined && (
+                            <NationLogo src={iconSrc} size={HEADER_LOGO_SIZE} spacing={6} />
+                        )}
+                        {title && (
+                            <Title
+                                size="large"
+                                numberOfLines={1}
+                                label={title}
+                                noMargin={true}
+                                style={{
+                                    marginLeft: iconSrc !== undefined ? 10 : 0,
+                                    width: titleWidth,
+                                }}
+                            />
+                        )}
+                    </View>
+                    <View
+                        style={[
+                            styles.stickyBorder,
+                            { bottom: headerOffset, backgroundColor: colors.border },
+                        ]}
+                    />
+                </>
             )}
             refreshControl={
                 <LoadingCircle
@@ -169,7 +197,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingLeft: 65,
+        paddingLeft: TITLE_LEFT_OFFSET,
     },
 
     stickyHeaderTitle: {
@@ -178,7 +206,15 @@ const styles = StyleSheet.create({
         color: 'white',
         position: 'absolute',
         bottom: 15,
-        left: 60,
+        left: 0,
+    },
+
+    stickyBorder: {
+        position: 'absolute',
+        left: 0,
+        width: '100%',
+        height: 1,
+        zIndex: 2,
     },
 
     container: {

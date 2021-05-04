@@ -34,7 +34,7 @@ const Card = ({ children, onPress, contentPadding, style }: Props) => {
             <TouchableHighlight
                 style={containerStyles}
                 onPress={onPress}
-                underlayColor="rgba(255, 255, 255, 0.05)"
+                underlayColor={isDarkMode && colors.backgroundExtra}
             >
                 <View>{children}</View>
             </TouchableHighlight>

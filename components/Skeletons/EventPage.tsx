@@ -15,12 +15,12 @@ const EventSkeletonLoader = () => {
                 backgroundColor={colors.backgroundExtra}
                 foregroundColor={colors.backgroundHighlight}
             >
-                <Rect x="0" y="0" rx="4" ry="4" width="100" height="5" />
-                <Rect x="0" y="8" rx="3" ry="3" width="90" height="5" />
-                <Rect x="0" y="16" rx="3" ry="3" width="96" height="5" />
-                <Rect x="0" y="24" rx="3" ry="3" width="100" height="5" />
-                <Rect x="0" y="32" rx="3" ry="3" width="80" height="5" />
-                <Rect x="0" y="44" rx="3" ry="3" width="100" height="25" />
+                <Rect x="0" y="0" rx="2" ry="2" width="30" height="6" />
+                <Rect x="0" y="9" rx="2" ry="2" width="96" height="5" />
+                <Rect x="0" y="17" rx="2" ry="2" width="100" height="5" />
+                <Rect x="0" y="25" rx="2" ry="2" width="80" height="5" />
+                <Rect x="0" y="33" rx="2" ry="2" width="70" height="5" />
+                <Rect x="0" y="41" rx="2" ry="2" width="82" height="5" />
             </ContentLoader>
         </View>
     )

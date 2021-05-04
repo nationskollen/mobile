@@ -23,12 +23,12 @@ export interface Props {
  * This component renders a clickable header with an icon to the left and an optional icon to the right in the header
  */
 const ListButton = ({ title, onPress, leftIcon, rightIcon }: Props) => {
-    const { colors } = useTheme()
+    const { colors, isDarkMode } = useTheme()
 
     return (
         <TouchableHighlight
             onPress={onPress}
-            underlayColor={colors.backgroundExtra}
+            underlayColor={isDarkMode ? 'rgba(255, 255, 255, 0.02)' : 'rgba(0, 0, 0, 0.02)'}
             style={{ borderBottomWidth: 1, borderColor: colors.border }}
         >
             <View style={styles.container}>

@@ -18,7 +18,8 @@ const Category = ({ name }: Props) => {
             style={[
                 styles.container,
                 {
-                    backgroundColor: colors.borderDark,
+                    backgroundColor: colors.backgroundExtra,
+                    borderColor: colors.borderDark,
                 },
             ]}
         >
@@ -30,6 +31,7 @@ const Category = ({ name }: Props) => {
 const styles = StyleSheet.create({
     container: {
         position: 'absolute',
+        borderWidth: 1,
         zIndex: 20,
         top: 10,
         left: 10,

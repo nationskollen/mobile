@@ -19,9 +19,19 @@ export interface Props {
     color?: string
     style?: TextStyle
     containerStyle?: ViewStyle
+    numberOfLines?: number
 }
 
-const Title = ({ label, size, noMargin, icon, color, style, containerStyle }: Props) => {
+const Title = ({
+    label,
+    size,
+    noMargin,
+    icon,
+    color,
+    style,
+    containerStyle,
+    numberOfLines,
+}: Props) => {
     const { colors } = useTheme()
     let fontSize = 16
 
@@ -43,7 +53,10 @@ const Title = ({ label, size, noMargin, icon, color, style, containerStyle }: Pr
                     style={styles.icon}
                 />
             )}
-            <Text style={[styles.text, { fontSize, color: color ?? colors.textHighlight }, style]}>
+            <Text
+                style={[styles.text, { fontSize, color: color ?? colors.textHighlight }, style]}
+                numberOfLines={numberOfLines}
+            >
                 {label}
             </Text>
         </View>

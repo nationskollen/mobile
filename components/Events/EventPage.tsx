@@ -14,12 +14,13 @@ import { useTranslation } from '../../translate/LanguageContext'
 
 import Title from '../Title'
 import EventDates from '../Events/Dates'
-import HeaderButton from '../HeaderButton'
 import ParallaxHeader from '../ParallaxHeader'
+import EventCategory from '../Events/Category'
 import ContentSection from '../ContentSection'
 import ContentContainer from '../ContentContainer'
 import EventLocation from '../Events/EventLocation'
 import EventPageSkeleton from '../Skeletons/EventPage'
+import HeaderButton, { HEADER_BUTTON_WIDTH } from '../HeaderButton'
 
 export interface Props {
     route: RouteProp<TabStackParamList, 'Event'>
@@ -55,26 +56,21 @@ const EventPage = ({ route }: Props) => {
             mutate={mutate}
             title={event.name}
             src={event.cover_img_src}
+            iconSrc={nation.icon_img_src}
+            rightTitleOffset={HEADER_BUTTON_WIDTH}
             renderForeground={() => (
                 <View style={[styles.foreground, { backgroundColor: colors.background }]}>
-                    <Title
-                        label={nation.name}
-                        size="medium"
-                        style={{ color: colors.primaryText }}
-                        noMargin={true}
-                    />
-                    <Title label={event.name} size="large" noMargin={true} />
+                    <EventCategory name={event.category?.name} />
+                    <Title label={event.name} size="large" noMargin={true} style={styles.title} />
                 </View>
             )}
         >
+            <View style={[styles.dateContainer, { backgroundColor: colors.backgroundExtra }]}>
+                <Text style={{ color: colors.text }}>{event.occurs_at}</Text>
+            </View>
             {error && <Text style={{ color: colors.text }}>{translate.events.failedToLoad}</Text>}
             {data ? (
                 <View style={{ paddingBottom: 45 }}>
-                    <View
-                        style={[styles.dateContainer, { backgroundColor: colors.backgroundExtra }]}
-                    >
-                        <Text style={{ color: colors.text }}>{event.occurs_at}</Text>
-                    </View>
                     <ContentSection>
                         <Title label="Description" size="large" />
                         <Text style={{ color: colors.text }}>{data.long_description}</Text>
@@ -101,6 +97,10 @@ const styles = StyleSheet.create({
         width: '100%',
         paddingHorizontal: 15,
         paddingVertical: 15,
+    },
+
+    title: {
+        marginTop: 30,
     },
 
     container: {
