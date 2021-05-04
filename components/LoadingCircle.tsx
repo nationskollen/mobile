@@ -30,7 +30,7 @@ const LoadingCircle = ({ validating, mutate, accent, tint, offsetTop, ...rest }:
     /**
      * This component renders a loading circle
      */
-    const { colors, isDarkMode } = useTheme()
+    const { colors } = useTheme()
     const [hideIndicator, setHideIndicator] = useState(true)
     const color = accent ?? colors.primaryText
 
@@ -50,7 +50,7 @@ const LoadingCircle = ({ validating, mutate, accent, tint, offsetTop, ...rest }:
         <RefreshControl
             colors={[color]}
             tintColor={tint ?? color}
-            progressBackgroundColor={isDarkMode ? colors.backgroundHighlight : colors.background}
+            progressBackgroundColor={colors.background}
             refreshing={hideIndicator ? false : validating}
             onRefresh={mutate}
             progressViewOffset={offsetTop ?? 0}

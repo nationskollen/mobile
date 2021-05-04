@@ -63,7 +63,8 @@ const SharedScreens = (Stack: any, translate: LanguageContextType) => [
         name="Event"
         component={EventPage}
         options={{
-            title: translate.titles.event,
+            title: null,
+            headerTransparent: true,
             ...TitleOffsetOptions,
         }}
     />,
