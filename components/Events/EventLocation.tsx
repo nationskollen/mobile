@@ -9,6 +9,7 @@ import { useNavigation } from '@react-navigation/core'
 import Card from '../Card'
 import Title from '../Title'
 import CoverImage from '../CoverImage'
+import ContentSection from '../ContentSection'
 
 export interface Props {
     nation: Nation
@@ -16,6 +17,7 @@ export interface Props {
 }
 
 const EventLocation = ({ nation, locationId }: Props) => {
+    // Skip rendering if the event does not have a location
     if (!locationId) {
         return null
     }
@@ -24,28 +26,38 @@ const EventLocation = ({ nation, locationId }: Props) => {
     const { data } = useLocation(locationId)
 
     return (
-        <Card onPress={() => !data && navigation.navigate('NationLocationsAndHours', { nation })}>
-            {data ? (
-                <>
-                    <CoverImage src={data.cover_img_src} />
-                    <LinearGradient
-                        colors={['transparent', nation.accent_color]}
-                        style={styles.overlay}
-                    />
-                    <View style={styles.contentContainer}>
-                        <Title label={data.name} color="white" noMargin={true} />
-                        <Text style={{ color: '#f4f4f4' }}>{data.address}</Text>
-                    </View>
-                    <View style={styles.showLabel}>
-                        <View style={[styles.showButton, { backgroundColor: nation.accent_color }]}>
-                            <Ionicons name="chevron-forward" size={24} color="white" />
+        <ContentSection noHorizontalPadding={true}>
+            <Title label="Location" size="large" style={{ marginLeft: 15 }} />
+            <Card
+                onPress={() => data && navigation.navigate('NationLocationsAndHours', { nation })}
+            >
+                {data ? (
+                    <>
+                        <CoverImage src={data.cover_img_src} />
+                        <LinearGradient
+                            colors={['transparent', nation.accent_color]}
+                            style={styles.overlay}
+                        />
+                        <View style={styles.contentContainer}>
+                            <Title label={data.name} color="white" noMargin={true} />
+                            <Text style={{ color: '#f4f4f4' }}>{data.address}</Text>
                         </View>
-                    </View>
-                </>
-            ) : (
-                <ActivityIndicator size="large" color={nation.accent_color} />
-            )}
-        </Card>
+                        <View style={styles.showLabel}>
+                            <View
+                                style={[
+                                    styles.showButton,
+                                    { backgroundColor: nation.accent_color },
+                                ]}
+                            >
+                                <Ionicons name="chevron-forward" size={24} color="white" />
+                            </View>
+                        </View>
+                    </>
+                ) : (
+                    <ActivityIndicator size="large" color={nation.accent_color} />
+                )}
+            </Card>
+        </ContentSection>
     )
 }
 

@@ -69,7 +69,7 @@ const EventPage = ({ route }: Props) => {
         >
             {error && <Text style={{ color: colors.text }}>{translate.events.failedToLoad}</Text>}
             {data ? (
-                <View>
+                <View style={{ paddingBottom: 45 }}>
                     <View
                         style={[styles.dateContainer, { backgroundColor: colors.backgroundExtra }]}
                     >
@@ -79,10 +79,7 @@ const EventPage = ({ route }: Props) => {
                         <Title label="Description" size="large" />
                         <Text style={{ color: colors.text }}>{data.long_description}</Text>
                     </ContentSection>
-                    <ContentSection noHorizontalPadding={true}>
-                        <Title label="Location" size="large" style={{ marginLeft: 15 }} />
-                        <EventLocation nation={nation} locationId={event.location_id} />
-                    </ContentSection>
+                    <EventLocation nation={nation} locationId={event.location_id} />
                     <ContentSection>
                         <EventDates created={data.created_at} updated={data.updated_at} />
                     </ContentSection>
