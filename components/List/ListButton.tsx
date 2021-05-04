@@ -5,7 +5,7 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableHighlight } from 'react-native'
 
-import { useTheme } from './ThemeContext'
+import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 
 export interface Props {

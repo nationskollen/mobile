@@ -4,7 +4,7 @@
  */
 import React from 'react'
 import { Text, StyleSheet } from 'react-native'
-import { useTheme } from './ThemeContext'
+import { useTheme } from '../ThemeContext'
 
 interface Props {
     hasMore: boolean

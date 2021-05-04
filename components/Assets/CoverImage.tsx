@@ -8,7 +8,7 @@
  * @module Card
  */
 import React from 'react'
-import { useTheme } from './ThemeContext'
+import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 import { View, Image, StyleSheet } from 'react-native'
 import { IconName } from '@expo/vector-icons/Ionicons'

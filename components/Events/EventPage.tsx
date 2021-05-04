@@ -6,21 +6,21 @@ import React, { useEffect } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
 import { useTheme } from '../ThemeContext'
-import { TabStackParamList } from '../Footer'
+import { TabStackParamList } from '../Footer/Footer'
 import { RouteProp } from '@react-navigation/native'
 import { useEventDescription } from '@dsp-krabby/sdk'
 import { useNavigation } from '@react-navigation/core'
 import { useTranslation } from '../../translate/LanguageContext'
 
-import Title from '../Title'
+import Title from '../Assets/Title'
 import EventDates from '../Events/Dates'
-import ParallaxHeader from '../ParallaxHeader'
+import ParallaxHeader from '../Header/ParallaxHeader'
 import EventCategory from '../Events/Category'
-import ContentSection from '../ContentSection'
-import ContentContainer from '../ContentContainer'
+import ContentSection from '../Assets/ContentSection'
+import ContentContainer from '../Assets/ContentContainer'
 import EventLocation from '../Events/EventLocation'
 import EventPageSkeleton from '../Skeletons/EventPage'
-import HeaderButton, { HEADER_BUTTON_WIDTH } from '../HeaderButton'
+import HeaderButton, { HEADER_BUTTON_WIDTH } from '../Header/HeaderButton'
 
 export interface Props {
     route: RouteProp<TabStackParamList, 'Event'>

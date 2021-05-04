@@ -7,7 +7,7 @@
  */
 import React from 'react'
 import { RouteProp } from '@react-navigation/native'
-import { TabStackParamList } from '../Footer'
+import { TabStackParamList } from '../Footer/Footer'
 import { useTranslation } from '../../translate/LanguageContext'
 
 import Timeline from '../Home/Timeline'

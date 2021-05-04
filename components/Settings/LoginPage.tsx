@@ -7,7 +7,7 @@ import { View, StyleSheet, Text, TextInput, TouchableHighlight, ScrollView } fro
 import { useTheme } from '../ThemeContext'
 import { useTranslation } from '../../translate/LanguageContext'
 
-import FocusAwareStatusBar from '../FocusAwareStatusBar'
+import FocusAwareStatusBar from '../Assets/FocusAwareStatusBar'
 
 const LoginPage = () => {
     const { colors } = useTheme()

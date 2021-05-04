@@ -4,7 +4,7 @@
  */
 import React, { useEffect, useState } from 'react'
 import { RefreshControl } from 'react-native'
-import { useTheme } from './ThemeContext'
+import { useTheme } from '../ThemeContext'
 
 export interface Props {
     validating: boolean

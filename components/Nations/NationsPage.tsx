@@ -11,11 +11,11 @@ import { useTheme } from '../ThemeContext'
 import { useNations } from '@dsp-krabby/sdk'
 import { useNavigation } from '@react-navigation/native'
 
-import ListEmpty from '../ListEmpty'
+import ListEmpty from '../List/ListEmpty'
 import NationLogo from './NationLogo'
-import ListButton from '../ListButton'
-import LoadingCircle from '../LoadingCircle'
-import FocusAwareStatusBar from '../FocusAwareStatusBar'
+import ListButton from '../List/ListButton'
+import LoadingCircle from '../Assets/LoadingCircle'
+import FocusAwareStatusBar from '../Assets/FocusAwareStatusBar'
 
 const NationsPage = () => {
     const navigation = useNavigation()

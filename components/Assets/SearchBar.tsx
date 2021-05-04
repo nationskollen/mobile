@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { View, StyleSheet, TextInput } from 'react-native'
-import { useTheme } from './ThemeContext'
+import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 
-import HeaderButton from './HeaderButton'
+import HeaderButton from '../Header/HeaderButton'
 
 export interface Props {
     onSearch: (query: string) => void

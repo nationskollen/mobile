@@ -8,9 +8,9 @@ import { useTheme } from '../ThemeContext'
 import { useNations } from '@dsp-krabby/sdk'
 
 import Post from './Post'
-import ListEmpty from '../ListEmpty'
-import LoadingCircle from '../LoadingCircle'
-import FocusAwareStatusBar from '../FocusAwareStatusBar'
+import ListEmpty from '../List/ListEmpty'
+import LoadingCircle from '../Assets/LoadingCircle'
+import FocusAwareStatusBar from '../Assets/FocusAwareStatusBar'
 
 // TODO: Currently, this renders nations as notifications since we
 //       do not have implemented notifications on the server yet.

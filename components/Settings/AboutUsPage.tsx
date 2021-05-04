@@ -4,11 +4,11 @@ import Constants from 'expo-constants'
 import { useTheme } from '../ThemeContext'
 import { useTranslation } from '../../translate/LanguageContext'
 
-import Title from '../Title'
-import PersonCarousel from '../PersonCarousel'
-import ContentSection from '../ContentSection'
-import ContactInformation from '../ContactInformation'
-import FocusAwareStatusBar from '../FocusAwareStatusBar'
+import Title from '../Assets/Title'
+import PersonCarousel from '../Assets/PersonCarousel'
+import ContentSection from '../Assets/ContentSection'
+import ContactInformation from '../Assets/ContactInformation'
+import FocusAwareStatusBar from '../Assets/FocusAwareStatusBar'
 
 // TODO: Load from server?
 const DATA = [

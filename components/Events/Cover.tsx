@@ -1,7 +1,7 @@
 import React from 'react'
 import { Event as EventResponse } from '@dsp-krabby/sdk'
 
-import CoverImage from '../CoverImage'
+import CoverImage from '../Events/CoverImage'
 import EventCategory from './Category'
 
 export interface Props {

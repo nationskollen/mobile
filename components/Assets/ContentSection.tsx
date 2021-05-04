@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, ViewStyle } from 'react-native'
-import { useTheme } from './ThemeContext'
+import { useTheme } from '../ThemeContext'
 
 export interface Props {
     children: Element | Element[]

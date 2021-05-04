@@ -6,9 +6,9 @@ import React from 'react'
 import { FlatList } from 'react-native'
 import { useNations } from '@dsp-krabby/sdk'
 
-import Dropdown from '../Dropdown'
-import ListEmpty from '../ListEmpty'
-import LoadingCircle from '../LoadingCircle'
+import Dropdown from '../Assets/Dropdown'
+import ListEmpty from '../List/ListEmpty'
+import LoadingCircle from '../Assets/LoadingCircle'
 import NationLogo from '../Nations/NationLogo'
 import NotificationOptions from './NotificationOptions'
 

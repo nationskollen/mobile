@@ -4,7 +4,7 @@
  */
 import React from 'react'
 import { Text, StyleSheet } from 'react-native'
-import { useTheme } from './ThemeContext'
+import { useTheme } from '../ThemeContext'
 import { ApiError } from '@dsp-krabby/sdk'
 
 export interface Props {

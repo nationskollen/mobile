@@ -8,14 +8,14 @@
  */
 import React from 'react'
 import { View, FlatList } from 'react-native'
-import { TabStackParamList } from '../Footer'
+import { TabStackParamList } from '../Footer/Footer'
 import { useLocations } from '@dsp-krabby/sdk'
 import { RouteProp } from '@react-navigation/native'
 import { useTranslation } from '../../translate/LanguageContext'
 
 import Location from './Location'
-import ListEmpty from '../ListEmpty'
-import LoadingCircle from '../LoadingCircle'
+import ListEmpty from '../List/ListEmpty'
+import LoadingCircle from '../Assets/LoadingCircle'
 import NationBasePage from './NationBasePage'
 
 export interface Props {

@@ -8,19 +8,19 @@
 import React, { useCallback, useState, useRef, useEffect } from 'react'
 import { Dimensions, Animated, Platform, View, StyleSheet, StatusBar } from 'react-native'
 
-import { useTheme } from './ThemeContext'
+import { useTheme } from '../ThemeContext'
 import { useNavigation } from '@react-navigation/core'
 import { useHeaderHeight } from '@react-navigation/stack'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import ParallaxScrollView from 'react-native-parallax-scroll-view'
 
-import Title from './Title'
-import CoverImage from './CoverImage'
-import LoadingCircle from './LoadingCircle'
-import NationLogo from './Nations/NationLogo'
-import FocusAwareStatusBar from './FocusAwareStatusBar'
-import NavigationBackArrow from './NavigationBackArrow'
-import { TITLE_LEFT_OFFSET } from '../screens/TitleOffsetOptions'
+import Title from '../Assets/Title'
+import CoverImage from '../Assets/CoverImage'
+import LoadingCircle from '../Assets/LoadingCircle'
+import NationLogo from '../Nations/NationLogo'
+import FocusAwareStatusBar from '../Assets/FocusAwareStatusBar'
+import NavigationBackArrow from '../Header/NavigationBackArrow'
+import { TITLE_LEFT_OFFSET } from '../../screens/TitleOffsetOptions'
 
 export interface Props {
     height: number

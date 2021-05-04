@@ -7,7 +7,7 @@
  */
 import React, { useMemo } from 'react'
 import { View, ScrollView, StyleSheet } from 'react-native'
-import { useTheme } from './ThemeContext'
+import { useTheme } from '../ThemeContext'
 import { LinearGradient } from 'expo-linear-gradient'
 
 import Title from './Title'

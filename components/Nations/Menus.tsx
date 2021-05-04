@@ -11,10 +11,10 @@ import { Ionicons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/core'
 import { useMenus, Location, Nation } from '@dsp-krabby/sdk'
 
-import Card from '../Card'
-import Title from '../Title'
-import CoverImage from '../CoverImage'
-import ContentContainer from '../ContentContainer'
+import Card from '../Assets/Card'
+import Title from '../Assets/Title'
+import CoverImage from '../Assets/CoverImage'
+import ContentContainer from '../Assets/ContentContainer'
 
 export interface Props {
     nation: Nation
