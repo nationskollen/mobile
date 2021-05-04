@@ -6,93 +6,52 @@
 import React, { useState } from 'react'
 import { View, StyleSheet } from 'react-native'
 
-import FilterList from './FilterList'
 import Button from '../Button'
 import { useNations } from '@dsp-krabby/sdk'
-//used until hook for categories is available
-const categoriesTmp = [
-    {
-        name: 'Frukost',
-    },
-    {
-        name: 'Brunch',
-    },
-    {
-        name: 'Lunch',
-    },
-    {
-        name: 'Fika',
-    },
-    {
-        name: 'Sport',
-    },
-    {
-        name: 'Restaurang',
-    },
-    {
-        name: 'Pub',
-    },
-    {
-        name: 'Kultur',
-    },
-    {
-        name: 'Gasque',
-    },
-    {
-        name: 'Släpp',
-    },
-    {
-        name: 'Klubb',
-    },
-    {
-        name: 'Konsert',
-    },
-    {
-        name: 'Övrigt',
-    },
-]
+import { useFilter } from './FilterContext'
+import FilterListNation from './FilterLists/FilterListNation'
+import FilterListCategory from './FilterLists/FilterListCategory'
+import FilterListStudent from './FilterLists/FilterListStudent'
 
-const student = [{ name: 'Nationskort krävs' }, { name: 'Medlemskap krävs' }]
+//used until hook for categories is available
+export const categoriesTmp = ['Frukost','Brunch','Lunch','Fika','Sport','Restaurang','Pub','Kultur','Gasque','Släpp','Klubb','Konsert','Övrigt',]
+
+export const student = ['Nationskort krävs','Medlemskap krävs']
 
 /**
  * This component is used to create pressable filter category buttons
  */
 const FilterButtons = () => {
-    const [filterTab, setFilterTab] = useState('')
+    const [filterList, setFilterList] = useState(<View/>)
     const { data: nations } = useNations()
+
     const categories = categoriesTmp // replace with useCategories() when avaliable
+
 
     return (
         <View style={styles.container}>
             <View style={styles.buttonsContainer}>
                 <Button
-                    onPress={() => setFilterTab('nations')}
+                    onPress={() => setFilterList(<FilterListNation nations={nations}/>)}
                     type={'primary'}
                     label={'Nation'}
                     style={{ width: '30%', height: 60 }}
                 />
                 <Button
-                    onPress={() => setFilterTab('categories')}
+                    onPress={() => setFilterList(<FilterListCategory categories={categories}/>)}
                     type={'primary'}
                     label={'Kategori'}
                     style={{ width: '30%', height: 60 }}
                 />
                 <Button
-                    onPress={() => setFilterTab('student')}
+                    onPress={() => setFilterList(<FilterListStudent student={student}/>)}
                     type={'primary'}
                     label={'Student'}
                     style={{ width: '30%', height: 60 }}
                 />
             </View>
 
-            {filterTab != '' && (
-                <FilterList
-                    filterTab={filterTab}
-                    nations={nations}
-                    categories={categories}
-                    student={student}
-                />
-            )}
+            {filterList}
         </View>
     )
 }
@@ -100,7 +59,7 @@ const FilterButtons = () => {
 const styles = StyleSheet.create({
     container: {
         width: '100%',
-        height: '70%',
+        height: '80%',
         justifyContent: 'space-between',
         elevation: 4,
         zIndex: 4,
@@ -109,6 +68,16 @@ const styles = StyleSheet.create({
     buttonsContainer: {
         flexDirection: 'row',
         justifyContent: 'space-evenly',
+    },
+})
+
+export const filterStyles = StyleSheet.create({
+    listContainer: {
+        width: '100%',
+        //height: '100%',
+        backgroundColor: 'white',
+        borderRadius: 10,
+        marginTop: 5,
     },
 })
 

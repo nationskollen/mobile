@@ -2,12 +2,13 @@
  * @category Home
  * @module HomePage
  */
-import React, { useState } from 'react'
+import React, { useState, useContext, createContext } from 'react'
 import { View } from 'react-native'
 import { Nation } from '@dsp-krabby/sdk'
 import { useTheme } from '../ThemeContext'
 import { TabStackParamList } from '../Footer'
 import { DatePickerProvider } from './DatePickerContext'
+import { FilterProvider } from './FilterContext'
 import { RouteProp } from '@react-navigation/native'
 
 import Timeline from './Timeline'
@@ -26,23 +27,25 @@ const Home = () => {
 
     return (
         <DatePickerProvider>
-            <FocusAwareStatusBar backgroundColor={colors.primary} />
-            <View
-                style={{
-                    flex: 1,
-                    backgroundColor: isDarkMode ? colors.background : colors.backgroundExtra,
-                }}
-            >
-                <View>
-                    <View style={{ zIndex: 2, elevation: 2 }}>
-                        <FilterBar />
-                        <Calendar />
-                    </View>
-                    <View style={{ zIndex: 1, elevation: 1 }}>
-                        <Timeline nation={selectedNation} />
+            <FilterProvider>
+                <FocusAwareStatusBar backgroundColor={colors.primary} />
+                <View
+                    style={{
+                        flex: 1,
+                        backgroundColor: isDarkMode ? colors.background : colors.backgroundExtra,
+                    }}
+                >
+                    <View>
+                        <View style={{ zIndex: 2, elevation: 2 }}>
+                            <FilterBar />
+                            <Calendar />
+                        </View>
+                        <View style={{ zIndex: 1, elevation: 1 }}>
+                            <Timeline nation={selectedNation} />
+                        </View>
                     </View>
                 </View>
-            </View>
+            </FilterProvider>
         </DatePickerProvider>
     )
 }

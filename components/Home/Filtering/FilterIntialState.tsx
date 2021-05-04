@@ -1,66 +1,24 @@
-import FilterCheckboxesType from './FilterCheckboxes'
-const FilterCheckboxes : FilterCheckboxesType = {
-    nations: {
-        norrlands : {
-            checked : true, 
-        },
-        vdala : {
-            checked : true
-        },
-        kalmars : {
-            checked : true
-        },
-        gotlands : {
-            checked : true
-        },
-        stockholms : {
-            checked : true
-        },
-        ghs : {
-            checked : true
-        },
-        uplands : {
-            checked : true
-        },
-        goteborgs: {
-            checked : true
-        },
-        snerikes: {
-            checked : true,
-        },
-        ostgotas: {
-            checked : true,
-        },
-        vastgotas: {
-            checked : true,
-        },
-        smalands: {
-            checked : true,
-        },
-        varmlands: {
-            checked : true,
-        },
-    },
+// import { useNations } from '@dsp-krabby/sdk'
+// import FilterCheckboxesType from './FilterCheckboxes'
+// import { categoriesTmp, student } from '../FilterButtons'
 
-    categories : {
+
+// const filterCheckboxesInitialState = () => {
+//     var filterCheckboxes:FilterCheckboxesType = {nations:{}, categories:{}, student:{}}
+//     const { data } = useNations()
     
-            frukost : true,
-            brunch : true,
-            lunch : true,
-            fika : true,
-            sport : true,
-            restaurang : true,         
-            pub : true,
-            kultur : true,
-            gasque : true,
-            släpp : true,
-            klubb : true,
-            konsert : true,
-            övrigt : true,
-    },
+//     data.map((nation)=>{
+//         filterCheckboxes.nations[nation.name] = true
+//     })
+//     categoriesTmp.map((category)=>{
+//         filterCheckboxes.categories[category] = true
+//     })
+//     student.map((requirement)=>{
+//         filterCheckboxes.student[requirement] = false
+//     })
 
-    student : {
-       needscard : false,
-       needsmembership : false 
-    },
-}
+// //    console.log("filterCheckboxInitialState: \n" + JSON.stringify(filterCheckboxes))
+//     return filterCheckboxes
+// }
+
+// export default filterCheckboxesInitialState
