@@ -15,21 +15,24 @@ const SearchBar = ({ onSearch, placeholder, autoFocus }: Props) => {
     const { colors } = useTheme()
     const [query, setQuery] = useState<string | null>(null)
     const [focused, setFocused] = useState(false)
-    const iconColor = query === null && !focused ? colors.borderDark : (focused ? colors.textHighlight : colors.text)
+    const iconColor =
+        query === null && !focused
+            ? colors.borderDark
+            : focused
+            ? colors.textHighlight
+            : colors.text
 
     return (
-        <View style={[
-            styles.container,
-            {
-                backgroundColor: colors.backgroundExtra,
-                borderColor: focused ? colors.borderDark : colors.backgroundExtra
-            },
-        ]}>
-            <Ionicons
-                name="search-outline"
-                size={20}
-                color={iconColor}
-            />
+        <View
+            style={[
+                styles.container,
+                {
+                    backgroundColor: colors.backgroundExtra,
+                    borderColor: focused ? colors.borderDark : colors.backgroundExtra,
+                },
+            ]}
+        >
+            <Ionicons name="search-outline" size={20} color={iconColor} />
             <TextInput
                 autoFocus={autoFocus}
                 value={query}
@@ -41,15 +44,17 @@ const SearchBar = ({ onSearch, placeholder, autoFocus }: Props) => {
                 style={[styles.input, { color: colors.textHighlight }]}
                 placeholderTextColor={colors.borderDark}
             />
-            {query !== null && <HeaderButton
-                icon="close-outline"
-                color={iconColor}
-                onPress={() => {
-                    setQuery(null)
-                    onSearch(null)
-                }}
-                style={styles.clear}
-            />}
+            {query !== null && (
+                <HeaderButton
+                    icon="close-outline"
+                    color={iconColor}
+                    onPress={() => {
+                        setQuery(null)
+                        onSearch(null)
+                    }}
+                    style={styles.clear}
+                />
+            )}
         </View>
     )
 }

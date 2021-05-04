@@ -62,7 +62,7 @@ const Header = ({ nation, event }: HeaderProps) => {
         <View style={styles.header}>
             <TouchableOpacity
                 style={styles.nationContainer}
-                onPress={() => navigation.navigate('NationHome', { nation })}
+                onPress={() => navigation.navigate('NationHome', { oid: nation.oid })}
             >
                 {nation && (
                     <View style={styles.headerContent}>

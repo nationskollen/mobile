@@ -33,7 +33,9 @@ const NationMenuPage = ({ route }: Props) => {
 
     useLayoutEffect(() => {
         navigation.setOptions({
-            headerRight: () => <HeaderButton icon="search" onPress={() => setShowSearchBar(!showSearchBar)} />
+            headerRight: () => (
+                <HeaderButton icon="search" onPress={() => setShowSearchBar(!showSearchBar)} />
+            ),
         })
     }, [navigation, showSearchBar])
 
@@ -49,15 +51,22 @@ const NationMenuPage = ({ route }: Props) => {
         const normalizedQuery = query.toLowerCase()
 
         // Filter by name
-        return data.items.filter((item: MenuItemResponse) => (
-            item.name.toLowerCase().includes(normalizedQuery) ||
-            item.description.toLowerCase().includes(normalizedQuery)
-        ))
+        return data.items.filter(
+            (item: MenuItemResponse) =>
+                item.name.toLowerCase().includes(normalizedQuery) ||
+                item.description.toLowerCase().includes(normalizedQuery)
+        )
     }, [data, query])
 
     return (
         <NationBasePage nation={nation} title={data?.name}>
-            {showSearchBar && <SearchBar placeholder={translate.menu.searchPlaceholder} onSearch={setQuery} autoFocus={true} />}
+            {showSearchBar && (
+                <SearchBar
+                    placeholder={translate.menu.searchPlaceholder}
+                    onSearch={setQuery}
+                    autoFocus={true}
+                />
+            )}
             <FlatList
                 data={filteredData}
                 renderItem={({ item }) => <MenuItem item={item} />}

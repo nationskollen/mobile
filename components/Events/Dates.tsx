@@ -10,19 +10,10 @@ export interface Props {
 
 const EventDates = ({ created, updated }: Props) => {
     const { translate } = useTranslation()
-    const { colors, isDarkMode } = useTheme()
+    const { colors } = useTheme()
 
     return (
-        <View
-            style={[
-                styles.container,
-                {
-                    backgroundColor: isDarkMode
-                        ? colors.backgroundHighlight
-                        : colors.backgroundExtra,
-                },
-            ]}
-        >
+        <>
             <View style={styles.date}>
                 <Text style={[styles.text, { color: colors.text }]}>
                     {translate.events.createdAt}:
@@ -39,19 +30,11 @@ const EventDates = ({ created, updated }: Props) => {
                     {new Date(updated).toLocaleString('se')}
                 </Text>
             </View>
-        </View>
+        </>
     )
 }
 
 const styles = StyleSheet.create({
-    container: {
-        borderRadius: 10,
-        paddingHorizontal: 15,
-        paddingVertical: 15,
-        paddingBottom: 10,
-        marginTop: 15,
-    },
-
     date: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -59,7 +42,7 @@ const styles = StyleSheet.create({
     },
 
     text: {
-        fontSize: 12,
+        fontSize: 13,
         fontWeight: 'bold',
     },
 

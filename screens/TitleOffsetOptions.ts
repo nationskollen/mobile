@@ -9,9 +9,11 @@
  * <Stack.Screen ... options={..., ...TitleOffsetOptions} />
  * ```
  */
+export const TITLE_LEFT_OFFSET = 60
+
 const TitleOffsetOptions = {
     headerTitleContainerStyle: {
-        left: 65,
+        left: TITLE_LEFT_OFFSET,
     },
 }
 
