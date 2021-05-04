@@ -116,6 +116,7 @@ const English: LanguageContextType = {
 
     menu: {
         empty: 'Menu is empty',
+        noResults: 'No matching results',
     },
 
     aboutUs: {

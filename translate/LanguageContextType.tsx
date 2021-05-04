@@ -114,6 +114,7 @@ export default interface LanguageContextType {
 
     menu: {
         empty: string
+        noResults: string
     }
 
     aboutUs: {
