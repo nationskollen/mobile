@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-import { useTheme } from '../ThemeContext'
+import { useTheme } from './ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 import { IconName } from '@expo/vector-icons/Ionicons'
 

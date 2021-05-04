@@ -108,6 +108,8 @@ const English: LanguageContextType = {
 
     nation: {
         description: 'Description',
+        contactInformation: 'Contact information',
+        people: 'People',
     },
 
     menus: {
