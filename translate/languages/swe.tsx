@@ -117,6 +117,7 @@ const Swedish: LanguageContextType = {
     menu: {
         empty: 'Menyn är tom',
         noResults: 'Inga matchande resultat',
+        searchPlaceholder: 'Sök i menyn',
     },
 
     aboutUs: {

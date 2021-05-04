@@ -115,6 +115,7 @@ export default interface LanguageContextType {
     menu: {
         empty: string
         noResults: string
+        searchPlaceholder: string
     }
 
     aboutUs: {

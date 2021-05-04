@@ -57,7 +57,7 @@ const NationMenuPage = ({ route }: Props) => {
 
     return (
         <NationBasePage nation={nation} title={data?.name}>
-            {showSearchBar && <SearchBar placeholder="Sök i menyn" onSearch={setQuery} autoFocus={true} />}
+            {showSearchBar && <SearchBar placeholder={translate.menu.searchPlaceholder} onSearch={setQuery} autoFocus={true} />}
             <FlatList
                 data={filteredData}
                 renderItem={({ item }) => <MenuItem item={item} />}
