@@ -106,6 +106,8 @@ export default interface LanguageContextType {
 
     nation: {
         description: string
+        contactInformation: string
+        people: string
     }
 
     menus: {
@@ -114,6 +116,8 @@ export default interface LanguageContextType {
 
     menu: {
         empty: string
+        noResults: string
+        searchPlaceholder: string
     }
 
     aboutUs: {

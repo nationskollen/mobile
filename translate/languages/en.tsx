@@ -108,6 +108,8 @@ const English: LanguageContextType = {
 
     nation: {
         description: 'Description',
+        contactInformation: 'Contact information',
+        people: 'People',
     },
 
     menus: {
@@ -116,6 +118,8 @@ const English: LanguageContextType = {
 
     menu: {
         empty: 'Menu is empty',
+        noResults: 'No matching results',
+        searchPlaceholder: 'Search in menu',
     },
 
     aboutUs: {

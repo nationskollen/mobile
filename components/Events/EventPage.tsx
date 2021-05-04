@@ -16,6 +16,7 @@ import Title from '../Title'
 import EventDates from '../Events/Dates'
 import HeaderButton from '../HeaderButton'
 import ParallaxHeader from '../ParallaxHeader'
+import ContentSection from '../ContentSection'
 import ContentContainer from '../ContentContainer'
 import EventLocation from '../Events/EventLocation'
 import EventPageSkeleton from '../Skeletons/EventPage'
@@ -74,18 +75,22 @@ const EventPage = ({ route }: Props) => {
                     >
                         <Text style={{ color: colors.text }}>{event.occurs_at}</Text>
                     </View>
-                    <ContentContainer>
+                    <ContentSection>
                         <Title label="Description" size="large" />
                         <Text style={{ color: colors.text }}>{data.long_description}</Text>
-                    </ContentContainer>
-                    <Title label="Location" size="large" style={{ marginLeft: 15 }} />
-                    <EventLocation nation={nation} locationId={event.location_id} />
-                    <ContentContainer>
+                    </ContentSection>
+                    <ContentSection noHorizontalPadding={true}>
+                        <Title label="Location" size="large" style={{ marginLeft: 15 }} />
+                        <EventLocation nation={nation} locationId={event.location_id} />
+                    </ContentSection>
+                    <ContentSection>
                         <EventDates created={data.created_at} updated={data.updated_at} />
-                    </ContentContainer>
+                    </ContentSection>
                 </View>
             ) : (
-                <EventPageSkeleton />
+                <ContentContainer>
+                    <EventPageSkeleton />
+                </ContentContainer>
             )}
         </ParallaxHeader>
     )

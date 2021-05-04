@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Animated, TouchableHighlight, StyleSheet } from 'react-native'
+import { View, ViewStyle, Animated, TouchableHighlight, StyleSheet } from 'react-native'
 import { useTheme } from './ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 import { IconName } from '@expo/vector-icons/Ionicons'
@@ -11,18 +11,19 @@ export interface Props {
     iconSize?: number
     isLeft?: boolean
     backgroundColor?: string
+    style?: ViewStyle
 }
 
 const AnimatedIcon = Animated.createAnimatedComponent(Ionicons)
 
-const HeaderButton = ({ icon, iconSize, onPress, color, isLeft, backgroundColor }: Props) => {
+const HeaderButton = ({ icon, iconSize, onPress, color, isLeft, backgroundColor, style }: Props) => {
     const { colors, isDarkMode } = useTheme()
 
     return (
         <TouchableHighlight
             onPress={onPress}
             underlayColor={isDarkMode ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)'}
-            style={[styles.button, { marginLeft: isLeft ? 5 : 0, marginRight: isLeft ? 0 : 5 }]}
+            style={[styles.button, { marginLeft: isLeft ? 5 : 0, marginRight: isLeft ? 0 : 5 }, style]}
         >
             <View style={[styles.innerContainer, { backgroundColor }]}>
                 <AnimatedIcon

@@ -20,9 +20,9 @@ import Card, { CARD_HORIZONTAL_SPACING } from './Card'
 export interface Props<T> {
     height: number
     data: Array<T>
-    srcExtractor: (item: T) => string
     cardWidth: number
     title?: string
+    srcExtractor?: (item: T) => string
     paddingBottom?: number
     renderContent?: (item: T) => Element
 }
@@ -68,12 +68,10 @@ const PersonCarousel = <T,>({
                 {data.map((item: T, index: number) => (
                     <Card key={index} style={{ width: cardWidth, overflow: 'hidden' }}>
                         <CoverImage
-                            src={srcExtractor(item)}
+                            src={srcExtractor ? srcExtractor(item) : null}
                             height={height}
                             fallbackIcon="person-circle-outline"
-                            backgroundColor={
-                                isDarkMode ? colors.backgroundExtra : colors.background
-                            }
+                            backgroundColor={colors.backgroundHighlight}
                         />
                         <View style={styles.cardContentContainer}>
                             {renderContent && renderContent(item)}

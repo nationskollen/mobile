@@ -6,7 +6,7 @@
  * @category Nations
  * @module NationHomePage
  */
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { useNation } from '@dsp-krabby/sdk'
 import { useTheme } from '../ThemeContext'
@@ -20,12 +20,31 @@ import Title from '../Title'
 import ListButton from '../ListButton'
 import NationHeader from './NationHeader'
 import ActivityLevel from './ActivityLevel'
+import PersonCarousel from '../PersonCarousel'
 import ParallaxHeader from '../ParallaxHeader'
+import ContentSection from '../ContentSection'
 import TodaysOpeningHours from './TodaysOpeningHours'
+import ContactInformation from '../ContactInformation'
 
 export interface Props {
     route: RouteProp<TabStackParamList, 'NationHome'>
 }
+
+// TODO: Load from server
+const DATA = [
+    {
+        name: 'Fredrik Engstrand',
+        description: '1Q',
+    },
+    {
+        name: 'Fahad Rami Jamil',
+        description: '2Q',
+    },
+    {
+        name: 'Johannes Liljedahl',
+        description: 'Klubbmästare',
+    },
+]
 
 const NationHomePage = ({ route }: Props) => {
     const { oid } = route.params
@@ -85,10 +104,32 @@ const NationHomePage = ({ route }: Props) => {
                     }
                 />
             </View>
-            <View style={styles.descriptionContainer}>
-                <Title label={translate.nation.description} />
+            <ContentSection>
+                <Title size="large" label={translate.nation.description} />
                 <Text style={{ color: colors.text }}>{nation.description}</Text>
-            </View>
+            </ContentSection>
+            <ContentSection>
+                <Title size="large" label={translate.nation.contactInformation} />
+                <ContactInformation
+                    title="Email"
+                    value={`kontakt@${nation.short_name}.se`}
+                    icon="mail-outline"
+                />
+                <ContactInformation title="Telefon" value="070-000 00 00" icon="call-outline" />
+            </ContentSection>
+            <PersonCarousel
+                height={350}
+                data={DATA}
+                cardWidth={300}
+                title={translate.nation.people}
+                paddingBottom={100}
+                renderContent={(item) => (
+                    <>
+                        <Title label={item.name} style={{ color: 'white' }} noMargin={true} />
+                        <Text style={{ color: '#ccc' }}>{item.description}</Text>
+                    </>
+                )}
+            />
         </ParallaxHeader>
     )
 }

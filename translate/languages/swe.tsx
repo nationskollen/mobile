@@ -108,6 +108,8 @@ const Swedish: LanguageContextType = {
 
     nation: {
         description: 'Beskrivning',
+        contactInformation: 'Kontaktinformation',
+        people: 'Personer',
     },
 
     menus: {
@@ -116,6 +118,8 @@ const Swedish: LanguageContextType = {
 
     menu: {
         empty: 'Menyn är tom',
+        noResults: 'Inga matchande resultat',
+        searchPlaceholder: 'Sök i menyn',
     },
 
     aboutUs: {
