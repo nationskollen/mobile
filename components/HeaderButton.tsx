@@ -15,24 +15,14 @@ export interface Props {
 
 const AnimatedIcon = Animated.createAnimatedComponent(Ionicons)
 
-const HeaderButton = ({
-    icon,
-    iconSize,
-    onPress,
-    color,
-    isLeft,
-    backgroundColor,
-}: Props) => {
+const HeaderButton = ({ icon, iconSize, onPress, color, isLeft, backgroundColor }: Props) => {
     const { colors, isDarkMode } = useTheme()
 
     return (
         <TouchableHighlight
             onPress={onPress}
             underlayColor={isDarkMode ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)'}
-            style={[
-                styles.button,
-                { marginLeft: isLeft ? 5 : 0, marginRight: isLeft ? 0 : 5 }
-            ]}
+            style={[styles.button, { marginLeft: isLeft ? 5 : 0, marginRight: isLeft ? 0 : 5 }]}
         >
             <View style={[styles.innerContainer, { backgroundColor }]}>
                 <AnimatedIcon

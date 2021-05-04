@@ -16,11 +16,12 @@ export interface Props {
     noMargin?: boolean
     size?: 'small' | 'medium' | 'large'
     icon?: IconName
+    color?: string
     style?: TextStyle
     containerStyle?: ViewStyle
 }
 
-const Title = ({ label, size, noMargin, icon, style, containerStyle }: Props) => {
+const Title = ({ label, size, noMargin, icon, color, style, containerStyle }: Props) => {
     const { colors } = useTheme()
     let fontSize = 16
 
@@ -38,11 +39,11 @@ const Title = ({ label, size, noMargin, icon, style, containerStyle }: Props) =>
                 <Ionicons
                     name={icon}
                     size={fontSize + 2}
-                    color={colors.textHighlight}
+                    color={color ?? colors.textHighlight}
                     style={styles.icon}
                 />
             )}
-            <Text style={[styles.text, { fontSize, color: colors.textHighlight }, style]}>
+            <Text style={[styles.text, { fontSize, color: color ?? colors.textHighlight }, style]}>
                 {label}
             </Text>
         </View>

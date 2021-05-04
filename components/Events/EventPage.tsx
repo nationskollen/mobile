@@ -13,9 +13,11 @@ import { useNavigation } from '@react-navigation/core'
 import { useTranslation } from '../../translate/LanguageContext'
 
 import Title from '../Title'
-import HeaderButton from '../HeaderButton'
 import EventDates from '../Events/Dates'
+import HeaderButton from '../HeaderButton'
 import ParallaxHeader from '../ParallaxHeader'
+import ContentContainer from '../ContentContainer'
+import EventLocation from '../Events/EventLocation'
 import EventPageSkeleton from '../Skeletons/EventPage'
 
 export interface Props {
@@ -23,7 +25,7 @@ export interface Props {
 }
 
 const EventPage = ({ route }: Props) => {
-    const { colors } = useTheme()
+    const { colors, isDarkMode } = useTheme()
     const navigation = useNavigation()
     const { event, nation } = route.params
     const { translate } = useTranslation()
@@ -42,7 +44,7 @@ const EventPage = ({ route }: Props) => {
                 />
             ),
         })
-    }, [])
+    }, [isDarkMode])
 
     return (
         <ParallaxHeader
@@ -54,57 +56,68 @@ const EventPage = ({ route }: Props) => {
             src={event.cover_img_src}
             renderForeground={() => (
                 <View style={[styles.foreground, { backgroundColor: colors.background }]}>
-                    <Text style={[styles.nationName, { color: colors.text }]}>
-                        {nation.name}
-                    </Text>
-                    <Text style={[styles.title, { color: colors.textHighlight }]}>
-                        {event.name}
-                    </Text>
+                    <Title
+                        label={nation.name}
+                        size="medium"
+                        style={{ color: colors.primaryText }}
+                        noMargin={true}
+                    />
+                    <Title label={event.name} size="large" noMargin={true} />
                 </View>
             )}
         >
-            <View style={styles.container}>
-                {error && (
-                    <Text style={{ color: colors.text }}>{translate.events.failedToLoad}</Text>
-                )}
-                {data ? (
-                    <View>
-                        <Text style={{ color: colors.text }}>{data.long_description}</Text>
-                        <EventDates created={data.created_at} updated={data.updated_at} />
+            {error && <Text style={{ color: colors.text }}>{translate.events.failedToLoad}</Text>}
+            {data ? (
+                <View>
+                    <View
+                        style={[styles.dateContainer, { backgroundColor: colors.backgroundExtra }]}
+                    >
+                        <Text style={{ color: colors.text }}>{event.occurs_at}</Text>
                     </View>
-                ) : (
-                    <EventPageSkeleton />
-                )}
-            </View>
+                    <ContentContainer>
+                        <Title label="Description" size="large" />
+                        <Text style={{ color: colors.text }}>{data.long_description}</Text>
+                    </ContentContainer>
+                    <Title label="Location" size="large" style={{ marginLeft: 15 }} />
+                    <EventLocation nation={nation} locationId={event.location_id} />
+                    <ContentContainer>
+                        <EventDates created={data.created_at} updated={data.updated_at} />
+                    </ContentContainer>
+                </View>
+            ) : (
+                <EventPageSkeleton />
+            )}
         </ParallaxHeader>
-)
+    )
 }
 
 const styles = StyleSheet.create({
     foreground: {
         position: 'absolute',
         bottom: 0,
+        left: 0,
         width: '100%',
         paddingHorizontal: 15,
-        paddingTop: 15,
+        paddingVertical: 15,
     },
 
     container: {
         flex: 1,
-        paddingHorizontal: 15,
         paddingTop: 10,
         flexDirection: 'column',
     },
 
     nationName: {
         fontWeight: 'bold',
-        fontSize: 14,
+        fontSize: 13,
     },
 
-    title: {
-        fontWeight: 'bold',
-        fontSize: 18,
-        marginBottom: 10,
+    dateContainer: {
+        width: '100%',
+        paddingVertical: 10,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 })
 

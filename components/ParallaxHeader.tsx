@@ -130,12 +130,14 @@ const ParallaxHeader = ({
                     ]}
                 >
                     {iconSrc !== undefined && <NationLogo src={iconSrc} size={35} spacing={6} />}
-                    {title && <Title
-                        size="large"
-                        label={title}
-                        noMargin={true}
-                        style={{ marginLeft: iconSrc !== undefined ? 10 : 0 }}
-                    />}
+                    {title && (
+                        <Title
+                            size="large"
+                            label={title}
+                            noMargin={true}
+                            style={{ marginLeft: iconSrc !== undefined ? 10 : 0 }}
+                        />
+                    )}
                 </View>
             )}
             refreshControl={
@@ -158,7 +160,7 @@ const ParallaxHeader = ({
             />
             {children}
         </ParallaxScrollView>
-)
+    )
 }
 
 const styles = StyleSheet.create({
