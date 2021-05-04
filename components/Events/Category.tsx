@@ -7,7 +7,7 @@ export interface Props {
 }
 
 const Category = ({ name }: Props) => {
-    const { colors, isDarkMode } = useTheme()
+    const { colors } = useTheme()
 
     if (!name) {
         return null
@@ -18,7 +18,7 @@ const Category = ({ name }: Props) => {
             style={[
                 styles.container,
                 {
-                    borderColor: colors.borderDark,
+                    backgroundColor: colors.borderDark,
                 },
             ]}
         >
@@ -36,7 +36,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         paddingVertical: 5,
         borderRadius: 8,
-        borderWidth: 2,
     },
 
     text: {

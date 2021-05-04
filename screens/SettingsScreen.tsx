@@ -13,6 +13,7 @@ import { useTranslation } from '../translate/LanguageContext'
 import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack'
 
 import LoginPage from '../components/Settings/LoginPage'
+import AboutUsPage from '../components/Settings/AboutUsPage'
 import SettingsPage from '../components/Settings/SettingsPage'
 import LanguagePage from '../components/Settings/LanguagePage'
 import NavigationBackArrow from '../components/NavigationBackArrow'
@@ -60,6 +61,15 @@ const SettingsScreen = () => {
                 component={LanguagePage}
                 options={{
                     title: translate.titles.language,
+                    headerLeft: () => <NavigationBackArrow />,
+                    ...TitleOffsetOptions,
+                }}
+            />
+            <Stack.Screen
+                name="AboutUs"
+                component={AboutUsPage}
+                options={{
+                    title: translate.titles.aboutUs,
                     headerLeft: () => <NavigationBackArrow />,
                     ...TitleOffsetOptions,
                 }}

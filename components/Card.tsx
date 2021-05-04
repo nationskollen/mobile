@@ -10,17 +10,21 @@ import { useTheme } from './ThemeContext'
 
 export interface Props {
     children: Element | Element[]
+    contentPadding?: boolean
     onPress?: () => void
     style?: ViewStyle
 }
 
-const Card = ({ children, onPress, style }: Props) => {
+export const CARD_HORIZONTAL_SPACING = 10
+
+const Card = ({ children, onPress, contentPadding, style }: Props) => {
     const { colors, isDarkMode } = useTheme()
     const containerStyles = [
         styles.container,
         {
             backgroundColor: isDarkMode ? colors.backgroundExtra : colors.background,
             borderColor: colors.border,
+            padding: contentPadding ? 15 : 0,
         },
         style,
     ]
@@ -44,7 +48,7 @@ const styles = StyleSheet.create({
     container: {
         marginTop: 10,
         marginBottom: 5,
-        marginHorizontal: 10,
+        marginHorizontal: CARD_HORIZONTAL_SPACING,
         overflow: 'hidden',
 
         borderRadius: 10,

@@ -57,6 +57,13 @@ const SettingsPage = ({ navigation }: Props) => {
                 onPress={() => navigation.push('LanguageSettings')}
                 leftIcon={<Ionicons name="language-outline" size={24} color={colors.text} />}
             />
+            <ListButton
+                title={translate.titles.aboutUs}
+                onPress={() => navigation.push('AboutUs')}
+                leftIcon={
+                    <Ionicons name="information-circle-outline" size={24} color={colors.text} />
+                }
+            />
         </SafeAreaView>
     )
 }
