@@ -22,7 +22,7 @@ const OpeningHours = ({ hours, style }: Props) => {
     const { translate } = useTranslation()
 
     return (
-        <View style={[style]}>
+        <View style={[{ marginRight: 15, flex: 1, justifyContent: 'space-between' }, style]}>
             {hours ? (
                 hours.length > 0 ? (
                     hours.map((hour) => <OpeningHour key={hour.id} hour={hour} />)

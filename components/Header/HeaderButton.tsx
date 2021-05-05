@@ -15,6 +15,7 @@ export interface Props {
 }
 
 export const HEADER_BUTTON_WIDTH = Platform.OS === 'ios' ? 40 : 45
+export const HEADER_BUTTON_INNER_SPACING = 4
 
 const AnimatedIcon = Animated.createAnimatedComponent(Ionicons)
 
@@ -37,17 +38,18 @@ const HeaderButton = ({
                 styles.button,
                 {
                     marginLeft: isLeft ? 5 : 0,
-                    marginRight: isLeft ? 0 : 5,
-                    backgroundColor: backgroundColor ?? 'transparent',
+                    marginRight: isLeft ? 0 : 15 - HEADER_BUTTON_INNER_SPACING,
                 },
                 style,
             ]}
         >
-            <AnimatedIcon
-                size={iconSize ?? 24}
-                name={icon}
-                style={{ color: color ?? colors.textHighlight }}
-            />
+            <View style={[styles.innerContainer, { backgroundColor: backgroundColor ?? 'transparent' }]}>
+                <AnimatedIcon
+                    size={iconSize ?? 24}
+                    name={icon}
+                    style={{ color: color ?? colors.textHighlight }}
+                />
+            </View>
         </TouchableHighlight>
     )
 }
@@ -60,6 +62,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginLeft: 5,
+    },
+
+    innerContainer: {
+        width: HEADER_BUTTON_WIDTH - HEADER_BUTTON_INNER_SPACING,
+        height: HEADER_BUTTON_WIDTH - HEADER_BUTTON_INNER_SPACING,
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 })
 
