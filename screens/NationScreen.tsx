@@ -12,7 +12,7 @@ import { useTranslation } from '../translate/LanguageContext'
 import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack'
 
 import SharedScreens from './SharedScreens'
-import NationsPage from '../components/Nations/NationsPage'
+import NationsPage from '../components/Nations/Front/NationsPage'
 
 export interface Props {
     navigation: StackNavigationProp<any, any>

@@ -3,12 +3,12 @@ import TitleOffsetOptions from './TitleOffsetOptions'
 import LanguageContextType from '../translate/LanguageContextType'
 
 import EventPage from '../components/Events/EventPage'
-import NationHomePage from '../components/Nations/NationHomePage'
-import NationMenuPage from '../components/Nations/NationMenuPage'
-import NationMenusPage from '../components/Nations/NationMenusPage'
+import NationHomePage from '../components/Nations/Front/NationHomePage'
+import NationMenuPage from '../components/Nations/Menu/NationMenuPage'
+import NationMenusPage from '../components/Nations/Menus/NationMenusPage'
 import NavigationBackArrow from '../components/Header/NavigationBackArrow'
-import NationEventsPage from '../components/Nations/NationEventsPage'
-import NationLocationsAndHoursPage from '../components/Nations/NationLocationsAndHoursPage'
+import NationEventsPage from '../components/Nations/Events/NationEventsPage'
+import NationLocationsAndHoursPage from '../components/Nations/Locations/NationLocationsAndHoursPage'
 
 // https://github.com/react-navigation/react-navigation/issues/3790
 const SharedScreens = (Stack: any, translate: LanguageContextType) => [
