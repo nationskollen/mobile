@@ -1,5 +1,5 @@
 import React from 'react'
-import { Platform, ViewStyle, Animated, TouchableHighlight, StyleSheet } from 'react-native'
+import { Platform, ViewStyle, Animated, TouchableHighlight, StyleSheet, View } from 'react-native'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 import { IconName } from '@expo/vector-icons/Ionicons'
