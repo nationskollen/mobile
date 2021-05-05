@@ -6,13 +6,13 @@ import React from 'react'
 import 'react-native-gesture-handler'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
-import ToggleSwitch from 'toggle-switch-react-native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { useTranslation } from '../../translate/LanguageContext'
 import { SafeAreaView, View, StyleSheet, Text } from 'react-native'
 
-import ListButton from '../ListButton'
-import FocusAwareStatusBar from '../FocusAwareStatusBar'
+import ListButton from '../List/ListButton'
+import ToggleSwitch from 'toggle-switch-react-native'
+import FocusAwareStatusBar from '../Common/FocusAwareStatusBar'
 
 export interface Props {
     navigation: StackNavigationProp<any, any>

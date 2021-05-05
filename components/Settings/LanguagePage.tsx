@@ -5,7 +5,7 @@ import { View, Text } from 'react-native'
 import { useTranslation } from '../../translate/LanguageContext'
 import en from '../../translate/languages/en'
 import swe from '../../translate/languages/swe'
-import FocusAwareStatusBar from '../FocusAwareStatusBar'
+import FocusAwareStatusBar from '../Common/FocusAwareStatusBar'
 import { CheckBox } from 'react-native-elements'
 
 import LanguageContextType from '../../translate/LanguageContextType'

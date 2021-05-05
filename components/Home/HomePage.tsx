@@ -6,14 +6,14 @@ import React, { useState } from 'react'
 import { Animated, View, StatusBar } from 'react-native'
 import { Nation } from '@dsp-krabby/sdk'
 import { useTheme } from '../ThemeContext'
-import { TabStackParamList } from '../Footer'
+import { TabStackParamList } from '../Footer/Footer'
 import { DatePickerProvider } from './DatePickerContext'
 import { RouteProp } from '@react-navigation/native'
 
 import Timeline from './Timeline'
 import Calendar from './Calendar'
 import FilterBar from './FilterBar'
-import FocusAwareStatusBar from '../FocusAwareStatusBar'
+import FocusAwareStatusBar from '../Common/FocusAwareStatusBar'
 
 export interface Props {
     route: RouteProp<TabStackParamList, 'Home'>

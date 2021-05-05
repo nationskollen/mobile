@@ -11,7 +11,7 @@ import { Provider } from '@dsp-krabby/sdk'
 import { ThemeProvider } from './components/ThemeContext'
 import { LanguageContextProvider } from './translate/LanguageContext'
 
-import Footer from './components/Footer'
+import Footer from './components/Footer/Footer'
 
 const App = () => {
     return (

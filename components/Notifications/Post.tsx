@@ -7,7 +7,7 @@ import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { Event } from '@dsp-krabby/sdk'
 import { useTheme } from '../ThemeContext'
-import NationLogo from '../Nations/NationLogo'
+import NationLogo from '../Nations/Front/NationLogo'
 
 export interface Props {
     data: Event

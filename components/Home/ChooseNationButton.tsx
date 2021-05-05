@@ -3,7 +3,7 @@
  * @module ChooseNationButton
  */
 import React from 'react'
-import Button from '../Button'
+import Button from '../Common/Button'
 
 // Renders button that should show choose-nation content when pressed
 const ChooseNationButton = () => {
