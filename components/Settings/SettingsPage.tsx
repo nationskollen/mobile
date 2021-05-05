@@ -36,7 +36,7 @@ const SettingsPage = ({ navigation }: Props) => {
                 </View>
                 <ToggleSwitch
                     isOn={isDarkMode}
-                    onColor={colors.primaryText}
+                    onColor="#05c46b"
                     offColor={colors.borderDark}
                     size="large"
                     onToggle={setDarkMode}

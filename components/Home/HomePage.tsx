@@ -30,7 +30,6 @@ const Home = () => {
             <View
                 style={{
                     flex: 1,
-                    marginTop: StatusBar.currentHeight,
                     backgroundColor: isDarkMode ? colors.background : colors.backgroundExtra,
                 }}
             >
