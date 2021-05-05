@@ -6,9 +6,9 @@
  */
 import React from 'react'
 import { Text, View, ViewStyle, ActivityIndicator } from 'react-native'
-import { useTheme } from '../ThemeContext'
+import { useTheme } from '../../ThemeContext'
 import { OpeningHourCollection } from '@dsp-krabby/sdk'
-import { useTranslation } from '../../translate/LanguageContext'
+import { useTranslation } from '../../../translate/LanguageContext'
 
 import OpeningHour from './OpeningHour'
 

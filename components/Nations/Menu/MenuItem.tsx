@@ -1,11 +1,11 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-import { useTheme } from '../ThemeContext'
+import { useTheme } from '../../ThemeContext'
 import { MenuItem as MenuItemResponse } from '@dsp-krabby/sdk'
 
-import Title from '../Common/Title'
-import CoverImage from '../Common/CoverImage'
-import ContentContainer from '../Common/ContentContainer'
+import Title from '../../Common/Title'
+import CoverImage from '../../Common/CoverImage'
+import ContentContainer from '../../Common/ContentContainer'
 
 export interface Props {
     item: MenuItemResponse

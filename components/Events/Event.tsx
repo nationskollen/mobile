@@ -13,7 +13,7 @@ import { useNation, Nation, Event as EventResponse } from '@dsp-krabby/sdk'
 import Card from '../Common/Card'
 import EventCover from './Cover'
 import ReminderButton from './ReminderButton'
-import NationLogo from '../Nations/NationLogo'
+import NationLogo from '../Nations/Front/NationLogo'
 import ContentContainer from '../Common/ContentContainer'
 
 export interface EventProps {

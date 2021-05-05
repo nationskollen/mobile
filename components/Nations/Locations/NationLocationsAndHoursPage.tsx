@@ -8,15 +8,15 @@
  */
 import React from 'react'
 import { View, FlatList } from 'react-native'
-import { TabStackParamList } from '../Footer/Footer'
+import { TabStackParamList } from '../../Footer/Footer'
 import { useLocations } from '@dsp-krabby/sdk'
 import { RouteProp } from '@react-navigation/native'
-import { useTranslation } from '../../translate/LanguageContext'
+import { useTranslation } from '../../../translate/LanguageContext'
 
 import Location from './Location'
-import ListEmpty from '../List/ListEmpty'
-import LoadingCircle from '../Common/LoadingCircle'
-import NationBasePage from './NationBasePage'
+import ListEmpty from '../../List/ListEmpty'
+import LoadingCircle from '../../Common/LoadingCircle'
+import NationBasePage from '../Front/NationBasePage'
 
 export interface Props {
     route: RouteProp<TabStackParamList, 'NationLocationsAndHours'>

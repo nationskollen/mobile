@@ -8,14 +8,14 @@
 import React from 'react'
 import { TouchableOpacity, View, Text, StyleSheet, Alert } from 'react-native'
 
-import { useTheme } from '../ThemeContext'
+import { useTheme } from '../../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/core'
 import { useOpeningHours, Nation } from '@dsp-krabby/sdk'
-import { useTranslation } from '../../translate/LanguageContext'
+import { useTranslation } from '../../../translate/LanguageContext'
 
-import NationLogo from './NationLogo'
-import OpeningHours from './OpeningHours'
+import NationLogo from '../Front/NationLogo'
+import OpeningHours from '../Hours/OpeningHours'
 
 export interface Props {
     nation: Nation

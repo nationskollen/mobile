@@ -7,13 +7,13 @@
  */
 import React from 'react'
 import { RouteProp } from '@react-navigation/native'
-import { TabStackParamList } from '../Footer/Footer'
-import { useTranslation } from '../../translate/LanguageContext'
+import { TabStackParamList } from '../../Footer/Footer'
+import { useTranslation } from '../../../translate/LanguageContext'
 
-import Timeline from '../Home/Timeline'
-import FilterBar from '../Home/FilterBar'
-import NationBasePage from './NationBasePage'
-import { DatePickerProvider } from '../Home/DatePickerContext'
+import Timeline from '../../Home/Timeline'
+import FilterBar from '../../Home/FilterBar'
+import NationBasePage from '../Front/NationBasePage'
+import { DatePickerProvider } from '../../Home/DatePickerContext'
 
 export interface Props {
     route: RouteProp<TabStackParamList, 'NationEvents'>

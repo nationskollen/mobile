@@ -6,10 +6,10 @@
  */
 import React from 'react'
 import { View, Text, StyleSheet, ViewStyle, TextStyle } from 'react-native'
-import { useTheme } from '../ThemeContext'
-import { useTranslation } from '../../translate/LanguageContext'
+import { useTheme } from '../../ThemeContext'
+import { useTranslation } from '../../../translate/LanguageContext'
 import { OpeningHour as OpeningHourResponse } from '@dsp-krabby/sdk'
-import LanguageContextType from '../../translate/LanguageContextType'
+import LanguageContextType from '../../../translate/LanguageContextType'
 
 export interface Props {
     hour: OpeningHourResponse

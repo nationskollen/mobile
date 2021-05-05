@@ -9,7 +9,7 @@ import { useNations } from '@dsp-krabby/sdk'
 import Dropdown from '../Common/Dropdown'
 import ListEmpty from '../List/ListEmpty'
 import LoadingCircle from '../Common/LoadingCircle'
-import NationLogo from '../Nations/NationLogo'
+import NationLogo from '../Nations/Front/NationLogo'
 import NotificationOptions from './NotificationOptions'
 
 const NotificationSettings = () => {

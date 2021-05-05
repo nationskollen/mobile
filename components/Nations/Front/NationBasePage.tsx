@@ -10,13 +10,13 @@
 import { Platform, View, ViewStyle } from 'react-native'
 import React, { useLayoutEffect } from 'react'
 import { Nation } from '@dsp-krabby/sdk'
-import { useTheme } from '../ThemeContext'
+import { useTheme } from '../../ThemeContext'
 import { useNavigation } from '@react-navigation/core'
 
-import Title from '../Common/Title'
+import Title from '../../Common/Title'
 import NationLogo from './NationLogo'
-import FocusAwareStatusBar from '../Common/FocusAwareStatusBar'
-import NavigationBackArrow from '../Header/NavigationBackArrow'
+import FocusAwareStatusBar from '../../Common/FocusAwareStatusBar'
+import NavigationBackArrow from '../../Header/NavigationBackArrow'
 
 export interface Props {
     nation: Nation

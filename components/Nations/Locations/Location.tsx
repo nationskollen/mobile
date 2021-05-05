@@ -9,18 +9,18 @@
  */
 import React from 'react'
 import { Text, View, StyleSheet } from 'react-native'
-import { useTheme } from '../ThemeContext'
+import { useTheme } from '../../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 import { Location as LocationReponse } from '@dsp-krabby/sdk'
-import { useTranslation } from '../../translate/LanguageContext'
+import { useTranslation } from '../../../translate/LanguageContext'
 
-import Card from '../Common/Card'
-import Title from '../Common/Title'
-import CoverImage from '../Common/CoverImage'
-import OpeningHours from './OpeningHours'
-import ActivityLevel from './ActivityLevel'
-import ContentContainer from '../Common/ContentContainer'
-import ShowLocationButton from '../Map/ShowLocationButton'
+import Card from '../../Common/Card'
+import Title from '../../Common/Title'
+import CoverImage from '../../Common/CoverImage'
+import OpeningHours from '../Hours/OpeningHours'
+import ActivityLevel from '../Front/ActivityLevel'
+import ContentContainer from '../../Common/ContentContainer'
+import ShowLocationButton from '../../Map/ShowLocationButton'
 
 export interface Props {
     location: LocationReponse

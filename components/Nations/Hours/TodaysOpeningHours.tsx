@@ -6,9 +6,9 @@
  */
 import React, { useRef, useMemo } from 'react'
 import { Text, View, ViewStyle, StyleSheet, ActivityIndicator } from 'react-native'
-import { useTheme } from '../ThemeContext'
+import { useTheme } from '../../ThemeContext'
 import { Location, useOpeningHours } from '@dsp-krabby/sdk'
-import { useTranslation } from '../../translate/LanguageContext'
+import { useTranslation } from '../../../translate/LanguageContext'
 
 export interface Props {
     date: Date

@@ -8,7 +8,7 @@
  *
  */
 import React from 'react'
-import { useTheme } from '../ThemeContext'
+import { useTheme } from '../../ThemeContext'
 import { Image, View, StyleSheet } from 'react-native'
 
 export interface Props {
