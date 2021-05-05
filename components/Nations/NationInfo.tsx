@@ -45,7 +45,10 @@ const NationInfo = ({ nation, backgroundColor, paddingTop }: Props) => {
                 onPress={() => navigation.navigate('NationHome', { oid: nation.oid })}
             >
                 <NationLogo src={nation.icon_img_src} size={50} />
-                <Text style={[styles.nationName, { color: colors.textHighlight }]}>
+                <Text
+                    style={[styles.nationName, { color: colors.textHighlight }]}
+                    numberOfLines={1}
+                >
                     {nation.name}
                 </Text>
             </TouchableOpacity>
@@ -113,6 +116,7 @@ const styles = StyleSheet.create({
     },
 
     nationName: {
+        width: '70%',
         fontSize: 20,
         fontWeight: 'bold',
         marginLeft: 15,
