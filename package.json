@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
-    "@dsp-krabby/sdk": "^2.2.2",
+    "@dsp-krabby/sdk": "^2.3.1",
     "@dsp-krabby/typedoc-theme-overrides": "^1.0.2",
     "@expo/ngrok": "^2.4.3",
     "@react-native-async-storage/async-storage": "^1.15.4",
