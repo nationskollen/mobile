@@ -8,7 +8,7 @@ import { useTranslation } from '../../translate/LanguageContext'
 
 import Card from '../Common/Card'
 import Title from '../Common/Title'
-import CoverImage from './CoverImage'
+import CoverImage from '../Common/CoverImage'
 import ContentSection from '../Common/ContentSection'
 
 export interface Props {
