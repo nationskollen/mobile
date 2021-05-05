@@ -58,7 +58,6 @@ const Map = () => {
                 {nations &&
                     nations.map((nation) => {
                         const { default_location } = nation
-			console.log(default_location.activity_level)
 
                         if (!default_location) {
                             return null
