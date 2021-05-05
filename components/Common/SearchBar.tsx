@@ -43,7 +43,7 @@ const SearchBar = ({ onSearch, placeholder, autoFocus }: Props) => {
                 onSubmitEditing={() => onSearch(query)}
                 style={[styles.input, { color: colors.textHighlight }]}
                 placeholderTextColor={colors.borderDark}
-		keyboardAppearance= {isDarkMode ? "dark" : "light"}
+		keyboardAppearance= {isDarkMode ? 'dark' : 'light'}
             />
             {query !== null && (
                 <HeaderButton
