@@ -12,7 +12,7 @@ export interface Props {
 }
 
 const SearchBar = ({ onSearch, placeholder, autoFocus }: Props) => {
-    const { colors } = useTheme()
+    const { colors, isDarkMode } = useTheme()
     const [query, setQuery] = useState<string | null>(null)
     const [focused, setFocused] = useState(false)
     const iconColor =
@@ -43,6 +43,7 @@ const SearchBar = ({ onSearch, placeholder, autoFocus }: Props) => {
                 onSubmitEditing={() => onSearch(query)}
                 style={[styles.input, { color: colors.textHighlight }]}
                 placeholderTextColor={colors.borderDark}
+		keyboardAppearance= {isDarkMode ? "dark" : "light"}
             />
             {query !== null && (
                 <HeaderButton
