@@ -14,7 +14,7 @@ interface Props {
 }
 
 const ListFooter = ({ pagination, isValidating, size }: Props) => {
-    if (pagination && pagination.total > 0) {
+    if (pagination && pagination.total <= 0) {
         return null
     }
 
