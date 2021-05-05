@@ -6,7 +6,7 @@ type LangCode  = 'en' | 'sv'
 
 export interface LanguageContextContract {
     setSelectedLanguage: React.Dispatch<React.SetStateAction<LanguageContextType>>
-    setCurrentLanguage: React.Dispatch<React.SetStateAction<string>>
+    setCurrentLanguage: React.Dispatch<React.SetStateAction<LangCode>>
     translate: LanguageContextType
     currentLanguage : LangCode 
 }
