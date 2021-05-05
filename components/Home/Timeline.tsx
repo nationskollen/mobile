@@ -8,10 +8,10 @@ import { useEvents, Nation } from '@dsp-krabby/sdk'
 import { useDatePicker } from './DatePickerContext'
 import { useTranslation } from '../../translate/LanguageContext'
 
-import ListEmpty from '../ListEmpty'
-import ListFooter from '../ListFooter'
+import ListEmpty from '../List/ListEmpty'
+import ListFooter from '../List/ListFooter'
 import EventItem from '../Events/Event'
-import LoadingCircle from '../LoadingCircle'
+import LoadingCircle from '../Common/LoadingCircle'
 
 export interface Props {
     nation?: Nation

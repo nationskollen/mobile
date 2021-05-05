@@ -10,9 +10,9 @@ import { StackNavigationProp } from '@react-navigation/stack'
 import { useTranslation } from '../../translate/LanguageContext'
 import { SafeAreaView, View, StyleSheet, Text } from 'react-native'
 
-import ListButton from '../ListButton'
+import ListButton from '../List/ListButton'
 import ToggleSwitch from 'toggle-switch-react-native'
-import FocusAwareStatusBar from '../FocusAwareStatusBar'
+import FocusAwareStatusBar from '../Common/FocusAwareStatusBar'
 
 export interface Props {
     navigation: StackNavigationProp<any, any>

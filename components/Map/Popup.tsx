@@ -9,7 +9,7 @@ import { Nation } from '@dsp-krabby/sdk'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 
-import NationInfo from '../Nations/NationInfo'
+import NationInfo from '../Nations/Info/NationInfo'
 import ShowLocationButton from './ShowLocationButton'
 
 export interface Props {

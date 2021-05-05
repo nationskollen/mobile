@@ -16,7 +16,7 @@ import LoginPage from '../components/Settings/LoginPage'
 import AboutUsPage from '../components/Settings/AboutUsPage'
 import SettingsPage from '../components/Settings/SettingsPage'
 import LanguagePage from '../components/Settings/LanguagePage'
-import NavigationBackArrow from '../components/NavigationBackArrow'
+import NavigationBackArrow from '../components/Header/NavigationBackArrow'
 import NotificationSettings from '../components/Settings/NotificationSettings'
 
 export interface Props {

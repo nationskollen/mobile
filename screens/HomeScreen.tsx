@@ -17,7 +17,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import SharedScreens from './SharedScreens'
 import HomePage from '../components/Home/HomePage'
 import TitleOffsetOptions from './TitleOffsetOptions'
-import NavigationBackArrow from '../components/NavigationBackArrow'
+import NavigationBackArrow from '../components/Header/NavigationBackArrow'
 
 const Stack = createStackNavigator()
 

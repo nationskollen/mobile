@@ -11,7 +11,7 @@ import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps'
 
 import Popup from './Popup'
 import MapDarkTheme from './MapDarkTheme.json'
-import FocusAwareStatusBar from '../FocusAwareStatusBar'
+import FocusAwareStatusBar from '../Common/FocusAwareStatusBar'
 
 const Map = () => {
     const { data: nations } = useNations()
