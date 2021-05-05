@@ -17,6 +17,7 @@ export interface Props {
 
 const FocusAwareStatusBar = ({ color, backgroundColor }: Props) => {
     const isFocused = useIsFocused()
+
     return isFocused ? (
         <StatusBar style={color ?? 'light'} backgroundColor={backgroundColor} />
     ) : null

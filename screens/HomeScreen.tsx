@@ -22,12 +22,12 @@ import NavigationBackArrow from '../components/NavigationBackArrow'
 const Stack = createStackNavigator()
 
 const HomeScreen = () => {
-    const { colors } = useTheme()
+    const { colors, isDarkMode } = useTheme()
     const { translate } = useTranslation()
     const sharedScreens = SharedScreens(Stack, translate)
 
     return (
-        <Stack.Navigator initialRouteName="Home" screenOptions={HeaderOptions(colors)}>
+        <Stack.Navigator initialRouteName="Home" screenOptions={HeaderOptions(isDarkMode, colors)}>
             <Stack.Screen
                 name="Home"
                 component={HomePage}

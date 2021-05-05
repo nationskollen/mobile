@@ -13,17 +13,20 @@ import { StackNavigationOptions } from '@react-navigation/stack'
  *
  * @param colors - The current theme colors
  */
-export const HeaderOptions: (colors: ThemeColors) => Partial<StackNavigationOptions> = (
+export const HeaderOptions = (
+    isDarkMode: boolean,
     colors: ThemeColors
-) => ({
+): Partial<StackNavigationOptions> => ({
     headerStyle: {
         elevation: 0,
         shadowOpacity: 0,
-        backgroundColor: colors.primary,
+        backgroundColor: isDarkMode ? colors.background : colors.primary,
+        borderBottomWidth: 1,
+        borderBottomColor: colors.border,
     },
     headerTitleStyle: {
         fontWeight: 'bold',
-        color: 'white',
+        color: isDarkMode ? colors.textHighlight : 'white',
         fontSize: 20,
         flex: 1,
     },

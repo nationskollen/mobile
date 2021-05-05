@@ -6,7 +6,6 @@ import EventPage from '../components/Events/EventPage'
 import NationHomePage from '../components/Nations/NationHomePage'
 import NationMenuPage from '../components/Nations/NationMenuPage'
 import NationMenusPage from '../components/Nations/NationMenusPage'
-import NavigationBackArrow from '../components/NavigationBackArrow'
 import NationEventsPage from '../components/Nations/NationEventsPage'
 import NationLocationsAndHoursPage from '../components/Nations/NationLocationsAndHoursPage'
 

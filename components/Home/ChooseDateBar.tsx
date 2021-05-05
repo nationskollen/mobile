@@ -18,11 +18,11 @@ const ChooseDateBar = () => {
     const dateString = date.toLocaleDateString()
 
     const incrementDate = () => {
-	setDate(new Date(date.setDate(date.getDate() + 1)))
+        setDate(new Date(date.setDate(date.getDate() + 1)))
     }
 
     const decrementDate = () => {
-	setDate(new Date(date.setDate(date.getDate() - 1)))
+        setDate(new Date(date.setDate(date.getDate() - 1)))
     }
 
     return (

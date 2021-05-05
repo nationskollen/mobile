@@ -21,12 +21,15 @@ export interface Props {
 const Stack = createStackNavigator()
 
 const NationScreen = () => {
-    const { colors } = useTheme()
+    const { colors, isDarkMode } = useTheme()
     const { translate } = useTranslation()
     const sharedScreens = SharedScreens(Stack, translate)
 
     return (
-        <Stack.Navigator initialRouteName="Nations" screenOptions={HeaderOptions(colors)}>
+        <Stack.Navigator
+            initialRouteName="Nations"
+            screenOptions={HeaderOptions(isDarkMode, colors)}
+        >
             <Stack.Screen
                 name="Nations"
                 component={NationsPage}

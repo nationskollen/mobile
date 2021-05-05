@@ -21,12 +21,12 @@ export interface Props {
 const Stack = createStackNavigator()
 
 const MapScreen = () => {
-    const { colors } = useTheme()
+    const { colors, isDarkMode } = useTheme()
     const { translate } = useTranslation()
     const sharedScreens = SharedScreens(Stack, translate)
 
     return (
-        <Stack.Navigator initialRouteName="Map" screenOptions={HeaderOptions(colors)}>
+        <Stack.Navigator initialRouteName="Map" screenOptions={HeaderOptions(isDarkMode, colors)}>
             <Stack.Screen
                 name="Map"
                 component={Map}

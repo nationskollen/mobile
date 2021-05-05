@@ -6,12 +6,12 @@ import React from 'react'
 import 'react-native-gesture-handler'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
+import ToggleSwitch from 'toggle-switch-react-native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { useTranslation } from '../../translate/LanguageContext'
 import { SafeAreaView, View, StyleSheet, Text } from 'react-native'
 
 import ListButton from '../ListButton'
-import ToggleSwitch from 'toggle-switch-react-native'
 import FocusAwareStatusBar from '../FocusAwareStatusBar'
 
 export interface Props {
@@ -36,7 +36,7 @@ const SettingsPage = ({ navigation }: Props) => {
                 </View>
                 <ToggleSwitch
                     isOn={isDarkMode}
-                    onColor="#05c46b"
+                    onColor={colors.primaryText}
                     offColor={colors.borderDark}
                     size="large"
                     onToggle={setDarkMode}
@@ -45,6 +45,7 @@ const SettingsPage = ({ navigation }: Props) => {
             <ListButton
                 title={translate.titles.login}
                 onPress={() => navigation.push('Login')}
+                borderTop={true}
                 leftIcon={<Ionicons name="lock-closed-outline" size={24} color={colors.text} />}
             />
             <ListButton

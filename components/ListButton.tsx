@@ -10,26 +10,27 @@ import { Ionicons } from '@expo/vector-icons'
 
 export interface Props {
     title: String
-    /** The name/title of the header */
     onPress: () => void
-    /** The function to be excecuted when pressing the header */
     leftIcon: Element
-    /** */
     rightIcon?: Element
-    /** */
+    borderTop?: boolean
 }
 
 /**
  * This component renders a clickable header with an icon to the left and an optional icon to the right in the header
  */
-const ListButton = ({ title, onPress, leftIcon, rightIcon }: Props) => {
+const ListButton = ({ title, onPress, leftIcon, rightIcon, borderTop }: Props) => {
     const { colors, isDarkMode } = useTheme()
 
     return (
         <TouchableHighlight
             onPress={onPress}
             underlayColor={isDarkMode ? 'rgba(255, 255, 255, 0.02)' : 'rgba(0, 0, 0, 0.02)'}
-            style={{ borderBottomWidth: 1, borderColor: colors.border }}
+            style={{
+                borderBottomWidth: 1,
+                borderTopWidth: borderTop ? 1 : 0,
+                borderColor: colors.border,
+            }}
         >
             <View style={styles.container}>
                 <View style={styles.nameWrapper}>
