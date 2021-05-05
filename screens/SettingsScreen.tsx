@@ -26,11 +26,14 @@ export interface Props {
 const Stack = createStackNavigator()
 
 const SettingsScreen = () => {
-    const { colors } = useTheme()
+    const { colors, isDarkMode } = useTheme()
     const { translate } = useTranslation()
 
     return (
-        <Stack.Navigator initialRouteName="Settings" screenOptions={HeaderOptions(colors)}>
+        <Stack.Navigator
+            initialRouteName="Settings"
+            screenOptions={HeaderOptions(isDarkMode, colors)}
+        >
             <Stack.Screen
                 name="Settings"
                 component={SettingsPage}

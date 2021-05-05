@@ -43,7 +43,12 @@ const HeaderButton = ({
                 style,
             ]}
         >
-            <View style={[styles.innerContainer, { backgroundColor: backgroundColor ?? 'transparent' }]}>
+            <View
+                style={[
+                    styles.innerContainer,
+                    { backgroundColor: backgroundColor ?? 'transparent' },
+                ]}
+            >
                 <AnimatedIcon
                     size={iconSize ?? 24}
                     name={icon}

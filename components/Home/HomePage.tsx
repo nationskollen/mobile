@@ -3,7 +3,7 @@
  * @module HomePage
  */
 import React, { useState } from 'react'
-import { View } from 'react-native'
+import { Animated, View, StatusBar } from 'react-native'
 import { Nation } from '@dsp-krabby/sdk'
 import { useTheme } from '../ThemeContext'
 import { TabStackParamList } from '../Footer/Footer'

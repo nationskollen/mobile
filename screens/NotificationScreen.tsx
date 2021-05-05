@@ -16,11 +16,11 @@ import NotificationList from '../components/Notifications/NotificationList'
 const Stack = createStackNavigator()
 
 const NotificationScreen = () => {
-    const { colors } = useTheme()
+    const { colors, isDarkMode } = useTheme()
     const { translate } = useTranslation()
 
     return (
-        <Stack.Navigator screenOptions={HeaderOptions(colors)}>
+        <Stack.Navigator screenOptions={HeaderOptions(isDarkMode, colors)}>
             <Stack.Screen
                 name="Notifications"
                 component={NotificationList}

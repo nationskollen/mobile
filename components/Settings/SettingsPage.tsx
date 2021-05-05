@@ -45,6 +45,7 @@ const SettingsPage = ({ navigation }: Props) => {
             <ListButton
                 title={translate.titles.login}
                 onPress={() => navigation.push('Login')}
+                borderTop={true}
                 leftIcon={<Ionicons name="lock-closed-outline" size={24} color={colors.text} />}
             />
             <ListButton

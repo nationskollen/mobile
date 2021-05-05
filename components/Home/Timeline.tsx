@@ -3,7 +3,7 @@
  * @module TimeLine
  */
 import React from 'react'
-import { FlatList } from 'react-native'
+import { FlatList, NativeScrollEvent, NativeSyntheticEvent } from 'react-native'
 import { useEvents, Nation } from '@dsp-krabby/sdk'
 import { useDatePicker } from './DatePickerContext'
 import { useTranslation } from '../../translate/LanguageContext'

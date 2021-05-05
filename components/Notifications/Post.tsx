@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         display: 'flex',
         flexDirection: 'column',
-        paddingVertical: 15,
+        paddingVertical: 10,
         paddingHorizontal: 15,
         borderBottomWidth: 1,
     },
