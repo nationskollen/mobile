@@ -72,7 +72,9 @@ const Map = () => {
                                 }}
                                 pinColor={nation.accent_color}
                                 title={default_location.name}
-                                description={`${translate.map.currentActivityLevel}: ${translate.activityLevels[default_location.activity_level]}`}
+                                description={`${translate.map.currentActivityLevel}: ${
+                                    translate.activityLevels[default_location.activity_level]
+                                }`}
                                 onPress={() => onMarkerPressed(nation)}
                                 stopPropagation={true}
                                 tracksViewChanges={false}
