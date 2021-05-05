@@ -28,12 +28,12 @@ const English: LanguageContextType = {
 
     activityLevels: {
         header: 'Activity level',
-        closed: 'Closed',
-        low: 'Low',
-        medium: 'Medium',
-        high: 'High',
-        veryHigh: 'Very high',
-        max: 'Max',
+        0: 'Closed',
+        1: 'Low',
+        2: 'Medium',
+        3: 'High',
+        4: 'Very high',
+        5: 'Max',
     },
 
     alerts: {

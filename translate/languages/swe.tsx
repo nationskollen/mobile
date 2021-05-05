@@ -28,12 +28,12 @@ const Swedish: LanguageContextType = {
 
     activityLevels: {
         header: 'Aktivitetsnivå',
-        closed: 'Stängt',
-        low: 'Låg',
-        medium: 'Medel',
-        high: 'Hög',
-        veryHigh: 'Väldigt hög',
-        max: 'Max',
+        0: 'Stängt',
+        1: 'Låg',
+        2: 'Medel',
+        3: 'Hög',
+        4: 'Väldigt hög',
+        5: 'Max',
     },
 
     alerts: {

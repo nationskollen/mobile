@@ -26,12 +26,12 @@ export default interface LanguageContextType {
 
     activityLevels: {
         header: string
-        low: string
-        medium: string
-        high: string
-        closed: string
-        veryHigh: string
-        max: string
+	0: string
+        1: string
+        2: string
+        3: string
+        4: string
+        5: string
     }
 
     days: {
