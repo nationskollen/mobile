@@ -5,13 +5,21 @@
 import React from 'react'
 import { Text, StyleSheet } from 'react-native'
 import { useTheme } from '../ThemeContext'
+import { PaginationMeta } from '@dsp-krabby/sdk'
 
 interface Props {
-    hasMore: boolean
+    pagination: PaginationMeta | null
+    isValidating: boolean
+    size: number
 }
 
-const ListFooter: React.FC<Props> = ({ hasMore }) => {
+const ListFooter = ({ pagination, isValidating, size }: Props) => {
+    if (pagination && pagination.total <= 0) {
+        return null
+    }
+
     const { colors } = useTheme()
+    const hasMore = isValidating || pagination.last_page !== size
 
     return (
         <Text style={[styles.default, { color: colors.text }]}>

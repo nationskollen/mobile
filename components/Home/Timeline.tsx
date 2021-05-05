@@ -3,7 +3,7 @@
  * @module TimeLine
  */
 import React from 'react'
-import { FlatList, NativeScrollEvent, NativeSyntheticEvent } from 'react-native'
+import { FlatList } from 'react-native'
 import { useEvents, Nation } from '@dsp-krabby/sdk'
 import { useDatePicker } from './DatePickerContext'
 import { useTranslation } from '../../translate/LanguageContext'
@@ -28,8 +28,6 @@ const Timeline = ({ nation }: Props) => {
         }
     )
 
-    const shouldRenderFooter = pagination && pagination.total > 0
-
     return (
         <FlatList
             data={data}
@@ -38,11 +36,9 @@ const Timeline = ({ nation }: Props) => {
             refreshControl={<LoadingCircle validating={isValidating} mutate={mutate} />}
             onEndReachedThreshold={1}
             onEndReached={() => pagination && pagination.last_page !== size && setSize(size + 1)}
-            ListFooterComponent={() =>
-                shouldRenderFooter ? (
-                    <ListFooter hasMore={isValidating || pagination.last_page !== size} />
-                ) : null
-            }
+            ListFooterComponent={() => (
+                <ListFooter pagination={pagination} isValidating={isValidating} size={size} />
+            )}
             ListEmptyComponent={() =>
                 ListEmpty({
                     error,
