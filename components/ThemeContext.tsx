@@ -114,16 +114,15 @@ const state: IsDark = {
 }
 
 export const ThemeProvider = ({ children }) => {
-
     // Get the current saved theme in storage, and update state with it
     const getSavedTheme = async () => {
         const getTheme = await AsyncStorage.getItem('savedTheme')
         state.dark = getTheme != null ? JSON.parse(getTheme) : false
-	const isDark = JSON.parse(state.dark)
+        const isDark = JSON.parse(state.dark)
         updateTheme(JSON.parse(state.dark))
-	setDarkMode(isDark)
-	setTheme(isDark ? DarkTheme : LightTheme)
-        return isDark 
+        setDarkMode(isDark)
+        setTheme(isDark ? DarkTheme : LightTheme)
+        return isDark
     }
 
     // On theme switch, store the theme in storage and switch context
@@ -141,7 +140,6 @@ export const ThemeProvider = ({ children }) => {
     const [isDarkMode, setDarkMode] = useState(getSavedTheme())
     const [theme, setTheme] = useState(JSON.parse(state.dark) ? LightTheme : DarkTheme)
 
-   
     return (
         <ThemeContext.Provider
             value={{ isDarkMode, setDarkMode: updateTheme, colors: theme.colors }}
