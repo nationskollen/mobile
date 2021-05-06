@@ -4,7 +4,7 @@
  */
 import React, { createContext, useState, useContext, useEffect } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
-import { StatusBar } from 'react-native'
+import { StatusBar, Appearance} from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export interface ThemeContextContract {
@@ -121,7 +121,6 @@ export const ThemeProvider = ({ children }) => {
         const isDark = JSON.parse(state.dark)
         updateTheme(JSON.parse(state.dark))
         setDarkMode(isDark)
-        setTheme(isDark ? DarkTheme : LightTheme)
         return isDark
     }
 
@@ -138,7 +137,8 @@ export const ThemeProvider = ({ children }) => {
 
     // Initial context is the one in storage, if not found we default to light
     const [isDarkMode, setDarkMode] = useState(getSavedTheme())
-    const [theme, setTheme] = useState(JSON.parse(state.dark) ? LightTheme : DarkTheme)
+    const [theme, setTheme] = useState(JSON.parse(state.dark) ? DarkTheme : LightTheme)
+     
 
     return (
         <ThemeContext.Provider
