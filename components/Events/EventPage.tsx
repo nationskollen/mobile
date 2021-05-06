@@ -20,7 +20,8 @@ import ContentSection from '../Common/ContentSection'
 import ContentContainer from '../Common/ContentContainer'
 import EventLocation from '../Events/EventLocation'
 import EventPageSkeleton from '../Skeletons/EventPage'
-import HeaderButton, { HEADER_BUTTON_WIDTH } from '../Header/HeaderButton'
+import ReminderButton from './ReminderButton'
+import { HEADER_BUTTON_WIDTH } from '../Header/HeaderButton'
 
 export interface Props {
     route: RouteProp<TabStackParamList, 'Event'>
@@ -29,7 +30,7 @@ export interface Props {
 const EventPage = ({ route }: Props) => {
     const { colors, isDarkMode } = useTheme()
     const navigation = useNavigation()
-    const { event, nation } = route.params
+    const { event, nation, eventAddress } = route.params
     const { translate } = useTranslation()
     const { data, error, isValidating, mutate } = useEventDescription(event.id)
 
@@ -38,11 +39,17 @@ const EventPage = ({ route }: Props) => {
     useEffect(() => {
         navigation.setOptions({
             headerRight: () => (
-                <HeaderButton
-                    icon="notifications-outline"
-                    onPress={() => console.log('asd')}
-                    color={colors.text}
-                    backgroundColor={colors.backgroundExtra}
+                <ReminderButton
+                    event={event}
+                    eventAddress={eventAddress}
+                    nationName={nation.name}
+                    hideLabel={true}
+                    style={{
+                        marginRight: 15,
+                        backgroundColor: isDarkMode
+                            ? colors.backgroundExtra
+                            : colors.backgroundHighlight,
+                    }}
                 />
             ),
         })

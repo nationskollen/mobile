@@ -8,7 +8,7 @@ import AwesomeDebouncePromise from 'awesome-debounce-promise'
 
 export interface DatePickerContextContract {
     date: Date
-    shownDate: Date,
+    shownDate: Date
     currentDate: Date
     visible: boolean
     setDate: React.Dispatch<React.SetStateAction<Date>>

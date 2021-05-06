@@ -12,14 +12,13 @@ import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 import { LinearGradient } from 'expo-linear-gradient'
 import { View, Image, StyleSheet } from 'react-native'
-import { IconName } from '@expo/vector-icons/Ionicons'
 
 export interface Props {
     src: string
     height?: number
     width?: number
     fallback?: Element
-    fallbackIcon?: IconName
+    fallbackIcon?: any
     fallbackIconSize?: number
     hideFallbackIcon?: boolean
     overlayColor?: string
