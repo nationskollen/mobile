@@ -4,11 +4,12 @@
  */
 import React, { createContext, useState, useContext, useEffect } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
-import { StatusBar, Appearance} from 'react-native'
+import { StatusBar } from 'react-native'
+import { useAsync } from 'react-async-hook'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export interface ThemeContextContract {
-    isDarkMode: Promise<boolean>
+    isDarkMode: boolean
     setDarkMode: React.Dispatch<React.SetStateAction<boolean>>
     colors: ThemeColors
 }
@@ -105,40 +106,34 @@ export const DarkTheme: Theme = {
 export const ThemeContext = createContext({} as ThemeContextContract)
 export const useTheme = () => useContext(ThemeContext)
 
-interface IsDark {
-    dark: string
-}
-
-const state: IsDark = {
-    dark: 'false',
-}
-
 export const ThemeProvider = ({ children }) => {
-    // Get the current saved theme in storage, and update state with it
-    const getSavedTheme = async () => {
-        const getTheme = await AsyncStorage.getItem('savedTheme')
-        state.dark = getTheme != null ? JSON.parse(getTheme) : false
-        const isDark = JSON.parse(state.dark)
-        updateTheme(JSON.parse(state.dark))
-        setDarkMode(isDark)
-        return isDark
-    }
+    const { result: savedTheme } = useAsync(async () => {
+        const theme = await AsyncStorage.getItem('savedTheme')
+        return JSON.parse(theme)
+    }, [])
 
-    // On theme switch, store the theme in storage and switch context
-    const storeCurrentTheme = async (dark: any) => {
-        await AsyncStorage.setItem('savedTheme', JSON.stringify(dark))
-        setDarkMode(dark)
+    const updateTheme = (dark: boolean, skipStorageSave?: boolean) => {
         setTheme(dark ? DarkTheme : LightTheme)
+        setDarkMode(dark)
+
+        if (!skipStorageSave) {
+            // Update the theme directly
+            AsyncStorage.setItem('savedTheme', JSON.stringify(dark))
+        }
     }
 
-    const updateTheme = (dark: boolean) => {
-        storeCurrentTheme(dark)
-    }
+    const [theme, setTheme] = useState(LightTheme)
+    const [isDarkMode, setDarkMode] = useState(false)
 
-    // Initial context is the one in storage, if not found we default to light
-    const [isDarkMode, setDarkMode] = useState(getSavedTheme())
-    const [theme, setTheme] = useState(JSON.parse(state.dark) ? DarkTheme : LightTheme)
-     
+    useEffect(() => {
+        // Skip theme update if the theme has not been loaded yet
+        if (!savedTheme) {
+            return
+        }
+
+        // Skip saving to async storage since we just read from there
+        updateTheme(savedTheme, true)
+    }, [savedTheme])
 
     return (
         <ThemeContext.Provider
