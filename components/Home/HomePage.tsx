@@ -14,6 +14,7 @@ import Timeline from './Timeline'
 import Calendar from './Calendar'
 import FilterBar from './FilterBar'
 import FocusAwareStatusBar from '../Common/FocusAwareStatusBar'
+import BottomSheet from './Bottomsheet'
 
 export interface Props {
     route: RouteProp<TabStackParamList, 'Home'>
@@ -33,9 +34,11 @@ const Home = () => {
                     backgroundColor: isDarkMode ? colors.background : colors.backgroundExtra,
                 }}
             >
-                <FilterBar />
                 <Calendar />
                 <Timeline nation={selectedNation} />
+                <BottomSheet>
+                    <FilterBar />
+                </BottomSheet>
             </View>
         </DatePickerProvider>
     )
