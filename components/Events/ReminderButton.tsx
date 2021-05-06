@@ -35,7 +35,7 @@ const ReminderButton = ({ event, eventAddress, nationName, hideLabel, style }: P
         <OptionsMenu
             customButton={<Button hideLabel={hideLabel} style={style} />}
             destructiveIndex={1}
-            options={['Lägg till i kalender', 'Avbryt']}
+            options={[translate.reminderPopup.addToCalendar, translate.reminderPopup.cancel]}
             actions={[asyncOnPress.execute]}
         />
     )
