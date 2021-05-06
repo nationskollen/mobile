@@ -3,8 +3,9 @@
  * @module ThemeContext
  */
 import React, { createContext, useState, useContext } from 'react'
-import { NavigationContainer } from '@react-navigation/native'
 import { StatusBar } from 'react-native'
+import { NavigationContainer } from '@react-navigation/native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export interface ThemeContextContract {
     isDarkMode: boolean
@@ -101,16 +102,22 @@ export const DarkTheme: Theme = {
     },
 }
 
+export interface Props {
+    initialTheme: Theme
+    children: Element | Element[]
+}
+
 export const ThemeContext = createContext({} as ThemeContextContract)
 export const useTheme = () => useContext(ThemeContext)
 
-export const ThemeProvider = ({ children }) => {
-    const [isDarkMode, setDarkMode] = useState(false)
-    const [theme, setTheme] = useState(LightTheme)
+export const ThemeProvider = ({ initialTheme, children }: Props) => {
+    const [theme, setTheme] = useState(initialTheme)
+    const [isDarkMode, setDarkMode] = useState(initialTheme === DarkTheme)
 
     const updateTheme = (dark: boolean) => {
-        setDarkMode(dark)
         setTheme(dark ? DarkTheme : LightTheme)
+        setDarkMode(dark)
+        AsyncStorage.setItem('savedTheme', JSON.stringify(dark))
     }
 
     return (
