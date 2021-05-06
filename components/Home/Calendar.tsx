@@ -1,67 +1,45 @@
 /**
+ * Renders a popup date picker
  * @category Home
  * @module Calendar
  */
-import React from 'react'
+import React, { useRef } from 'react'
 import 'react-native-gesture-handler'
-import { View, StyleSheet } from 'react-native'
-import NativeCalendar from 'react-native-calendar'
+import DateTimePickerModal from 'react-native-modal-datetime-picker'
+
+import { useTranslation } from '../../translate/LanguageContext'
+import { useTheme } from '../ThemeContext'
 import { useDatePicker } from './DatePickerContext'
 
-const dayShortNames = ['Sön', 'Mån', 'Tis', 'Ons', 'Tor', 'Fre', 'Lör']
-const monthNames = [
-    'Januari',
-    'Februari',
-    'Mars',
-    'April',
-    'Maj',
-    'Juni',
-    'Juli',
-    'Augusti',
-    'September',
-    'Oktober',
-    'November',
-    'December',
-]
-
 const Calendar = () => {
-    const { visible, date, setDate } = useDatePicker()
+    const { date, setDate, shownDate, setShownDate, visible, setVisible } = useDatePicker()
+    const { colors, isDarkMode } = useTheme()
+    const minimumDate = useRef(new Date('2021-01-01')).current
+    const maximumDate = useRef(new Date('2100-01-01')).current
+    const { currentLanguage, translate } = useTranslation()
 
-    // Skip rendering
-    if (!visible) {
-        return null
+    const handleConfirm = (date: Date) => {
+        setShownDate(date)
+        setVisible(!visible)
     }
 
     return (
-        <View>
-            <NativeCalendar
-                customStyle={styles} //style
-                showControls={true} //prev, next buttons
-                scrollEnabled={true}
-                dayHeadings={dayShortNames}
-                monthNames={monthNames}
-                prevButtonText={'Föreg.'} //prev button text, change if you find a better name
-                nextButtonText={'Nästa'} //next button text -//-
-                onDateSelect={(newDate: string) => setDate(new Date(newDate))}
-                selectedDate={date}
-            />
-        </View>
+        <DateTimePickerModal
+            minimumDate={minimumDate}
+            maximumDate={maximumDate}
+            isVisible={visible}
+            mode="date"
+            onConfirm={handleConfirm}
+            onCancel={() => setVisible(!visible)}
+            date={date}
+            isDarkModeEnabled={isDarkMode}
+            locale={currentLanguage}
+            headerTextIOS={translate.calendar.chooseDate}
+            cancelTextIOS={translate.calendar.cancel}
+            confirmTextIOS={translate.calendar.confirm}
+            textColor={colors.text}
+        />
     )
 }
-
-const styles = StyleSheet.create({
-    calendarContainer: {
-        zIndex: 100,
-        elevation: 100,
-        borderBottomLeftRadius: 5,
-        borderBottomRightRadius: 5,
-    },
-
-    controlButton: {
-        backgroundColor: '#AEAEAE',
-        borderTopLeftRadius: 5,
-        borderTopRightRadius: 5,
-    },
-})
 
 export default Calendar

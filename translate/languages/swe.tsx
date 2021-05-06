@@ -134,6 +134,12 @@ const Swedish: LanguageContextType = {
         telephone: 'Telefon',
         email: 'Email',
     },
+
+    calendar: {
+        chooseDate: 'Välj datum',
+        confirm: 'Bekräfta',
+        cancel: 'Avbryt',
+    },
 }
 
 export default Swedish
