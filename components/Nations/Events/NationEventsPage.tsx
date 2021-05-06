@@ -13,6 +13,7 @@ import { useTranslation } from '../../../translate/LanguageContext'
 import Timeline from '../../Home/Timeline'
 import FilterBar from '../../Home/FilterBar'
 import NationBasePage from '../Front/NationBasePage'
+import Calendar from '../../Home/Calendar'
 import { DatePickerProvider } from '../../Home/DatePickerContext'
 
 export interface Props {
@@ -27,6 +28,7 @@ const NationEventsPage = ({ route }: Props) => {
         <NationBasePage title={translate.titles.nationEvents} nation={nation} cardBackground={true}>
             <DatePickerProvider>
                 <FilterBar hideNationFilter={true} />
+                <Calendar />
                 <Timeline nation={nation} />
             </DatePickerProvider>
         </NationBasePage>

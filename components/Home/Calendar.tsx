@@ -4,64 +4,40 @@
  */
 import React from 'react'
 import 'react-native-gesture-handler'
-import { View, StyleSheet } from 'react-native'
-import NativeCalendar from 'react-native-calendar'
+//import DateTimePicker from '@react-native-community/datetimepicker'
+import DateTimePickerModal from 'react-native-modal-datetime-picker'
+
+import { useTheme } from '../ThemeContext'
 import { useDatePicker } from './DatePickerContext'
 
-const dayShortNames = ['Sön', 'Mån', 'Tis', 'Ons', 'Tor', 'Fre', 'Lör']
-const monthNames = [
-    'Januari',
-    'Februari',
-    'Mars',
-    'April',
-    'Maj',
-    'Juni',
-    'Juli',
-    'Augusti',
-    'September',
-    'Oktober',
-    'November',
-    'December',
-]
-
 const Calendar = () => {
-    const { visible, date, setDate } = useDatePicker()
+    const { date, setDate, shownDate, setShownDate, visible, setVisible } = useDatePicker()
+    const { colors, isDarkMode } = useTheme()
+    const language = 'sv-SV' // change to dynamic using language hook
 
-    // Skip rendering
-    if (!visible) {
-        return null
+    const handleConfirm = (date: Date) => {
+        setDate(date)
+        setShownDate(date)
+        setVisible(!visible)
     }
 
     return (
-        <View>
-            <NativeCalendar
-                customStyle={styles} //style
-                showControls={true} //prev, next buttons
-                scrollEnabled={true}
-                dayHeadings={dayShortNames}
-                monthNames={monthNames}
-                prevButtonText={'Föreg.'} //prev button text, change if you find a better name
-                nextButtonText={'Nästa'} //next button text -//-
-                onDateSelect={(newDate: string) => setDate(new Date(newDate))}
-                selectedDate={date}
-            />
-        </View>
+        <DateTimePickerModal
+            minimumDate={new Date('2021-01-01')}
+            isVisible={visible}
+            mode="date"
+            onConfirm={handleConfirm}
+            onCancel={() => setVisible(!visible)}
+            date={date}
+            isDarkModeEnabled={isDarkMode}
+            pickerContainerStyleIOS={{ backgroundColor: colors.backgroundExtra }}
+            locale={language}
+            headerTextIOS={'Välj datum'} //change to dynamic
+            cancelTextIOS={'Avbryt'} //change to dynamic
+            confirmTextIOS={'Bekräfta'} //change to dynamic
+            textColor={colors.text}
+        />
     )
 }
-
-const styles = StyleSheet.create({
-    calendarContainer: {
-        zIndex: 100,
-        elevation: 100,
-        borderBottomLeftRadius: 5,
-        borderBottomRightRadius: 5,
-    },
-
-    controlButton: {
-        backgroundColor: '#AEAEAE',
-        borderTopLeftRadius: 5,
-        borderTopRightRadius: 5,
-    },
-})
 
 export default Calendar
