@@ -12,6 +12,7 @@ export interface Props {
     accent?: string
     tint?: string
     offsetTop?: number
+    skipIndicatorDelay?: boolean
     [key: string]: any
 }
 
@@ -26,12 +27,20 @@ export interface Props {
  */
 const CACHE_LOOKUP_MAX_TIME = 750
 
-const LoadingCircle = ({ validating, mutate, accent, tint, offsetTop, ...rest }: Props) => {
+const LoadingCircle = ({
+    validating,
+    mutate,
+    accent,
+    tint,
+    offsetTop,
+    skipIndicatorDelay,
+    ...rest
+}: Props) => {
     /**
      * This component renders a loading circle
      */
     const { colors } = useTheme()
-    const [hideIndicator, setHideIndicator] = useState(true)
+    const [hideIndicator, setHideIndicator] = useState(skipIndicatorDelay ?? true)
     const color = accent ?? colors.primaryText
 
     /**
@@ -39,6 +48,10 @@ const LoadingCircle = ({ validating, mutate, accent, tint, offsetTop, ...rest }:
      * the data is already present in the cache.
      */
     useEffect(() => {
+        if (skipIndicatorDelay) {
+            return
+        }
+
         const timer = setTimeout(() => {
             setHideIndicator(false)
         }, CACHE_LOOKUP_MAX_TIME)

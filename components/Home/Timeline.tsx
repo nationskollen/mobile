@@ -24,7 +24,7 @@ const Timeline = ({ nation }: Props) => {
         nation?.oid,
         {
             date,
-            amount: 15,
+            amount: 10,
         }
     )
 
@@ -33,7 +33,13 @@ const Timeline = ({ nation }: Props) => {
             data={data}
             renderItem={({ item }) => <EventItem event={item} />}
             keyExtractor={(item) => item.id.toString()}
-            refreshControl={<LoadingCircle validating={isValidating} mutate={mutate} />}
+            refreshControl={
+                <LoadingCircle
+                    validating={isValidating}
+                    mutate={mutate}
+                    skipIndicatorDelay={true}
+                />
+            }
             onEndReachedThreshold={1}
             onEndReached={() => pagination && pagination.last_page !== size && setSize(size + 1)}
             ListFooterComponent={() => (
