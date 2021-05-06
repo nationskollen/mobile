@@ -2,10 +2,10 @@ import React from 'react'
 import { Platform, ViewStyle, Animated, TouchableHighlight, StyleSheet, View } from 'react-native'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
-import { IconName } from '@expo/vector-icons/Ionicons'
+import IconName from '@expo/vector-icons/Ionicons'
 
 export interface Props {
-    icon: IconName
+    icon: typeof IconName
     onPress: () => void
     color?: string | Animated.AnimatedInterpolation
     iconSize?: number

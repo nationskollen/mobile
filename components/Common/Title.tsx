@@ -9,13 +9,13 @@ import React from 'react'
 import { useTheme } from '../ThemeContext'
 import { Text, TextStyle, View, ViewStyle, StyleSheet } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
-import { IconName } from '@expo/vector-icons/Ionicons'
+import IconName from '@expo/vector-icons/Ionicons'
 
 export interface Props {
     label: string
     noMargin?: boolean
     size?: 'small' | 'medium' | 'large'
-    icon?: IconName
+    icon?: typeof IconName
     color?: string
     style?: TextStyle
     containerStyle?: ViewStyle

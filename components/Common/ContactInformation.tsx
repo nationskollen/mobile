@@ -2,12 +2,12 @@ import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
-import { IconName } from '@expo/vector-icons/Ionicons'
+import IconName from '@expo/vector-icons/Ionicons'
 
 export interface Props {
     title: string
     value: string
-    icon: IconName
+    icon: typeof IconName
 }
 
 const ContactInformation = ({ title, value, icon }) => {
