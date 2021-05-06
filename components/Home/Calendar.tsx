@@ -30,7 +30,6 @@ const Calendar = () => {
             onCancel={() => setVisible(!visible)}
             date={date}
             isDarkModeEnabled={isDarkMode}
-            pickerContainerStyleIOS={{ backgroundColor: colors.backgroundExtra }}
             locale={language}
             headerTextIOS={'Välj datum'} //change to dynamic
             cancelTextIOS={'Avbryt'} //change to dynamic
