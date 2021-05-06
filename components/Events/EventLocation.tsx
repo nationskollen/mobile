@@ -34,11 +34,7 @@ const EventLocation = ({ nation, locationId }: Props) => {
             >
                 {data ? (
                     <>
-                        <CoverImage src={data.cover_img_src} />
-                        <LinearGradient
-                            colors={['transparent', nation.accent_color]}
-                            style={styles.overlay}
-                        />
+                        <CoverImage src={data.cover_img_src} textOverlayColor={nation.accent_color} />
                         <View style={styles.contentContainer}>
                             <Title label={data.name} color="white" noMargin={true} />
                             <Text style={{ color: '#f4f4f4' }}>{data.address}</Text>
