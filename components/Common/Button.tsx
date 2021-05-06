@@ -10,14 +10,13 @@ import { View, Text, StyleSheet, TouchableHighlight, ViewStyle } from 'react-nat
 
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
-import IconName from '@expo/vector-icons/Ionicons'
 
 export interface Props {
     type: 'primary' | 'light'
     label: string
     size?: 'large' | 'small'
     onPress?: () => void
-    icon?: typeof IconName
+    icon?: any
     fontSize?: number
     style?: ViewStyle
 }
