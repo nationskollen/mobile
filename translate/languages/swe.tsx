@@ -140,6 +140,12 @@ const Swedish: LanguageContextType = {
         confirm: 'Bekräfta',
         cancel: 'Avbryt',
     },
+
+    reminderPopup: {
+        addToCalendar: 'Lägg till i kalender',
+        cancel: 'Avbryt',
+        successMsg: 'Evenemanget är tillagt i din kalender',
+    },
 }
 
 export default Swedish

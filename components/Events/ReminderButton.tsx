@@ -17,17 +17,21 @@ export interface Props {
     event: Event
     eventAddress: string
     nationName: string
+    button?: Element
 }
 
-const ReminderButton = ({ event, eventAddress, nationName }: Props) => {
-    const asyncOnPress = useAsyncCallback(() => addToCalendar(event, eventAddress, nationName))
+const ReminderButton = ({ event, eventAddress, nationName, button }: Props) => {
+    const { translate } = useTranslation()
+    const asyncOnPress = useAsyncCallback(() =>
+        addToCalendar(event, eventAddress, nationName, translate.reminderPopup)
+    )
 
     return (
         <OptionsMenu
-            customButton={<Button />}
-            destructiveIndex={2}
-            options={['Lägg till i kalender', 'Push-notis', 'Avbryt']}
-            actions={[asyncOnPress.execute, () => console.log('push notification pressed')]}
+            customButton={button ?? <Button />}
+            destructiveIndex={1}
+            options={['Lägg till i kalender', 'Avbryt']}
+            actions={[asyncOnPress.execute]}
         />
     )
 }
