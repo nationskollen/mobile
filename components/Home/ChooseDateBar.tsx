@@ -2,7 +2,7 @@
  * @category Home
  * @module ChoosedDateBar
  */
-import React, { useRef } from 'react'
+import React, { useRef, useCallback } from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import { View, TouchableOpacity, StyleSheet, Text } from 'react-native'
 
@@ -13,17 +13,13 @@ import { useTranslation } from '../../translate/LanguageContext'
 const ChooseDateBar = () => {
     const { translate } = useTranslation()
     const { colors, isDarkMode } = useTheme()
-    const { date, setDate, visible, setVisible } = useDatePicker()
+    const { shownDate, setShownDate, visible, setVisible } = useDatePicker()
     const currentDate = useRef(new Date().toLocaleDateString()).current
-    const dateString = date.toLocaleDateString()
+    const dateString = shownDate.toLocaleDateString()
 
-    const incrementDate = () => {
-        setDate(new Date(date.setDate(date.getDate() + 1)))
-    }
-
-    const decrementDate = () => {
-        setDate(new Date(date.setDate(date.getDate() - 1)))
-    }
+    const changeDate = useCallback((change: number) => {
+        setShownDate(new Date(shownDate.setDate(shownDate.getDate() + change)))
+    }, [shownDate])
 
     return (
         <View
@@ -35,7 +31,7 @@ const ChooseDateBar = () => {
                 },
             ]}
         >
-            <TouchableOpacity onPress={() => decrementDate()}>
+            <TouchableOpacity onPress={() => changeDate(-1)}>
                 <View
                     style={[
                         styles.arrowWrapper,
@@ -52,7 +48,7 @@ const ChooseDateBar = () => {
                 </Text>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => incrementDate()}>
+            <TouchableOpacity onPress={() => changeDate(1)}>
                 <View
                     style={[
                         styles.arrowWrapper,

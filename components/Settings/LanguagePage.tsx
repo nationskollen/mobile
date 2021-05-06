@@ -8,17 +8,27 @@ import swe from '../../translate/languages/swe'
 import FocusAwareStatusBar from '../Common/FocusAwareStatusBar'
 import { CheckBox } from 'react-native-elements'
 
+import { LangCode } from '../../translate/LanguageContext'
 import LanguageContextType from '../../translate/LanguageContextType'
 
-var checkedStates = [
-    { key: 0, name: 'English', checked: false, value: en, langCode: 'en' },
-    { key: 1, name: 'Svenska', checked: true, value: swe, langCode : 'sv'},
+interface checkedStatesType {
+    key: number
+    name: string
+    checked: boolean
+    value: LanguageContextType
+    langCode: LangCode
+}
+
+var checkedStates: checkedStatesType[] = [
+    { key: 0, name: 'English', checked: false, value: en, langCode: 'en-EN' },
+    { key: 1, name: 'Svenska', checked: true, value: swe, langCode: 'sv-SV' },
 ]
+
 var initialState = 1
 
 const LanguagePage = () => {
     const { colors } = useTheme()
-    const { setSelectedLanguage, setCurrentLanguage, currentLanguage} = useTranslation()
+    const { setSelectedLanguage, setCurrentLanguage, currentLanguage } = useTranslation()
     const [currentlyChecked, setCurrentlyChecked] = useState(initialState)
 
     const uncheckPreviousCheckbox = (key: number) => {
@@ -30,7 +40,7 @@ const LanguagePage = () => {
         checkedStates[key].checked = true
         uncheckPreviousCheckbox(currentlyChecked)
         setCurrentlyChecked(key)
-	setCurrentLanguage(checkedStates[key].langCode) 
+        setCurrentLanguage(checkedStates[key].langCode)
         initialState = key
     }
     return (

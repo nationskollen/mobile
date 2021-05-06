@@ -1,17 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import { View, StyleSheet, TextInput } from 'react-native'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
+import useConstant from 'use-constant'
+import AwesomeDebouncePromise from 'awesome-debounce-promise'
 
 import HeaderButton from '../Header/HeaderButton'
+
+export const DEFAULT_DEBOUNCE_DELAY = 250
 
 export interface Props {
     onSearch: (query: string) => void
     placeholder?: string
     autoFocus?: boolean
+    delay?: number
 }
 
-const SearchBar = ({ onSearch, placeholder, autoFocus }: Props) => {
+const SearchBar = ({ onSearch, placeholder, autoFocus, delay }: Props) => {
     const { colors, isDarkMode } = useTheme()
     const [query, setQuery] = useState<string | null>(null)
     const [focused, setFocused] = useState(false)
@@ -21,6 +26,16 @@ const SearchBar = ({ onSearch, placeholder, autoFocus }: Props) => {
             : focused
             ? colors.textHighlight
             : colors.text
+
+    const handleChange = useCallback((query) => {
+        setQuery(query)
+        callback(query)
+    }, [])
+
+    // Create the debounced callback
+    const callback = useConstant(() => (
+        AwesomeDebouncePromise(onSearch, delay ?? DEFAULT_DEBOUNCE_DELAY)
+    ))
 
     return (
         <View
@@ -39,8 +54,7 @@ const SearchBar = ({ onSearch, placeholder, autoFocus }: Props) => {
                 placeholder={placeholder}
                 onFocus={() => setFocused(true)}
                 onBlur={() => setFocused(false)}
-                onChangeText={(query) => setQuery(query === '' ? null : query)}
-                onSubmitEditing={() => onSearch(query)}
+                onChangeText={(query) => handleChange(query === '' ? null : query)}
                 style={[styles.input, { color: colors.textHighlight }]}
                 placeholderTextColor={colors.borderDark}
 		keyboardAppearance= {isDarkMode ? 'dark' : 'light'}
@@ -76,8 +90,8 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         height: '100%',
         flex: 1,
-        paddingVertical: 8,
-        paddingHorizontal: 15,
+        paddingVertical: 10,
+        paddingHorizontal: 10,
     },
 
     clear: {
