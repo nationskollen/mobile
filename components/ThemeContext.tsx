@@ -2,12 +2,13 @@
  * @category Misc
  * @module ThemeContext
  */
-import React, { createContext, useState, useContext } from 'react'
+import React, { createContext, useState, useContext, useEffect } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { StatusBar } from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export interface ThemeContextContract {
-    isDarkMode: boolean
+    isDarkMode: Promise<boolean>
     setDarkMode: React.Dispatch<React.SetStateAction<boolean>>
     colors: ThemeColors
 }
@@ -104,15 +105,43 @@ export const DarkTheme: Theme = {
 export const ThemeContext = createContext({} as ThemeContextContract)
 export const useTheme = () => useContext(ThemeContext)
 
-export const ThemeProvider = ({ children }) => {
-    const [isDarkMode, setDarkMode] = useState(false)
-    const [theme, setTheme] = useState(LightTheme)
+interface IsDark {
+    dark: string
+}
 
-    const updateTheme = (dark: boolean) => {
+const state: IsDark = {
+    dark: 'false',
+}
+
+export const ThemeProvider = ({ children }) => {
+
+    // Get the current saved theme in storage, and update state with it
+    const getSavedTheme = async () => {
+        const getTheme = await AsyncStorage.getItem('savedTheme')
+        state.dark = getTheme != null ? JSON.parse(getTheme) : false
+	const isDark = JSON.parse(state.dark)
+        updateTheme(JSON.parse(state.dark))
+	setDarkMode(isDark)
+	setTheme(isDark ? DarkTheme : LightTheme)
+        return isDark 
+    }
+
+    // On theme switch, store the theme in storage and switch context
+    const storeCurrentTheme = async (dark: any) => {
+        await AsyncStorage.setItem('savedTheme', JSON.stringify(dark))
         setDarkMode(dark)
         setTheme(dark ? DarkTheme : LightTheme)
     }
 
+    const updateTheme = (dark: boolean) => {
+        storeCurrentTheme(dark)
+    }
+
+    // Initial context is the one in storage, if not found we default to light
+    const [isDarkMode, setDarkMode] = useState(getSavedTheme())
+    const [theme, setTheme] = useState(JSON.parse(state.dark) ? LightTheme : DarkTheme)
+
+   
     return (
         <ThemeContext.Provider
             value={{ isDarkMode, setDarkMode: updateTheme, colors: theme.colors }}
