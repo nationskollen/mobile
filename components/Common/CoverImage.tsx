@@ -10,6 +10,7 @@
 import React from 'react'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
+import { LinearGradient } from 'expo-linear-gradient'
 import { View, Image, StyleSheet } from 'react-native'
 import { IconName } from '@expo/vector-icons/Ionicons'
 
@@ -22,6 +23,7 @@ export interface Props {
     fallbackIconSize?: number
     hideFallbackIcon?: boolean
     overlayColor?: string
+    textOverlayColor?: string
     backgroundColor?: string
     children?: Element | Element[]
 }
@@ -37,6 +39,7 @@ const CoverImage = ({
     width,
     backgroundColor,
     overlayColor,
+    textOverlayColor,
 }: Props) => {
     const { colors } = useTheme()
 
@@ -55,6 +58,12 @@ const CoverImage = ({
                 <>
                     {overlayColor && (
                         <View style={[styles.overlay, { backgroundColor: overlayColor }]} />
+                    )}
+                    {textOverlayColor && (
+                        <LinearGradient
+                            colors={['transparent', textOverlayColor]}
+                            style={styles.textOverlay}
+                        />
                     )}
                     <Image source={{ uri: src }} style={styles.img} />
                 </>
@@ -93,6 +102,15 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 0,
         left: 0,
+        zIndex: 3,
+    },
+
+    textOverlay: {
+        position: 'absolute',
+        bottom: '-70%',
+        left: 0,
+        height: '150%',
+        width: '100%',
         zIndex: 3,
     },
 })

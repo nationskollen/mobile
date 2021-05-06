@@ -42,6 +42,10 @@ const MenuItems = ({ menuId, query }) => {
         )
     }, [data, query])
 
+    // Make sure to not show the infinite loading footer if we have a search filter
+    // that returned no results (otherwise we get two messages telling us the same thing)
+    const shouldRenderFooter = query === null || filteredData.length !== 0
+
     return (
         <FlatList
             data={filteredData}
@@ -51,7 +55,9 @@ const MenuItems = ({ menuId, query }) => {
             onEndReachedThreshold={1}
             onEndReached={() => pagination && pagination.last_page !== size && setSize(size + 1)}
             ListFooterComponent={() => (
-                <ListFooter pagination={pagination} isValidating={isValidating} size={size} />
+                shouldRenderFooter ? (
+                    <ListFooter pagination={pagination} isValidating={isValidating} size={size} />
+                ) : null
             )}
             ListEmptyComponent={() =>
                 ListEmpty({

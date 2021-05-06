@@ -55,10 +55,10 @@ const Menus = ({ nation, location }: Props) => {
                             }
                         >
                             <CoverImage
-                                src={null}
+                                src={menu.cover_img_src}
                                 height={175}
                                 hideFallbackIcon={true}
-                                overlayColor={nation.accent_color}
+                                textOverlayColor={nation.accent_color}
                                 backgroundColor={
                                     isDarkMode ? colors.backgroundHighlight : colors.background
                                 }
@@ -66,12 +66,17 @@ const Menus = ({ nation, location }: Props) => {
                             <View style={styles.iconContainer}>
                                 <Ionicons
                                     name="chevron-forward"
-                                    color={colors.textHighlight}
+                                    color={menu.cover_img_src ? 'white' : colors.textHighlight}
                                     size={20}
                                 />
                             </View>
                             <ContentContainer style={styles.overlay}>
-                                <Title size="large" label={menu.name} noMargin={true} />
+                                <Title
+                                    size="large"
+                                    label={menu.name}
+                                    color={menu.cover_img_src ? 'white' : colors.textHighlight}
+                                    noMargin={true}
+                                />
                             </ContentContainer>
                         </Card>
                     )

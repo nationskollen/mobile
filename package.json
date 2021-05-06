@@ -23,6 +23,7 @@
     "@react-navigation/stack": "^5.14.4",
     "ant": "^0.2.0",
     "antd": "^4.15.0",
+    "awesome-debounce-promise": "^2.1.0",
     "expo": "~40.0.0",
     "expo-application": "~2.4.1",
     "expo-calendar": "~8.6.0",
@@ -52,7 +53,8 @@
     "react-native-vector-icons": "^8.1.0",
     "react-native-web": "~0.13.12",
     "styled-components": "^5.2.3",
-    "toggle-switch-react-native": "^3.2.0"
+    "toggle-switch-react-native": "^3.2.0",
+    "use-constant": "^1.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
