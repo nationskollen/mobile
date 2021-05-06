@@ -3,7 +3,7 @@
  * @module ReminderButton
  */
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, ViewStyle, Text, StyleSheet } from 'react-native'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 import OptionsMenu from 'react-native-option-menu'
@@ -13,18 +13,23 @@ import { useTranslation } from '../../translate/LanguageContext'
 import { Event } from '@dsp-krabby/sdk'
 import addToCalendar from './AddToCalendar'
 
-export interface Props {
+export interface ButtonProps {
+    hideLabel?: boolean
+    style?: ViewStyle
+}
+
+export interface Props extends ButtonProps {
     event: Event
     eventAddress: string
     nationName: string
 }
 
-const ReminderButton = ({ event, eventAddress, nationName }: Props) => {
+const ReminderButton = ({ event, eventAddress, nationName, hideLabel, style }: Props) => {
     const asyncOnPress = useAsyncCallback(() => addToCalendar(event, eventAddress, nationName))
 
     return (
         <OptionsMenu
-            customButton={<Button />}
+            customButton={<Button hideLabel={hideLabel} style={style} />}
             destructiveIndex={2}
             options={['Lägg till i kalender', 'Push-notis', 'Avbryt']}
             actions={[asyncOnPress.execute, () => console.log('push notification pressed')]}
@@ -32,7 +37,7 @@ const ReminderButton = ({ event, eventAddress, nationName }: Props) => {
     )
 }
 
-const Button = () => {
+const Button = ({ hideLabel, style }) => {
     const { colors, isDarkMode } = useTheme()
     const { translate } = useTranslation()
 
@@ -45,12 +50,15 @@ const Button = () => {
                         ? colors.backgroundHighlight
                         : colors.backgroundExtra,
                 },
+                style,
             ]}
         >
-            <Ionicons name="md-notifications-outline" size={20} color={colors.text} />
-            <Text style={[styles.text, { color: colors.text }]}>
-                {translate.home.reminderbutton}
-            </Text>
+            <Ionicons name="notifications-outline" size={20} color={colors.text} />
+            {!hideLabel && (
+                <Text style={[styles.text, { color: colors.text }]}>
+                    {translate.home.reminderbutton}
+                </Text>
+            )}
         </View>
     )
 }

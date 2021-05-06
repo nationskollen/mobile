@@ -33,9 +33,9 @@ const SearchBar = ({ onSearch, placeholder, autoFocus, delay }: Props) => {
     }, [])
 
     // Create the debounced callback
-    const callback = useConstant(() => (
+    const callback = useConstant(() =>
         AwesomeDebouncePromise(onSearch, delay ?? DEFAULT_DEBOUNCE_DELAY)
-    ))
+    )
 
     return (
         <View
@@ -57,7 +57,7 @@ const SearchBar = ({ onSearch, placeholder, autoFocus, delay }: Props) => {
                 onChangeText={(query) => handleChange(query === '' ? null : query)}
                 style={[styles.input, { color: colors.textHighlight }]}
                 placeholderTextColor={colors.borderDark}
-		keyboardAppearance= {isDarkMode ? 'dark' : 'light'}
+                keyboardAppearance={isDarkMode ? 'dark' : 'light'}
             />
             {query !== null && (
                 <HeaderButton

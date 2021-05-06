@@ -24,7 +24,7 @@ export type TabStackParamList = {
     Settings: undefined
     Notifications: undefined
     Nations: { nation?: Nation }
-    Event: { event: Event; nation: Nation }
+    Event: { event: Event; nation: Nation; eventAddress?: string }
     NationHome: { oid: number }
     NationMenus: { nation: Nation }
     NationMenu: { nation: Nation; menuId: number }
