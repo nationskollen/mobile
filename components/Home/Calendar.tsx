@@ -26,6 +26,7 @@ const Calendar = () => {
     return (
         <DateTimePickerModal
             minimumDate={minimumDate}
+            maximumDate={maximumDate}
             isVisible={visible}
             mode="date"
             onConfirm={handleConfirm}
