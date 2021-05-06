@@ -134,6 +134,12 @@ const English: LanguageContextType = {
         telephone: 'Telephone',
         email: 'Email',
     },
+
+    calendar: {
+        chooseDate: 'Pick a date',
+        confirm: 'Confirm',
+        cancel: 'Cancel',
+    },
 }
 
 export default English

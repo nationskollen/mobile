@@ -1,39 +1,41 @@
 /**
+ * Renders a popup date picker
  * @category Home
  * @module Calendar
  */
-import React from 'react'
+import React, { useRef } from 'react'
 import 'react-native-gesture-handler'
-//import DateTimePicker from '@react-native-community/datetimepicker'
 import DateTimePickerModal from 'react-native-modal-datetime-picker'
 
+import { useTranslation } from '../../translate/LanguageContext'
 import { useTheme } from '../ThemeContext'
 import { useDatePicker } from './DatePickerContext'
 
 const Calendar = () => {
     const { date, setDate, shownDate, setShownDate, visible, setVisible } = useDatePicker()
     const { colors, isDarkMode } = useTheme()
-    const language = 'sv-SV' // change to dynamic using language hook
+    const minimumDate = useRef(new Date('2021-01-01')).current
+    const maximumDate = useRef(new Date('2100-01-01')).current
+    const { currentLanguage, translate } = useTranslation()
 
     const handleConfirm = (date: Date) => {
-        setDate(date)
         setShownDate(date)
         setVisible(!visible)
     }
 
     return (
         <DateTimePickerModal
-            minimumDate={new Date('2021-01-01')}
+            minimumDate={minimumDate}
             isVisible={visible}
             mode="date"
             onConfirm={handleConfirm}
             onCancel={() => setVisible(!visible)}
             date={date}
             isDarkModeEnabled={isDarkMode}
-            locale={language}
-            headerTextIOS={'Välj datum'} //change to dynamic
-            cancelTextIOS={'Avbryt'} //change to dynamic
-            confirmTextIOS={'Bekräfta'} //change to dynamic
+            locale={currentLanguage}
+            headerTextIOS={translate.calendar.chooseDate}
+            cancelTextIOS={translate.calendar.cancel}
+            confirmTextIOS={translate.calendar.confirm}
             textColor={colors.text}
         />
     )

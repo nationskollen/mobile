@@ -26,7 +26,7 @@ export default interface LanguageContextType {
 
     activityLevels: {
         header: string
-	0: string
+        0: string
         1: string
         2: string
         3: string
@@ -131,5 +131,11 @@ export default interface LanguageContextType {
         whoAreWe: string
         telephone: string
         email: string
+    }
+
+    calendar: {
+        chooseDate: string
+        confirm: string
+        cancel: string
     }
 }
