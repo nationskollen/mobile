@@ -7,15 +7,28 @@ import * as Calendar from 'expo-calendar'
 
 import { Event } from '@dsp-krabby/sdk'
 import { Details } from './AddToCalendarInterface'
+import { useTranslation } from '../../translate/LanguageContext'
 
 const CalendarTitle = 'Nationskollen Calendar'
+
+interface reminderPopup {
+    addToCalendar: string
+    cancel: string
+    successMsg: string
+}
 
 /**
  * Function used to export an event from the app to the native calendar on the used device
  * @param event event to be added to native calendar
  * @param eventAddress address of event
+ * @param nationName name of hosting nation
  */
-async function addToCalendar(event: Event, eventAddress: string, nationName: string) {
+async function addToCalendar(
+    event: Event,
+    eventAddress: string,
+    nationName: string,
+    translate: reminderPopup
+) {
     const status = await getPermission()
     if (status != 'granted') {
         console.log(`Permission to use calendar: ${status}`)
@@ -27,7 +40,7 @@ async function addToCalendar(event: Event, eventAddress: string, nationName: str
     const eventID = await createEvent(details)
 
     //tell user event is added to their calendar
-    eventID != null && Alert.alert('Event successfully added to your calendar')
+    eventID != null && Alert.alert(translate.successMsg)
 
     const calendars = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT)
     console.log('Titles of existing calendars on device: ')
@@ -39,12 +52,9 @@ async function addToCalendar(event: Event, eventAddress: string, nationName: str
  * @return permission status (granted | undetermined | denied)
  */
 export async function getPermission(): Promise<string> {
-    //add type
     const { status } = await Calendar.getCalendarPermissionsAsync()
     if (status != 'granted') {
         const { status } = await Calendar.requestCalendarPermissionsAsync()
-        status == 'denied' &&
-            Alert.alert('Error', 'Please allow Calendar permissions to import event')
     }
 
     return status

@@ -138,4 +138,10 @@ export default interface LanguageContextType {
         confirm: string
         cancel: string
     }
+
+    reminderPopup: {
+        addToCalendar: string
+        cancel: string
+        successMsg: string
+    }
 }

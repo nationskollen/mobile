@@ -140,6 +140,12 @@ const English: LanguageContextType = {
         confirm: 'Confirm',
         cancel: 'Cancel',
     },
+
+    reminderPopup: {
+        addToCalendar: 'Add to calendar',
+        cancel: 'Cancel',
+        successMsg: 'Event was added to your calendar',
+    },
 }
 
 export default English
