@@ -17,9 +17,12 @@ const ChooseDateBar = () => {
     const currentDate = useRef(new Date().toLocaleDateString()).current
     const dateString = shownDate.toLocaleDateString()
 
-    const changeDate = useCallback((change: number) => {
-        setShownDate(new Date(shownDate.setDate(shownDate.getDate() + change)))
-    }, [shownDate])
+    const changeDate = useCallback(
+        (change: number) => {
+            setShownDate(new Date(shownDate.setDate(shownDate.getDate() + change)))
+        },
+        [shownDate]
+    )
 
     return (
         <View

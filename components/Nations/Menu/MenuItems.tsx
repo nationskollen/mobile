@@ -54,11 +54,11 @@ const MenuItems = ({ menuId, query }) => {
             refreshControl={<LoadingCircle validating={isValidating} mutate={mutate} />}
             onEndReachedThreshold={1}
             onEndReached={() => pagination && pagination.last_page !== size && setSize(size + 1)}
-            ListFooterComponent={() => (
+            ListFooterComponent={() =>
                 shouldRenderFooter ? (
                     <ListFooter pagination={pagination} isValidating={isValidating} size={size} />
                 ) : null
-            )}
+            }
             ListEmptyComponent={() =>
                 ListEmpty({
                     error,

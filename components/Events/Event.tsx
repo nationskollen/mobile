@@ -8,7 +8,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { useTheme } from '../ThemeContext'
 import { useLocation } from '@dsp-krabby/sdk'
 import { useNavigation } from '@react-navigation/native'
-import { useNation, Nation, Event as EventResponse } from '@dsp-krabby/sdk'
+import { useNation, Nation, Location, Event as EventResponse } from '@dsp-krabby/sdk'
 
 import Card from '../Common/Card'
 import EventCover from './Cover'
@@ -16,25 +16,47 @@ import ReminderButton from './ReminderButton'
 import NationLogo from '../Nations/Front/NationLogo'
 import ContentContainer from '../Common/ContentContainer'
 
-export interface EventProps {
+export interface Props {
     event: EventResponse
 }
 
-export interface HeaderProps {
-    nation: Nation
-    event: EventResponse
-}
-
-const Event = ({ event }: EventProps) => {
+const Event = ({ event }: Props) => {
     const { colors } = useTheme()
     const navigation = useNavigation()
     const { data: nation } = useNation(event.nation_id)
+    const { data: location } = useLocation(event.location_id)
 
     return (
-        <Card onPress={() => navigation.navigate('Event', { event, nation })}>
+        <Card
+            onPress={() =>
+                navigation.navigate('Event', { event, nation, eventAddress: location?.address })
+            }
+        >
             <EventCover event={event} height={200} />
             <ContentContainer>
-                <Header nation={nation} event={event} />
+                <View style={styles.header}>
+                    <TouchableOpacity
+                        style={styles.nationContainer}
+                        onPress={() => navigation.navigate('NationHome', { oid: nation.oid })}
+                    >
+                        {nation && (
+                            <View style={styles.headerContent}>
+                                <NationLogo src={nation.icon_img_src} size={40} />
+                                <Text style={[styles.nationName, { color: colors.primaryText }]}>
+                                    {nation.name}
+                                </Text>
+                            </View>
+                        )}
+                    </TouchableOpacity>
+
+                    {location && (
+                        <ReminderButton
+                            event={event}
+                            eventAddress={location?.address}
+                            nationName={nation?.name}
+                        />
+                    )}
+                </View>
 
                 {/*Title of event*/}
                 <Text style={[styles.title, { color: colors.textHighlight }]}>{event.name}</Text>
@@ -48,36 +70,6 @@ const Event = ({ event }: EventProps) => {
                 </Text>
             </ContentContainer>
         </Card>
-    )
-}
-
-const Header = ({ nation, event }: HeaderProps) => {
-    const { colors } = useTheme()
-    const navigation = useNavigation()
-    const { data } = useLocation(event.location_id)
-    const address = data && data.address
-    const nationName = nation && nation.short_name
-
-    return (
-        <View style={styles.header}>
-            <TouchableOpacity
-                style={styles.nationContainer}
-                onPress={() => navigation.navigate('NationHome', { oid: nation.oid })}
-            >
-                {nation && (
-                    <View style={styles.headerContent}>
-                        <NationLogo src={nation.icon_img_src} size={40} />
-                        <Text style={[styles.nationName, { color: colors.primaryText }]}>
-                            {nation.name}
-                        </Text>
-                    </View>
-                )}
-            </TouchableOpacity>
-
-            {data && (
-                <ReminderButton event={event} eventAddress={address} nationName={nationName} />
-            )}
-        </View>
     )
 }
 
