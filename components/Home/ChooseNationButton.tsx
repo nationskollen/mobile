@@ -1,22 +1,24 @@
 /**
+ * Renders button that reveals filter options
  * @category Home
  * @module ChooseNationButton
  */
-import React from 'react'
+import React, { useState } from 'react'
 import Button from '../Common/Button'
+import { useSheet } from './SheetContext'
 
-// Renders button that should show choose-nation content when pressed
 const ChooseNationButton = () => {
-    const handleNationButtonPress = () => {
-        console.log('nation button pressed - show choose nation content')
+    const { sheetRef } = useSheet()
+
+    const handlePress = () => {
+        sheetRef.current.snapTo(1)
     }
 
     return (
         <Button
             type="primary"
-            label="Nation"
-            icon="md-chevron-down"
-            onPress={handleNationButtonPress}
+            icon="filter-outline"
+            onPress={handlePress}
             style={{ marginLeft: 10 }}
         />
     )
