@@ -36,12 +36,12 @@ const Bottomsheet = ({ children }) => {
                     justifyContent: 'center',
                 }}
             >
-                <Button title="Open Bottom Sheet" onPress={() => sheetRef.current.snapTo(1)} />
+                <Button title="Open Bottom Sheet" onPress={() => sheetRef.current.snapTo(0)} />
             </View>
             <BottomSheet
                 ref={sheetRef}
-                snapPoints={[100, 450]}
-                initialSnap={0}
+                snapPoints={[30, 100, 450]}
+                initialSnap={1}
                 borderRadius={0}
                 renderContent={renderContent}
                 renderHeader={renderHeader}
