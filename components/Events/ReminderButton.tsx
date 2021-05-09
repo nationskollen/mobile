@@ -10,7 +10,7 @@ import OptionsMenu from 'react-native-option-menu'
 import { useAsyncCallback } from 'react-async-hook'
 import { useTranslation } from '../../translate/LanguageContext'
 
-import { Event } from '@dsp-krabby/sdk'
+import { Event } from '@nationskollen/sdk'
 import addToCalendar from './AddToCalendar'
 
 export interface ButtonProps {

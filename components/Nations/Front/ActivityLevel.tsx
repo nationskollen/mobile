@@ -6,7 +6,7 @@ import React from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import { View, Text, StyleSheet } from 'react-native'
 import { useTheme, ThemeColors } from '../../ThemeContext'
-import { useActivityLevel, Location } from '@dsp-krabby/sdk'
+import { useActivityLevel, Location } from '@nationskollen/sdk'
 import { useTranslation } from '../../../translate/LanguageContext'
 import LanguageContextType from '../../../translate/LanguageContextType'
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { useTheme } from '../../ThemeContext'
-import { MenuItem as MenuItemResponse } from '@dsp-krabby/sdk'
+import { MenuItem as MenuItemResponse } from '@nationskollen/sdk'
 
 import Title from '../../Common/Title'
 import CoverImage from '../../Common/CoverImage'

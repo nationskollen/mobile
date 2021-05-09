@@ -1,9 +1,8 @@
 import React from 'react'
 import { View, Text, StyleSheet, ActivityIndicator } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
-import { useLocation, Nation } from '@dsp-krabby/sdk'
-import { LinearGradient } from 'expo-linear-gradient'
 import { useNavigation } from '@react-navigation/core'
+import { useLocation, Nation } from '@nationskollen/sdk'
 import { useTranslation } from '../../translate/LanguageContext'
 
 import Card from '../Common/Card'

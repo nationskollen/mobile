@@ -6,7 +6,7 @@
  */
 import React, { useMemo } from 'react'
 import { FlatList } from 'react-native'
-import { useMenuItems } from '@dsp-krabby/sdk'
+import { useMenuItems } from '@nationskollen/sdk'
 import { useTranslation } from '../../../translate/LanguageContext'
 
 import MenuItem from '../Menu/MenuItem'

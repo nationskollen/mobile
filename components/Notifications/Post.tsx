@@ -5,7 +5,7 @@
 // This component is used for rendering each notification.
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-import { Event } from '@dsp-krabby/sdk'
+import { Event } from '@nationskollen/sdk'
 import { useTheme } from '../ThemeContext'
 import NationLogo from '../Nations/Front/NationLogo'
 

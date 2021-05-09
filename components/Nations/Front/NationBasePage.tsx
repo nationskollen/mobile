@@ -9,7 +9,7 @@
  */
 import { Platform, View, ViewStyle } from 'react-native'
 import React, { useLayoutEffect } from 'react'
-import { Nation } from '@dsp-krabby/sdk'
+import { Nation } from '@nationskollen/sdk'
 import { useTheme } from '../../ThemeContext'
 import { useNavigation } from '@react-navigation/core'
 
