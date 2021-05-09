@@ -1,5 +1,5 @@
 {
-  "name": "@dsp-krabby/mobile",
+  "name": "@nationskollen/mobile",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "NODE_ENV=development expo start",
@@ -13,9 +13,9 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
-    "@dsp-krabby/sdk": "^2.3.1",
-    "@dsp-krabby/typedoc-theme-overrides": "^1.0.2",
     "@expo/ngrok": "^2.4.3",
+    "@nationskollen/sdk": "^2.3.1",
+    "@nationskollen/typedoc-theme-overrides": "^1.0.2",
     "@react-native-async-storage/async-storage": "^1.13.0",
     "@react-native-community/datetimepicker": "^3.4.7",
     "@react-native-community/masked-view": "0.1.10",

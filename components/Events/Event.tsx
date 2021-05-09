@@ -6,9 +6,8 @@ import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
 import { useTheme } from '../ThemeContext'
-import { useLocation } from '@dsp-krabby/sdk'
 import { useNavigation } from '@react-navigation/native'
-import { useNation, Nation, Location, Event as EventResponse } from '@dsp-krabby/sdk'
+import { useNation, useLocation, Event as EventResponse } from '@nationskollen/sdk'
 
 import Card from '../Common/Card'
 import EventCover from './Cover'

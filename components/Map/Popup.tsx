@@ -5,8 +5,8 @@
 import React, { useRef, useEffect } from 'react'
 import { Animated, View, StyleSheet, TouchableOpacity } from 'react-native'
 
-import { Nation } from '@dsp-krabby/sdk'
 import { useTheme } from '../ThemeContext'
+import { Nation } from '@nationskollen/sdk'
 import { Ionicons } from '@expo/vector-icons'
 
 import NationInfo from '../Nations/Info/NationInfo'

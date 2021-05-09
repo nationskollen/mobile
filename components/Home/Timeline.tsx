@@ -4,8 +4,8 @@
  */
 import React from 'react'
 import { FlatList } from 'react-native'
-import { useEvents, Nation } from '@dsp-krabby/sdk'
 import { useDatePicker } from './DatePickerContext'
+import { useEvents, Nation } from '@nationskollen/sdk'
 import { useTranslation } from '../../translate/LanguageContext'
 
 import ListEmpty from '../List/ListEmpty'

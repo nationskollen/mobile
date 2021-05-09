@@ -1,5 +1,5 @@
 import React from 'react'
-import { Event as EventResponse } from '@dsp-krabby/sdk'
+import { Event as EventResponse } from '@nationskollen/sdk'
 
 import CoverImage from '../Common/CoverImage'
 import EventCategory from './Category'

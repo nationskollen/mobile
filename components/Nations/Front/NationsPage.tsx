@@ -8,7 +8,7 @@
 import React from 'react'
 import { FlatList } from 'react-native'
 import { useTheme } from '../../ThemeContext'
-import { useNations } from '@dsp-krabby/sdk'
+import { useNations } from '@nationskollen/sdk'
 import { useNavigation } from '@react-navigation/native'
 
 import ListEmpty from '../../List/ListEmpty'

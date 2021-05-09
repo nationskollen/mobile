@@ -9,7 +9,7 @@
 import React from 'react'
 import { View, FlatList } from 'react-native'
 import { TabStackParamList } from '../../Footer/Footer'
-import { useLocations } from '@dsp-krabby/sdk'
+import { useLocations } from '@nationskollen/sdk'
 import { RouteProp } from '@react-navigation/native'
 import { useTranslation } from '../../../translate/LanguageContext'
 
