@@ -5,9 +5,9 @@
  * @module NationMenuPage
  */
 import React, { useLayoutEffect, useState } from 'react'
-import { useMenu } from '@dsp-krabby/sdk'
-import { TabStackParamList } from '../../Footer/Footer'
+import { useMenu } from '@nationskollen/sdk'
 import { RouteProp } from '@react-navigation/core'
+import { TabStackParamList } from '../../Footer/Footer'
 import { useNavigation } from '@react-navigation/native'
 import { useTranslation } from '../../../translate/LanguageContext'
 

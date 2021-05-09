@@ -6,10 +6,9 @@
  */
 import React from 'react'
 import { FlatList } from 'react-native'
-import { useTheme } from '../../ThemeContext'
-import { TabStackParamList } from '../../Footer/Footer'
-import { useLocations } from '@dsp-krabby/sdk'
+import { useLocations } from '@nationskollen/sdk'
 import { RouteProp } from '@react-navigation/native'
+import { TabStackParamList } from '../../Footer/Footer'
 import { useTranslation } from '../../../translate/LanguageContext'
 
 import Menus from './Menus'

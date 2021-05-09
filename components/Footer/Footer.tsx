@@ -5,7 +5,7 @@
 import React from 'react'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
-import { Nation, Event } from '@dsp-krabby/sdk'
+import { Nation, Event } from '@nationskollen/sdk'
 import { useTranslation } from '../../translate/LanguageContext'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 

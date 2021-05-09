@@ -5,7 +5,7 @@
 import React from 'react'
 import { Text, StyleSheet } from 'react-native'
 import { useTheme } from '../ThemeContext'
-import { ApiError } from '@dsp-krabby/sdk'
+import { ApiError } from '@nationskollen/sdk'
 
 export interface Props {
     error: ApiError | Error

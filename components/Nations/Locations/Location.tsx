@@ -10,8 +10,7 @@
 import React from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 import { useTheme } from '../../ThemeContext'
-import { Ionicons } from '@expo/vector-icons'
-import { Location as LocationReponse } from '@dsp-krabby/sdk'
+import { Location as LocationReponse } from '@nationskollen/sdk'
 import { useTranslation } from '../../../translate/LanguageContext'
 
 import Card from '../../Common/Card'

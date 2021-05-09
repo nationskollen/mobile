@@ -5,7 +5,7 @@
 import React, { useState } from 'react'
 import { useTheme } from '../ThemeContext'
 import { View, StyleSheet } from 'react-native'
-import { useNations, Nation } from '@dsp-krabby/sdk'
+import { useNations, Nation } from '@nationskollen/sdk'
 import { useTranslation } from '../../translate/LanguageContext'
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps'
 

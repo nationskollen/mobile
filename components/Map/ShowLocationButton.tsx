@@ -1,6 +1,6 @@
 import React from 'react'
 import { ViewStyle } from 'react-native'
-import { Location } from '@dsp-krabby/sdk'
+import { Location } from '@nationskollen/sdk'
 import { applicationId } from 'expo-application'
 import { showLocation } from 'react-native-map-link'
 import { useTranslation } from '../../translate/LanguageContext'
