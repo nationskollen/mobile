@@ -33,6 +33,10 @@ const MapScreen = () => {
                 options={{
                     title: translate.titles.map,
                     headerShown: false,
+                    headerTitleStyle: {
+                        fontFamily: 'NotoSans',
+                        fontWeight: 'bold',
+                    },
                 }}
             />
             {sharedScreens}

@@ -33,6 +33,10 @@ const HomeScreen = () => {
                 component={HomePage}
                 options={{
                     title: 'Nationskollen',
+                    headerTitleStyle: {
+                        fontFamily: 'NotoSans',
+                        fontWeight: 'bold',
+                    },
                 }}
             />
             <Stack.Screen

@@ -12,34 +12,31 @@ import { Provider } from '@dsp-krabby/sdk'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { LanguageContextProvider } from './translate/LanguageContext'
 import { DarkTheme, LightTheme, ThemeProvider, Theme } from './components/ThemeContext'
-import {setCustomText, setCustomTextInput} from 'react-native-global-props';
-import { useFonts} from '@expo-google-fonts/noto-sans';
-
+import { setCustomText, setCustomTextInput } from 'react-native-global-props'
+import { useFonts } from '@expo-google-fonts/noto-sans'
 
 import Footer from './components/Footer/Footer'
 
 const App = () => {
     const [initialTheme, setInitialTheme] = useState<Theme | null>(null)
     const [isReady, setIsReady] = useState(false)
-    const [loaded] = useFonts ({
-	NotoSans: require('./assets/fonts/NotoSans-Regular.ttf'),
-});
+    const [loaded] = useFonts({
+        NotoSans: require('./assets/fonts/NotoSans-Regular.ttf'),
+    })
 
-    // We have to to wait for the app to load the custom font before we render it 
+    // We have to to wait for the app to load the custom font before we render it
     if (!loaded) {
-	return null
+        return null
     }
 
     const customTextProps = {
-    
-     style: {
+        style: {
+            fontFamily: 'NotoSans',
+        },
+    }
 
-      fontFamily: 'NotoSans',
-    },
-  };
-
-setCustomText(customTextProps)
-setCustomTextInput(customTextProps)
+    setCustomText(customTextProps)
+    setCustomTextInput(customTextProps)
 
     if (!isReady) {
         return (
