@@ -26,6 +26,7 @@ export const HeaderOptions = (
     },
     headerTitleStyle: {
 	fontFamily: 'NotoSans',
+	fontWeight: 'bold',
         color: isDarkMode ? colors.textHighlight : 'white',
         fontSize: 20,
         flex: 1,
