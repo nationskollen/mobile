@@ -64,7 +64,7 @@ const LanguagePage = () => {
                             {option.name}
                         </Text>
                     }
-                    fontFamily="Roboto"
+                    fontFamily="NotoSans"
                     checked={option.checked}
                     iconRight
                     onPress={() => checkSelectedCheckbox(option.value, option.key)}

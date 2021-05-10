@@ -11,10 +11,17 @@
     "docs": "npx typedoc --categorizeByGroup true components/** screens/ App.tsx",
     "docs:watch": "npx typedoc App.tsx screens/ components/* --watch"
   },
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/"
+    ]
+  },
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
+    "@dsp-krabby/typedoc-theme-overrides": "^1.0.2",
+    "@expo-google-fonts/noto-sans": "^0.1.0",
     "@expo/ngrok": "^2.4.3",
-    "@nationskollen/sdk": "^2.3.1",
+    "@nationskollen/sdk": "^2.3.3",
     "@nationskollen/typedoc-theme-overrides": "^1.0.2",
     "@react-native-async-storage/async-storage": "^1.13.0",
     "@react-native-community/datetimepicker": "^3.4.7",
@@ -25,10 +32,12 @@
     "ant": "^0.2.0",
     "antd": "^4.15.0",
     "awesome-debounce-promise": "^2.1.0",
+    "babel-plugin-module-resolver": "^3.2.0",
     "expo": "^41.0.0",
     "expo-app-loading": "^1.0.3",
     "expo-application": "~3.1.2",
     "expo-calendar": "~9.1.2",
+    "expo-font": "~9.1.0",
     "expo-linear-gradient": "^9.1.0",
     "expo-status-bar": "~1.0.4",
     "i18n-js": "^3.8.0",
@@ -43,6 +52,7 @@
     "react-native-draggable-view": "^0.0.6",
     "react-native-elements": "^3.4.1",
     "react-native-gesture-handler": "~1.10.2",
+    "react-native-global-props": "^1.1.5",
     "react-native-localize": "^2.0.3",
     "react-native-map-link": "^2.7.26",
     "react-native-maps": "0.27.1",
