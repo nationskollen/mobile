@@ -11,7 +11,7 @@ import { TouchableOpacity, View, Text, StyleSheet, Alert } from 'react-native'
 import { useTheme } from '../../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/core'
-import { useOpeningHours, Nation } from '@dsp-krabby/sdk'
+import { useOpeningHours, Nation } from '@nationskollen/sdk'
 import { useTranslation } from '../../../translate/LanguageContext'
 
 import NationLogo from '../Front/NationLogo'

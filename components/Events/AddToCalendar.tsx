@@ -2,12 +2,11 @@
  * @category Home
  * @module AddToCalendar
  */
-import { Alert, Platform } from 'react-native'
 import * as Calendar from 'expo-calendar'
+import { Alert, Platform } from 'react-native'
 
-import { Event } from '@dsp-krabby/sdk'
+import { Event } from '@nationskollen/sdk'
 import { Details } from './AddToCalendarInterface'
-import { useTranslation } from '../../translate/LanguageContext'
 
 const CalendarTitle = 'Nationskollen Calendar'
 

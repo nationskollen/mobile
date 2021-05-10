@@ -7,7 +7,7 @@
 import React, { useRef, useMemo } from 'react'
 import { Text, View, ViewStyle, StyleSheet, ActivityIndicator } from 'react-native'
 import { useTheme } from '../../ThemeContext'
-import { Location, useOpeningHours } from '@dsp-krabby/sdk'
+import { Location, useOpeningHours } from '@nationskollen/sdk'
 import { useTranslation } from '../../../translate/LanguageContext'
 
 export interface Props {

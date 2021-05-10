@@ -7,7 +7,7 @@
  */
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-import { Nation } from '@dsp-krabby/sdk'
+import { Nation } from '@nationskollen/sdk'
 import { useTheme } from '../../ThemeContext'
 
 import NationLogo from './NationLogo'

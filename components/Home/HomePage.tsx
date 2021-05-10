@@ -3,10 +3,10 @@
  * @module HomePage
  */
 import React, { useState } from 'react'
-import { Animated, View, StatusBar } from 'react-native'
-import { Nation } from '@dsp-krabby/sdk'
+import { View } from 'react-native'
 import { useTheme } from '../ThemeContext'
 import { RouteProp } from '@react-navigation/native'
+import { Nation } from '@nationskollen/sdk'
 import { TabStackParamList } from '../Footer/Footer'
 import { DatePickerProvider } from './DatePickerContext'
 import { SheetProvider } from './SheetContext'
