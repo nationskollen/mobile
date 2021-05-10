@@ -6,7 +6,6 @@
 
 import React, { useState } from 'react'
 import 'react-native-gesture-handler'
-import Constants from 'expo-constants'
 import AppLoading from 'expo-app-loading'
 import { Provider } from '@nationskollen/sdk'
 import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -62,7 +61,7 @@ const App = () => {
     return (
         <Provider
             config={{
-                development: Constants.manifest.extra.development,
+                development: true,
                 useWebSockets: true,
                 customHostName: 'nationskollen-staging.engstrand.nu',
                 useHTTPS: true,
