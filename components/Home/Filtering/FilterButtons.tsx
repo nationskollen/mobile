@@ -89,7 +89,7 @@ const buttons = () => {
             shadowColor: colors.textHighlight,
             shadowOffset: {
                 width: 0,
-                height: 3,
+                height: 1,
             },
             shadowOpacity: 0.2,
             shadowRadius: 3,
