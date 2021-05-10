@@ -1,20 +1,19 @@
 /**
- * Renders button that reveals filter options
+ * Renders button that reveals bottom sheet with filter options when pressed
  * @category Home
  * @module ChooseNationButton
  */
-import React, { useState } from 'react'
+import React from 'react'
 import Button from '../Common/Button'
 import { useSheet } from './SheetContext'
 
-const ChooseNationButton = () => {
+const ShowFilterButtons = () => {
     const { sheetRef, show, setShow } = useSheet()
 
     const handlePress = () => {
         show ? sheetRef.current.snapTo(1) : sheetRef.current.snapTo(0)
     }
 
-    //console.log(sheetRef.current)
     return (
         <Button
             type="primary"
@@ -25,4 +24,4 @@ const ChooseNationButton = () => {
     )
 }
 
-export default ChooseNationButton
+export default ShowFilterButtons

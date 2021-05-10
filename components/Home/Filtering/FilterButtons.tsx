@@ -7,51 +7,48 @@ import React, { useState } from 'react'
 import { View, StyleSheet } from 'react-native'
 
 import Button from '../../Common/Button'
-import { useNations, useCategories } from '@nationskollen/sdk'
-import { useSheet } from '../SheetContext'
-import FilterListNation from './FilterLists/NationList'
-import FilterListCategory from './FilterLists/CategoryList'
-import FilterListStudent from './FilterLists/StudentList'
-
-export const student = ['Nationskort krävs', 'Medlemskap krävs']
+import NationFilter from './FilterLists/NationFilter'
+import CategoryFilter from './FilterLists/CategoryFilter'
+import StudentFilter from './FilterLists/StudentFilter'
+import { useTheme } from '../../ThemeContext'
 
 /**
  * This component is used to create pressable filter category buttons
  */
 const FilterButtons = () => {
-    const [filterList, setFilterList] = useState(<View />)
-    const { data: nations } = useNations()
-    const { data: categories } = useCategories()
-    nations.forEach((nation) => {
-        console.log(nation.name + ': ' + nation.oid)
-    })
+    const [filterList, setFilterList] = useState(<NationFilter />)
+    const [focus, setFocus] = useState(1)
+    const buttonStyles = buttons()
 
     return (
         <View style={styles.container}>
             <View style={styles.buttonsContainer}>
                 <Button
                     onPress={() => {
-                        setFilterList(<FilterListNation nations={nations} />)
+                        setFilterList(<NationFilter />)
+                        setFocus(1)
                     }}
-                    type={'primary'}
+                    type={'light'}
                     label={'Nation'}
-                    style={{ width: '30%', height: 60 }}
+                    style={focus === 1 ? buttonStyles.buttonFocus : buttonStyles.button}
                 />
                 <Button
                     onPress={() => {
-                        setFilterList(<FilterListCategory categories={categories} />)
+                        setFilterList(<CategoryFilter />)
+                        setFocus(2)
                     }}
-                    type={'primary'}
-                    label={'Kategori'}
-                    style={{ width: '30%', height: 60 }}
+                    type={'light'}
+                    label={'Kategori'} //add Dynamic Title
+                    style={focus === 2 ? buttonStyles.buttonFocus : buttonStyles.button}
                 />
                 <Button
                     onPress={() => {
-                        setFilterList(<FilterListStudent student={student} />)
+                        setFilterList(<StudentFilter />)
+                        setFocus(3)
                     }}
-                    type={'primary'}
+                    type={'light'}
                     label={'Student'}
-                    style={{ width: '30%', height: 60 }}
+                    style={focus === 3 ? buttonStyles.buttonFocus : buttonStyles.button}
                 />
             </View>
 
@@ -65,8 +62,8 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         justifyContent: 'space-between',
-        elevation: 4,
-        zIndex: 4,
+        elevation: 10,
+        zIndex: 10,
     },
 
     buttonsContainer: {
@@ -75,13 +72,31 @@ const styles = StyleSheet.create({
     },
 })
 
-export const filterStyles = StyleSheet.create({
-    listContainer: {
-        width: '100%',
-        backgroundColor: 'white',
-        borderRadius: 10,
-        marginTop: 5,
-    },
-})
+const buttons = () => {
+    const { colors } = useTheme()
+
+    return StyleSheet.create({
+        button: {
+            width: '30%',
+            height: 60,
+            backgroundColor: colors.backgroundExtra,
+        },
+
+        buttonFocus: {
+            width: '30%',
+            height: 60,
+            backgroundColor: colors.backgroundHighlight,
+            shadowColor: colors.textHighlight,
+            shadowOffset: {
+                width: 0,
+                height: 3,
+            },
+            shadowOpacity: 0.2,
+            shadowRadius: 3,
+
+            elevation: 6,
+        },
+    })
+}
 
 export default FilterButtons

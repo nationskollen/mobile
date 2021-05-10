@@ -1,34 +1,35 @@
 /**
  * This file contains components for filtering the displayed events on the timeline
  * @category Home
- * @module FilterListNation
+ * @module FilterFlatList
  */
 import React from 'react'
 import { FlatList, Text } from 'react-native'
 import { CheckBox } from 'react-native-elements'
-import { useTheme } from '../../../ThemeContext'
-import { useFilter } from '.././FilterContext'
-import NationLogo from '../../../Nations/Front/NationLogo'
-import { NationCollection } from '@nationskollen/sdk'
-import ContentContainer from '../../../Common/ContentContainer'
+import { useTheme } from '../../ThemeContext'
+import NationLogo from '../../Nations/Front/NationLogo'
+import { CategoryCollection, NationCollection } from '@nationskollen/sdk'
+import ContentContainer from '../../Common/ContentContainer'
 
 interface Props {
-    nations: NationCollection
+    data: NationCollection | CategoryCollection | Array<any> // it's not happy without this generic type?
+    onPress: (arg0: object) => void
+    checkedList: object
 }
 
-const NationList = ({ nations }: Props) => {
-    const { filters, setFilters } = useFilter()
+const FilterFlatList = ({ data, onPress, checkedList }: Props) => {
     const { colors } = useTheme()
+
     return (
         <FlatList
-            contentContainerStyle={{ flexGrow: 1 }}
-            data={nations}
+            contentContainerStyle={{ flexGrow: 1, marginTop: 10 }}
+            data={data}
             renderItem={({ item }) => (
                 <ContentContainer
                     direction={'row'}
                     style={{
                         alignItems: 'center',
-                        paddingVertical: 5,
+                        paddingVertical: 1,
                         backgroundColor: colors.background,
                     }}
                 >
@@ -45,22 +46,14 @@ const NationList = ({ nations }: Props) => {
                             borderColor: colors.border,
                         }}
                         iconRight
-                        onPress={() => {
-                            setFilters({
-                                ...filters,
-                                nations: {
-                                    ...filters.nations,
-                                    [item.oid]: !filters.nations[item.oid],
-                                },
-                            })
-                        }}
-                        checked={!filters.nations[item.oid]}
+                        onPress={() => onPress(item)}
+                        checked={!checkedList[item?.oid ?? item?.id]}
                     />
                 </ContentContainer>
             )}
-            keyExtractor={(item) => item.oid.toString()}
+            keyExtractor={(item) => (item?.oid ?? item?.id).toString()}
         />
     )
 }
 
-export default NationList
+export default FilterFlatList

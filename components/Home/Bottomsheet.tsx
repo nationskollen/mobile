@@ -21,7 +21,13 @@ const Bottomsheet = ({ children }) => {
     )
 
     const renderHeader = () => (
-        <View style={[styles.header, { backgroundColor: colors.background }]}>
+        <View
+            style={[
+                styles.header,
+                { backgroundColor: colors.background },
+                show && styles.headerShadows,
+            ]}
+        >
             <View style={styles.panelHeader}>
                 <View style={styles.panelHandle}></View>
             </View>
@@ -38,8 +44,8 @@ const Bottomsheet = ({ children }) => {
                 renderContent={renderContent}
                 renderHeader={renderHeader}
                 enabledContentTapInteraction={false} // for android to interact with content
-                onOpenEnd={() => setShow(!show)}
-                onCloseEnd={() => setShow(!show)}
+                onOpenStart={() => setShow(!show)}
+                onCloseStart={() => setShow(!show)}
                 enabledGestureInteraction={true}
             ></BottomSheet>
         </>
@@ -53,12 +59,21 @@ const styles = StyleSheet.create({
     },
 
     header: {
-        backgroundColor: '#FFFFFF',
-        shadowColor: '#EEEEEE',
-        shadowOffset: { width: -2, height: -6 },
         paddingTop: 10,
         borderTopLeftRadius: 15,
         borderTopRightRadius: 15,
+    },
+
+    headerShadows: {
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: -6,
+        },
+        shadowOpacity: 0.08,
+        shadowRadius: 2,
+        zIndex: 2,
+        elevation: 2,
     },
 
     panelHeader: {
