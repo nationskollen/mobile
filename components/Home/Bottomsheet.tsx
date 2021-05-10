@@ -28,8 +28,6 @@ const Bottomsheet = ({ children }) => {
         </View>
     )
 
-    //show ? () => sheetRef.current.snapTo(0) : () => sheetRef.current.snapTo(1)
-
     return (
         <>
             <BottomSheet

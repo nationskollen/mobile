@@ -7,11 +7,13 @@ import { FlatList } from 'react-native'
 import { useDatePicker } from './DatePickerContext'
 import { useEvents, Nation } from '@nationskollen/sdk'
 import { useTranslation } from '../../translate/LanguageContext'
+import { useFilter } from './Filtering/FilterContext'
 
 import ListEmpty from '../List/ListEmpty'
 import ListFooter from '../List/ListFooter'
 import EventItem from '../Events/Event'
 import LoadingCircle from '../Common/LoadingCircle'
+import FilterCheckboxesType from './Filtering/FilterCheckboxes'
 
 export interface Props {
     nation?: Nation
@@ -20,11 +22,13 @@ export interface Props {
 const Timeline = ({ nation }: Props) => {
     const { date } = useDatePicker()
     const { translate } = useTranslation()
+    const { filters } = useFilter()
     const { data, error, isValidating, mutate, size, setSize, pagination } = useEvents(
         nation?.oid,
         {
             date,
             amount: 10,
+            excludeOids: excludeOids(filters),
         }
     )
 
@@ -54,6 +58,16 @@ const Timeline = ({ nation }: Props) => {
             }
         />
     )
+}
+
+const excludeOids = (filters: FilterCheckboxesType): Array<number> => {
+    var oids = []
+
+    for (let oid in filters.nations) {
+        if (filters.nations[oid]) oids.push(oid)
+    }
+
+    return oids
 }
 
 export default Timeline

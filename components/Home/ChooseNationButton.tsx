@@ -12,7 +12,6 @@ const ChooseNationButton = () => {
 
     const handlePress = () => {
         show ? sheetRef.current.snapTo(1) : sheetRef.current.snapTo(0)
-        //setShow(!show)
     }
 
     //console.log(sheetRef.current)

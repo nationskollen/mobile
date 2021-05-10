@@ -22,6 +22,9 @@ const FilterButtons = () => {
     const [filterList, setFilterList] = useState(<View />)
     const { data: nations } = useNations()
     const { data: categories } = useCategories()
+    nations.forEach((nation) => {
+        console.log(nation.name + ': ' + nation.oid)
+    })
 
     return (
         <View style={styles.container}>

@@ -1,18 +1,18 @@
 export default interface FilterCheckboxesType {
     nations: {
-        norrlands?: boolean
-        vdala?: boolean
-        kalmars?: boolean
-        gotlands?: boolean
-        stockholms?: boolean
-        ghs?: boolean
-        uplands?: boolean
-        goteborgs?: boolean
-        snerikes?: boolean
-        ostgotas?: boolean
-        vastgotas?: boolean
-        smalands?: boolean
-        värmlands?: boolean
+        405?: boolean
+        400?: boolean
+        406?: boolean
+        409?: boolean
+        394?: boolean
+        408?: boolean
+        410?: boolean
+        414?: boolean
+        415?: boolean
+        411?: boolean
+        412?: boolean
+        413?: boolean
+        407?: boolean
     }
 
     categories: {
