@@ -7,29 +7,11 @@ import React, { useState } from 'react'
 import { View, StyleSheet } from 'react-native'
 
 import Button from '../../Common/Button'
-import { useNations } from '@dsp-krabby/sdk'
-import { useFilter } from './FilterContext'
+import { useNations, useCategories } from '@nationskollen/sdk'
 import { useSheet } from '../SheetContext'
 import FilterListNation from './FilterLists/NationList'
 import FilterListCategory from './FilterLists/CategoryList'
 import FilterListStudent from './FilterLists/StudentList'
-
-//used until hook for categories is available
-export const categoriesTmp = [
-    'Frukost',
-    'Brunch',
-    'Lunch',
-    'Fika',
-    'Sport',
-    'Restaurang',
-    'Pub',
-    'Kultur',
-    'Gasque',
-    'Släpp',
-    'Klubb',
-    'Konsert',
-    'Övrigt',
-]
 
 export const student = ['Nationskort krävs', 'Medlemskap krävs']
 
@@ -40,7 +22,7 @@ const FilterButtons = () => {
     const [filterList, setFilterList] = useState(<View />)
     const { data: nations } = useNations()
     const { sheetRef } = useSheet()
-    const categories = categoriesTmp // replace with useCategories() when avaliable
+    const { data } = useCategories()
 
     return (
         <View style={styles.container}>
@@ -56,7 +38,7 @@ const FilterButtons = () => {
                 />
                 <Button
                     onPress={() => {
-                        setFilterList(<FilterListCategory categories={categories} />)
+                        setFilterList(<FilterListCategory categories={data} />)
                         sheetRef.current.snapTo(0)
                     }}
                     type={'primary'}

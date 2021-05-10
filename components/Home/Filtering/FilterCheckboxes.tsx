@@ -12,23 +12,22 @@ export default interface FilterCheckboxesType {
         ostgotas?: boolean
         vastgotas?: boolean
         smalands?: boolean
-        Värmlands?: boolean
+        värmlands?: boolean
     }
 
     categories: {
-        frukost?: boolean
-        brunch?: boolean
-        lunch?: boolean
-        fika?: boolean
-        sport?: boolean
-        restaurang?: boolean
-        pub?: boolean
-        kultur?: boolean
-        gasque?: boolean
-        släpp?: boolean
-        klubb?: boolean
-        konsert?: boolean
-        övrigt?: boolean
+        Breakfast?: boolean
+        Brunch?: boolean
+        Club?: boolean
+        Consert?: boolean
+        Culture?: boolean
+        Fika?: boolean
+        Gasque?: boolean
+        Lunch?: boolean
+        Other?: boolean
+        Pub?: boolean
+        Restaurant?: boolean
+        Sport?: boolean
     }
 
     student: {

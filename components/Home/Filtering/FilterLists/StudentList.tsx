@@ -30,8 +30,10 @@ const FilterListStudent = ({ student }: Props) => {
                         size={24}
                         title={<Text style={{ flex: 1, color: colors.text }}>{item}</Text>}
                         containerStyle={{
-                            width: '85%',
+                            height: '85%',
+                            width: '95%',
                             backgroundColor: colors.backgroundExtra,
+                            borderRadius: 10,
                             borderColor: colors.border,
                         }}
                         iconRight

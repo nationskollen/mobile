@@ -4,19 +4,24 @@
  * @module FilterListNation
  */
 import React from 'react'
-import { View, FlatList, Text } from 'react-native'
-import { CheckBox, colors } from 'react-native-elements'
+import { FlatList, Text } from 'react-native'
+import { CheckBox } from 'react-native-elements'
 import { useFilter } from '../FilterContext'
 import { useTheme } from '../../../ThemeContext'
 import ContentContainer from '../../../Common/ContentContainer'
+import { CategoryCollection } from '@nationskollen/sdk'
 
 interface Props {
-    categories: Array<string>
+    categories: CategoryCollection
 }
 
 const FilterListCategory = ({ categories }: Props) => {
     const { filters, setFilters } = useFilter()
     const { colors } = useTheme()
+
+    if (!categories) return null
+
+    console.log(categories)
 
     return (
         <FlatList
@@ -27,27 +32,29 @@ const FilterListCategory = ({ categories }: Props) => {
                         center
                         checkedColor={colors.primary}
                         size={24}
-                        title={<Text style={{ flex: 1, color: colors.background }}>{item}</Text>}
+                        title={<Text style={{ flex: 1, color: colors.text }}>{item.name}</Text>}
                         containerStyle={{
-                            width: '85%',
-                            backgroundColor: colors.background,
+                            height: '85%',
+                            width: '95%',
+                            backgroundColor: colors.backgroundExtra,
+                            borderRadius: 10,
                             borderColor: colors.border,
                         }}
                         iconRight
                         onPress={() => {
                             setFilters({
                                 ...filters,
-                                nations: {
-                                    ...filters.nations,
-                                    [item]: !filters.nations[item],
+                                categories: {
+                                    ...filters.categories,
+                                    [item.id]: !filters.categories[item.id],
                                 },
                             })
                         }}
-                        checked={!filters.nations[item]}
+                        checked={!filters.categories[item.id]}
                     />
                 </ContentContainer>
             )}
-            keyExtractor={(item) => item}
+            keyExtractor={(item) => item.id.toString()}
         />
     )
 }

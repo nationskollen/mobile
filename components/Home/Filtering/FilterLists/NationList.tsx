@@ -4,12 +4,12 @@
  * @module FilterListNation
  */
 import React from 'react'
-import { View, FlatList, Text } from 'react-native'
+import { FlatList, Text } from 'react-native'
 import { CheckBox } from 'react-native-elements'
 import { useTheme } from '../../../ThemeContext'
 import { useFilter } from '.././FilterContext'
 import NationLogo from '../../../Nations/Front/NationLogo'
-import { NationCollection } from '@dsp-krabby/sdk'
+import { NationCollection } from '@nationskollen/sdk'
 import ContentContainer from '../../../Common/ContentContainer'
 
 interface Props {
