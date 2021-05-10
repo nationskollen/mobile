@@ -1,12 +1,11 @@
-import * as React from 'react'
-import { StyleSheet, Text, View, Button } from 'react-native'
-import Animated from 'react-native-reanimated'
+import React from 'react'
+import { StyleSheet, View, Button } from 'react-native'
 import BottomSheet from 'reanimated-bottom-sheet'
 import { useSheet } from './SheetContext'
 import { useTheme } from '../ThemeContext'
 
 const Bottomsheet = ({ children }) => {
-    const { sheetRef } = useSheet()
+    const { show, setShow, sheetRef } = useSheet()
     const { colors } = useTheme()
 
     const renderContent = () => (
@@ -29,16 +28,20 @@ const Bottomsheet = ({ children }) => {
         </View>
     )
 
+    //show ? () => sheetRef.current.snapTo(0) : () => sheetRef.current.snapTo(1)
+
     return (
         <>
             <BottomSheet
                 ref={sheetRef}
-                snapPoints={[450, 100, 25]}
-                initialSnap={0}
+                snapPoints={[450, 25]}
+                initialSnap={1}
                 borderRadius={0}
                 renderContent={renderContent}
                 renderHeader={renderHeader}
                 enabledContentTapInteraction={false} // for android to interact with content
+                onOpenEnd={() => setShow(!show)}
+                onCloseEnd={() => setShow(!show)}
                 enabledGestureInteraction={true}
             ></BottomSheet>
         </>

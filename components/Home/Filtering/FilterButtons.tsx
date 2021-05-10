@@ -21,8 +21,7 @@ export const student = ['Nationskort krävs', 'Medlemskap krävs']
 const FilterButtons = () => {
     const [filterList, setFilterList] = useState(<View />)
     const { data: nations } = useNations()
-    const { sheetRef } = useSheet()
-    const { data } = useCategories()
+    const { data: categories } = useCategories()
 
     return (
         <View style={styles.container}>
@@ -30,7 +29,6 @@ const FilterButtons = () => {
                 <Button
                     onPress={() => {
                         setFilterList(<FilterListNation nations={nations} />)
-                        sheetRef.current.snapTo(0)
                     }}
                     type={'primary'}
                     label={'Nation'}
@@ -38,8 +36,7 @@ const FilterButtons = () => {
                 />
                 <Button
                     onPress={() => {
-                        setFilterList(<FilterListCategory categories={data} />)
-                        sheetRef.current.snapTo(0)
+                        setFilterList(<FilterListCategory categories={categories} />)
                     }}
                     type={'primary'}
                     label={'Kategori'}
@@ -48,7 +45,6 @@ const FilterButtons = () => {
                 <Button
                     onPress={() => {
                         setFilterList(<FilterListStudent student={student} />)
-                        sheetRef.current.snapTo(0)
                     }}
                     type={'primary'}
                     label={'Student'}

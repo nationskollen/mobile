@@ -8,12 +8,14 @@ import Button from '../Common/Button'
 import { useSheet } from './SheetContext'
 
 const ChooseNationButton = () => {
-    const { sheetRef } = useSheet()
+    const { sheetRef, show, setShow } = useSheet()
 
     const handlePress = () => {
-        sheetRef.current.snapTo(1)
+        show ? sheetRef.current.snapTo(1) : sheetRef.current.snapTo(0)
+        //setShow(!show)
     }
 
+    //console.log(sheetRef.current)
     return (
         <Button
             type="primary"

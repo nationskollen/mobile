@@ -4,7 +4,7 @@
  * @module FilterListNation
  */
 import React from 'react'
-import { View, FlatList, Text } from 'react-native'
+import { FlatList, Text } from 'react-native'
 import { CheckBox } from 'react-native-elements'
 import { useFilter } from '.././FilterContext'
 import { useTheme } from '../../../ThemeContext'
