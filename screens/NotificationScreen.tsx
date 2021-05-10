@@ -26,10 +26,6 @@ const NotificationScreen = () => {
                 component={NotificationList}
                 options={{
                     title: translate.titles.notifications,
-                    headerTitleStyle: {
-                        fontFamily: 'NotoSans',
-                        fontWeight: 'bold',
-                    },
                 }}
             />
         </Stack.Navigator>

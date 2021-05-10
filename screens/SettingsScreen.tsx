@@ -39,10 +39,6 @@ const SettingsScreen = () => {
                 component={SettingsPage}
                 options={{
                     title: translate.titles.settings,
-                    headerTitleStyle: {
-                        fontFamily: 'NotoSans',
-                        fontWeight: 'bold',
-                    },
                 }}
             />
             <Stack.Screen
@@ -52,10 +48,6 @@ const SettingsScreen = () => {
                     title: translate.titles.customizeNotificaitions,
                     headerLeft: () => <NavigationBackArrow />,
                     ...TitleOffsetOptions,
-                    headerTitleStyle: {
-                        fontFamily: 'NotoSans',
-                        fontWeight: 'bold',
-                    },
                 }}
             />
             <Stack.Screen
@@ -65,10 +57,6 @@ const SettingsScreen = () => {
                     title: translate.titles.login,
                     headerLeft: () => <NavigationBackArrow />,
                     ...TitleOffsetOptions,
-                    headerTitleStyle: {
-                        fontFamily: 'NotoSans',
-                        fontWeight: 'bold',
-                    },
                 }}
             />
             <Stack.Screen
@@ -78,10 +66,6 @@ const SettingsScreen = () => {
                     title: translate.titles.language,
                     headerLeft: () => <NavigationBackArrow />,
                     ...TitleOffsetOptions,
-                    headerTitleStyle: {
-                        fontFamily: 'NotoSans',
-                        fontWeight: 'bold',
-                    },
                 }}
             />
             <Stack.Screen
@@ -91,10 +75,6 @@ const SettingsScreen = () => {
                     title: translate.titles.aboutUs,
                     headerLeft: () => <NavigationBackArrow />,
                     ...TitleOffsetOptions,
-                    headerTitleStyle: {
-                        fontFamily: 'NotoSans',
-                        fontWeight: 'bold',
-                    },
                 }}
             />
         </Stack.Navigator>

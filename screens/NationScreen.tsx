@@ -35,10 +35,6 @@ const NationScreen = () => {
                 component={NationsPage}
                 options={{
                     title: translate.titles.chooseNation,
-                    headerTitleStyle: {
-                        fontFamily: 'NotoSans',
-                        fontWeight: 'bold',
-                    },
                 }}
             />
             {sharedScreens}

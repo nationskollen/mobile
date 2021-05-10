@@ -25,7 +25,7 @@ export const HeaderOptions = (
         borderBottomColor: colors.border,
     },
     headerTitleStyle: {
-        fontWeight: 'bold',
+	fontFamily: 'NotoSans',
         color: isDarkMode ? colors.textHighlight : 'white',
         fontSize: 20,
         flex: 1,
