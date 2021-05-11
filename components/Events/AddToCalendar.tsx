@@ -54,6 +54,7 @@ export async function getPermission(): Promise<string> {
     const { status } = await Calendar.getCalendarPermissionsAsync()
     if (status != 'granted') {
         const { status } = await Calendar.requestCalendarPermissionsAsync()
+        return status
     }
 
     return status

@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
     },
 
     buttonsContainer: {
+        height: 70,
         flexDirection: 'row',
         justifyContent: 'space-evenly',
     },
