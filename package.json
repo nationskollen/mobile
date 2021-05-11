@@ -19,7 +19,8 @@
   "dependencies": {
     "@expo-google-fonts/noto-sans": "^0.1.0",
     "@expo/ngrok": "^2.4.3",
-    "@nationskollen/sdk": "^2.3.3",
+    "@nationskollen/sdk": "^2.3.6",
+    "@nationskollen/typedoc-theme-overrides": "^1.0.2",
     "@react-native-async-storage/async-storage": "^1.13.0",
     "@react-native-community/datetimepicker": "^3.4.7",
     "@react-native-community/masked-view": "0.1.10",
@@ -36,7 +37,6 @@
     "expo-linear-gradient": "^9.1.0",
     "expo-splash-screen": "~0.10.2",
     "expo-status-bar": "~1.0.4",
-    "lottie-react-native": "3.5.0",
     "react": "16.13.1",
     "react-async-hook": "^3.6.2",
     "react-content-loader": "^6.0.3",
