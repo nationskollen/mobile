@@ -4,7 +4,7 @@
  */
 import React from 'react'
 import { FlatList } from 'react-native'
-import { useNations } from '@dsp-krabby/sdk'
+import { useNations } from '@nationskollen/sdk'
 
 import Dropdown from '../Common/Dropdown'
 import ListEmpty from '../List/ListEmpty'

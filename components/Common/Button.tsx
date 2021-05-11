@@ -6,7 +6,7 @@
  * @module Button
  */
 import React from 'react'
-import { View, Text, StyleSheet, TouchableHighlight, ViewStyle } from 'react-native'
+import { View, StyleSheet, TouchableHighlight, ViewStyle, Text } from 'react-native'
 
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'

@@ -8,12 +8,12 @@
  */
 import React, { useEffect, useRef } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-import { useNation } from '@dsp-krabby/sdk'
 import { useTheme } from '../../ThemeContext'
-import { TabStackParamList } from '../../Footer/Footer'
+import { useNation } from '@nationskollen/sdk'
 import { Ionicons } from '@expo/vector-icons'
-import { useNavigation } from '@react-navigation/core'
 import { RouteProp } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/core'
+import { TabStackParamList } from '../../Footer/Footer'
 import { useTranslation } from '../../../translate/LanguageContext'
 
 import Title from '../../Common/Title'

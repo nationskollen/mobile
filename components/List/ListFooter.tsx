@@ -5,7 +5,7 @@
 import React from 'react'
 import { Text, StyleSheet } from 'react-native'
 import { useTheme } from '../ThemeContext'
-import { PaginationMeta } from '@dsp-krabby/sdk'
+import { PaginationMeta } from '@nationskollen/sdk'
 
 interface Props {
     pagination: PaginationMeta | null

@@ -24,7 +24,9 @@ const NotificationScreen = () => {
             <Stack.Screen
                 name="Notifications"
                 component={NotificationList}
-                options={{ title: translate.titles.notifications }}
+                options={{
+                    title: translate.titles.notifications,
+                }}
             />
         </Stack.Navigator>
     )

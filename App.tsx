@@ -3,85 +3,41 @@
  * @category BIG
  * @module App
  */
-import React, { useState, useRef, useEffect } from 'react'
-import { Platform } from 'react-native'
+import React, { useState } from 'react'
 import 'react-native-gesture-handler'
 import Constants from 'expo-constants'
 import AppLoading from 'expo-app-loading'
-import { Provider } from '@dsp-krabby/sdk'
-import * as Notifications from 'expo-notifications'
+import { Provider } from '@nationskollen/sdk'
+import { useFonts } from '@expo-google-fonts/noto-sans'
+import { PushTokenProvider } from './components/PushTokenContext'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { LanguageContextProvider } from './translate/LanguageContext'
+import { setCustomText, setCustomTextInput } from 'react-native-global-props'
 import { DarkTheme, LightTheme, ThemeProvider, Theme } from './components/ThemeContext'
 
 import Footer from './components/Footer/Footer'
 
-Notifications.setNotificationHandler({
-    handleNotification: async () => ({
-        shouldShowAlert: true,
-        shouldPlaySound: false,
-        shouldSetBadge: false,
-    }),
-})
-
-async function registerForPushNotificationsAsync() {
-    let token: string
-
-    if (Constants.isDevice) {
-        const { status: existingStatus } = await Notifications.getPermissionsAsync()
-        let finalStatus = existingStatus
-
-        if (existingStatus !== 'granted') {
-            const { status } = await Notifications.requestPermissionsAsync();
-            finalStatus = status;
-        }
-
-        if (finalStatus !== 'granted') {
-            console.log('Failed to get push token for push notification!');
-            return;
-        }
-
-        token = (await Notifications.getExpoPushTokenAsync()).data;
-        console.log(token);
-    } else {
-        console.log('Must use physical device for Push Notifications');
-    }
-
-    if (Platform.OS === 'android') {
-        Notifications.setNotificationChannelAsync('default', {
-            name: 'default',
-            importance: Notifications.AndroidImportance.MAX,
-            vibrationPattern: [0, 250, 250, 250],
-            lightColor: '#FF231F7C',
-        });
-    }
-
-    return token;
-}
-
 const App = () => {
-    const responseListener = useRef<any>();
-    const notificationListener = useRef<any>();
     const [isReady, setIsReady] = useState(false)
-    const [expoPushToken, setExpoPushToken] = useState('');
     const [initialTheme, setInitialTheme] = useState<Theme | null>(null)
 
-    useEffect(() => {
-        registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
+    const [loaded] = useFonts({
+        NotoSans: require('./assets/fonts/NotoSans-Regular.ttf'),
+    })
 
-        notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
-            console.log(notification)
-        })
+    // We have to to wait for the app to load the custom font before we render it
+    if (!loaded) {
+        return null
+    }
 
-        responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
-            console.log(response)
-        })
+    const customTextProps = {
+        style: {
+            fontFamily: 'NotoSans',
+        },
+    }
 
-        return () => {
-            Notifications.removeNotificationSubscription(notificationListener.current)
-            Notifications.removeNotificationSubscription(responseListener.current)
-        }
-    }, [])
+    setCustomText(customTextProps)
+    setCustomTextInput(customTextProps)
 
     if (!isReady) {
         return (
@@ -101,7 +57,7 @@ const App = () => {
                 autoHideSplash={true}
                 onError={console.warn}
             />
-            )
+        )
     }
 
     return (
@@ -115,7 +71,9 @@ const App = () => {
         >
             <ThemeProvider initialTheme={initialTheme}>
                 <LanguageContextProvider>
-                    <Footer />
+                    <PushTokenProvider>
+                        <Footer />
+                    </PushTokenProvider>
                 </LanguageContextProvider>
             </ThemeProvider>
         </Provider>
