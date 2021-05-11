@@ -1,17 +1,18 @@
 {
     "expo": {
-        "name": "mobile",
-        "slug": "mobile",
+        "name": "Nationskollen",
+        "slug": "nationskollen",
         "version": "1.0.0",
         "orientation": "portrait",
         "icon": "./assets/icon.png",
-        "splash": {
-            "backgroundColor": "#0a090c"
-        },
-        "updates": {
+       "updates": {
             "fallbackToCacheTimeout": 0
         },
-        "assetBundlePatterns": ["**/*"],
+	"splash" : {
+	    "backgroundColor": "#71002E",
+	    "image": "./assets/expo/splash.png" 
+	},
+	"assetBundlePatterns": ["**/*"],
         "ios": {
             "bundleIdentifier": "com.krabby.nationskollen",
             "supportsTablet": true,
@@ -29,11 +30,12 @@
             }
         },
         "androidStatusBar": {
-            "backgroundColor": "#71002E",
+	    "barStyle": "light-content",
             "translucent": true
         },
         "android": {
             "package": "com.krabby.nationskollen",
+            "enableDangerousExperimentalLeanBuilds": true,
             "config": {
                 "googleMaps": {
                     "apiKey": "AIzaSyCBKL5amMlCxk95ltCuxmwMDw3d2dsQ2ug"
@@ -44,12 +46,8 @@
                 "backgroundColor": "#FFFFFF"
             }
         },
-        "web": {
-            "favicon": "./assets/favicon.png"
-        },
-
         "androidNavigationBar": {
-            "barStyle": "dark-content",
+            "barStyle": "light-content",
             "backgroundColor": "#71002E"
         }
     }
