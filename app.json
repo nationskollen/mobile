@@ -10,7 +10,7 @@
         },
 	"splash" : {
 	    "backgroundColor": "#71002E",
-	    "image": "./assets/expo/splash.png",
+	    "image": "./assets/expo/splash3.png" 
 	},
 	"assetBundlePatterns": ["**/*"],
         "ios": {
