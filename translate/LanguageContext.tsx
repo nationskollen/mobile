@@ -9,6 +9,8 @@ export interface LanguageContextContract {
     setCurrentLanguage: React.Dispatch<React.SetStateAction<LangCode>>
     translate: LanguageContextType
     currentLanguage: LangCode
+    activeLanguageKey : number,
+    setActiveLanguageKey: React.Dispatch<React.SetStateAction<number>>
 }
 const LanguageContext = React.createContext<LanguageContextContract>({} as LanguageContextContract)
 
@@ -16,11 +18,14 @@ export const useTranslation = () => useContext(LanguageContext)
 
 export const LanguageContextProvider = ({ children }) => {
     const [selectedLanguage, setSelectedLanguage] = useState(swe)
+    const [activeLanguageKey, setActiveLanguageKey] = useState(1)
     const [currentLanguage, setCurrentLanguage] = useState<LangCode>('sv-SV')
 
     return (
         <LanguageContext.Provider
             value={{
+		activeLanguageKey,
+		setActiveLanguageKey,
                 setSelectedLanguage,
                 translate: selectedLanguage,
                 currentLanguage,

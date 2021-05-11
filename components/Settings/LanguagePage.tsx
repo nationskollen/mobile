@@ -5,6 +5,7 @@ import { View, Text } from 'react-native'
 import { useTranslation } from '../../translate/LanguageContext'
 import en from '../../translate/languages/en'
 import swe from '../../translate/languages/swe'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import FocusAwareStatusBar from '../Common/FocusAwareStatusBar'
 import { CheckBox } from 'react-native-elements'
 
@@ -24,26 +25,39 @@ var checkedStates: checkedStatesType[] = [
     { key: 1, name: 'Svenska', checked: true, value: swe, langCode: 'sv-SV' },
 ]
 
-var initialState = 1
+
+export const uncheckAllExcept = (key:number) => {
+    checkedStates[key].checked = true
+    Object.keys(checkedStates).map((item, i) => {
+	if (checkedStates[i].key != key) {
+	    checkedStates[i].checked = false
+      } 
+
+     })  
+}
 
 const LanguagePage = () => {
-    const { colors } = useTheme()
-    const { setSelectedLanguage, setCurrentLanguage, currentLanguage } = useTranslation()
-    const [currentlyChecked, setCurrentlyChecked] = useState(initialState)
+const { colors } = useTheme()
+const { setSelectedLanguage, setCurrentLanguage, setActiveLanguageKey, activeLanguageKey} = useTranslation()
+const [currentlyChecked, setCurrentlyChecked] = useState(activeLanguageKey)
 
-    const uncheckPreviousCheckbox = (key: number) => {
-        checkedStates[key].checked = false
+    
+    const storeSelectedLanguage = async (chosenLanguageKey: number)  => {
+	await AsyncStorage.setItem('selectedLanguage', JSON.stringify(chosenLanguageKey))
     }
+
 
     const checkSelectedCheckbox = (selectedLanguage: LanguageContextType, key: number) => {
+	storeSelectedLanguage(key)
         setSelectedLanguage(selectedLanguage)
         checkedStates[key].checked = true
-        uncheckPreviousCheckbox(currentlyChecked)
+	checkedStates[currentlyChecked].checked = false
         setCurrentlyChecked(key)
         setCurrentLanguage(checkedStates[key].langCode)
-        initialState = key
+	setActiveLanguageKey(key)
     }
-    return (
+
+   return (
         <View>
             <FocusAwareStatusBar backgroundColor={colors.primary} />
             {checkedStates.map((option, index) => (
