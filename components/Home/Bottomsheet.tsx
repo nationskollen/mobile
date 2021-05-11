@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, View, Button } from 'react-native'
 import BottomSheet from 'reanimated-bottom-sheet'
 import { useSheet } from './SheetContext'
@@ -7,6 +7,9 @@ import { useTheme } from '../ThemeContext'
 const Bottomsheet = ({ children }) => {
     const { show, setShow, sheetRef } = useSheet()
     const { colors } = useTheme()
+    // states to prevent false show value when sheet is not dragged fully.
+    const [open, setOpen] = useState(false)
+    const [close, setClose] = useState(false)
 
     const renderContent = () => (
         <View
@@ -44,8 +47,26 @@ const Bottomsheet = ({ children }) => {
                 renderContent={renderContent}
                 renderHeader={renderHeader}
                 enabledContentTapInteraction={false} // for android to interact with content
-                onOpenStart={() => setShow(!show)}
-                onCloseStart={() => setShow(!show)}
+                onOpenStart={() => {
+                    setOpen(true)
+                    setClose(false)
+                }}
+                onCloseStart={() => {
+                    setClose(true)
+                    setOpen(false)
+                }}
+                onOpenEnd={() => {
+                    if (!close) {
+                        setOpen(false)
+                        setShow(!show)
+                    }
+                }}
+                onCloseEnd={() => {
+                    if (!open) {
+                        setClose(false)
+                        setShow(!show)
+                    }
+                }}
                 enabledGestureInteraction={true}
             ></BottomSheet>
         </>
