@@ -144,4 +144,28 @@ export default interface LanguageContextType {
         cancel: string
         successMsg: string
     }
+
+    filterButtons: {
+        category: string
+    }
+
+    filterStudent: {
+        needscard: string
+        needsmembership: string
+    }
+
+    filterCategory: {
+        Breakfast: string
+        Brunch: string
+        Club: string
+        Consert: string
+        Culture: string
+        Fika: string
+        Gasque: string
+        Lunch: string
+        Other: string
+        Pub: string
+        Restaurant: string
+        Sport: string
+    }
 }

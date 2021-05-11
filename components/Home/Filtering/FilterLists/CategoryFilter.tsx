@@ -24,9 +24,12 @@ const CategoryFilter = () => {
     }
 
     return (
-        categories && (
-            <FilterFlatList data={categories} onPress={onPress} checkedList={filters.categories} />
-        )
+        <FilterFlatList
+            data={categories}
+            onPress={onPress}
+            checkedList={filters.categories}
+            needsTranslate={true}
+        />
     )
 }
 

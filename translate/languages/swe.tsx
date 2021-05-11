@@ -146,6 +146,30 @@ const Swedish: LanguageContextType = {
         cancel: 'Avbryt',
         successMsg: 'Evenemanget är tillagt i din kalender',
     },
+
+    filterButtons: {
+        category: 'Kategori',
+    },
+
+    filterStudent: {
+        needscard: 'Nationskort krävs',
+        needsmembership: 'medlemskap krävs',
+    },
+
+    filterCategory: {
+        Breakfast: 'Frukost',
+        Brunch: 'Brunch',
+        Club: 'Klubb',
+        Consert: 'Konsert',
+        Culture: 'Kultur',
+        Fika: 'Fika',
+        Gasque: 'Gasque',
+        Lunch: 'Lunch',
+        Other: 'Övrigt',
+        Pub: 'Pub',
+        Restaurant: 'Restaurang',
+        Sport: 'Sport',
+    },
 }
 
 export default Swedish

@@ -29,6 +29,9 @@ const Timeline = ({ nation }: Props) => {
             date,
             amount: 10,
             excludeOids: excludeOids(filters),
+            excludeCategories: excludeCategories(filters),
+            onlyStudents: !filters.student[0],
+            onlyMembers: !filters.student[1],
         }
     )
 
@@ -68,6 +71,16 @@ const excludeOids = (filters: FilterCheckboxesType): Array<number> => {
     }
 
     return oids
+}
+
+const excludeCategories = (filters: FilterCheckboxesType): Array<number> => {
+    var categories = []
+
+    for (let id in filters.categories) {
+        if (filters.categories[id]) categories.push(parseInt(id))
+    }
+
+    return categories
 }
 
 export default Timeline

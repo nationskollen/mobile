@@ -11,12 +11,14 @@ import NationFilter from './FilterLists/NationFilter'
 import CategoryFilter from './FilterLists/CategoryFilter'
 import StudentFilter from './FilterLists/StudentFilter'
 import { useTheme } from '../../ThemeContext'
+import { useTranslation } from '../../../translate/LanguageContext'
 
 /**
  * This component is used to create pressable filter category buttons
  */
 const FilterButtons = () => {
     const [filterList, setFilterList] = useState(<NationFilter />)
+    const { translate } = useTranslation()
     const [focus, setFocus] = useState(1)
     const buttonStyles = buttons()
 
@@ -38,7 +40,7 @@ const FilterButtons = () => {
                         setFocus(2)
                     }}
                     type={'light'}
-                    label={'Kategori'} //add Dynamic Title
+                    label={translate.filterButtons.category}
                     style={focus === 2 ? buttonStyles.buttonFocus : buttonStyles.button}
                 />
                 <Button
@@ -59,6 +61,7 @@ const FilterButtons = () => {
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         width: '100%',
         height: '100%',
         justifyContent: 'space-between',
@@ -67,6 +70,7 @@ const styles = StyleSheet.create({
     },
 
     buttonsContainer: {
+        marginTop: 5,
         height: 70,
         flexDirection: 'row',
         justifyContent: 'space-evenly',

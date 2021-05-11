@@ -6,26 +6,28 @@
 import React from 'react'
 import { useFilter } from '../FilterContext'
 import FilterFlatList from '../FilterFlatList'
+import { useTranslation } from '../../../../translate/LanguageContext'
 
 interface studentProp {
     name: string
     id: number
 }
 
-const student = [
-    { name: 'Nationskort krävs', id: 0 }, //add dynamic name
-    { name: 'Medlemskap krävs', id: 1 }, //add dynamic name
-]
-
 const StudentFilter = () => {
     const { filters, setFilters } = useFilter()
+    const { translate } = useTranslation()
+
+    const student = [
+        { name: translate.filterStudent.needscard, id: 0 },
+        { name: translate.filterStudent.needsmembership, id: 1 },
+    ]
 
     const onPress = (item: studentProp) => {
         setFilters({
             ...filters,
             student: {
                 ...filters.student,
-                [item.id]: !filters.nations[item.id],
+                [item.id]: !filters.student[item.id],
             },
         })
     }

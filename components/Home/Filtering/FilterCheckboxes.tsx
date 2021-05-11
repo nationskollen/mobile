@@ -31,7 +31,7 @@ export default interface FilterCheckboxesType {
     }
 
     student: {
-        needscard?: boolean
-        needsmembership?: boolean
+        0?: boolean
+        1?: boolean
     }
 }

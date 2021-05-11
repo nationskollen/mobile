@@ -10,7 +10,15 @@ export interface FilterContextContract {
 }
 
 export const FilterProvider = ({ children }) => {
-    const [filters, setFilters] = useState({ nations: {}, categories: {}, student: {} })
+    const [filters, setFilters] = useState({
+        nations: {},
+        categories: {},
+        student: {
+            0: true,
+            1: true,
+        },
+    })
+    //student requirements have to be initialized with inversed values (start as unchecked)
 
     return (
         <FilterContext.Provider value={{ filters, setFilters }}>{children}</FilterContext.Provider>

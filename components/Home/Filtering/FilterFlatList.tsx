@@ -10,15 +10,18 @@ import { useTheme } from '../../ThemeContext'
 import NationLogo from '../../Nations/Front/NationLogo'
 import { CategoryCollection, NationCollection } from '@nationskollen/sdk'
 import ContentContainer from '../../Common/ContentContainer'
+import { useTranslation } from '../../../translate/LanguageContext'
 
 interface Props {
     data: NationCollection | CategoryCollection | Array<any> // it's not happy without this generic type?
     onPress: (arg0: object) => void
     checkedList: object
+    needsTranslate?: Boolean
 }
 
-const FilterFlatList = ({ data, onPress, checkedList }: Props) => {
+const FilterFlatList = ({ data, onPress, checkedList, needsTranslate }: Props) => {
     const { colors } = useTheme()
+    const { translate } = useTranslation()
 
     return (
         <FlatList
@@ -37,7 +40,12 @@ const FilterFlatList = ({ data, onPress, checkedList }: Props) => {
                     <CheckBox
                         size={24}
                         checkedColor={colors.primary}
-                        title={<Text style={{ flex: 1, color: colors.text }}>{item.name}</Text>}
+                        title={
+                            <Text style={{ flex: 1, color: colors.text, marginLeft: 5 }}>
+                                {/* Categories need translation */}
+                                {needsTranslate ? translate.filterCategory[item.name] : item.name}
+                            </Text>
+                        }
                         containerStyle={{
                             height: '85%',
                             width: '85%',
@@ -52,6 +60,7 @@ const FilterFlatList = ({ data, onPress, checkedList }: Props) => {
                 </ContentContainer>
             )}
             keyExtractor={(item) => (item?.oid ?? item?.id).toString()}
+            fadingEdgeLength={50}
         />
     )
 }

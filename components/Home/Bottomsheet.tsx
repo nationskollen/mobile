@@ -7,7 +7,8 @@ import { useTheme } from '../ThemeContext'
 const Bottomsheet = ({ children }) => {
     const { show, setShow, sheetRef } = useSheet()
     const { colors } = useTheme()
-    // states to prevent false show value when sheet is not dragged fully.
+
+    // states for preventing false show value when sheet is not dragged fully.
     const [open, setOpen] = useState(false)
     const [close, setClose] = useState(false)
 
