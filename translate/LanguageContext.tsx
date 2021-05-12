@@ -1,4 +1,5 @@
 import swe from './languages/swe'
+import en from './languages/en'
 import React, { useState, useContext } from 'react'
 import LanguageContextType from './LanguageContextType'
 
@@ -9,27 +10,42 @@ export interface LanguageContextContract {
     setCurrentLanguage: React.Dispatch<React.SetStateAction<LangCode>>
     translate: LanguageContextType
     currentLanguage: LangCode
-    activeLanguageKey : number,
-    setActiveLanguageKey: React.Dispatch<React.SetStateAction<number>>
+    initialLanguage: number
+    availableLanguages: availableLanguagesType[]
 }
+
+interface availableLanguagesType {
+    key: number
+    value: LanguageContextType
+    langCode: LangCode
+}
+
 const LanguageContext = React.createContext<LanguageContextContract>({} as LanguageContextContract)
 
 export const useTranslation = () => useContext(LanguageContext)
 
-export const LanguageContextProvider = ({ children }) => {
-    const [selectedLanguage, setSelectedLanguage] = useState(swe)
-    const [activeLanguageKey, setActiveLanguageKey] = useState(1)
-    const [currentLanguage, setCurrentLanguage] = useState<LangCode>('sv-SV')
+var availableLanguages: availableLanguagesType[] = [
+    { key: 0, value: en, langCode: 'en-EN' },
+    { key: 1, value: swe, langCode: 'sv-SV' },
+]
+
+export const LanguageContextProvider = ({ initialLanguage, children }) => {
+    const [selectedLanguage, setSelectedLanguage] = useState(
+        availableLanguages[initialLanguage].value
+    )
+    const [currentLanguage, setCurrentLanguage] = useState<LangCode>(
+        availableLanguages[initialLanguage].langCode
+    )
 
     return (
         <LanguageContext.Provider
             value={{
-		activeLanguageKey,
-		setActiveLanguageKey,
                 setSelectedLanguage,
                 translate: selectedLanguage,
                 currentLanguage,
                 setCurrentLanguage,
+                availableLanguages,
+                initialLanguage,
             }}
         >
             {children}
