@@ -3,21 +3,26 @@
  * @module NotificationList
  */
 import React from 'react'
-import { FlatList } from 'react-native'
+import { FlatList, Text } from 'react-native'
 import { useTheme } from '../ThemeContext'
-import { useNations } from '@nationskollen/sdk'
+import { usePushToken } from '../PushTokenContext'
+import { useNotifications } from '@nationskollen/sdk'
 
 import Post from './Post'
 import ListEmpty from '../List/ListEmpty'
 import LoadingCircle from '../Common/LoadingCircle'
 import FocusAwareStatusBar from '../Common/FocusAwareStatusBar'
 
-// TODO: Currently, this renders nations as notifications since we
-//       do not have implemented notifications on the server yet.
-//       However, this allows us to the the reload functionality.
 const NotificationsContent = () => {
     const { colors } = useTheme()
-    const { data, error, isValidating, mutate } = useNations()
+    const { token } = usePushToken()
+
+    // If not token could be fetched, we can not use notifications
+    if (!token) {
+        return null
+    }
+
+    const { data, error, isValidating, mutate } = useNotifications(token)
 
     return (
         <>
@@ -25,7 +30,7 @@ const NotificationsContent = () => {
             <FlatList
                 data={data}
                 renderItem={({ item }) => <Post data={item} />}
-                keyExtractor={(item) => item.name}
+                keyExtractor={(item) => item.id.toString()}
                 refreshControl={<LoadingCircle validating={isValidating} mutate={mutate} />}
                 ListEmptyComponent={() =>
                     ListEmpty({

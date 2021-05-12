@@ -2,12 +2,17 @@
  * @category Settings
  * @module NotificationOptions
  */
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import { useTheme } from '../ThemeContext'
 import { useAsyncCallback } from 'react-async-hook'
 import { View, StyleSheet, Text } from 'react-native'
 import ToggleSwitch from 'toggle-switch-react-native'
-import { useApi, SubscriptionTopicCollection, SubscriptionCreateData } from '@nationskollen/sdk'
+import {
+    useApi,
+    SubscriptionTopicCollection,
+    SubscriptionCreateData,
+    Subscription,
+} from '@nationskollen/sdk'
 import { useTranslation } from '../../translate/LanguageContext'
 import LanguageContextType from '../../translate/LanguageContextType'
 
@@ -17,6 +22,7 @@ export interface Props {
     oid: number
     token: string
     topics: SubscriptionTopicCollection
+    initialData?: Record<string, Subscription>
 }
 
 export interface ToggleProps {
@@ -24,6 +30,7 @@ export interface ToggleProps {
     oid: number
     topicId: number
     token: string
+    subscription?: Subscription
 }
 
 function translateTopic(topicName: string, translate: LanguageContextType) {
@@ -38,7 +45,7 @@ function translateTopic(topicName: string, translate: LanguageContextType) {
 }
 
 /// Renders the different notification options
-const NotificationOptions = ({ topics, oid, token }: Props) => {
+const NotificationOptions = ({ topics, oid, token, initialData }: Props) => {
     const { translate } = useTranslation()
 
     return (
@@ -49,6 +56,7 @@ const NotificationOptions = ({ topics, oid, token }: Props) => {
                     token={token}
                     oid={oid}
                     topicId={topic.id}
+                    subscription={initialData && initialData[topic.id]}
                     text={translateTopic(topic.name, translate)}
                 />
             ))}
@@ -57,22 +65,51 @@ const NotificationOptions = ({ topics, oid, token }: Props) => {
 }
 
 // TODO: How should we set the initial state?
-const Toggle = ({ text, topicId, oid, token }: ToggleProps) => {
+const Toggle = ({ text, topicId, oid, token, subscription }: ToggleProps) => {
     const api = useApi()
     const { colors } = useTheme()
-    const [toggled, setToggled] = useState(false)
-    const createAction = useAsyncCallback((data: SubscriptionCreateData) => api.subscriptions.create(data))
+    const [toggled, setToggled] = useState(!!subscription)
+    const [uuid, setUuid] = useState<string | null>(subscription ? subscription.uuid : null)
     const deleteAction = useAsyncCallback((uuid: string) => api.subscriptions.delete(uuid))
+    const createAction = useAsyncCallback((data: SubscriptionCreateData) =>
+        api.subscriptions.create(data)
+    )
 
-    const toggleCallback = useCallback((toggled: boolean) => {
-        setToggled(toggled)
-
-        if (toggled) {
-            createAction.execute({ oid, topic: topicId, token })
-        } else {
-            deleteAction.execute('xxx')
+    // Make sure to set uuid if we create subscription so taht we can delete it
+    useEffect(() => {
+        if (!createAction.result || !createAction.result.uuid) {
+            return
         }
-    }, [topicId, oid, token])
+
+        setUuid(createAction.result.uuid)
+    }, [createAction.result])
+
+    // Make sure to delete uuid if we delete subscription
+    useEffect(() => {
+        if (deleteAction.error || toggled) {
+            return
+        }
+
+        setUuid(null)
+    }, [deleteAction.error, deleteAction.result])
+
+    const toggleCallback = useCallback(
+        (toggled: boolean) => {
+            setToggled(toggled)
+
+            if (toggled) {
+                createAction.execute({ oid, topic: topicId, token })
+            } else {
+                // Can not remove subscription if we do not have a subscription to begin with
+                if (!uuid) {
+                    return
+                }
+
+                deleteAction.execute(uuid)
+            }
+        },
+        [topicId, oid, token, uuid]
+    )
 
     return (
         <View style={[styles.switch, { borderBottomColor: colors.border }]}>

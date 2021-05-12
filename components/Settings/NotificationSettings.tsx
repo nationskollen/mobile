@@ -2,10 +2,15 @@
  * @category Settings
  * @module NotificationSettings
  */
-import React from 'react'
+import React, { useMemo } from 'react'
 import { FlatList, Text } from 'react-native'
 import { usePushToken } from '../PushTokenContext'
-import { useNations, useSubscriptionTopics } from '@nationskollen/sdk'
+import {
+    useNations,
+    useSubscriptionTopics,
+    useSubscriptions,
+    Subscription,
+} from '@nationskollen/sdk'
 
 import Dropdown from '../Common/Dropdown'
 import ListEmpty from '../List/ListEmpty'
@@ -17,15 +22,34 @@ const NotificationSettings = () => {
     const {
         data: topics,
         isValidating: isValidatingTopics,
-        mutate: mutateTopics
+        mutate: mutateTopics,
     } = useSubscriptionTopics()
     const { token } = usePushToken()
-    const { data, error, isValidating, mutate } = useNations()
 
     // TODO: Print error if push token could not be retrieved
     if (!token) {
         return null
     }
+
+    const { data: subscriptions } = useSubscriptions(token)
+    const { data, error, isValidating, mutate } = useNations()
+
+    const parsedSubscriptions = useMemo(() => {
+        if (!subscriptions || !Array.isArray(subscriptions)) {
+            return {}
+        }
+
+        const parsedData: Record<string, Record<number, Subscription>> = {}
+
+        subscriptions.forEach((subscription) => {
+            parsedData[subscription.nation_id] = {
+                ...parsedData[subscription.nation_id],
+                [subscription.subscription_topic_id]: subscription,
+            }
+        })
+
+        return parsedData
+    }, [subscriptions])
 
     // If no subscription topics can be found, we can not modify notifications
     if ((!topics || topics.length === 0) && !isValidatingTopics) {
@@ -41,6 +65,7 @@ const NotificationSettings = () => {
                         oid={item.oid}
                         token={token}
                         topics={topics}
+                        initialData={parsedSubscriptions[item.oid]}
                     />
                 </Dropdown>
             )}
