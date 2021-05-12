@@ -10,11 +10,10 @@ import Constants from 'expo-constants'
 import AppLoading from 'expo-app-loading'
 import { Provider } from '@nationskollen/sdk'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { LanguageContextProvider, useTranslation } from './translate/LanguageContext'
+import { LanguageContextProvider } from './translate/LanguageContext'
 import { DarkTheme, LightTheme, ThemeProvider, Theme } from './components/ThemeContext'
 import { setCustomText, setCustomTextInput } from 'react-native-global-props'
 import { useFonts } from '@expo-google-fonts/noto-sans'
-import { checkedStates } from './components/Settings/LanguagePage'
 import Footer from './components/Footer/Footer'
 
 const App = () => {
@@ -38,8 +37,6 @@ const App = () => {
 
     setCustomText(customTextProps)
     setCustomTextInput(customTextProps)
-    var cock = checkedStates
-
     if (!isReady) {
         return (
             <AppLoading
