@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     },
 
     text: {
-        fontWeight: 'bold',
+        fontFamily: 'Roboto_700Bold',
     },
 
     icon: {
