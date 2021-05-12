@@ -4,7 +4,8 @@
  * @module FilterFlatList
  */
 import React from 'react'
-import { FlatList, Text } from 'react-native'
+import { Text } from 'react-native'
+import { FlatList } from 'react-native-gesture-handler'
 import { CheckBox } from 'react-native-elements'
 import { useTheme } from '../../ThemeContext'
 import NationLogo from '../../Nations/Front/NationLogo'
