@@ -31,12 +31,7 @@ const NotificationsContent = () => {
                 data={data}
                 renderItem={({ item }) => <Post notification={item} />}
                 keyExtractor={(item) => item.id.toString()}
-                refreshControl={
-                    <LoadingCircle
-                        validating={isValidating}
-                        mutate={mutate}
-                    />
-                }
+                refreshControl={<LoadingCircle validating={isValidating} mutate={mutate} />}
                 ListEmptyComponent={() =>
                     ListEmpty({
                         error,

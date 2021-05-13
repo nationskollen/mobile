@@ -22,7 +22,9 @@ const Post = ({ notification }) => {
             <View style={styles.header}>
                 <NationLogo src={nation?.icon_img_src} size={50} />
                 <View style={styles.headerWrapper}>
-                    <Text style={[styles.nationName, { color: colors.primaryText }]}>{nation?.name}</Text>
+                    <Text style={[styles.nationName, { color: colors.primaryText }]}>
+                        {nation?.name}
+                    </Text>
                     <Text style={[styles.notificationHeader, { color: colors.textHighlight }]}>
                         {notification.title}
                     </Text>

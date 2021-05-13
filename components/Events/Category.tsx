@@ -3,41 +3,43 @@ import { useTheme } from '../ThemeContext'
 import { View, Text, StyleSheet } from 'react-native'
 
 export interface Props {
-    name: string
+    names: Array<string>
 }
 
-const Category = ({ name }: Props) => {
+const Categories = ({ names }: Props) => {
     const { colors } = useTheme()
 
-    if (!name) {
+    if (names.length === 0) {
         return null
     }
 
     return (
-        <View
-            style={[
-                styles.container,
-                {
-                    backgroundColor: colors.backgroundExtra,
-                    borderColor: colors.borderDark,
-                },
-            ]}
-        >
-            <Text style={[styles.text, { color: colors.text }]}>{name}</Text>
+        <View style={styles.position}>
+            {names.map((name, index) => (
+                <View
+                    style={[
+                        styles.container,
+                        {
+                            backgroundColor: colors.backgroundExtra,
+                            borderColor: colors.borderDark,
+                        },
+                    ]}
+                    key={index}
+                >
+                    <Text style={[styles.text, { color: colors.text }]}>{name}</Text>
+                </View>
+            ))}
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        position: 'absolute',
         borderWidth: 1,
-        zIndex: 20,
-        top: 10,
-        left: 10,
         paddingHorizontal: 10,
         paddingVertical: 5,
         borderRadius: 8,
+        marginRight: 5,
     },
 
     text: {
@@ -45,6 +47,15 @@ const styles = StyleSheet.create({
         fontSize: 11,
         textTransform: 'uppercase',
     },
+
+    position: {
+        display: 'flex',
+        flexDirection: 'row',
+        position: 'absolute',
+        zIndex: 20,
+        top: 10,
+        left: 10,
+    },
 })
 
-export default Category
+export default Categories

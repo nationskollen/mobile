@@ -74,7 +74,10 @@ export const PushTokenProvider = ({ children }: Props) => {
     const notificationListener = useRef<any>()
     const [token, setToken] = useState<string | null>(null)
     const { result } = useAsync(async () => await AsyncStorage.getItem('lastUpdated'), [])
-    const setLastUpdated = useCallback((date: Date) => AsyncStorage.setItem('lastUpdated', date.toISOString()), [])
+    const setLastUpdated = useCallback(
+        (date: Date) => AsyncStorage.setItem('lastUpdated', date.toISOString()),
+        []
+    )
 
     useEffect(() => {
         registerForPushNotificationsAsync().then((token) => setToken(token))
