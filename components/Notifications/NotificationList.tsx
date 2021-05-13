@@ -2,8 +2,8 @@
  * @category Notifications
  * @module NotificationList
  */
-import React from 'react'
-import { FlatList, Text } from 'react-native'
+import React, { useEffect } from 'react'
+import { FlatList } from 'react-native'
 import { useTheme } from '../ThemeContext'
 import { usePushToken } from '../PushTokenContext'
 import { useNotifications } from '@nationskollen/sdk'
@@ -29,14 +29,19 @@ const NotificationsContent = () => {
             <FocusAwareStatusBar backgroundColor={colors.primary} />
             <FlatList
                 data={data}
-                renderItem={({ item }) => <Post data={item} />}
+                renderItem={({ item }) => <Post notification={item} />}
                 keyExtractor={(item) => item.id.toString()}
-                refreshControl={<LoadingCircle validating={isValidating} mutate={mutate} />}
+                refreshControl={
+                    <LoadingCircle
+                        validating={isValidating}
+                        mutate={mutate}
+                    />
+                }
                 ListEmptyComponent={() =>
                     ListEmpty({
                         error,
                         loading: isValidating,
-                        message: 'Inga notifikationer',
+                        message: 'Inga nya notifikationer',
                     })
                 }
             />

@@ -4,13 +4,17 @@
  * @category Misc
  * @module PushTokenContext
  */
-import React, { createContext, useState, useContext, useRef, useEffect } from 'react'
+import React, { createContext, useCallback, useState, useContext, useRef, useEffect } from 'react'
 import Constants from 'expo-constants'
 import { Platform } from 'react-native'
+import { useAsync } from 'react-async-hook'
 import * as Notifications from 'expo-notifications'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export interface PushTokenContextContract {
     token: string
+    lastUpdated?: Date
+    setLastUpdated: (date: Date) => void
 }
 
 export interface Props {
@@ -69,6 +73,8 @@ export const PushTokenProvider = ({ children }: Props) => {
     const responseListener = useRef<any>()
     const notificationListener = useRef<any>()
     const [token, setToken] = useState<string | null>(null)
+    const { result } = useAsync(async () => await AsyncStorage.getItem('lastUpdated'), [])
+    const setLastUpdated = useCallback((date: Date) => AsyncStorage.setItem('lastUpdated', date.toISOString()), [])
 
     useEffect(() => {
         registerForPushNotificationsAsync().then((token) => setToken(token))
@@ -91,5 +97,15 @@ export const PushTokenProvider = ({ children }: Props) => {
         }
     }, [])
 
-    return <PushTokenContext.Provider value={{ token }}>{children}</PushTokenContext.Provider>
+    return (
+        <PushTokenContext.Provider
+            value={{
+                token,
+                lastUpdated: result ? new Date(result) : undefined,
+                setLastUpdated,
+            }}
+        >
+            {children}
+        </PushTokenContext.Provider>
+    )
 }
