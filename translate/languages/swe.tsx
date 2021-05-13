@@ -153,7 +153,7 @@ const Swedish: LanguageContextType = {
 
     filterStudent: {
         needscard: 'Nationskort krävs',
-        needsmembership: 'medlemskap krävs',
+        needsmembership: 'Medlemskap krävs',
     },
 
     filterCategory: {

@@ -27,7 +27,7 @@ const NationLogo = ({ src, size, spacing }: Props) => {
             style={[
                 styles.wrapper,
                 {
-                    backgroundColor: colors.backgroundHighlight,
+                    backgroundColor: colors.backgroundExtra,
                     height: actualSize,
                     width: actualSize,
                 },

@@ -8,7 +8,7 @@ import { useFilter } from '../FilterContext'
 import FilterFlatList from '../FilterFlatList'
 import { useTranslation } from '../../../../translate/LanguageContext'
 
-interface studentProp {
+export interface StudentProp {
     name: string
     id: number
 }
@@ -22,7 +22,7 @@ const StudentFilter = () => {
         { name: translate.filterStudent.needsmembership, id: 1 },
     ]
 
-    const onPress = (item: studentProp) => {
+    const onPress = (item: StudentProp) => {
         setFilters({
             ...filters,
             student: {
