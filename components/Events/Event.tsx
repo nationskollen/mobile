@@ -9,8 +9,9 @@ import { useTheme } from '../ThemeContext'
 import { useNavigation } from '@react-navigation/native'
 import { useNation, useLocation, Event as EventResponse } from '@nationskollen/sdk'
 
-import Card from '../Common/Card'
 import EventCover from './Cover'
+import Card from '../Common/Card'
+import Title from '../Common/Title'
 import ReminderButton from './ReminderButton'
 import NationLogo from '../Nations/Front/NationLogo'
 import ContentContainer from '../Common/ContentContainer'
@@ -41,9 +42,12 @@ const Event = ({ event }: Props) => {
                         {nation && (
                             <View style={styles.headerContent}>
                                 <NationLogo src={nation.icon_img_src} size={40} />
-                                <Text style={[styles.nationName, { color: colors.primaryText }]}>
-                                    {nation.name}
-                                </Text>
+                                <Title
+                                    style={{ marginLeft: 10, color: colors.primaryText }}
+                                    label={nation.name}
+                                    noMargin={true}
+                                    size="medium"
+                                />
                             </View>
                         )}
                     </TouchableOpacity>
@@ -58,7 +62,7 @@ const Event = ({ event }: Props) => {
                 </View>
 
                 {/*Title of event*/}
-                <Text style={[styles.title, { color: colors.textHighlight }]}>{event.name}</Text>
+                <Title label={event.name} style={styles.title} size="medium" />
 
                 {/*Time of event*/}
                 <Text style={[styles.time, { color: colors.text }]}>{event.occurs_at}</Text>

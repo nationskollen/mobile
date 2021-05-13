@@ -7,6 +7,8 @@ import React from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 import { Event } from '@nationskollen/sdk'
 import { useTheme } from '../ThemeContext'
+
+import Title from '../Common/Title'
 import NationLogo from '../Nations/Front/NationLogo'
 
 export interface Props {
@@ -22,10 +24,8 @@ const Post = ({ data }) => {
             <View style={styles.header}>
                 <NationLogo src={icon_img_src} size={50} />
                 <View style={styles.headerWrapper}>
-                    <Text style={[styles.nationName, { color: colors.primaryText }]}>{name}</Text>
-                    <Text style={[styles.notificationHeader, { color: colors.textHighlight }]}>
-                        Notification
-                    </Text>
+                    <Title label={name} style={{ color: colors.primaryText }} noMargin={true} />
+                    <Title label="Notification" />
                 </View>
             </View>
             <View>
