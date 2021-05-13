@@ -8,8 +8,10 @@ import { View, Text, StyleSheet, TouchableHighlight } from 'react-native'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 
+import Title from '../Common/Title'
+
 export interface Props {
-    title: String
+    title: string
     onPress: () => void
     leftIcon: Element
     rightIcon?: Element
@@ -35,9 +37,7 @@ const ListButton = ({ title, onPress, leftIcon, rightIcon, borderTop }: Props) =
             <View style={styles.container}>
                 <View style={styles.nameWrapper}>
                     <View style={styles.iconWrapper}>{leftIcon}</View>
-                    <Text style={[styles.headerTitle, { color: colors.textHighlight }]}>
-                        {title}
-                    </Text>
+                    <Title style={styles.headerTitle} label={title} noMargin={true} />
                 </View>
 
                 {rightIcon ?? <Ionicons name="chevron-forward" size={24} color={colors.text} />}

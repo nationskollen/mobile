@@ -3,24 +3,26 @@
  * @category BIG
  * @module App
  */
-
 import React, { useState } from 'react'
 import 'react-native-gesture-handler'
 import AppLoading from 'expo-app-loading'
 import { Provider } from '@nationskollen/sdk'
+import { PushTokenProvider } from './components/PushTokenContext'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { LanguageContextProvider } from './translate/LanguageContext'
-import { DarkTheme, LightTheme, ThemeProvider, Theme } from './components/ThemeContext'
 import { setCustomText, setCustomTextInput } from 'react-native-global-props'
-import { useFonts } from '@expo-google-fonts/noto-sans'
+import { DarkTheme, LightTheme, ThemeProvider, Theme } from './components/ThemeContext'
+import { useFonts, Roboto_700Bold, Roboto_400Regular } from '@expo-google-fonts/roboto'
 
 import Footer from './components/Footer/Footer'
 
 const App = () => {
-    const [initialTheme, setInitialTheme] = useState<Theme | null>(null)
     const [isReady, setIsReady] = useState(false)
+    const [initialTheme, setInitialTheme] = useState<Theme | null>(null)
+
     const [loaded] = useFonts({
-        NotoSans: require('./assets/fonts/NotoSans-Regular.ttf'),
+        Roboto_400Regular,
+        Roboto_700Bold,
     })
 
     // We have to to wait for the app to load the custom font before we render it
@@ -30,7 +32,7 @@ const App = () => {
 
     const customTextProps = {
         style: {
-            fontFamily: 'NotoSans',
+            fontFamily: 'Roboto_400Regular',
         },
     }
 
@@ -69,7 +71,9 @@ const App = () => {
         >
             <ThemeProvider initialTheme={initialTheme}>
                 <LanguageContextProvider>
-                    <Footer />
+                    <PushTokenProvider>
+                        <Footer />
+                    </PushTokenProvider>
                 </LanguageContextProvider>
             </ThemeProvider>
         </Provider>

@@ -68,7 +68,7 @@ const Footer = () => {
                 activeBackgroundColor: colors.background,
                 labelStyle: {
                     marginBottom: 2,
-                    fontWeight: 'bold',
+                    fontFamily: 'Roboto_700Bold',
                 },
                 tabStyle: {
                     marginBottom: 3,

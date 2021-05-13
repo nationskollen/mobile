@@ -7,7 +7,7 @@
  */
 import React from 'react'
 import { useTheme } from '../ThemeContext'
-import { Text, TextStyle, View, ViewStyle, StyleSheet } from 'react-native'
+import { TouchableOpacity, Text, TextStyle, View, ViewStyle, StyleSheet } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
 export interface Props {
@@ -19,6 +19,7 @@ export interface Props {
     style?: TextStyle
     containerStyle?: ViewStyle
     numberOfLines?: number
+    onPress?: () => void
 }
 
 const Title = ({
@@ -30,6 +31,7 @@ const Title = ({
     style,
     containerStyle,
     numberOfLines,
+    onPress,
 }: Props) => {
     const { colors } = useTheme()
     let fontSize = 16
@@ -42,8 +44,8 @@ const Title = ({
         fontSize = 18
     }
 
-    return (
-        <View style={[styles.container, { marginBottom: noMargin ? 0 : 5 }, containerStyle]}>
+    const content = (
+        <>
             {icon && (
                 <Ionicons
                     name={icon}
@@ -58,6 +60,23 @@ const Title = ({
             >
                 {label}
             </Text>
+        </>
+    )
+
+    if (onPress) {
+        return (
+            <TouchableOpacity
+                style={[styles.container, { marginBottom: noMargin ? 0 : 5 }, containerStyle]}
+                onPress={onPress}
+            >
+                {content}
+            </TouchableOpacity>
+        )
+    }
+
+    return (
+        <View style={[styles.container, { marginBottom: noMargin ? 0 : 5 }, containerStyle]}>
+            {content}
         </View>
     )
 }
@@ -70,7 +89,7 @@ const styles = StyleSheet.create({
     },
 
     text: {
-        fontWeight: 'bold',
+        fontFamily: 'Roboto_700Bold',
     },
 
     icon: {

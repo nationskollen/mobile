@@ -5,31 +5,33 @@
 // This component is used for rendering each notification.
 import React from 'react'
 import { View, StyleSheet, Text } from 'react-native'
-import { Event } from '@nationskollen/sdk'
+import { useNation, Notification } from '@nationskollen/sdk'
 import { useTheme } from '../ThemeContext'
+
+import Title from '../Common/Title'
 import NationLogo from '../Nations/Front/NationLogo'
+import { useTranslation } from '../../translate/LanguageContext'
 
 export interface Props {
-    data: Event
+    notification: Notification
 }
 
-const Post = ({ data }) => {
+const Post = ({ notification }) => {
     const { colors } = useTheme()
-    const { name, icon_img_src, description } = data
+    const { data: nation } = useNation(notification.nation_id)
+    const { translate } = useTranslation()
 
     return (
         <View style={[styles.notificationWrapper, { borderColor: colors.border }]}>
             <View style={styles.header}>
-                <NationLogo src={icon_img_src} size={50} />
+                <NationLogo src={nation?.icon_img_src} size={50} />
                 <View style={styles.headerWrapper}>
-                    <Text style={[styles.nationName, { color: colors.primaryText }]}>{name}</Text>
-                    <Text style={[styles.notificationHeader, { color: colors.textHighlight }]}>
-                        Notification
-                    </Text>
+                    <Title label={nation.name} style={{ color: colors.primaryText }} noMargin={true} />
+                    <Title label={translate.titles.notifications} />
                 </View>
             </View>
             <View>
-                <Text style={[styles.content, { color: colors.text }]}>{description}</Text>
+                <Text style={[styles.content, { color: colors.text }]}>{notification.message}</Text>
                 <View
                     style={[
                         styles.eventTime,
@@ -39,7 +41,7 @@ const Post = ({ data }) => {
                         },
                     ]}
                 >
-                    <Text style={{ color: colors.text }}>2021-04-20 13:37</Text>
+                    <Text style={{ color: colors.text }}>{notification.created_at}</Text>
                 </View>
             </View>
         </View>
@@ -85,7 +87,7 @@ const styles = StyleSheet.create({
     },
 
     notificationHeader: {
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: 'bold',
     },
     nationName: {

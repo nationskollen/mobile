@@ -168,4 +168,8 @@ export default interface LanguageContextType {
         Restaurant: string
         Sport: string
     }
+    
+    notifications: {
+        noNewNotifications: string,
+    }
 }

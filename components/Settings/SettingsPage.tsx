@@ -10,6 +10,7 @@ import { StackNavigationProp } from '@react-navigation/stack'
 import { useTranslation } from '../../translate/LanguageContext'
 import { SafeAreaView, View, StyleSheet, Text } from 'react-native'
 
+import Title from '../Common/Title'
 import ListButton from '../List/ListButton'
 import ToggleSwitch from 'toggle-switch-react-native'
 import FocusAwareStatusBar from '../Common/FocusAwareStatusBar'
@@ -27,9 +28,7 @@ const SettingsPage = ({ navigation }: Props) => {
             <FocusAwareStatusBar backgroundColor={colors.primary} />
             <View style={[styles.darkMode, { backgroundColor: colors.backgroundExtra }]}>
                 <View style={styles.dmText}>
-                    <Text style={[styles.dmTitle, { color: colors.textHighlight }]}>
-                        {translate.settings.darkmodeheader}
-                    </Text>
+                    <Title size="large" label={translate.settings.darkmodeheader} />
                     <Text style={{ color: colors.text }}>
                         {translate.settings.darkmodedescription}
                     </Text>

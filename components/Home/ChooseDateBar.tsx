@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
 
     dateText: {
         fontSize: 16,
-        fontWeight: 'bold',
+        fontFamily: 'Roboto_700Bold',
     },
 })
 

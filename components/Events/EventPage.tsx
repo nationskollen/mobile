@@ -67,7 +67,7 @@ const EventPage = ({ route }: Props) => {
             rightTitleOffset={HEADER_BUTTON_WIDTH}
             renderForeground={() => (
                 <View style={[styles.foreground, { backgroundColor: colors.background }]}>
-                    <EventCategory name={event.category?.name} />
+                    <EventCategory event={event} />
                     <Title label={event.name} size="large" noMargin={true} style={styles.title} />
                 </View>
             )}
