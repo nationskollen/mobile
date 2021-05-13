@@ -20,6 +20,7 @@ import Card, { CARD_HORIZONTAL_SPACING } from './Card'
 export interface Props<T> {
     height: number
     data: Array<T>
+    isValidating: boolean
     cardWidth: number
     title?: string
     srcExtractor?: (item: T) => string
@@ -32,6 +33,7 @@ export interface Props<T> {
 const PersonCarousel = <T,>({
     height,
     data,
+    isValidating,
     srcExtractor,
     cardWidth,
     title,
@@ -51,6 +53,11 @@ const PersonCarousel = <T,>({
         ]
     }, [data, cardWidth])
 
+    // Skip rendering of carousel if no persons are available
+    if ((!data || data.length === 0) && !isValidating) {
+        return null
+    }
+
     // Consider setting disableIntervalMomentum={true} on scrollview
     // to make sure that you can not accidentally fast-scroll
     // through the list.
@@ -65,26 +72,30 @@ const PersonCarousel = <T,>({
                 snapToInterval={cardWidth}
                 snapToOffsets={offsets}
             >
-                {data.map((item: T, index: number) => (
-                    <Card key={index} style={{ width: cardWidth, overflow: 'hidden' }}>
-                        <CoverImage
-                            src={srcExtractor ? srcExtractor(item) : null}
-                            height={height}
-                            fallbackIcon="person-circle-outline"
-                            backgroundColor={colors.backgroundHighlight}
-                        />
-                        <View style={styles.cardContentContainer}>
-                            {renderContent && renderContent(item)}
-                        </View>
-                        {/* No need to render gradient if there are no content */}
-                        {renderContent && (
-                            <LinearGradient
-                                colors={['transparent', isDarkMode ? colors.background : 'black']}
-                                style={styles.gradient}
+                {data &&
+                    data.map((item: T, index: number) => (
+                        <Card key={index} style={{ width: cardWidth, overflow: 'hidden' }}>
+                            <CoverImage
+                                src={srcExtractor ? srcExtractor(item) : null}
+                                height={height}
+                                fallbackIcon="person-circle-outline"
+                                backgroundColor={colors.backgroundHighlight}
                             />
-                        )}
-                    </Card>
-                ))}
+                            <View style={styles.cardContentContainer}>
+                                {renderContent && renderContent(item)}
+                            </View>
+                            {/* No need to render gradient if there are no content */}
+                            {renderContent && (
+                                <LinearGradient
+                                    colors={[
+                                        'transparent',
+                                        isDarkMode ? colors.background : 'black',
+                                    ]}
+                                    style={styles.gradient}
+                                />
+                            )}
+                        </Card>
+                    ))}
             </ScrollView>
         </View>
     )
@@ -109,6 +120,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 15,
         left: 15,
+        width: '90%',
         zIndex: 2,
     },
 

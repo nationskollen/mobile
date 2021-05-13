@@ -10,6 +10,8 @@ import { useActivityLevel, Location } from '@nationskollen/sdk'
 import { useTranslation } from '../../../translate/LanguageContext'
 import LanguageContextType from '../../../translate/LanguageContextType'
 
+import Title from '../../Common/Title'
+
 export interface Props {
     location: Location
 }
@@ -75,9 +77,11 @@ const ActivityLevel = ({ location }: Props) => {
                         style={[styles.activityCircle, { backgroundColor: activityData.color }]}
                     />
                 )}
-                <Text style={[styles.activityLevelText, { color: colors.textHighlight }]}>
-                    {activityData.title}
-                </Text>
+                <Title
+                    label={activityData.title}
+                    style={styles.activityLevelText}
+                    noMargin={true}
+                />
             </View>
         </View>
     )
@@ -110,8 +114,6 @@ const styles = StyleSheet.create({
 
     activityLevelText: {
         marginLeft: 8,
-        color: 'white',
-        fontSize: 14,
         fontWeight: 'bold',
     },
 })

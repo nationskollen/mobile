@@ -11,6 +11,7 @@ import { Nation } from '@nationskollen/sdk'
 import { useTheme } from '../../ThemeContext'
 
 import NationLogo from './NationLogo'
+import Title from '../../Common/Title'
 
 export interface Props {
     nation: Nation
@@ -40,7 +41,10 @@ const NationHeader = ({ nation }: Props) => {
             >
                 <NationLogo src={nation.icon_img_src} size={60} />
             </View>
-            <Text style={[styles.nationName, { color: colors.textHighlight }]}>{nation.name}</Text>
+            <Title
+                label={nation.name}
+                style={[styles.nationName, { color: colors.textHighlight }]}
+            />
         </View>
     )
 }

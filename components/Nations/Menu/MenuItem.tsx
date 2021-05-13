@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
 
     priceText: {
         fontSize: 14,
-        fontWeight: 'bold',
+        fontFamily: 'Roboto_700Bold',
     },
 })
 
