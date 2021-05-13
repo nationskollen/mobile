@@ -7,7 +7,10 @@ import React from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 import { useNation, Notification } from '@nationskollen/sdk'
 import { useTheme } from '../ThemeContext'
+
+import Title from '../Common/Title'
 import NationLogo from '../Nations/Front/NationLogo'
+import { useTranslation } from '../../translate/LanguageContext'
 
 export interface Props {
     notification: Notification
@@ -16,18 +19,15 @@ export interface Props {
 const Post = ({ notification }) => {
     const { colors } = useTheme()
     const { data: nation } = useNation(notification.nation_id)
+    const { translate } = useTranslation()
 
     return (
         <View style={[styles.notificationWrapper, { borderColor: colors.border }]}>
             <View style={styles.header}>
                 <NationLogo src={nation?.icon_img_src} size={50} />
                 <View style={styles.headerWrapper}>
-                    <Text style={[styles.nationName, { color: colors.primaryText }]}>
-                        {nation?.name}
-                    </Text>
-                    <Text style={[styles.notificationHeader, { color: colors.textHighlight }]}>
-                        {notification.title}
-                    </Text>
+                    <Title label={nation.name} style={{ color: colors.primaryText }} noMargin={true} />
+                    <Title label={translate.titles.notifications} />
                 </View>
             </View>
             <View>

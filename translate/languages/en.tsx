@@ -146,6 +146,10 @@ const English: LanguageContextType = {
         cancel: 'Cancel',
         successMsg: 'Event was added to your calendar',
     },
+
+    notifications: {
+        noNewNotifications: 'No new notifications',
+    }
 }
 
 export default English

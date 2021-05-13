@@ -12,8 +12,10 @@ import Post from './Post'
 import ListEmpty from '../List/ListEmpty'
 import LoadingCircle from '../Common/LoadingCircle'
 import FocusAwareStatusBar from '../Common/FocusAwareStatusBar'
+import { useTranslation } from '../../translate/LanguageContext'
 
 const NotificationsContent = () => {
+    const { translate } = useTranslation()
     const { colors } = useTheme()
     const { token } = usePushToken()
 
@@ -36,7 +38,7 @@ const NotificationsContent = () => {
                     ListEmpty({
                         error,
                         loading: isValidating,
-                        message: 'Inga nya notifikationer',
+                        message: translate.notifications.noNewNotifications,
                     })
                 }
             />

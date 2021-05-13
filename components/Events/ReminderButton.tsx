@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
 
     text: {
         color: 'white',
-        fontWeight: 'bold',
+        fontFamily: 'Roboto_700Bold',
         marginLeft: 5,
     },
 })
