@@ -12,15 +12,15 @@ export interface Props {
 const EventCover = ({ event }: Props) => {
     const categories = [event.category.name]
 
-    if (event.only_members && event.only_students) {
-        categories.push('For everyone')
+    if (!event.only_members && !event.only_students) {
+        categories.push('Everyone')
     } else {
         if (event.only_members) {
-            categories.push('For members')
+            categories.push('Members')
         }
 
         if (event.only_students) {
-            categories.push('For students')
+            categories.push('Nation card')
         }
     }
 
