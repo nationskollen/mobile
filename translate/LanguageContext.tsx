@@ -7,14 +7,14 @@ export type LangCode = 'en-EN' | 'sv-SV'
 
 export interface LanguageContextContract {
     setSelectedLanguage: React.Dispatch<React.SetStateAction<LanguageContextType>>
-    setCurrentLanguage: React.Dispatch<React.SetStateAction<LangCode>>
+    setCurrentLangCode: React.Dispatch<React.SetStateAction<LangCode>>
     translate: LanguageContextType
-    currentLanguage: LangCode
+    currentLangCode: LangCode
     initialLanguage: number
-    availableLanguages: availableLanguagesType[]
+    availableLanguages: AvailableLanguagesType[]
 }
 
-interface availableLanguagesType {
+interface AvailableLanguagesType {
     key: number
     value: LanguageContextType
     langCode: LangCode
@@ -24,7 +24,7 @@ const LanguageContext = React.createContext<LanguageContextContract>({} as Langu
 
 export const useTranslation = () => useContext(LanguageContext)
 
-var availableLanguages: availableLanguagesType[] = [
+var availableLanguages: AvailableLanguagesType[] = [
     { key: 0, value: en, langCode: 'en-EN' },
     { key: 1, value: swe, langCode: 'sv-SV' },
 ]
@@ -33,7 +33,7 @@ export const LanguageContextProvider = ({ initialLanguage, children }) => {
     const [selectedLanguage, setSelectedLanguage] = useState(
         availableLanguages[initialLanguage].value
     )
-    const [currentLanguage, setCurrentLanguage] = useState<LangCode>(
+    const [currentLangCode, setCurrentLangCode] = useState<LangCode>(
         availableLanguages[initialLanguage].langCode
     )
 
@@ -42,8 +42,8 @@ export const LanguageContextProvider = ({ initialLanguage, children }) => {
             value={{
                 setSelectedLanguage,
                 translate: selectedLanguage,
-                currentLanguage,
-                setCurrentLanguage,
+                currentLangCode,
+                setCurrentLangCode,
                 availableLanguages,
                 initialLanguage,
             }}

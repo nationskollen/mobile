@@ -42,7 +42,7 @@ const App = () => {
             <AppLoading
                 startAsync={async () => {
                     const theme = await AsyncStorage.getItem('savedTheme')
-                    const language = await AsyncStorage.getItem('selectedLanguage')
+                    const language = await AsyncStorage.getItem('savedLanguage')
 
                     if (!theme) {
                         setInitialTheme(LightTheme)
@@ -52,9 +52,7 @@ const App = () => {
 
                     setInitialTheme(isDark ? DarkTheme : LightTheme)
 
-                    if (!language) {
-                        setInitialLanguageKey(1)
-                    } else {
+                    if (language) {
                         setInitialLanguageKey(parseInt(language))
                     }
                 }}
