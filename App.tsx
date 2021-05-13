@@ -5,7 +5,6 @@
  */
 import React, { useState } from 'react'
 import 'react-native-gesture-handler'
-import Constants from 'expo-constants'
 import AppLoading from 'expo-app-loading'
 import { Provider } from '@nationskollen/sdk'
 import { useFonts } from '@expo-google-fonts/noto-sans'
@@ -63,7 +62,7 @@ const App = () => {
     return (
         <Provider
             config={{
-                development: Constants.manifest.extra.development,
+                development: true,
                 useWebSockets: true,
                 customHostName: 'nationskollen-staging.engstrand.nu',
                 useHTTPS: true,

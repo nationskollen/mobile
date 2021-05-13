@@ -9,11 +9,11 @@
 import React, { useEffect, useRef } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { useTheme } from '../../ThemeContext'
-import { useNation } from '@nationskollen/sdk'
 import { Ionicons } from '@expo/vector-icons'
 import { RouteProp } from '@react-navigation/native'
 import { useNavigation } from '@react-navigation/core'
 import { TabStackParamList } from '../../Footer/Footer'
+import { useNation, useIndividuals } from '@nationskollen/sdk'
 import { useTranslation } from '../../../translate/LanguageContext'
 
 import Title from '../../Common/Title'
@@ -30,22 +30,6 @@ export interface Props {
     route: RouteProp<TabStackParamList, 'NationHome'>
 }
 
-// TODO: Load from server
-const DATA = [
-    {
-        name: 'Fredrik Engstrand',
-        description: '1Q',
-    },
-    {
-        name: 'Fahad Rami Jamil',
-        description: '2Q',
-    },
-    {
-        name: 'Johannes Liljedahl',
-        description: 'Klubbmästare',
-    },
-]
-
 const NationHomePage = ({ route }: Props) => {
     const { oid } = route.params
     const navigation = useNavigation()
@@ -53,6 +37,11 @@ const NationHomePage = ({ route }: Props) => {
     const { colors } = useTheme()
     const currentDate = useRef(new Date()).current
     const { data: nation, isValidating, mutate } = useNation(oid)
+    const {
+        data: individuals,
+        isValidating: isValidatingIndividuals,
+        mutate: mutateIndividuals,
+    } = useIndividuals(oid)
 
     // Update the activity level subscription dynamically based on the
     // selected nation.
@@ -74,7 +63,10 @@ const NationHomePage = ({ route }: Props) => {
             height={295}
             accent={nation.accent_color}
             isValidating={isValidating}
-            mutate={mutate}
+            mutate={() => {
+                mutate()
+                mutateIndividuals()
+            }}
             title={nation.short_name}
             src={nation.cover_img_src}
             iconSrc={nation.icon_img_src}
@@ -119,8 +111,10 @@ const NationHomePage = ({ route }: Props) => {
             </ContentSection>
             <PersonCarousel
                 height={350}
-                data={DATA}
+                data={individuals}
+                isValidating={isValidatingIndividuals}
                 cardWidth={300}
+                srcExtractor={(item) => item.profile_img_src}
                 title={translate.nation.people}
                 paddingBottom={100}
                 renderContent={(item) => (
