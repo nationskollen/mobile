@@ -75,7 +75,7 @@ const Toggle = ({ text, topicId, oid, token, subscription }: ToggleProps) => {
         api.subscriptions.create(data)
     )
 
-    // Make sure to set uuid if we create subscription so taht we can delete it
+    // Make sure to set uuid if we create subscription so that we can delete it
     useEffect(() => {
         if (!createAction.result || !createAction.result.uuid) {
             return
