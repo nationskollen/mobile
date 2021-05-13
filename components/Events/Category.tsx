@@ -1,21 +1,36 @@
 import React from 'react'
+import { Event } from '@nationskollen/sdk'
 import { useTheme } from '../ThemeContext'
 import { View, Text, StyleSheet } from 'react-native'
 
 export interface Props {
-    names: Array<string>
+    event: Event
 }
 
-const Categories = ({ names }: Props) => {
+const Categories = ({ event }: Props) => {
+    const categories = [event.category.name]
+
+    if (!event.only_members && !event.only_students) {
+        categories.push('Everyone')
+    } else {
+        if (event.only_members) {
+            categories.push('Members')
+        }
+
+        if (event.only_students) {
+            categories.push('Nation card')
+        }
+    }
+
     const { colors } = useTheme()
 
-    if (names.length === 0) {
+    if (categories.length === 0) {
         return null
     }
 
     return (
         <View style={styles.position}>
-            {names.map((name, index) => (
+            {categories.map((category, index) => (
                 <View
                     style={[
                         styles.container,
@@ -26,7 +41,7 @@ const Categories = ({ names }: Props) => {
                     ]}
                     key={index}
                 >
-                    <Text style={[styles.text, { color: colors.text }]}>{name}</Text>
+                    <Text style={[styles.text, { color: colors.text }]}>{category}</Text>
                 </View>
             ))}
         </View>
