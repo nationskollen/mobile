@@ -3,23 +3,25 @@
  * @category BIG
  * @module App
  */
-
 import React, { useState } from 'react'
 import 'react-native-gesture-handler'
 import AppLoading from 'expo-app-loading'
 import { Provider } from '@nationskollen/sdk'
+import { PushTokenProvider } from './components/PushTokenContext'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { LanguageContextProvider } from './translate/LanguageContext'
-import { DarkTheme, LightTheme, ThemeProvider, Theme } from './components/ThemeContext'
 import { setCustomText, setCustomTextInput } from 'react-native-global-props'
+import { DarkTheme, LightTheme, ThemeProvider, Theme } from './components/ThemeContext'
 import { useFonts, Roboto_700Bold, Roboto_400Regular } from '@expo-google-fonts/roboto'
 
 import Footer from './components/Footer/Footer'
 
 const App = () => {
+
     const [initialTheme, setInitialTheme] = useState<Theme | null>(null)
     const [initialLanguageKey, setInitialLanguageKey] = useState<number>(1)
     const [isReady, setIsReady] = useState(false)
+    
     const [loaded] = useFonts({
         Roboto_400Regular,
         Roboto_700Bold,
@@ -74,8 +76,10 @@ const App = () => {
             }}
         >
             <ThemeProvider initialTheme={initialTheme}>
-                <LanguageContextProvider initialLanguage={initialLanguageKey}>
-                    <Footer />
+                <LanguageContextProvider initialLanguage = {initialLanguageKey}>
+                    <PushTokenProvider>
+                        <Footer />
+                    </PushTokenProvider>
                 </LanguageContextProvider>
             </ThemeProvider>
         </Provider>

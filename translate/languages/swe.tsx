@@ -146,6 +146,10 @@ const Swedish: LanguageContextType = {
         cancel: 'Avbryt',
         successMsg: 'Evenemanget är tillagt i din kalender',
     },
+
+    notifications: {
+        noNewNotifications: 'Inga nya notifikationer',
+    }
 }
 
 export default Swedish

@@ -69,8 +69,8 @@ const Button = ({ hideLabel, style }) => {
 
 const styles = StyleSheet.create({
     container: {
-        paddingHorizontal: 10,
-        paddingVertical: 10,
+        paddingHorizontal: 7,
+        paddingVertical: 7,
         borderRadius: 10,
 
         flexDirection: 'row',

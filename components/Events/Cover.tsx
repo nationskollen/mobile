@@ -2,7 +2,7 @@ import React from 'react'
 import { Event as EventResponse } from '@nationskollen/sdk'
 
 import CoverImage from '../Common/CoverImage'
-import EventCategory from './Category'
+import EventCategories from './Category'
 
 export interface Props {
     event: EventResponse
@@ -12,7 +12,7 @@ export interface Props {
 const EventCover = ({ event }: Props) => {
     return (
         <CoverImage src={event.cover_img_src}>
-            <EventCategory name={event.category && event.category.name} />
+            <EventCategories event={event} />
         </CoverImage>
     )
 }

@@ -144,4 +144,8 @@ export default interface LanguageContextType {
         cancel: string
         successMsg: string
     }
+
+    notifications: {
+        noNewNotifications: string,
+    }
 }
