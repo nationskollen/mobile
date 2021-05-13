@@ -17,7 +17,7 @@ const NotificationsContent = () => {
     const { colors } = useTheme()
     const { token } = usePushToken()
 
-    // If not token could be fetched, we can not use notifications
+    // If no token could be fetched, we can not use notifications
     if (!token) {
         return null
     }
