@@ -30,7 +30,7 @@ const LanguagePage = () => {
     checkedStates[currentlyChecked].checked = true
 
     const storeSelectedLanguage = useCallback(async (chosenLanguageKey: number) => {
-        await AsyncStorage.setItem('selectedLanguage', JSON.stringify(chosenLanguageKey))
+        await AsyncStorage.setItem('savedLanguage', JSON.stringify(chosenLanguageKey))
     }, [])
 
     const checkSelectedCheckbox = (key: number) => {

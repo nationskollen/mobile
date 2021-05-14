@@ -17,11 +17,10 @@ import { useFonts, Roboto_700Bold, Roboto_400Regular } from '@expo-google-fonts/
 import Footer from './components/Footer/Footer'
 
 const App = () => {
-
     const [initialTheme, setInitialTheme] = useState<Theme | null>(null)
     const [initialLanguageKey, setInitialLanguageKey] = useState<number>(1)
     const [isReady, setIsReady] = useState(false)
-    
+
     const [loaded] = useFonts({
         Roboto_400Regular,
         Roboto_700Bold,
@@ -40,6 +39,7 @@ const App = () => {
 
     setCustomText(customTextProps)
     setCustomTextInput(customTextProps)
+
     if (!isReady) {
         return (
             <AppLoading
@@ -76,7 +76,7 @@ const App = () => {
             }}
         >
             <ThemeProvider initialTheme={initialTheme}>
-                <LanguageContextProvider initialLanguage = {initialLanguageKey}>
+                <LanguageContextProvider initialLanguage={initialLanguageKey}>
                     <PushTokenProvider>
                         <Footer />
                     </PushTokenProvider>
