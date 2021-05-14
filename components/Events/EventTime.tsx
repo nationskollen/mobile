@@ -1,9 +1,10 @@
-import React from 'react'
+import React, {useRef} from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { useTheme } from '../ThemeContext'
 import { Event } from '@nationskollen/sdk'
 import { AntDesign } from '@expo/vector-icons'
 import ReactContentLoaderInstagram from 'react-content-loader/native/native/presets/InstagramStyle'
+import { useTranslation } from '../../translate/LanguageContext'
 
 interface Props {
     event: Event
@@ -11,6 +12,8 @@ interface Props {
 
 const EventTime = ({event}:Props) => {
     const { colors } = useTheme()
+    const {translate } = useTranslation()
+    const currentDate = useRef(new Date().toLocaleDateString()).current
 
     const eventArr = event.occurs_at.split('T')
     const dateArr = eventArr[0].split('-')
@@ -33,7 +36,9 @@ const EventTime = ({event}:Props) => {
 
             {/* Date */}
             <AntDesign name="calendar" size={18} color={colors.text} style={{marginLeft:12, paddingRight:5}}/>
-            <Text style={[styles.time, { color: colors.text }]}>{dateStr}</Text>
+            <Text style={[styles.time, { color: colors.text }]}>
+                {currentDate === eventArr[0] ? translate.home.todaysEvents : dateStr}
+            </Text>
 
         </View>
     )
