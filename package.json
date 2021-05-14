@@ -20,7 +20,6 @@
     "@expo-google-fonts/roboto": "^0.1.0",
     "@expo/ngrok": "^2.4.3",
     "@nationskollen/sdk": "^2.3.8",
-    "@nationskollen/typedoc-theme-overrides": "^1.0.2",
     "@react-native-async-storage/async-storage": "^1.13.0",
     "@react-native-community/datetimepicker": "^3.4.7",
     "@react-native-community/masked-view": "0.1.10",

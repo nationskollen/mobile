@@ -146,6 +146,6 @@ export default interface LanguageContextType {
     }
 
     notifications: {
-        noNewNotifications: string,
+        noNewNotifications: string
     }
 }

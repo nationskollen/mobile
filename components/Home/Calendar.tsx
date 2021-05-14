@@ -16,7 +16,7 @@ const Calendar = () => {
     const { colors, isDarkMode } = useTheme()
     const minimumDate = useRef(new Date('2021-01-01')).current
     const maximumDate = useRef(new Date('2100-01-01')).current
-    const { currentLanguage, translate } = useTranslation()
+    const { currentLangCode, translate } = useTranslation()
 
     const handleConfirm = (date: Date) => {
         setShownDate(date)
@@ -33,7 +33,7 @@ const Calendar = () => {
             onCancel={() => setVisible(!visible)}
             date={date}
             isDarkModeEnabled={isDarkMode}
-            locale={currentLanguage}
+            locale={currentLangCode}
             headerTextIOS={translate.calendar.chooseDate}
             cancelTextIOS={translate.calendar.cancel}
             confirmTextIOS={translate.calendar.confirm}

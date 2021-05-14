@@ -1,48 +1,47 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import 'react-native-gesture-handler'
 import { useTheme } from '../ThemeContext'
 import { View, Text } from 'react-native'
 import { useTranslation } from '../../translate/LanguageContext'
-import en from '../../translate/languages/en'
-import swe from '../../translate/languages/swe'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import FocusAwareStatusBar from '../Common/FocusAwareStatusBar'
 import { CheckBox } from 'react-native-elements'
-
-import { LangCode } from '../../translate/LanguageContext'
-import LanguageContextType from '../../translate/LanguageContextType'
-
-interface checkedStatesType {
+interface CheckedStatesType {
     key: number
     name: string
     checked: boolean
-    value: LanguageContextType
-    langCode: LangCode
 }
 
-var checkedStates: checkedStatesType[] = [
-    { key: 0, name: 'English', checked: false, value: en, langCode: 'en-EN' },
-    { key: 1, name: 'Svenska', checked: true, value: swe, langCode: 'sv-SV' },
+var checkedStates: CheckedStatesType[] = [
+    { key: 0, name: 'English', checked: false },
+    { key: 1, name: 'Svenska', checked: false },
 ]
-
-var initialState = 1
 
 const LanguagePage = () => {
     const { colors } = useTheme()
-    const { setSelectedLanguage, setCurrentLanguage, currentLanguage } = useTranslation()
-    const [currentlyChecked, setCurrentlyChecked] = useState(initialState)
+    const {
+        setSelectedLanguage,
+        setCurrentLangCode,
+        initialLanguage,
+        availableLanguages,
+    } = useTranslation()
+    const [currentlyChecked, setCurrentlyChecked] = useState(initialLanguage)
 
-    const uncheckPreviousCheckbox = (key: number) => {
-        checkedStates[key].checked = false
-    }
+    checkedStates[currentlyChecked].checked = true
 
-    const checkSelectedCheckbox = (selectedLanguage: LanguageContextType, key: number) => {
-        setSelectedLanguage(selectedLanguage)
+    const storeSelectedLanguage = useCallback(async (chosenLanguageKey: number) => {
+        await AsyncStorage.setItem('savedLanguage', JSON.stringify(chosenLanguageKey))
+    }, [])
+
+    const checkSelectedCheckbox = (key: number) => {
+        storeSelectedLanguage(key)
+        setSelectedLanguage(availableLanguages[key].value)
         checkedStates[key].checked = true
-        uncheckPreviousCheckbox(currentlyChecked)
+        checkedStates[currentlyChecked].checked = false
         setCurrentlyChecked(key)
-        setCurrentLanguage(checkedStates[key].langCode)
-        initialState = key
+        setCurrentLangCode(availableLanguages[key].langCode)
     }
+
     return (
         <View>
             <FocusAwareStatusBar backgroundColor={colors.primary} />
@@ -67,7 +66,7 @@ const LanguagePage = () => {
                     fontFamily="Roboto_400Regular"
                     checked={option.checked}
                     iconRight
-                    onPress={() => checkSelectedCheckbox(option.value, option.key)}
+                    onPress={() => checkSelectedCheckbox(option.key)}
                     containerStyle={{
                         backgroundColor: colors.background,
                         borderColor: colors.border,

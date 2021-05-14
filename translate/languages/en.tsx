@@ -149,7 +149,7 @@ const English: LanguageContextType = {
 
     notifications: {
         noNewNotifications: 'No new notifications',
-    }
+    },
 }
 
 export default English
