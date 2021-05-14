@@ -26,7 +26,13 @@ const Post = ({ notification }) => {
             <View style={styles.header}>
                 <NationLogo src={nation?.icon_img_src} size={50} />
                 <View style={styles.headerWrapper}>
-                    <Title label={nation.name} style={{ color: colors.primaryText }} noMargin={true} />
+                    {nation && (
+                        <Title
+                            label={nation.name}
+                            style={{ color: colors.primaryText }}
+                            noMargin={true}
+                        />
+                    )}
                     <Title label={translate.titles.notifications} />
                 </View>
             </View>
