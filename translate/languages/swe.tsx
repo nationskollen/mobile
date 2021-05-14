@@ -149,7 +149,7 @@ const Swedish: LanguageContextType = {
 
     notifications: {
         noNewNotifications: 'Inga nya notifikationer',
-    }
+    },
 }
 
 export default Swedish

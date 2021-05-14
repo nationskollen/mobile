@@ -1,4 +1,4 @@
-import React, { useState, useCallback} from 'react'
+import React, { useState, useCallback } from 'react'
 import 'react-native-gesture-handler'
 import { useTheme } from '../ThemeContext'
 import { View, Text } from 'react-native'
