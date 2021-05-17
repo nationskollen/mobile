@@ -15,7 +15,7 @@ const DATA = [
     {
         name: 'Fredrik Engstrand',
         description: 'Full Stack developer',
-        image: 'https://nationskollen-staging.engstrand.nu/assets/aboutus/fredrikEngstrand.jpeg',
+        image: 'https://nationskollen-staging.engstrand.nu/assets/aboutus/fredrikEngstrand.png',
     },
     {
         name: 'Fahad Rami Jamil',
@@ -25,7 +25,7 @@ const DATA = [
     {
         name: 'Johannes Liljedahl',
         description: 'Front-End developer',
-        image: 'https://nationskollen-staging.engstrand.nu/assets/aboutus/johannesLiljedahl.jpeg',
+        image: 'https://nationskollen-staging.engstrand.nu/assets/aboutus/johannesLiljedahl.jpg',
     },
     {
         name: 'Carl Wallskog',
@@ -45,7 +45,7 @@ const DATA = [
     {
         name: 'Robert Martinis',
         description: 'Front-End developer',
-        image: 'https://nationskollen-staging.engstrand.nu/assets/aboutus/robertMartinis.jpeg',
+        image: 'https://nationskollen-staging.engstrand.nu/assets/aboutus/robertMartinis.png',
     },
 ]
 
