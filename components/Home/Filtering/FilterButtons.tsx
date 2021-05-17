@@ -82,12 +82,14 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         justifyContent: 'space-between',
-        elevation: 10,
         zIndex: 10,
+        overflow:'hidden',
+        elevation:100,
     },
 
     buttonsContainer: {
-        marginTop: 5,
+        elevation:100,
+        marginTop: 10,
         height: 70,
         flexDirection: 'row',
         justifyContent: 'space-evenly',

@@ -23,16 +23,26 @@ const Timeline = ({ nation }: Props) => {
     const { date } = useDatePicker()
     const { translate } = useTranslation()
     const { filters } = useFilter()
+
+    const useEventsInput = {
+        date,
+        amount: 10,
+        excludeOids: excludeOids(filters),
+        excludeCategories: excludeCategories(filters),
+        onlyStudents: filters.student[0],
+        onlyMembers: filters.student[1],
+    }
+
+    // if "no nation card" and "no membership" are true, (meaning needscard and needsmembership are false)
+    // show all events by deleting the filter params
+    if (filters.student[0] && filters.student[1]) {
+        delete useEventsInput.onlyStudents
+        delete useEventsInput.onlyMembers
+    }
+
     const { data, error, isValidating, mutate, size, setSize, pagination } = useEvents(
         nation?.oid,
-        {
-            date,
-            amount: 10,
-            excludeOids: excludeOids(filters),
-            excludeCategories: excludeCategories(filters),
-            onlyStudents: filters.student[0],
-            onlyMembers: filters.student[1],
-        }
+        useEventsInput
     )
 
     return (

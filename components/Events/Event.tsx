@@ -67,7 +67,6 @@ const Event = ({ event }: Props) => {
 
                 <EventTime event={event}></EventTime>
 
-
                 {/*Description of event*/}
                 <Text style={[styles.description, { color: colors.text }]}>
                     {event.short_description}
@@ -76,7 +75,6 @@ const Event = ({ event }: Props) => {
         </Card>
     )
 }
-
 
 const styles = StyleSheet.create({
     header: {
