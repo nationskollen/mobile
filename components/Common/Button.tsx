@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     },
 
     text: {
-        fontWeight: 'bold',
+        fontFamily: 'Roboto_700Bold',
         fontSize: 16,
         marginHorizontal: 5,
     },

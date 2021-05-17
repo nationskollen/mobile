@@ -170,6 +170,10 @@ const English: LanguageContextType = {
         Restaurant: 'Restaurant',
         Sport: 'Sport',
     },
+
+    notifications: {
+        noNewNotifications: 'No new notifications',
+    },
 }
 
 export default English

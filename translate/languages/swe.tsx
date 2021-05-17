@@ -170,6 +170,10 @@ const Swedish: LanguageContextType = {
         Restaurant: 'Restaurang',
         Sport: 'Sport',
     },
+
+    notifications: {
+        noNewNotifications: 'Inga nya notifikationer',
+    },
 }
 
 export default Swedish

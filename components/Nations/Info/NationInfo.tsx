@@ -14,6 +14,7 @@ import { useNavigation } from '@react-navigation/core'
 import { useOpeningHours, Nation } from '@nationskollen/sdk'
 import { useTranslation } from '../../../translate/LanguageContext'
 
+import Title from '../../Common/Title'
 import NationLogo from '../Front/NationLogo'
 import OpeningHours from '../Hours/OpeningHours'
 
@@ -45,20 +46,16 @@ const NationInfo = ({ nation, backgroundColor, paddingTop }: Props) => {
                 onPress={() => navigation.navigate('NationHome', { oid: nation.oid })}
             >
                 <NationLogo src={nation.icon_img_src} size={50} />
-                <Text
-                    style={[styles.nationName, { color: colors.textHighlight }]}
-                    numberOfLines={1}
-                >
-                    {nation.name}
-                </Text>
+                <Title style={styles.nationName} label={nation.name} numberOfLines={1} />
             </TouchableOpacity>
 
             <View style={styles.descriptionWrapper}>
                 <View style={[styles.clockSymbolWrapper]}>
                     <Ionicons name="time-outline" size={20} color={colors.text} />
-                    <Text style={[styles.openinghoursTitle, { color: colors.textHighlight }]}>
-                        {translate.titles.nationLocationAndHours}
-                    </Text>
+                    <Title
+                        style={styles.openinghoursTitle}
+                        label={translate.titles.nationLocationAndHours}
+                    />
                 </View>
 
                 <View style={styles.openinghoursWrapper}>
@@ -68,8 +65,9 @@ const NationInfo = ({ nation, backgroundColor, paddingTop }: Props) => {
 
                 <View style={styles.mapWrapper}>
                     <Ionicons name="map-outline" size={20} color={colors.text} />
-                    <Text
-                        style={[styles.mapAddress, { color: colors.textHighlight }]}
+                    <Title
+                        style={styles.mapAddress}
+                        label={address}
                         onPress={() =>
                             Alert.alert(
                                 translate.alerts.showOnMapTitle,
@@ -89,9 +87,7 @@ const NationInfo = ({ nation, backgroundColor, paddingTop }: Props) => {
                                 }
                             )
                         }
-                    >
-                        {address}
-                    </Text>
+                    />
                 </View>
             </View>
         </View>

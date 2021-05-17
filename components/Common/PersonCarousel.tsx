@@ -72,26 +72,30 @@ const PersonCarousel = <T,>({
                 snapToInterval={cardWidth}
                 snapToOffsets={offsets}
             >
-                {data && data.map((item: T, index: number) => (
-                    <Card key={index} style={{ width: cardWidth, overflow: 'hidden' }}>
-                        <CoverImage
-                            src={srcExtractor ? srcExtractor(item) : null}
-                            height={height}
-                            fallbackIcon="person-circle-outline"
-                            backgroundColor={colors.backgroundHighlight}
-                        />
-                        <View style={styles.cardContentContainer}>
-                            {renderContent && renderContent(item)}
-                        </View>
-                        {/* No need to render gradient if there are no content */}
-                        {renderContent && (
-                            <LinearGradient
-                                colors={['transparent', isDarkMode ? colors.background : 'black']}
-                                style={styles.gradient}
+                {data &&
+                    data.map((item: T, index: number) => (
+                        <Card key={index} style={{ width: cardWidth, overflow: 'hidden' }}>
+                            <CoverImage
+                                src={srcExtractor ? srcExtractor(item) : null}
+                                height={height}
+                                fallbackIcon="person-circle-outline"
+                                backgroundColor={colors.backgroundHighlight}
                             />
-                        )}
-                    </Card>
-                ))}
+                            <View style={styles.cardContentContainer}>
+                                {renderContent && renderContent(item)}
+                            </View>
+                            {/* No need to render gradient if there are no content */}
+                            {renderContent && (
+                                <LinearGradient
+                                    colors={[
+                                        'transparent',
+                                        isDarkMode ? colors.background : 'black',
+                                    ]}
+                                    style={styles.gradient}
+                                />
+                            )}
+                        </Card>
+                    ))}
             </ScrollView>
         </View>
     )
