@@ -15,7 +15,7 @@ const DATA = [
     {
         name: 'Fredrik Engstrand',
         description: 'Full Stack developer',
-        image: 'https://nationskollen-staging.engstrand.nu/assets/aboutus/fredrikEngstrand.png',
+        image: 'https://nationskollen-staging.engstrand.nu/assets/aboutus/fredrikEngstrand.jpg',
     },
     {
         name: 'Fahad Rami Jamil',
@@ -30,22 +30,22 @@ const DATA = [
     {
         name: 'Carl Wallskog',
         description: 'Front-End developer',
-        image: 'https://nationskollen-staging.engstrand.nu/assets/aboutus/carlWallskog.jpeg',
+        image: 'https://nationskollen-staging.engstrand.nu/assets/aboutus/carlWallskog.jpg',
     },
     {
         name: 'Oskar Rick',
         description: 'Front-End developer',
-        image: 'https://nationskollen-staging.engstrand.nu/assets/aboutus/oskarRick.jpeg',
+        image: 'https://nationskollen-staging.engstrand.nu/assets/aboutus/oskarRick.jpg',
     },
     {
         name: 'Aria Assadi',
         description: 'Front-End developer',
-        image: 'https://nationskollen-staging.engstrand.nu/assets/aboutus/ariaAssadi.jpeg',
+        image: 'https://nationskollen-staging.engstrand.nu/assets/aboutus/ariaAssadi.jpg',
     },
     {
         name: 'Robert Martinis',
         description: 'Front-End developer',
-        image: 'https://nationskollen-staging.engstrand.nu/assets/aboutus/robertMartinis.png',
+        image: 'https://nationskollen-staging.engstrand.nu/assets/aboutus/robertMartinis.jpg',
     },
 ]
 
