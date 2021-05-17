@@ -3,8 +3,6 @@ import { View, Text, StyleSheet } from 'react-native'
 import { useTheme } from '../ThemeContext'
 import { Event } from '@nationskollen/sdk'
 import { AntDesign } from '@expo/vector-icons'
-import ReactContentLoaderInstagram from 'react-content-loader/native/native/presets/InstagramStyle'
-import { useTranslation } from '../../translate/LanguageContext'
 
 interface Props {
     event: Event
