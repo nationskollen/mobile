@@ -12,6 +12,7 @@ import { useNation, useLocation, Event as EventResponse } from '@nationskollen/s
 import EventCover from './Cover'
 import Card from '../Common/Card'
 import Title from '../Common/Title'
+import EventTime from './EventTime'
 import ReminderButton from './ReminderButton'
 import NationLogo from '../Nations/Front/NationLogo'
 import ContentContainer from '../Common/ContentContainer'
@@ -64,8 +65,8 @@ const Event = ({ event }: Props) => {
                 {/*Title of event*/}
                 <Title label={event.name} style={styles.title} size="medium" />
 
-                {/*Time of event*/}
-                <Text style={[styles.time, { color: colors.text }]}>{event.occurs_at}</Text>
+                <EventTime event={event}></EventTime>
+
 
                 {/*Description of event*/}
                 <Text style={[styles.description, { color: colors.text }]}>
@@ -75,6 +76,7 @@ const Event = ({ event }: Props) => {
         </Card>
     )
 }
+
 
 const styles = StyleSheet.create({
     header: {
@@ -101,10 +103,6 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 18,
         fontWeight: 'bold',
-    },
-
-    time: {
-        fontSize: 16,
     },
 
     description: {

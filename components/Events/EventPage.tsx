@@ -43,7 +43,6 @@ const EventPage = ({ route }: Props) => {
                     event={event}
                     eventAddress={eventAddress}
                     nationName={nation.name}
-                    hideLabel={true}
                     style={{
                         marginRight: 15,
                         backgroundColor: isDarkMode
