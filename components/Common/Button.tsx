@@ -18,7 +18,7 @@ export interface Props {
     onPress?: () => void
     icon?: any
     fontSize?: number
-    style?: ViewStyle
+    style?: ViewStyle | Array<ViewStyle>
 }
 
 const Button = ({ onPress, size, label, type, icon, fontSize, style }: Props) => {

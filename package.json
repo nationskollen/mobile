@@ -19,7 +19,6 @@
   "dependencies": {
     "@expo-google-fonts/noto-sans": "^0.1.0",
     "@expo/ngrok": "^2.4.3",
-    "@gorhom/bottom-sheet": "^2.3.0",
     "@nationskollen/sdk": "^2.3.6",
     "@react-native-async-storage/async-storage": "^1.13.0",
     "@react-native-community/datetimepicker": "^3.4.7",
@@ -55,13 +54,9 @@
     "react-native-redash": "^14.2.4",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "~3.0.0",
-    "react-native-simple-bottom-sheet": "^1.0.3",
-    "react-native-snap-carousel": "^3.9.1",
     "react-native-svg": "12.1.0",
     "react-native-vector-icons": "^8.1.0",
-    "react-native-web": "~0.13.12",
     "reanimated-bottom-sheet": "*",
-    "styled-components": "^5.2.3",
     "toggle-switch-react-native": "^3.2.0",
     "use-constant": "^1.1.0"
   },

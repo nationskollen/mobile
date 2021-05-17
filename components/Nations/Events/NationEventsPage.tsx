@@ -15,6 +15,10 @@ import FilterBar from '../../Home/FilterBar'
 import NationBasePage from '../Front/NationBasePage'
 import Calendar from '../../Home/Calendar'
 import { DatePickerProvider } from '../../Home/DatePickerContext'
+import { SheetProvider } from '../../Home/SheetContext'
+import BottomSheet from '../../Home/Bottomsheet'
+import FilterButtons from '../../Home/Filtering/FilterButtons'
+import { FilterProvider } from '../../Home/Filtering/FilterContext'
 
 export interface Props {
     route: RouteProp<TabStackParamList, 'NationEvents'>
@@ -27,9 +31,16 @@ const NationEventsPage = ({ route }: Props) => {
     return (
         <NationBasePage title={translate.titles.nationEvents} nation={nation} cardBackground={true}>
             <DatePickerProvider>
-                <FilterBar hideNationFilter={true} />
-                <Calendar />
-                <Timeline nation={nation} />
+                <FilterProvider>
+                    <SheetProvider>
+                        <FilterBar hideNationFilter={true} />
+                        <Calendar />
+                        <Timeline nation={nation} />
+                        <BottomSheet>
+                            <FilterButtons hideNationFilter={true}></FilterButtons>
+                        </BottomSheet>
+                    </SheetProvider>
+                </FilterProvider>
             </DatePickerProvider>
         </NationBasePage>
     )

@@ -152,8 +152,8 @@ const English: LanguageContextType = {
     },
 
     filterStudent: {
-        needscard: 'Nation card required',
-        needsmembership: 'Membership required',
+        needscard: 'No nation card required',
+        needsmembership: 'No membership required',
     },
 
     filterCategory: {

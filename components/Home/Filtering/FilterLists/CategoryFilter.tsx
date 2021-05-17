@@ -28,7 +28,7 @@ const CategoryFilter = () => {
             data={categories}
             onPress={onPress}
             checkedList={filters.categories}
-            needsTranslate={true}
+            needsTranslation={true}
         />
     )
 }

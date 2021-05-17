@@ -15,12 +15,12 @@ import { useTranslation } from '../../../translate/LanguageContext'
 
 interface Props {
     data: NationCollection | CategoryCollection | Array<any> // it's not happy without this generic type?
-    onPress: (arg0: object) => void
+    onPress: (filterListItem: object) => void
     checkedList: object
-    needsTranslate?: Boolean
+    needsTranslation?: Boolean
 }
 
-const FilterFlatList = ({ data, onPress, checkedList, needsTranslate }: Props) => {
+const FilterFlatList = ({ data, onPress, checkedList, needsTranslation }: Props) => {
     const { colors } = useTheme()
     const { translate } = useTranslation()
 
@@ -44,7 +44,7 @@ const FilterFlatList = ({ data, onPress, checkedList, needsTranslate }: Props) =
                         title={
                             <Text style={{ flex: 1, color: colors.text, marginLeft: 5 }}>
                                 {/* Categories need translation */}
-                                {needsTranslate ? translate.filterCategory[item.name] : item.name}
+                                {needsTranslation ? translate.filterCategory[item.name] : item.name}
                             </Text>
                         }
                         containerStyle={{

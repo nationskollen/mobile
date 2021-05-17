@@ -13,27 +13,44 @@ import StudentFilter from './FilterLists/StudentFilter'
 import { useTheme } from '../../ThemeContext'
 import { useTranslation } from '../../../translate/LanguageContext'
 
+interface Props {
+    hideNationFilter?: boolean
+}
+
 /**
  * This component is used to create pressable filter category buttons
  */
-const FilterButtons = () => {
-    const [filterList, setFilterList] = useState(<NationFilter />)
+const FilterButtons = ({ hideNationFilter }: Props) => {
+    const [filterList, setFilterList] = hideNationFilter
+        ? useState(<CategoryFilter />)
+        : useState(<NationFilter />)
     const { translate } = useTranslation()
-    const [focus, setFocus] = useState(1)
-    const buttonStyles = buttons()
+    const [focus, setFocus] = hideNationFilter ? useState(2) : useState(1)
+    const { colors } = useTheme()
+
+    const inFocus = [
+        styles.buttonFocus,
+        {
+            backgroundColor: colors.backgroundHighlight,
+            shadowColor: colors.textHighlight,
+        },
+    ]
+    const notInFocus = [styles.button, { backgroundColor: colors.backgroundExtra }]
 
     return (
         <View style={styles.container}>
             <View style={styles.buttonsContainer}>
-                <Button
-                    onPress={() => {
-                        setFilterList(<NationFilter />)
-                        setFocus(1)
-                    }}
-                    type={'light'}
-                    label={'Nation'}
-                    style={focus === 1 ? buttonStyles.buttonFocus : buttonStyles.button}
-                />
+                {!hideNationFilter && (
+                    <Button
+                        onPress={() => {
+                            setFilterList(<NationFilter />)
+                            setFocus(1)
+                        }}
+                        type={'light'}
+                        label={'Nation'}
+                        style={focus === 1 ? inFocus : notInFocus}
+                    />
+                )}
                 <Button
                     onPress={() => {
                         setFilterList(<CategoryFilter />)
@@ -41,7 +58,7 @@ const FilterButtons = () => {
                     }}
                     type={'light'}
                     label={translate.filterButtons.category}
-                    style={focus === 2 ? buttonStyles.buttonFocus : buttonStyles.button}
+                    style={focus === 2 ? inFocus : notInFocus}
                 />
                 <Button
                     onPress={() => {
@@ -50,7 +67,7 @@ const FilterButtons = () => {
                     }}
                     type={'light'}
                     label={'Student'}
-                    style={focus === 3 ? buttonStyles.buttonFocus : buttonStyles.button}
+                    style={focus === 3 ? inFocus : notInFocus}
                 />
             </View>
 
@@ -75,33 +92,25 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-evenly',
     },
+
+    button: {
+        width: '30%',
+        height: 60,
+    },
+
+    buttonFocus: {
+        width: '30%',
+        height: 60,
+
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+
+        elevation: 6,
+    },
 })
-
-const buttons = () => {
-    const { colors } = useTheme()
-
-    return StyleSheet.create({
-        button: {
-            width: '30%',
-            height: 60,
-            backgroundColor: colors.backgroundExtra,
-        },
-
-        buttonFocus: {
-            width: '30%',
-            height: 60,
-            backgroundColor: colors.backgroundHighlight,
-            shadowColor: colors.textHighlight,
-            shadowOffset: {
-                width: 0,
-                height: 1,
-            },
-            shadowOpacity: 0.2,
-            shadowRadius: 3,
-
-            elevation: 6,
-        },
-    })
-}
 
 export default FilterButtons

@@ -30,8 +30,8 @@ const Timeline = ({ nation }: Props) => {
             amount: 10,
             excludeOids: excludeOids(filters),
             excludeCategories: excludeCategories(filters),
-            onlyStudents: !filters.student[0],
-            onlyMembers: !filters.student[1],
+            onlyStudents: filters.student[0],
+            onlyMembers: filters.student[1],
         }
     )
 

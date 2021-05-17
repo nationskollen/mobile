@@ -152,8 +152,8 @@ const Swedish: LanguageContextType = {
     },
 
     filterStudent: {
-        needscard: 'Nationskort krävs',
-        needsmembership: 'medlemskap krävs',
+        needscard: 'Inget nationskort krävs',
+        needsmembership: 'Inget medlemskap krävs',
     },
 
     filterCategory: {

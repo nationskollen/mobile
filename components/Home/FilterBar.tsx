@@ -16,7 +16,7 @@ const FilterBar = ({ hideNationFilter }: Props) => {
     return (
         <View style={styles.mainWrapper}>
             <ChooseDateBar />
-            {!hideNationFilter && <ShowFilterButtons />}
+            <ShowFilterButtons />
         </View>
     )
 }
