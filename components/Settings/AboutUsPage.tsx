@@ -14,38 +14,38 @@ import FocusAwareStatusBar from '../Common/FocusAwareStatusBar'
 const DATA = [
     {
         name: 'Fredrik Engstrand',
-        description: 'Description',
-        image: 'https://engstrand.nu/assets/img/7253137.jpg',
+        description: 'Full Stack developer',
+        image: 'https://nationskollen-staging.engstrand.nu/assets/aboutus/fredrikEngstrand.jpg',
     },
     {
         name: 'Fahad Rami Jamil',
-        description: 'Description',
-        image: 'https://engstrand.nu/assets/img/7253137.jpg',
+        description: 'Back-End developer',
+        image: 'https://nationskollen-staging.engstrand.nu/assets/aboutus/fahadJamil.jpg',
     },
     {
         name: 'Johannes Liljedahl',
-        description: 'Description',
-        image: 'https://engstrand.nu/assets/img/7253137.jpg',
+        description: 'Front-End developer',
+        image: 'https://nationskollen-staging.engstrand.nu/assets/aboutus/johannesLiljedahl.jpg',
     },
     {
         name: 'Carl Wallskog',
-        description: 'Description',
-        image: 'https://engstrand.nu/assets/img/7253137.jpg',
+        description: 'Front-End developer',
+        image: 'https://nationskollen-staging.engstrand.nu/assets/aboutus/carlWallskog.jpg',
     },
     {
         name: 'Oskar Rick',
-        description: 'Description',
-        image: 'https://engstrand.nu/assets/img/7253137.jpg',
+        description: 'Front-End developer',
+        image: 'https://nationskollen-staging.engstrand.nu/assets/aboutus/oskarRick.jpg',
     },
     {
         name: 'Aria Assadi',
-        description: 'Description',
-        image: 'https://engstrand.nu/assets/img/7253137.jpg',
+        description: 'Front-End developer',
+        image: 'https://nationskollen-staging.engstrand.nu/assets/aboutus/ariaAssadi.jpg',
     },
     {
         name: 'Robert Martinis',
-        description: 'Description',
-        image: 'https://engstrand.nu/assets/img/7253137.jpg',
+        description: 'Front-End developer',
+        image: 'https://nationskollen-staging.engstrand.nu/assets/aboutus/robertMartinis.jpg',
     },
 ]
 
