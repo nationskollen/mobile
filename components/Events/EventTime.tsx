@@ -1,24 +1,30 @@
-import React, { useRef } from 'react'
+import React, { useMemo } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { useTheme } from '../ThemeContext'
 import { Event } from '@nationskollen/sdk'
 import { AntDesign } from '@expo/vector-icons'
 
-interface Props {
+export interface Props {
     event: Event
 }
 
 const EventTime = ({ event }: Props) => {
     const { colors } = useTheme()
 
-    const eventArr = event.occurs_at.split('T')
-    const dateArr = eventArr[0].split('-')
-    const dateMonth = dateArr[1][0] == '0' ? dateArr[1][1] : dateArr[1]
-    const dateStr = dateArr[2] + '/' + dateMonth
+    const timeData = useMemo(() => {
+        const occursAt = new Date(event.occurs_at)
+        const endsAt = new Date(event.ends_at)
 
-    const smallSpace = <Text style={{ fontSize: 8 }}> </Text>
-    const startTime = eventArr[1].slice(0, 5)
-    const endTime = event.ends_at.slice(11, 16)
+        const startTime = occursAt.toLocaleTimeString('sv-SV').slice(0, 5)
+        const endTime = endsAt.toLocaleTimeString('sv-SV').slice(0, 5)
+        const dateStr = occursAt.getDate() + '/' + (occursAt.getMonth() + 1)
+
+        return {
+            startTime,
+            endTime,
+            dateStr,
+        }
+    }, [event])
 
     return (
         <View style={styles.container}>
@@ -29,11 +35,9 @@ const EventTime = ({ event }: Props) => {
                 color={colors.text}
                 style={{ paddingRight: 5 }}
             />
-            <Text style={[styles.time, { color: colors.text }]}>{startTime}</Text>
-            {smallSpace}
-            <Text style={{ color: colors.text }}>{'-'}</Text>
-            {smallSpace}
-            <Text style={[styles.time, { color: colors.text }]}>{endTime}</Text>
+            <Text style={[styles.time, { color: colors.text }]}>{timeData.startTime}</Text>
+            <Text style={{ color: colors.text, marginHorizontal: 2 }}>{'-'}</Text>
+            <Text style={[styles.time, { color: colors.text }]}>{timeData.endTime}</Text>
 
             {/* Date */}
             <AntDesign
@@ -42,7 +46,7 @@ const EventTime = ({ event }: Props) => {
                 color={colors.text}
                 style={{ marginLeft: 12, paddingRight: 5 }}
             />
-            <Text style={[styles.time, { color: colors.text }]}>{dateStr}</Text>
+            <Text style={[styles.time, { color: colors.text }]}>{timeData.dateStr}</Text>
         </View>
     )
 }

@@ -1,20 +1,20 @@
 import React from 'react'
-import { View} from 'react-native'
-import { Ionicons } from '@expo/vector-icons';
-import { useTheme } from '../../ThemeContext';
+import { View } from 'react-native'
+import { Ionicons } from '@expo/vector-icons'
+import { useTheme } from '../../ThemeContext'
 
-interface Props {
-    category:string
+export interface Props {
+    category: string
 }
 
-export const CategoryIcon = ({category}:Props) => {
-    const { colors }= useTheme()
+export const CategoryIcon = ({ category }: Props) => {
+    const { colors } = useTheme()
 
-    switch (category){
+    switch (category) {
         case 'Breakfast':
             return <Ionicons name="fast-food" size={24} color={colors.text} />
         case 'Brunch':
-            return <View></View> 
+            return <View></View>
         case 'Club':
             return <View></View>
         case 'Consert':

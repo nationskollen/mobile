@@ -2,7 +2,7 @@
  * @category Home
  * @module TimeLine
  */
-import React from 'react'
+import React, { useMemo } from 'react'
 import { FlatList } from 'react-native'
 import { useDatePicker } from './DatePickerContext'
 import { useEvents, Nation } from '@nationskollen/sdk'
@@ -24,11 +24,18 @@ const Timeline = ({ nation }: Props) => {
     const { translate } = useTranslation()
     const { filters } = useFilter()
 
+    const exclude = useMemo(() => {
+        return {
+            oids: excludeOids(filters),
+            categories: excludeCategories(filters),
+        }
+    }, [filters])
+
     const useEventsInput = {
         date,
         amount: 10,
-        excludeOids: excludeOids(filters),
-        excludeCategories: excludeCategories(filters),
+        excludeOids: exclude.oids,
+        excludeCategories: exclude.categories,
         onlyStudents: filters.student[0],
         onlyMembers: filters.student[1],
     }
@@ -74,23 +81,11 @@ const Timeline = ({ nation }: Props) => {
 }
 
 const excludeOids = (filters: FilterCheckboxesType): Array<number> => {
-    var oids = []
-
-    for (let oid in filters.nations) {
-        if (filters.nations[oid]) oids.push(oid)
-    }
-
-    return oids
+    return Object.keys(filters.nations).map((key) => parseInt(key))
 }
 
 const excludeCategories = (filters: FilterCheckboxesType): Array<number> => {
-    var categories = []
-
-    for (let id in filters.categories) {
-        if (filters.categories[id]) categories.push(parseInt(id))
-    }
-
-    return categories
+    return Object.keys(filters.categories).map((key) => parseInt(key))
 }
 
 export default Timeline
