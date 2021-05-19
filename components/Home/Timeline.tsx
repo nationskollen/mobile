@@ -81,11 +81,23 @@ const Timeline = ({ nation }: Props) => {
 }
 
 const excludeOids = (filters: FilterCheckboxesType): Array<number> => {
-    return Object.keys(filters.nations).map((key) => parseInt(key))
+    var oids = []
+
+    for (let oid in filters.nations) {
+        if (filters.nations[oid]) oids.push(oid)
+    }
+
+    return oids
 }
 
 const excludeCategories = (filters: FilterCheckboxesType): Array<number> => {
-    return Object.keys(filters.categories).map((key) => parseInt(key))
+    var categories = []
+
+    for (let id in filters.categories) {
+        if (filters.categories[id]) categories.push(parseInt(id))
+    }
+
+    return categories
 }
 
 export default Timeline
