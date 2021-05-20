@@ -13,7 +13,13 @@ const Bottomsheet = ({ children }) => {
     const [close, setClose] = useState(false)
 
     const renderContent = () => (
-        <View style={[styles.content, {backgroundColor: isDarkMode ? colors.backgroundHighlight : colors.background}, styles.headerShadows]} >
+        <View
+            style={[
+                styles.content,
+                { backgroundColor: isDarkMode ? colors.backgroundHighlight : colors.background },
+                styles.headerShadows,
+            ]}
+        >
             {children}
         </View>
     )
@@ -73,25 +79,24 @@ const styles = StyleSheet.create({
         shadowOffset: {
             width: 0,
             height: -6,
-            
         },
         shadowOpacity: 0.1,
         shadowRadius: 2,
         zIndex: 10,
-        elevation:100,
+        //elevation:100,
     },
 
     panelHeader: {
         alignItems: 'center',
-        height:15
+        height: 15,
     },
 
     panelHandle: {
         width: 60,
         height: 6,
         borderRadius: 4,
-        marginBottom:7,
-        backgroundColor: 'gray'
+        marginBottom: 7,
+        backgroundColor: 'gray',
     },
 })
 

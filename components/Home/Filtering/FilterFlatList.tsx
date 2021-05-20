@@ -28,46 +28,45 @@ const FilterFlatList = ({ data, onPress, checkedList, needsTranslation }: Props)
 
     return (
         <FlatList
-            contentContainerStyle={{ flexGrow: 1,  }}
+            contentContainerStyle={{ flexGrow: 1 }}
             data={data}
             renderItem={({ item }) => (
-                <ContentContainer
-                    direction={'row'}
-                    style={{
+                <CheckBox
+                    size={24}
+                    checkedColor={colors.primary}
+                    title={
+                        <>
+                            {item?.icon_img_src ? (
+                                <NationLogo src={item?.icon_img_src} size={30} spacing={0} />
+                            ) : (
+                                <CategoryIcon category={item.name} />
+                            )}
+                            <Text
+                                style={{
+                                    flex: 1,
+                                    color: colors.text,
+                                    marginLeft: 20,
+                                    fontWeight: '700',
+                                }}
+                            >
+                                {/* Categories need translation */}
+                                {needsTranslation ? translate.filterCategory[item.name] : item.name}
+                            </Text>
+                        </>
+                    }
+                    containerStyle={{
+                        height: 60,
+                        width: '95%',
+                        backgroundColor: colors.backgroundExtra,
+                        borderRadius: 10,
+                        borderColor: colors.border,
                         alignItems: 'center',
-                        justifyContent:'center',
-                        paddingVertical: 0,
-                        backgroundColor: isDarkMode ? colors.backgroundHighlight : colors.background,
+                        flexDirection: 'row',
                     }}
-                >
-                    
-                    <CheckBox
-                        size={24}
-                        checkedColor={colors.primary}
-                        title={
-                            <>
-                                {item?.icon_img_src ? 
-                                    <NationLogo src={item?.icon_img_src} size={35} spacing={5}/> :
-                                    <CategoryIcon category={item.name}/>
-                                }
-                                <Text style={{ flex: 1, color: colors.text, marginLeft: 5 }}>
-                                    {/* Categories need translation */}
-                                    {needsTranslation ? translate.filterCategory[item.name] : item.name}
-                                </Text>
-                            </>
-                        }
-                        containerStyle={{
-                            height: 50,
-                            width: '95%',
-                            backgroundColor: colors.backgroundExtra,
-                            borderRadius: 10,
-                            borderColor: colors.border,
-                        }}
-                        iconRight
-                        onPress={() => onPress(item)}
-                        checked={!checkedList[item?.oid ?? item?.id]}
-                    />
-                </ContentContainer>
+                    iconRight
+                    onPress={() => onPress(item)}
+                    checked={!checkedList[item?.oid ?? item?.id]}
+                />
             )}
             keyExtractor={(item) => (item?.oid ?? item?.id).toString()}
             fadingEdgeLength={30}
@@ -75,4 +74,4 @@ const FilterFlatList = ({ data, onPress, checkedList, needsTranslation }: Props)
     )
 }
 
-export default FilterFlatList 
+export default FilterFlatList

@@ -23,16 +23,26 @@ const StudentFilter = () => {
     ]
 
     const onPress = (item: StudentProp) => {
-        setFilters({
-            ...filters,
-            student: {
-                ...filters.student,
-                [item.id]: !filters.student[item.id],
-            },
-        })
+        if (item.id == 0) {
+            setFilters({
+                ...filters,
+                noCard: !filters.noCard,
+            })
+        } else if (item.id == 1) {
+            setFilters({
+                ...filters,
+                noMembership: !filters.noMembership,
+            })
+        }
     }
 
-    return <FilterFlatList data={student} onPress={onPress} checkedList={filters.student} />
+    return (
+        <FilterFlatList
+            data={student}
+            onPress={onPress}
+            checkedList={[filters.noCard, filters.noMembership]}
+        />
+    )
 }
 
 export default StudentFilter

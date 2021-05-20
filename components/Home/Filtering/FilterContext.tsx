@@ -13,10 +13,8 @@ export const FilterProvider = ({ children }) => {
     const [filters, setFilters] = useState({
         nations: {},
         categories: {},
-        student: {
-            0: true,
-            1: true,
-        },
+        noCard: true,
+        noMembership: true,
     })
     //student requirements have to be initialized with inversed values (start as unchecked)
 

@@ -36,14 +36,14 @@ const Timeline = ({ nation }: Props) => {
         amount: 10,
         excludeOids: exclude.oids,
         excludeCategories: exclude.categories,
-        onlyStudents: filters.student[0],
-        onlyMembers: filters.student[1],
+        onlyStudents: filters.noCard,
+        onlyMembers: filters.noMembership,
     }
 
-    // if "no nation card" and "no membership" are true, (meaning needscard and needsmembership are false)
-    // show all events by deleting the filter params
-    if (filters.student[0] && filters.student[1]) {
+    if (filters.noCard) {
         delete useEventsInput.onlyStudents
+    }
+    if (filters.noMembership) {
         delete useEventsInput.onlyMembers
     }
 

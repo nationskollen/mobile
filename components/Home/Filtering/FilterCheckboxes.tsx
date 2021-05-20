@@ -3,5 +3,7 @@ export default interface FilterCheckboxesType {
 
     categories: Record<string, boolean>
 
-    student: Record<number, boolean>
+    noCard: boolean
+
+    noMembership: boolean
 }
