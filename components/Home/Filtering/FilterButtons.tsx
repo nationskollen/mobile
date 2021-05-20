@@ -13,7 +13,7 @@ import StudentFilter from './FilterLists/StudentFilter'
 import { useTheme } from '../../ThemeContext'
 import { useTranslation } from '../../../translate/LanguageContext'
 
-interface Props {
+export interface Props {
     hideNationFilter?: boolean
 }
 
