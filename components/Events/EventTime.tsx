@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { useTheme } from '../ThemeContext'
 import { Event } from '@nationskollen/sdk'
-import { AntDesign } from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons'
 
 export interface Props {
     event: Event
@@ -29,22 +29,17 @@ const EventTime = ({ event }: Props) => {
     return (
         <View style={styles.container}>
             {/* Time */}
-            <AntDesign
-                name="clockcircleo"
-                size={16}
-                color={colors.text}
-                style={{ paddingRight: 5 }}
-            />
+            <Ionicons name="time-sharp" size={20} color={colors.text} style={{ paddingRight: 5 }} />
             <Text style={[styles.time, { color: colors.text }]}>{timeData.startTime}</Text>
             <Text style={{ color: colors.text, marginHorizontal: 2 }}>{'-'}</Text>
             <Text style={[styles.time, { color: colors.text }]}>{timeData.endTime}</Text>
 
             {/* Date */}
-            <AntDesign
-                name="calendar"
-                size={18}
+            <Ionicons
+                name="calendar-sharp"
+                size={20}
                 color={colors.text}
-                style={{ marginLeft: 12, paddingRight: 5 }}
+                style={{ paddingHorizontal: 5 }}
             />
             <Text style={[styles.time, { color: colors.text }]}>{timeData.dateStr}</Text>
         </View>

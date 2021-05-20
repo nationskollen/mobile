@@ -21,11 +21,8 @@ interface Props {
  * This component is used to create pressable filter category buttons
  */
 const FilterButtons = ({ hideNationFilter }: Props) => {
-    const [filterList, setFilterList] = hideNationFilter
-        ? useState(<CategoryFilter />)
-        : useState(<NationFilter />)
     const { translate } = useTranslation()
-    const [focus, setFocus] = hideNationFilter ? useState(2) : useState(1)
+    const [focus, setFocus] = useState(hideNationFilter ? 2 : 1)
     const { colors } = useTheme()
 
     const inFocus = [
@@ -37,13 +34,17 @@ const FilterButtons = ({ hideNationFilter }: Props) => {
     ]
     const notInFocus = [styles.button, { backgroundColor: colors.backgroundExtra }]
 
+    let filterList: JSX.Element
+    if (focus === 1) filterList = <NationFilter />
+    else if (focus === 2) filterList = <CategoryFilter />
+    else if (focus === 3) filterList = <StudentFilter />
+
     return (
         <View style={styles.container}>
             <View style={styles.buttonsContainer}>
                 {!hideNationFilter && (
                     <Button
                         onPress={() => {
-                            setFilterList(<NationFilter />)
                             setFocus(1)
                         }}
                         type={'light'}
@@ -53,7 +54,6 @@ const FilterButtons = ({ hideNationFilter }: Props) => {
                 )}
                 <Button
                     onPress={() => {
-                        setFilterList(<CategoryFilter />)
                         setFocus(2)
                     }}
                     type={'light'}
@@ -62,7 +62,6 @@ const FilterButtons = ({ hideNationFilter }: Props) => {
                 />
                 <Button
                     onPress={() => {
-                        setFilterList(<StudentFilter />)
                         setFocus(3)
                     }}
                     type={'light'}
@@ -83,12 +82,12 @@ const styles = StyleSheet.create({
         height: '100%',
         justifyContent: 'space-between',
         zIndex: 10,
-        overflow:'hidden',
-        elevation:100,
+        overflow: 'hidden',
+        elevation: 100,
     },
 
     buttonsContainer: {
-        elevation:100,
+        elevation: 100,
         marginTop: 10,
         height: 70,
         flexDirection: 'row',

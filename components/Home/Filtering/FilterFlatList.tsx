@@ -9,15 +9,14 @@ import { FlatList } from 'react-native-gesture-handler'
 import { CheckBox } from 'react-native-elements'
 import { useTheme } from '../../ThemeContext'
 import NationLogo from '../../Nations/Front/NationLogo'
-import { CategoryCollection, NationCollection } from '@nationskollen/sdk'
-import ContentContainer from '../../Common/ContentContainer'
+import { CategoryCollection, NationCollection, Category, Nation } from '@nationskollen/sdk'
 import { useTranslation } from '../../../translate/LanguageContext'
 import { StudentProp } from './FilterLists/StudentFilter'
 import { CategoryIcon } from './FilterListIcons'
 
-interface Props {
+export interface Props {
     data: NationCollection | CategoryCollection | Array<StudentProp>
-    onPress: (filterListItem: object) => void
+    onPress: (filterListItem: Nation | Category | StudentProp) => void
     checkedList: object
     needsTranslation?: Boolean
 }
@@ -55,7 +54,7 @@ const FilterFlatList = ({ data, onPress, checkedList, needsTranslation }: Props)
                         </>
                     }
                     containerStyle={{
-                        height: 60,
+                        height: 55,
                         width: '95%',
                         backgroundColor: colors.backgroundExtra,
                         borderRadius: 10,

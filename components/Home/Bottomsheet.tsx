@@ -31,38 +31,36 @@ const Bottomsheet = ({ children }) => {
     )
 
     return (
-        <>
-            <BottomSheet
-                ref={sheetRef}
-                snapPoints={[450, 12]}
-                initialSnap={1}
-                borderRadius={0}
-                renderContent={renderContent}
-                renderHeader={renderHeader}
-                enabledContentTapInteraction={false} // for android to interact with content
-                onOpenStart={() => {
-                    setOpen(true)
-                    setClose(false)
-                }}
-                onCloseStart={() => {
-                    setClose(true)
+        <BottomSheet
+            ref={sheetRef}
+            snapPoints={[450, 12]}
+            initialSnap={1}
+            borderRadius={0}
+            renderContent={renderContent}
+            renderHeader={renderHeader}
+            enabledContentTapInteraction={false} // for android to interact with content
+            onOpenStart={() => {
+                setOpen(true)
+                setClose(false)
+            }}
+            onCloseStart={() => {
+                setClose(true)
+                setOpen(false)
+            }}
+            onOpenEnd={() => {
+                if (!close) {
                     setOpen(false)
-                }}
-                onOpenEnd={() => {
-                    if (!close) {
-                        setOpen(false)
-                        setShow(!show)
-                    }
-                }}
-                onCloseEnd={() => {
-                    if (!open) {
-                        setClose(false)
-                        setShow(!show)
-                    }
-                }}
-                enabledGestureInteraction={true}
-            ></BottomSheet>
-        </>
+                    setShow(!show)
+                }
+            }}
+            onCloseEnd={() => {
+                if (!open) {
+                    setClose(false)
+                    setShow(!show)
+                }
+            }}
+            enabledGestureInteraction={true}
+        ></BottomSheet>
     )
 }
 
@@ -83,7 +81,6 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.1,
         shadowRadius: 2,
         zIndex: 10,
-        //elevation:100,
     },
 
     panelHeader: {
