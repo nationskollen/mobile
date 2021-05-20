@@ -5,15 +5,19 @@
 import React, { useState } from 'react'
 import { View } from 'react-native'
 import { useTheme } from '../ThemeContext'
+import { RouteProp } from '@react-navigation/native'
 import { Nation } from '@nationskollen/sdk'
 import { TabStackParamList } from '../Footer/Footer'
 import { DatePickerProvider } from './DatePickerContext'
-import { RouteProp } from '@react-navigation/native'
+import { SheetProvider } from './SheetContext'
+import { FilterProvider } from './Filtering/FilterContext'
 
 import Timeline from './Timeline'
 import Calendar from './Calendar'
 import FilterBar from './FilterBar'
 import FocusAwareStatusBar from '../Common/FocusAwareStatusBar'
+import BottomSheet from './Bottomsheet'
+import FilterButtons from './Filtering/FilterButtons'
 
 export interface Props {
     route: RouteProp<TabStackParamList, 'Home'>
@@ -33,9 +37,16 @@ const Home = () => {
                     backgroundColor: isDarkMode ? colors.background : colors.backgroundExtra,
                 }}
             >
-                <FilterBar />
-                <Calendar />
-                <Timeline nation={selectedNation} />
+                <FilterProvider>
+                    <SheetProvider>
+                        <FilterBar />
+                        <Calendar />
+                        <Timeline nation={selectedNation} />
+                        <BottomSheet>
+                            <FilterButtons />
+                        </BottomSheet>
+                    </SheetProvider>
+                </FilterProvider>
             </View>
         </DatePickerProvider>
     )

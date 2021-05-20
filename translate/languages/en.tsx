@@ -147,6 +147,30 @@ const English: LanguageContextType = {
         successMsg: 'Event was added to your calendar',
     },
 
+    filterButtons: {
+        category: 'Category',
+    },
+
+    filterStudent: {
+        needscard: 'No nation card required',
+        needsmembership: 'No membership required',
+    },
+
+    filterCategory: {
+        Breakfast: 'Breakfast',
+        Brunch: 'Brunch',
+        Club: 'Club',
+        Consert: 'Consert',
+        Culture: 'Culture',
+        Fika: 'Fika',
+        Gasque: 'Gasque',
+        Lunch: 'Lunch',
+        Other: 'Other',
+        Pub: 'Pub',
+        Restaurant: 'Restaurant',
+        Sport: 'Sport',
+    },
+
     notifications: {
         noNewNotifications: 'No new notifications',
     },

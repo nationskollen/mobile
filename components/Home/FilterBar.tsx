@@ -6,7 +6,7 @@ import React from 'react'
 import { View, StyleSheet } from 'react-native'
 
 import ChooseDateBar from './ChooseDateBar'
-import ChooseNationButton from './ChooseNationButton'
+import ShowFilterButtons from './ShowFilterButtons'
 
 export interface Props {
     hideNationFilter?: boolean
@@ -16,7 +16,7 @@ const FilterBar = ({ hideNationFilter }: Props) => {
     return (
         <View style={styles.mainWrapper}>
             <ChooseDateBar />
-            {!hideNationFilter && <ChooseNationButton />}
+            <ShowFilterButtons />
         </View>
     )
 }

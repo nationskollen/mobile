@@ -147,6 +147,30 @@ const Swedish: LanguageContextType = {
         successMsg: 'Evenemanget är tillagt i din kalender',
     },
 
+    filterButtons: {
+        category: 'Kategori',
+    },
+
+    filterStudent: {
+        needscard: 'Inget nationskort krävs',
+        needsmembership: 'Inget medlemskap krävs',
+    },
+
+    filterCategory: {
+        Breakfast: 'Frukost',
+        Brunch: 'Brunch',
+        Club: 'Klubb',
+        Consert: 'Konsert',
+        Culture: 'Kultur',
+        Fika: 'Fika',
+        Gasque: 'Gasque',
+        Lunch: 'Lunch',
+        Other: 'Övrigt',
+        Pub: 'Pub',
+        Restaurant: 'Restaurang',
+        Sport: 'Sport',
+    },
+
     notifications: {
         noNewNotifications: 'Inga nya notifikationer',
     },

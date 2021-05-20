@@ -25,7 +25,7 @@ export interface Props extends ButtonProps {
     button?: Element
 }
 
-const ReminderButton = ({ event, eventAddress, nationName, hideLabel, style }: Props) => {
+const ReminderButton = ({ event, eventAddress, nationName, style }: Props) => {
     const { translate } = useTranslation()
     const asyncOnPress = useAsyncCallback(() =>
         addToCalendar(event, eventAddress, nationName, translate.reminderPopup)
@@ -33,7 +33,7 @@ const ReminderButton = ({ event, eventAddress, nationName, hideLabel, style }: P
 
     return (
         <OptionsMenu
-            customButton={<Button hideLabel={hideLabel} style={style} />}
+            customButton={<Button style={style} />}
             destructiveIndex={1}
             options={[translate.reminderPopup.addToCalendar, translate.reminderPopup.cancel]}
             actions={[asyncOnPress.execute]}
@@ -41,7 +41,7 @@ const ReminderButton = ({ event, eventAddress, nationName, hideLabel, style }: P
     )
 }
 
-const Button = ({ hideLabel, style }) => {
+const Button = ({ style }) => {
     const { colors, isDarkMode } = useTheme()
     const { translate } = useTranslation()
 
@@ -57,12 +57,7 @@ const Button = ({ hideLabel, style }) => {
                 style,
             ]}
         >
-            <Ionicons name="notifications-outline" size={20} color={colors.text} />
-            {!hideLabel && (
-                <Text style={[styles.text, { color: colors.text }]}>
-                    {translate.home.reminderbutton}
-                </Text>
-            )}
+            <Ionicons name="notifications-outline" size={24} color={colors.text} />
         </View>
     )
 }
