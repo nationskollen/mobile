@@ -21,17 +21,9 @@ export interface Props {
 }
 
 const Timeline = ({ nation }: Props) => {
-    const { date, setShownDate, shownDate } = useDatePicker()
+    const { date, changeDateByNum } = useDatePicker()
     const { translate } = useTranslation()
     const { filters } = useFilter()
-
-    //TODO: extract to its own file, or add to context
-    const changeDate = useCallback(
-        (change: number) => {
-            setShownDate(new Date(shownDate.setDate(shownDate.getDate() + change)))
-        },
-        [shownDate]
-    )
 
     const exclude = useMemo(() => {
         return {
@@ -68,8 +60,8 @@ const Timeline = ({ nation }: Props) => {
                 enableSwipeDown: false,
                 enableSwipeUp: false,
             }}
-            onSwipeLeft={() => changeDate(1)}
-            onSwipeRight={() => changeDate(-1)}
+            onSwipeLeft={() => changeDateByNum(1)}
+            onSwipeRight={() => changeDateByNum(-1)}
         >
             <View style={{ width: '100%', height: '100%' }}>
                 <FlatList
