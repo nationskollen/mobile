@@ -2,7 +2,7 @@
  * @category Home
  * @module TimeLine
  */
-import React, { useMemo, useCallback } from 'react'
+import React, { useMemo } from 'react'
 import { FlatList, View } from 'react-native'
 import { useDatePicker } from './DatePickerContext'
 import { useEvents, Nation } from '@nationskollen/sdk'

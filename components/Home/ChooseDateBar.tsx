@@ -2,7 +2,7 @@
  * @category Home
  * @module ChoosedDateBar
  */
-import React, { useRef, useCallback } from 'react'
+import React, { useRef } from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import { View, TouchableOpacity, StyleSheet, Text } from 'react-native'
 
