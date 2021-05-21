@@ -8,7 +8,7 @@ import { useDatePicker } from './DatePickerContext'
 import { useEvents, Nation } from '@nationskollen/sdk'
 import { useTranslation } from '../../translate/LanguageContext'
 import { useFilter } from './Filtering/FilterContext'
-import GestureRecognizer from 'react-native-swipe-gestures'
+import GestureRecognizer from 'react-native-swipe-detect'
 
 import ListEmpty from '../List/ListEmpty'
 import ListFooter from '../List/ListFooter'
@@ -63,7 +63,11 @@ const Timeline = ({ nation }: Props) => {
 
     return (
         <GestureRecognizer
-            config={{ directionalOffsetThreshold: 60 }}
+            config={{
+                directionalOffsetThreshold: 60,
+                enableSwipeDown: false,
+                enableSwipeUp: false,
+            }}
             onSwipeLeft={() => changeDate(1)}
             onSwipeRight={() => changeDate(-1)}
         >
