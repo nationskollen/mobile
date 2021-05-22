@@ -2,7 +2,7 @@
  * @category Home
  * @module ChoosedDateBar
  */
-import React, { useRef, useCallback } from 'react'
+import React, { useRef } from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import { View, TouchableOpacity, StyleSheet, Text } from 'react-native'
 
@@ -13,16 +13,9 @@ import { useTranslation } from '../../translate/LanguageContext'
 const ChooseDateBar = () => {
     const { translate } = useTranslation()
     const { colors, isDarkMode } = useTheme()
-    const { shownDate, setShownDate, visible, setVisible } = useDatePicker()
+    const { shownDate, visible, setVisible, changeDateByNum } = useDatePicker()
     const currentDate = useRef(new Date().toLocaleDateString()).current
     const dateString = shownDate.toLocaleDateString()
-
-    const changeDate = useCallback(
-        (change: number) => {
-            setShownDate(new Date(shownDate.setDate(shownDate.getDate() + change)))
-        },
-        [shownDate]
-    )
 
     return (
         <View
@@ -34,7 +27,7 @@ const ChooseDateBar = () => {
                 },
             ]}
         >
-            <TouchableOpacity onPress={() => changeDate(-1)}>
+            <TouchableOpacity onPress={() => changeDateByNum(-1)}>
                 <View
                     style={[
                         styles.arrowWrapper,
@@ -51,7 +44,7 @@ const ChooseDateBar = () => {
                 </Text>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => changeDate(1)}>
+            <TouchableOpacity onPress={() => changeDateByNum(1)}>
                 <View
                     style={[
                         styles.arrowWrapper,

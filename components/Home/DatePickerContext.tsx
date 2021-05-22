@@ -14,6 +14,7 @@ export interface DatePickerContextContract {
     setDate: React.Dispatch<React.SetStateAction<Date>>
     setVisible: React.Dispatch<React.SetStateAction<boolean>>
     setShownDate: React.Dispatch<React.SetStateAction<Date>>
+    changeDateByNum: (change: number) => void
 }
 
 export const DatePickerContext = createContext({} as DatePickerContextContract)
@@ -32,6 +33,10 @@ export const DatePickerProvider = ({ children }) => {
         updateDate(newDate)
     }, [])
 
+    const changeDateByNum = (change: number) => {
+        updateShownDate(new Date(shownDate.setDate(shownDate.getDate() + change)))
+    }
+
     return (
         <DatePickerContext.Provider
             value={{
@@ -42,6 +47,7 @@ export const DatePickerProvider = ({ children }) => {
                 visible,
                 setVisible,
                 currentDate,
+                changeDateByNum,
             }}
         >
             {children}

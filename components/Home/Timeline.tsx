@@ -3,11 +3,12 @@
  * @module TimeLine
  */
 import React, { useMemo } from 'react'
-import { FlatList } from 'react-native'
+import { FlatList, View } from 'react-native'
 import { useDatePicker } from './DatePickerContext'
 import { useEvents, Nation } from '@nationskollen/sdk'
 import { useTranslation } from '../../translate/LanguageContext'
 import { useFilter } from './Filtering/FilterContext'
+import GestureRecognizer from 'react-native-swipe-detect'
 
 import ListEmpty from '../List/ListEmpty'
 import ListFooter from '../List/ListFooter'
@@ -20,7 +21,7 @@ export interface Props {
 }
 
 const Timeline = ({ nation }: Props) => {
-    const { date } = useDatePicker()
+    const { date, changeDateByNum } = useDatePicker()
     const { translate } = useTranslation()
     const { filters } = useFilter()
 
@@ -53,30 +54,48 @@ const Timeline = ({ nation }: Props) => {
     )
 
     return (
-        <FlatList
-            data={data}
-            renderItem={({ item }) => <EventItem event={item} />}
-            keyExtractor={(item) => item.id.toString()}
-            refreshControl={
-                <LoadingCircle
-                    validating={isValidating}
-                    mutate={mutate}
-                    skipIndicatorDelay={true}
+        <GestureRecognizer
+            config={{
+                directionalOffsetThreshold: 60,
+                enableSwipeDown: false,
+                enableSwipeUp: false,
+            }}
+            onSwipeLeft={() => changeDateByNum(1)}
+            onSwipeRight={() => changeDateByNum(-1)}
+        >
+            <View style={{ width: '100%', height: '100%' }}>
+                <FlatList
+                    data={data}
+                    renderItem={({ item }) => <EventItem event={item} />}
+                    keyExtractor={(item) => item.id.toString()}
+                    refreshControl={
+                        <LoadingCircle
+                            validating={isValidating}
+                            mutate={mutate}
+                            skipIndicatorDelay={true}
+                        />
+                    }
+                    onEndReachedThreshold={1}
+                    onEndReached={() =>
+                        pagination && pagination.last_page !== size && setSize(size + 1)
+                    }
+                    ListFooterComponent={() => (
+                        <ListFooter
+                            pagination={pagination}
+                            isValidating={isValidating}
+                            size={size}
+                        />
+                    )}
+                    ListEmptyComponent={() =>
+                        ListEmpty({
+                            error,
+                            loading: isValidating,
+                            message: translate.events.empty,
+                        })
+                    }
                 />
-            }
-            onEndReachedThreshold={1}
-            onEndReached={() => pagination && pagination.last_page !== size && setSize(size + 1)}
-            ListFooterComponent={() => (
-                <ListFooter pagination={pagination} isValidating={isValidating} size={size} />
-            )}
-            ListEmptyComponent={() =>
-                ListEmpty({
-                    error,
-                    loading: isValidating,
-                    message: translate.events.empty,
-                })
-            }
-        />
+            </View>
+        </GestureRecognizer>
     )
 }
 

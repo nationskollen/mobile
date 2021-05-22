@@ -29,7 +29,7 @@ const EventTime = ({ event }: Props) => {
     return (
         <View style={styles.container}>
             {/* Time */}
-            <Ionicons name="time-sharp" size={20} color={colors.text} style={{ paddingRight: 5 }} />
+            <Ionicons name="time-sharp" size={18} color={colors.text} style={{ paddingRight: 5 }} />
             <Text style={[styles.time, { color: colors.text }]}>{timeData.startTime}</Text>
             <Text style={{ color: colors.text, marginHorizontal: 2 }}>{'-'}</Text>
             <Text style={[styles.time, { color: colors.text }]}>{timeData.endTime}</Text>
@@ -37,9 +37,9 @@ const EventTime = ({ event }: Props) => {
             {/* Date */}
             <Ionicons
                 name="calendar-sharp"
-                size={20}
+                size={18}
                 color={colors.text}
-                style={{ paddingHorizontal: 5 }}
+                style={{ marginLeft: 10, paddingHorizontal: 5 }}
             />
             <Text style={[styles.time, { color: colors.text }]}>{timeData.dateStr}</Text>
         </View>
