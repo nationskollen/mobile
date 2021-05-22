@@ -39,7 +39,7 @@ const EventTime = ({ event }: Props) => {
                 name="calendar-sharp"
                 size={18}
                 color={colors.text}
-                style={{ paddingHorizontal: 5 }}
+                style={{ marginLeft: 10, paddingHorizontal: 5 }}
             />
             <Text style={[styles.time, { color: colors.text }]}>{timeData.dateStr}</Text>
         </View>
