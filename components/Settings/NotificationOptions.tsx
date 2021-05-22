@@ -11,18 +11,22 @@ import {
     useApi,
     SubscriptionTopicCollection,
     SubscriptionCreateData,
-    Subscription,
 } from '@nationskollen/sdk'
 import { useTranslation } from '../../translate/LanguageContext'
 import LanguageContextType from '../../translate/LanguageContextType'
 
 export type ToggleCallback = (toggled: boolean, topicId: number) => void
+import {
+   useSubscriptions,
+    Subscription,
+} from '@nationskollen/sdk'
+
 
 export interface Props {
     oid: number
     token: string
     topics: SubscriptionTopicCollection
-    initialData?: Record<string, Subscription>
+    initialData?: any 
 }
 
 export interface ToggleProps {
@@ -46,17 +50,18 @@ function translateTopic(topicName: string, translate: LanguageContextType) {
 
 /// Renders the different notification options
 const NotificationOptions = ({ topics, oid, token, initialData }: Props) => {
+    const { data: subscriptions } = useSubscriptions(token)
     const { translate } = useTranslation()
-
-    return (
+    const fetchedData= initialData(oid, subscriptions)
+  return (
         <View style={styles.options}>
-            {topics.map((topic) => (
+            {topics.map((topic) => ( 
                 <Toggle
                     key={topic.id}
                     token={token}
                     oid={oid}
                     topicId={topic.id}
-                    subscription={initialData && initialData[topic.id]}
+                    subscription={fetchedData && fetchedData[topic.id]}
                     text={translateTopic(topic.name, translate)}
                 />
             ))}

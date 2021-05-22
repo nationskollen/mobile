@@ -2,14 +2,14 @@
  * @category Settings
  * @module NotificationSettings
  */
-import React, { useMemo } from 'react'
+import React, { useMemo, useCallback} from 'react'
 import { FlatList, Text } from 'react-native'
 import { usePushToken } from '../PushTokenContext'
 import {
     useNations,
     useSubscriptionTopics,
-    useSubscriptions,
     Subscription,
+    useSubscriptions
 } from '@nationskollen/sdk'
 
 import Dropdown from '../Common/Dropdown'
@@ -31,10 +31,11 @@ const NotificationSettings = () => {
         return null
     }
 
-    const { data: subscriptions } = useSubscriptions(token)
     const { data, error, isValidating, mutate } = useNations()
 
-    const parsedSubscriptions = useMemo(() => {
+    const { data: subscriptions } = useSubscriptions(token)
+    // Don't need callback because 
+    const parsedSubscriptions =  (id:number, subscriptions: Subscription) => {
         if (!subscriptions || !Array.isArray(subscriptions)) {
             return {}
         }
@@ -48,8 +49,8 @@ const NotificationSettings = () => {
             }
         })
 
-        return parsedData
-    }, [subscriptions])
+        return parsedData[id]
+    } 
 
     // If no subscription topics can be found, we can not modify notifications
     if ((!topics || topics.length === 0) && !isValidatingTopics) {
@@ -65,7 +66,7 @@ const NotificationSettings = () => {
                         oid={item.oid}
                         token={token}
                         topics={topics}
-                        initialData={parsedSubscriptions[item.oid]}
+                        initialData={parsedSubscriptions}
                     />
                 </Dropdown>
             )}
