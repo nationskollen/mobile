@@ -35,7 +35,6 @@
         },
         "android": {
             "package": "com.krabby.nationskollen",
-            "enableDangerousExperimentalLeanBuilds": true,
             "config": {
                 "googleMaps": {
                     "apiKey": "AIzaSyCBKL5amMlCxk95ltCuxmwMDw3d2dsQ2ug"
