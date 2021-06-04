@@ -94,6 +94,7 @@ const AboutUsPage = () => {
                     cardWidth={300}
                     srcExtractor={(item) => item.image}
                     title={translate.aboutUs.whoAreWe}
+                    isValidating={false}
                     paddingBottom={100}
                     renderContent={(item) => (
                         <>
