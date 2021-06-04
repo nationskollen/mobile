@@ -43,7 +43,7 @@ const NationHeader = ({ nation }: Props) => {
             </View>
             <Title
                 label={nation.name}
-                style={[styles.nationName, { color: colors.textHighlight }]}
+                style={styles.nationName}
             />
         </View>
     )
