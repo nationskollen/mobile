@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import 'react-native-gesture-handler'
 import { useTheme } from '../ThemeContext'
 import { View, Text } from 'react-native'
@@ -19,15 +19,12 @@ var checkedStates: CheckedStatesType[] = [
 
 const LanguagePage = () => {
     const { colors } = useTheme()
-    const {
-        setSelectedLanguage,
-        setCurrentLangCode,
-        initialLanguage,
-        availableLanguages,
-    } = useTranslation()
-    const [currentlyChecked, setCurrentlyChecked] = useState(initialLanguage)
-
-    checkedStates[currentlyChecked].checked = true
+    const { setSelectedLanguage, setCurrentLangCode, availableLanguages } = useTranslation()
+    const [currentlyChecked, setCurrentlyChecked] = useState<any>(async () => {
+        const getSelectedLanguage = await AsyncStorage.getItem('savedLanguage')
+        checkedStates[JSON.parse(getSelectedLanguage)].checked = true
+        setCurrentlyChecked(JSON.parse(getSelectedLanguage))
+    })
 
     const storeSelectedLanguage = useCallback(async (chosenLanguageKey: number) => {
         await AsyncStorage.setItem('savedLanguage', JSON.stringify(chosenLanguageKey))
@@ -37,11 +34,12 @@ const LanguagePage = () => {
         storeSelectedLanguage(key)
         setSelectedLanguage(availableLanguages[key].value)
         checkedStates[key].checked = true
-        checkedStates[currentlyChecked].checked = false
         setCurrentlyChecked(key)
+        checkedStates[currentlyChecked].checked = false
         setCurrentLangCode(availableLanguages[key].langCode)
     }
 
+    console.log('currently checked' + currentlyChecked)
     return (
         <View>
             <FocusAwareStatusBar backgroundColor={colors.primary} />
