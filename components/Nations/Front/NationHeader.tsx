@@ -41,10 +41,7 @@ const NationHeader = ({ nation }: Props) => {
             >
                 <NationLogo src={nation.icon_img_src} size={60} />
             </View>
-            <Title
-                label={nation.name}
-                style={[styles.nationName, { color: colors.textHighlight }]}
-            />
+            <Title label={nation.name} style={styles.nationName} />
         </View>
     )
 }
