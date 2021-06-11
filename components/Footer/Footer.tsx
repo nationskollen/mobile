@@ -6,6 +6,7 @@ import React from 'react'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 import { Nation, Event } from '@nationskollen/sdk'
+import NotificationBadge from '../Common/NotificationBadge'
 import { useTranslation } from '../../translate/LanguageContext'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
@@ -55,6 +56,7 @@ const Footer = () => {
                         iconName = focused ? 'settings-sharp' : 'settings-outline'
                     } else if (route.name === 'Notifications') {
                         iconName = focused ? 'notifications' : 'notifications-outline'
+                        return <NotificationBadge name={iconName} showNum={true}></NotificationBadge>
                     } else if (route.name === 'Nations') {
                         iconName = focused ? 'flag' : 'flag-outline'
                     } else if (route.name === 'Map') {
