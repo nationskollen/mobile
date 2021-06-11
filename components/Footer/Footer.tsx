@@ -56,7 +56,7 @@ const Footer = () => {
                         iconName = focused ? 'settings-sharp' : 'settings-outline'
                     } else if (route.name === 'Notifications') {
                         iconName = focused ? 'notifications' : 'notifications-outline'
-                        return <NotificationBadge name={iconName} showNum={true}></NotificationBadge>
+                        return <NotificationBadge name={iconName} showNum={true} color={color}></NotificationBadge>
                     } else if (route.name === 'Nations') {
                         iconName = focused ? 'flag' : 'flag-outline'
                     } else if (route.name === 'Map') {

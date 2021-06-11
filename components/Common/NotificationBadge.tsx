@@ -7,49 +7,58 @@
 
 import React from 'react'
 import { useNotifications } from '@nationskollen/sdk'
-import { Avatar, Badge, Icon, withBadge } from 'react-native-elements'
+import { Badge } from 'react-native-elements'
 import { usePushToken } from '../PushTokenContext'
 import { Ionicons } from '@expo/vector-icons'
 import { useTheme } from '../ThemeContext'
-import { baseProps } from 'react-native-gesture-handler/lib/typescript/handlers/gestureHandlers'
 import { StyleSheet } from 'react-native'
-import { color } from 'react-native-elements/dist/helpers'
 
 export type BadgeProps = {
     name: any
     showNum?: boolean
+    color?:string
 }
 
-export const BadgedIcon = ({name, showNum}:BadgeProps) => {
+export const BadgedIcon = ({name, showNum, color}:BadgeProps) => {
     const { colors } = useTheme()
     const { token } = usePushToken()
-    if (!token) return null
 
-    const { data, error, isValidating, mutate } = useNotifications(token)
+    const Icon = <Ionicons name={name} size={23} color={color ?? colors.text}></Ionicons>
 
-    const Icon = <Ionicons name="notifications" size={23} color="black"></Ionicons>
-
-    if (data.length < 1) {
+    // If no token could be fetched, render normal icon without badge
+    if (!token) {
         return Icon
     }
-    
-    return (
-        <Badge
-            value={3} //{showNum ? data.length : null} 
-            containerStyle={styles.container}
-        >
-            {Icon}
-        </Badge>
-    )
 
+    const { data } = useNotifications(token)
+
+    if (!data) {
+        return Icon
+    }
+
+    return (
+        <>
+            {Icon}
+
+            {data.length > 0 && <Badge
+                value={showNum ? data.length : null}
+                containerStyle={styles.container}
+                badgeStyle={{backgroundColor: colors.primary}}
+                >     
+            </Badge>
+            }
+        </>
+    )
+        
 }
+    
 
 const styles=StyleSheet.create({
-
     container: {
-
+        position:'absolute',
+        top:2,
+        right:15, 
     },
-
 })
 
 export default BadgedIcon
