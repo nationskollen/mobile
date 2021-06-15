@@ -32,3 +32,28 @@ export const HeaderOptions = (
     },
     headerTitleAlign: 'left',
 })
+
+/**
+ * Creates the option object used the home screen.
+ * This sets the correct color and alignment of the header.
+ *
+ * @param colors - The current theme colors
+ */
+export const HomeHeaderOptions = (
+    isDarkMode: boolean,
+    colors: ThemeColors
+): Partial<StackNavigationOptions> => ({
+    headerStyle: {
+        elevation: 0,
+        shadowOpacity: 0,
+        backgroundColor: colors.background
+    },
+    headerTitleStyle: {
+        fontFamily: 'Roboto_700Bold',
+        color: isDarkMode ? colors.textHighlight : 'white',
+        fontSize: 20,
+        flex: 1,
+    },
+    headerTitleAlign: 'center',
+})
+

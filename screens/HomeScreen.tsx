@@ -8,8 +8,9 @@
 
 import React from 'react'
 
+import { Image, View } from 'react-native'
 import 'react-native-gesture-handler'
-import { HeaderOptions } from './NavigationHeader'
+import { HomeHeaderOptions } from './NavigationHeader'
 import { useTheme } from '../components/ThemeContext'
 import { useTranslation } from '../translate/LanguageContext'
 import { createStackNavigator } from '@react-navigation/stack'
@@ -27,12 +28,22 @@ const HomeScreen = () => {
     const sharedScreens = SharedScreens(Stack, translate)
 
     return (
-        <Stack.Navigator initialRouteName="Home" screenOptions={HeaderOptions(isDarkMode, colors)}>
+        <Stack.Navigator
+            initialRouteName="Home"
+            screenOptions={HomeHeaderOptions(isDarkMode, colors)}
+        >
             <Stack.Screen
                 name="Home"
                 component={HomePage}
                 options={{
-                    title: 'Nationskollen',
+                    headerTitle: (props) => (
+                        <View>
+                            <Image
+                                source={require('../assets/NK_logo.png')}
+                                style={{ height: 100, width: 100 }}
+                            />
+                        </View>
+                    ),
                 }}
             />
             <Stack.Screen

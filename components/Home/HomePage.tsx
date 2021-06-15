@@ -3,7 +3,8 @@
  * @module HomePage
  */
 import React, { useState } from 'react'
-import { View } from 'react-native'
+
+import { View, Image, StyleSheet } from 'react-native'
 import { useTheme } from '../ThemeContext'
 import { RouteProp } from '@react-navigation/native'
 import { Nation } from '@nationskollen/sdk'
@@ -18,6 +19,7 @@ import FilterBar from './FilterBar'
 import FocusAwareStatusBar from '../Common/FocusAwareStatusBar'
 import BottomSheet from './Bottomsheet'
 import FilterButtons from './Filtering/FilterButtons'
+//import NKLogo from '../../assets/NK_logo.png'
 
 export interface Props {
     route: RouteProp<TabStackParamList, 'Home'>
@@ -38,14 +40,14 @@ const Home = () => {
                 }}
             >
                 <FilterProvider>
-                    <SheetProvider>
+                    {/* <SheetProvider>
                         <FilterBar />
                         <Calendar />
                         <Timeline nation={selectedNation} />
                         <BottomSheet>
                             <FilterButtons />
                         </BottomSheet>
-                    </SheetProvider>
+                    </SheetProvider> */}
                 </FilterProvider>
             </View>
         </DatePickerProvider>
