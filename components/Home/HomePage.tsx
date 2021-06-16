@@ -36,7 +36,7 @@ const Home = () => {
             <View
                 style={{
                     flex: 1,
-                    backgroundColor: isDarkMode ? colors.background : colors.backgroundExtra,
+                    backgroundColor: colors.background,
                 }}
             >
                 <FilterProvider>

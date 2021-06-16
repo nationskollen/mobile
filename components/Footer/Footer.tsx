@@ -6,15 +6,12 @@ import React from 'react'
 import { useTheme } from '../ThemeContext'
 import { Ionicons } from '@expo/vector-icons'
 import { Nation, Event } from '@nationskollen/sdk'
-import NotificationBadge from '../Common/NotificationBadge'
 import { useTranslation } from '../../translate/LanguageContext'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 import MapScreen from '../../screens/MapScreen'
 import HomeScreen from '../../screens/HomeScreen'
 import NationScreen from '../../screens/NationScreen'
-import SettingsScreen from '../../screens/SettingsScreen'
-import NotificationScreen from '../../screens/NotificationScreen'
 
 /**
  * Defines the available route params for each tab.
@@ -52,17 +49,6 @@ const Footer = () => {
 
                     if (route.name === 'Home') {
                         iconName = focused ? 'home' : 'home-outline'
-                    } else if (route.name === 'Settings') {
-                        iconName = focused ? 'settings-sharp' : 'settings-outline'
-                    } else if (route.name === 'Notifications') {
-                        iconName = focused ? 'notifications' : 'notifications-outline'
-                        return (
-                            <NotificationBadge
-                                name={iconName}
-                                showNum={true}
-                                color={color}
-                            ></NotificationBadge>
-                        )
                     } else if (route.name === 'Nations') {
                         iconName = focused ? 'flag' : 'flag-outline'
                     } else if (route.name === 'Map') {
@@ -88,11 +74,6 @@ const Footer = () => {
             }}
         >
             <Tab.Screen
-                name="Notifications"
-                component={NotificationScreen}
-                options={{ title: translate.titles.notifications }}
-            />
-            <Tab.Screen
                 name="Nations"
                 component={NationScreen}
                 options={{ title: translate.titles.nations }}
@@ -106,13 +87,6 @@ const Footer = () => {
                 name="Map"
                 component={MapScreen}
                 options={{ title: translate.titles.map }}
-            />
-            <Tab.Screen
-                name="Settings"
-                component={SettingsScreen}
-                options={{
-                    title: translate.titles.settings,
-                }}
             />
         </Tab.Navigator>
     )
