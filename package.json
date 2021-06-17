@@ -9,7 +9,10 @@
     "eject": "expo eject",
     "format": "npx prettier --write .",
     "docs": "npx typedoc --categorizeByGroup true components/** screens/ App.tsx",
-    "docs:watch": "npx typedoc App.tsx screens/ components/* --watch"
+    "docs:watch": "npx typedoc App.tsx screens/ components/* --watch",
+    "lint": "npx eslint . --ext .js,.tsx",
+    "lint:fix": "npx eslint . --ext .js,.tsx --fix" 
+
   },
   "rnpm": {
     "assets": [
@@ -66,6 +69,11 @@
     "@babel/core": "~7.9.0",
     "@types/react": "~16.9.35",
     "@types/react-native": "~0.63.2",
+    "@typescript-eslint/eslint-plugin": "^4.27.0",
+    "@typescript-eslint/parser": "^4.27.0",
+    "eslint": "^7.28.0",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "prettier": "^2.2.1",
     "typescript": "~4.0.0"
   },
