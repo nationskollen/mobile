@@ -98,10 +98,12 @@ export const PushTokenProvider = ({ children }: Props) => {
             Notifications.removeNotificationSubscription(notificationListener.current)
             Notifications.removeNotificationSubscription(responseListener.current)
         }
-    }, [])
+    }, [token])
 
     return (
-        <PushTokenContext.Provider
+        <>
+            {(token!= null) && (
+            <PushTokenContext.Provider
             value={{
                 token,
                 lastUpdated: result ? new Date(result) : undefined,
@@ -109,6 +111,6 @@ export const PushTokenProvider = ({ children }: Props) => {
             }}
         >
             {children}
-        </PushTokenContext.Provider>
-    )
+                           </PushTokenContext.Provider>)}
+    </>)
 }

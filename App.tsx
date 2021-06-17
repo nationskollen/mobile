@@ -14,11 +14,9 @@ import { setCustomText, setCustomTextInput } from 'react-native-global-props'
 import { DarkTheme, LightTheme, ThemeProvider, Theme } from './components/ThemeContext'
 import { useFonts, Roboto_700Bold, Roboto_400Regular } from '@expo-google-fonts/roboto'
 import { Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
-import * as SplashScreen from 'expo-splash-screen';
 import * as Font from 'expo-font';
 
 import Footer from './components/Footer/Footer'
-import { Icon } from 'react-native-vector-icons/Icon'
 
 
 const App = () => {
@@ -70,7 +68,7 @@ const App = () => {
 
                     // Preload Icons
 
-		    const fontAssets = cacheFonts([Ionicons.font, MaterialCommunityIcons.font, MaterialIcons.font ])
+		            const fontAssets = cacheFonts([Ionicons.font, MaterialCommunityIcons.font, MaterialIcons.font ])
                     await Promise.all([...fontAssets])
 			 
 

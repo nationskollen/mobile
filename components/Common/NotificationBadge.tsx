@@ -6,6 +6,7 @@
  */
 
 import React from 'react'
+import { useEffect } from 'react'
 import { StyleSheet } from 'react-native'
 import { useTheme } from '../ThemeContext'
 import { Badge } from 'react-native-elements'
@@ -27,7 +28,8 @@ export type BadgeProps = {
  */
 export const BadgedIcon = ({ name, showNum, color }: BadgeProps) => {
     const { colors } = useTheme()
-    const { token } = usePushToken()
+    const { token} = usePushToken()
+    const { data } = useNotifications(token)
 
     const Icon = <Ionicons name={name} size={23} color={color ?? colors.text}></Ionicons>
 
@@ -36,13 +38,12 @@ export const BadgedIcon = ({ name, showNum, color }: BadgeProps) => {
         return Icon
     }
 
-    const { data } = useNotifications(token)
 
     return (
         <>
             {Icon}
 
-            {data.length > 0 && (
+            {data!=undefined && (
                 <Badge
                     value={showNum ? data.length : null}
                     containerStyle={styles.container}
