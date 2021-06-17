@@ -102,15 +102,17 @@ export const PushTokenProvider = ({ children }: Props) => {
 
     return (
         <>
-            {(token!= null) && (
-            <PushTokenContext.Provider
-            value={{
-                token,
-                lastUpdated: result ? new Date(result) : undefined,
-                setLastUpdated,
-            }}
-        >
-            {children}
-                           </PushTokenContext.Provider>)}
-    </>)
+            {token != null && (
+                <PushTokenContext.Provider
+                    value={{
+                        token,
+                        lastUpdated: result ? new Date(result) : undefined,
+                        setLastUpdated,
+                    }}
+                >
+                    {children}
+                </PushTokenContext.Provider>
+            )}
+        </>
+    )
 }

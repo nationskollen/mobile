@@ -14,10 +14,9 @@ import { setCustomText, setCustomTextInput } from 'react-native-global-props'
 import { DarkTheme, LightTheme, ThemeProvider, Theme } from './components/ThemeContext'
 import { useFonts, Roboto_700Bold, Roboto_400Regular } from '@expo-google-fonts/roboto'
 import { Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
-import * as Font from 'expo-font';
+import * as Font from 'expo-font'
 
 import Footer from './components/Footer/Footer'
-
 
 const App = () => {
     const [initialTheme, setInitialTheme] = useState<Theme | null>(null)
@@ -42,12 +41,11 @@ const App = () => {
     setCustomText(customTextProps)
     setCustomTextInput(customTextProps)
 
-	function cacheFonts(fonts: { [x:string]:any}) {
-        return fonts.map((font:string) => Font.loadAsync(font))
+    function cacheFonts(fonts: { [x: string]: any }) {
+        return fonts.map((font: string) => Font.loadAsync(font))
     }
 
-
-        if (!isReady) {
+    if (!isReady) {
         return (
             <AppLoading
                 startAsync={async () => {
@@ -68,11 +66,12 @@ const App = () => {
 
                     // Preload Icons
 
-		            const fontAssets = cacheFonts([Ionicons.font, MaterialCommunityIcons.font, MaterialIcons.font ])
+                    const fontAssets = cacheFonts([
+                        Ionicons.font,
+                        MaterialCommunityIcons.font,
+                        MaterialIcons.font,
+                    ])
                     await Promise.all([...fontAssets])
-			 
-
-
                 }}
                 onFinish={() => setIsReady(true)}
                 autoHideSplash={true}
