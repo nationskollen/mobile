@@ -41,7 +41,7 @@ export const BadgedIcon = ({ name, showNum, color }: BadgeProps) => {
         <>
             {Icon}
 
-            {data != undefined && (
+        {(data && data.length > 0) && (
                 <Badge
                     value={showNum ? data.length : null}
                     containerStyle={styles.container}

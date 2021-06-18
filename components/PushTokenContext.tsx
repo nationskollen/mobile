@@ -32,7 +32,7 @@ Notifications.setNotificationHandler({
     }),
 })
 
-async function registerForPushNotificationsAsync() {
+async function registerForPushNotificationsAsync(setLoading) {
     let token: string
 
     if (Constants.isDevice) {
@@ -64,7 +64,7 @@ async function registerForPushNotificationsAsync() {
             lightColor: '#FF231F7C',
         })
     }
-
+    setLoading(false);
     return token
 }
 
@@ -73,6 +73,7 @@ export const PushTokenProvider = ({ children }: Props) => {
     const responseListener = useRef<any>()
     const notificationListener = useRef<any>()
     const [token, setToken] = useState<string | null>(null)
+    const [loading, setLoading] = useState(true)
     const { result } = useAsync(async () => await AsyncStorage.getItem('lastUpdated'), [])
     const setLastUpdated = useCallback(
         (date: Date) => AsyncStorage.setItem('lastUpdated', date.toISOString()),
@@ -80,7 +81,7 @@ export const PushTokenProvider = ({ children }: Props) => {
     )
 
     useEffect(() => {
-        registerForPushNotificationsAsync().then((token) => setToken(token))
+        registerForPushNotificationsAsync(setLoading).then((token) => setToken(token))
 
         notificationListener.current = Notifications.addNotificationReceivedListener(
             (notification) => {
@@ -102,7 +103,7 @@ export const PushTokenProvider = ({ children }: Props) => {
 
     return (
         <>
-            {token != null && (
+            {!loading &&  (
                 <PushTokenContext.Provider
                     value={{
                         token,
