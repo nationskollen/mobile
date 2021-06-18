@@ -30,7 +30,7 @@ export interface Props<T> {
 
 // Use <T,> to prevent typescript from complaining.
 // You can also do <T extends object>, etc, but this is less verbose.
-const PersonCarousel = <T,>({
+const CardCarousel = <T,>({
     height,
     data,
     isValidating,
@@ -53,7 +53,7 @@ const PersonCarousel = <T,>({
         ]
     }, [data, cardWidth])
 
-    // Skip rendering of carousel if no persons are available
+    // Skip rendering of carousel if no items are available
     if ((!data || data.length === 0) && !isValidating) {
         return null
     }
@@ -74,7 +74,10 @@ const PersonCarousel = <T,>({
             >
                 {data &&
                     data.map((item: T, index: number) => (
-                        <Card key={index} style={{ width: cardWidth, overflow: 'hidden' }}>
+                        <Card
+                            key={index}
+                            style={{ width: cardWidth, overflow: 'hidden', ...styles.cardShadows }}
+                        >
                             <CoverImage
                                 src={srcExtractor ? srcExtractor(item) : null}
                                 height={height}
@@ -124,6 +127,14 @@ const styles = StyleSheet.create({
         zIndex: 2,
     },
 
+    cardShadows: {
+        elevation: 10,
+        shadowColor: 'black',
+        shadowOffset: { width: 20, height: 20 },
+        shadowRadius: 30,
+        zIndex: 1,
+    },
+
     gradient: {
         height: 150,
         width: '100%',
@@ -134,4 +145,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default PersonCarousel
+export default CardCarousel

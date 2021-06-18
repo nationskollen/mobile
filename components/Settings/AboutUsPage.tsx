@@ -5,7 +5,7 @@ import { useTheme } from '../ThemeContext'
 import { useTranslation } from '../../translate/LanguageContext'
 
 import Title from '../Common/Title'
-import PersonCarousel from '../Common/PersonCarousel'
+import CardCarousel from '../Common/CardCarousel'
 import ContentSection from '../Common/ContentSection'
 import ContactInformation from '../Common/ContactInformation'
 import FocusAwareStatusBar from '../Common/FocusAwareStatusBar'
@@ -88,7 +88,7 @@ const AboutUsPage = () => {
                         />
                     </ContentSection>
                 </View>
-                <PersonCarousel
+                <CardCarousel
                     height={350}
                     data={DATA}
                     cardWidth={300}
