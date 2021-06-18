@@ -3,7 +3,7 @@
  * images and (optional) bottom content, e.g. name, description, etc.
  *
  * @category Common
- * @module PersonCarousel
+ * @module CardCarousel
  */
 import React, { useMemo } from 'react'
 import { View, ScrollView, StyleSheet } from 'react-native'

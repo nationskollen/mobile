@@ -109,7 +109,7 @@ const NationHomePage = ({ route }: Props) => {
                 />
                 <ContactInformation title="Telefon" value="070-000 00 00" icon="call-outline" />
             </ContentSection>
-            <PersonCarousel
+            <CardCarousel
                 height={350}
                 data={individuals}
                 isValidating={isValidatingIndividuals}
