@@ -64,7 +64,7 @@ async function registerForPushNotificationsAsync(setLoading) {
             lightColor: '#FF231F7C',
         })
     }
-    setLoading(false);
+    setLoading(false)
     return token
 }
 
@@ -103,7 +103,7 @@ export const PushTokenProvider = ({ children }: Props) => {
 
     return (
         <>
-            {!loading &&  (
+            {!loading && (
                 <PushTokenContext.Provider
                     value={{
                         token,
