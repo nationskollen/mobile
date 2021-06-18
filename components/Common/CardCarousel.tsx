@@ -76,7 +76,7 @@ const CardCarousel = <T,>({
                     data.map((item: T, index: number) => (
                         <Card
                             key={index}
-                            style={{ width: cardWidth, overflow: 'hidden', ...styles.cardShadows }}
+                            style={{ width: cardWidth, overflow: 'hidden' }}
                         >
                             <CoverImage
                                 src={srcExtractor ? srcExtractor(item) : null}

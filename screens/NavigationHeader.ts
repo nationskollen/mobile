@@ -46,7 +46,7 @@ export const HomeHeaderOptions = (
     headerStyle: {
         elevation: 0,
         shadowOpacity: 0,
-        backgroundColor: colors.background
+        backgroundColor: colors.background,
     },
     headerTitleStyle: {
         fontFamily: 'Roboto_700Bold',
@@ -56,4 +56,3 @@ export const HomeHeaderOptions = (
     },
     headerTitleAlign: 'center',
 })
-

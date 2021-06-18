@@ -7,7 +7,7 @@ import React, { useState } from 'react'
 import { View, Image, StyleSheet, ScrollView } from 'react-native'
 import { useTheme } from '../ThemeContext'
 import { RouteProp } from '@react-navigation/native'
-import { Nation } from '@nationskollen/sdk'
+import { Nation, useEvents } from '@nationskollen/sdk'
 import { TabStackParamList } from '../Footer/Footer'
 import { DatePickerProvider } from './DatePickerContext'
 import { SheetProvider } from './SheetContext'
@@ -19,7 +19,7 @@ import FilterBar from './FilterBar'
 import FocusAwareStatusBar from '../Common/FocusAwareStatusBar'
 import BottomSheet from './Bottomsheet'
 import FilterButtons from './Filtering/FilterButtons'
-import CardSnapCarousel from './CardSnapCarousel'
+import PopularEvents from './PopularEvents'
 //import NKLogo from '../../assets/NK_logo.png'
 
 export interface Props {
@@ -40,7 +40,7 @@ const Home = () => {
                     backgroundColor: colors.background,
                 }}
             >
-                <CardSnapCarousel></CardSnapCarousel>
+                <PopularEvents></PopularEvents>
                 <FilterProvider>
                     {/* <SheetProvider>
                         <FilterBar />
