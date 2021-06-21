@@ -20,6 +20,7 @@ import FocusAwareStatusBar from '../Common/FocusAwareStatusBar'
 import BottomSheet from './Bottomsheet'
 import FilterButtons from './Filtering/FilterButtons'
 import PopularEvents from './PopularEvents'
+import CategoryCarousel from './CategoryCarousel'
 //import NKLogo from '../../assets/NK_logo.png'
 
 export interface Props {
@@ -42,6 +43,9 @@ const Home = () => {
             >
                 <PopularEvents></PopularEvents>
                 <FilterProvider>
+                    <CategoryCarousel showTitle={true} title={'Categories'}></CategoryCarousel>
+                    {/* TODO: translate title */}
+
                     {/* <SheetProvider>
                         <FilterBar />
                         <Calendar />

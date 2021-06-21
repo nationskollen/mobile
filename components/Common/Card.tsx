@@ -12,7 +12,7 @@ export interface Props {
     children: Element | Element[]
     contentPadding?: boolean
     onPress?: () => void
-    style?: ViewStyle
+    style?: ViewStyle | Array<ViewStyle>
 }
 
 export const CARD_HORIZONTAL_SPACING = 10
