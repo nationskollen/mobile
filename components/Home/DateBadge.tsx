@@ -10,16 +10,18 @@ import { View, StyleSheet, Text } from 'react-native'
 import { useDatePicker } from './DatePickerContext'
 import { useTheme } from '../ThemeContext'
 
-const DateBadge = () => {
-    const { shownDate } = useDatePicker()
+export interface Props {
+    date: Date
+}
+
+const DateBadge = ({ date }: Props) => {
     const { colors } = useTheme()
+    if (!date) return null
 
     return (
         <Card style={[{ backgroundColor: colors.background }, styles.container]}>
-            <Text style={styles.date}>{shownDate.getDate()}</Text>
-            <Text style={styles.month}>
-                {shownDate.toLocaleString('default', { month: 'short' })}
-            </Text>
+            <Text style={styles.date}>{date.getDate()}</Text>
+            <Text style={styles.month}>{date.toLocaleString('default', { month: 'short' })}</Text>
         </Card>
     )
 }

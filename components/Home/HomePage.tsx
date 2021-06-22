@@ -21,7 +21,7 @@ import BottomSheet from './Bottomsheet'
 import FilterButtons from './Filtering/FilterButtons'
 import PopularEvents from './PopularEvents'
 import CategoryCarousel from './CategoryCarousel'
-//import NKLogo from '../../assets/NK_logo.png'
+import Toolbar from './Toolbar'
 
 export interface Props {
     route: RouteProp<TabStackParamList, 'Home'>
@@ -41,12 +41,14 @@ const Home = () => {
                     backgroundColor: colors.background,
                 }}
             >
+                <Toolbar></Toolbar>
                 <PopularEvents></PopularEvents>
                 <FilterProvider>
                     <CategoryCarousel showTitle={true} title={'Categories'}></CategoryCarousel>
                     {/* TODO: translate title */}
 
-                    {/* <SheetProvider>
+                    {/* OLD HOMEPAGE:
+                    <SheetProvider>
                         <FilterBar />
                         <Calendar />
                         <Timeline nation={selectedNation} />

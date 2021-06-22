@@ -57,12 +57,14 @@ const CategoryCarousel = ({ showTitle, title }: CarouselProps) => {
                     <Text style={styles.carouselTitle}>{title}</Text>
                 </View>
             )}
+
             <FlatList
                 data={categories}
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={renderItem}
+                style={{ marginLeft: 10 }}
             />
         </>
     )
@@ -72,7 +74,7 @@ const styles = StyleSheet.create({
     carouselTitle: {
         paddingTop: 20,
         paddingBottom: 5,
-        marginLeft: 10,
+        marginLeft: 20,
         fontSize: 20,
         fontWeight: 'bold',
     },

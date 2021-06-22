@@ -25,14 +25,16 @@ import CoverImage from '../Common/CoverImage'
 import { useNavigation } from '@react-navigation/native'
 import DateBadge from './DateBadge'
 
-interface Props {
+export interface Props {
     category?: Category
 }
 
-interface ItemProps {
+export interface ItemProps {
     item: Event
     index: number
 }
+
+const EVENTCARD_WIDTH = 250
 
 //TODO: add sortBy prop on useEvents, to fetch the most popular events
 const PopularEvents = ({ category }: Props) => {
@@ -51,7 +53,7 @@ const PopularEvents = ({ category }: Props) => {
                 <Card
                     style={{
                         height: 200,
-                        width: 300,
+                        width: EVENTCARD_WIDTH,
                         borderRadius: 20,
                         overflow: 'hidden',
                         zIndex: 1,
@@ -70,10 +72,11 @@ const PopularEvents = ({ category }: Props) => {
                 >
                     <CoverImage src={event.cover_img_src} textOverlayColor="black"></CoverImage>
                     <Text style={styles.nation}>{'Norrlands Nation'}</Text>
+                    {/*Make dynamic*/}
                     <Text style={styles.title}>{event.name}</Text>
                 </Card>
                 <View style={styles.badge}>
-                    <DateBadge />
+                    <DateBadge date={new Date(event.occurs_at)} />
                 </View>
             </View>
         )
@@ -85,7 +88,7 @@ const PopularEvents = ({ category }: Props) => {
             renderItem={renderItem}
             sliderWidth={Dimensions.get('screen').width}
             sliderHeight={200}
-            itemWidth={300}
+            itemWidth={EVENTCARD_WIDTH}
             loop={true}
             autoplay={false}
             // autoplayDelay={1500} //not sure how to make the transistion slower
