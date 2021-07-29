@@ -12,20 +12,20 @@ export interface PushTokenContextContract {
     token: string
     lastUpdated?: Date
     setLastUpdated: (date: Date) => void
-    notification : boolean
+    notification: boolean
 }
 
 export interface Props {
     children: Element | Element[]
-    expoToken : string
-    notification : any
+    expoToken: string
+    notification: any
 }
 
 export const PushTokenContext = createContext({} as PushTokenContextContract)
 export const usePushToken = () => useContext(PushTokenContext)
 
 // TODO: Allow registration of callbacks for new notifications?
-export const PushTokenProvider = ({token, notification, children}) => {
+export const PushTokenProvider = ({ token, notification, children }) => {
     const { result } = useAsync(async () => await AsyncStorage.getItem('lastUpdated'), [])
     const setLastUpdated = useCallback(
         (date: Date) => AsyncStorage.setItem('lastUpdated', date.toISOString()),
@@ -33,18 +33,18 @@ export const PushTokenProvider = ({token, notification, children}) => {
     )
     return (
         <>
-            {(
+            {
                 <PushTokenContext.Provider
                     value={{
-                       token,
+                        token,
                         lastUpdated: result ? new Date(result) : undefined,
                         setLastUpdated,
-                        notification
+                        notification,
                     }}
                 >
                     {children}
                 </PushTokenContext.Provider>
-            )}
+            }
         </>
     )
 }

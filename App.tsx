@@ -7,7 +7,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import 'react-native-gesture-handler'
 import AppLoading from 'expo-app-loading'
 import { Provider } from '@nationskollen/sdk'
-import { PushTokenProvider} from './components/PushTokenContext'
+import { PushTokenProvider } from './components/PushTokenContext'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { LanguageContextProvider } from './translate/LanguageContext'
 import { setCustomText, setCustomTextInput } from 'react-native-global-props'
@@ -16,7 +16,7 @@ import { useFonts, Roboto_700Bold, Roboto_400Regular } from '@expo-google-fonts/
 import { Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
 import * as Font from 'expo-font'
 import Constants from 'expo-constants'
-import * as Notifications from 'expo-notifications';
+import * as Notifications from 'expo-notifications'
 import Footer from './components/Footer/Footer'
 import { Platform } from 'react-native'
 
@@ -33,10 +33,10 @@ const App = () => {
     const [initialLanguageKey, setInitialLanguageKey] = useState<number>(1)
     const [isReady, setIsReady] = useState(false)
     const [expoPushToken, setExpoPushToken] = useState('')
-    const [notification, setNotification] = useState<any>(false);
+    const [notification, setNotification] = useState<any>(false)
 
-    const responseListener = useRef<any>();
-    const notificationListener = useRef<any>();
+    const responseListener = useRef<any>()
+    const notificationListener = useRef<any>()
 
     const [loaded] = useFonts({
         Roboto_400Regular,
@@ -46,7 +46,6 @@ const App = () => {
     if (!loaded) {
         return null
     }
-
 
     /** Global font to be used across the app. */
     const customTextProps = {
@@ -60,30 +59,31 @@ const App = () => {
     setCustomText(customTextProps)
     setCustomTextInput(customTextProps)
 
-
     /** Preloads the fonts before app rendering. */
     function cacheFonts(fonts: { [x: string]: any }) {
         return fonts.map((font: string) => Font.loadAsync(font))
     }
 
-
     useEffect(() => {
-        registerForPushNotificationsAsync().then(token => setExpoPushToken(token))
+        registerForPushNotificationsAsync().then((token) => setExpoPushToken(token))
 
-        notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
-        setNotification(notification);
-    });
+        notificationListener.current = Notifications.addNotificationReceivedListener(
+            (notification) => {
+                setNotification(notification)
+            }
+        )
 
-    responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
-      console.log(response);
-    });
+        responseListener.current = Notifications.addNotificationResponseReceivedListener(
+            (response) => {
+                console.log(response)
+            }
+        )
 
-    return () => {
-      Notifications.removeNotificationSubscription(notificationListener.current);
-      Notifications.removeNotificationSubscription(responseListener.current);
-    };
+        return () => {
+            Notifications.removeNotificationSubscription(notificationListener.current)
+            Notifications.removeNotificationSubscription(responseListener.current)
+        }
     })
-
 
     if (!isReady) {
         return (
@@ -133,7 +133,7 @@ const App = () => {
         >
             <ThemeProvider initialTheme={initialTheme}>
                 <LanguageContextProvider initialLanguage={initialLanguageKey}>
-                    <PushTokenProvider token={expoPushToken} notification = {notification}>
+                    <PushTokenProvider token={expoPushToken} notification={notification}>
                         <Footer />
                     </PushTokenProvider>
                 </LanguageContextProvider>
@@ -176,7 +176,5 @@ async function registerForPushNotificationsAsync() {
     }
     return token
 }
-
-
 
 export default App
